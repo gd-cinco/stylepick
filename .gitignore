@@ -101,3 +101,6 @@ buildNumber.properties
 .mvn/timing.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
+target/m2e-wtp/web-resources/META-INF/maven/kr.cinco/stylepick/pom.properties
+target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+target/classes/test/hello.txt
