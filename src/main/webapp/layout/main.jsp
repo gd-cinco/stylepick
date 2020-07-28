@@ -21,7 +21,7 @@
 	<link rel="stylesheet" href="${path}/assets/css/slick.css">
 	<link rel="stylesheet" href="${path}/assets/css/nice-select.css">
 	<link rel="stylesheet" href="${path}/assets/css/style.css">
-	
+	<link rel="stylesheet" href="${path}/assets/css/final.css">
 	<title><decorator:title/></title>
 	<decorator:head/>
 </head>
