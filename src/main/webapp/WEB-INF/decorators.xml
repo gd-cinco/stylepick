@@ -3,4 +3,7 @@
    <decorator name="main" page="main.jsp">
       <pattern>*</pattern>
    </decorator>
+   <excludes>
+   	<pattern>/board/*</pattern>
+   </excludes>
 </decorators>
