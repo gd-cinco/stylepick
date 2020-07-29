@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dao.ItemDao;
 import dao.UserDao;
 
 @Service	//@Component + service ( Controller와 dao의 중간)
@@ -14,6 +15,8 @@ public class ShopService {
 
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private ItemDao itemDao;
 
 	public void userInsert(User user) {
 		userDao.insert(user);
@@ -64,5 +67,11 @@ public class ShopService {
 //					map.put((String)m.get("regdate"), m.get("cnt"));
 //				}
 				return map;
+			}
+
+			
+		//[아이템]상품 리스트 정보
+			public List<Item> getItemList() {
+				return itemDao.list();
 			}
 }

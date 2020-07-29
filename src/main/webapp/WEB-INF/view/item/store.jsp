@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Store</title>
 </head>
 <body>
-
+<h2>22</h2>
 </body>
 </html>
