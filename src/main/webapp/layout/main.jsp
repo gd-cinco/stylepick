@@ -111,7 +111,7 @@
 	<!-- Header End -->
 </header>
 <main>
-    <div class="best-collection-area align-center">
+    <div class="best-collection-area align-center final-paddingleft-25">
         <decorator:body/>
     </div>
 </main>
