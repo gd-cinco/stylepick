@@ -18,12 +18,8 @@ public class itemController {
 		@Autowired
 		private ShopService service;
 		
-		@RequestMapping("store")	//item/list.shop
-		public ModelAndView list() {
-			ModelAndView mav =new ModelAndView();
-			List<Item> itemList = service.getItemList();
-			
-			mav.addObject("itemList",itemList);
-			return mav;
+		@RequestMapping("*")	//item/list.shop
+		public String testing() {
+			return null;
 		}
 }
