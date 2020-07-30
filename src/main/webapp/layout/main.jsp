@@ -63,16 +63,12 @@
 							<div class="main-menu f-right d-none d-lg-block">
 								<nav>                                                
 									<ul id="navigation">                                                                                                                                     
-										<li><a href="#">Menu001</a></li>
+										<li><a href="http://localhost:8080/stylepick/user/main.shop">admin</a></li>
+										<li><a href="http://localhost:8080/stylepick/admin/list.shop">list</a></li>
 										<li class="hot"><a href="#">Menu002</a></li>
 										<li><a href="#">Menu003</a>
 											<ul class="submenu">
 												<li><a href="#">SubMenu001</a></li>
-											</ul>
-                                        </li>
-                                        <li><a href="${path}/board/test2.shop">게시판(임시)</a>
-                                       	    <ul class="submenu">
-												<li><a href="${path}/board/test2.shop">data-table</a></li>
 											</ul>
                                         </li>
                                     </ul>
@@ -84,7 +80,7 @@
 							<ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
 								<li class="d-none d-xl-block">
 									<div class="form-box f-right ">
-										<input type="text" name="Search" placeholder="검색">
+										<input type="text" name="Search" placeholder="Input003">
 										<div class="search-icon">
 											<i class="fas fa-search special-tag"></i>
 										</div>
@@ -100,7 +96,7 @@
 										<a href="#"><i class="fas fa-shopping-cart"></i></a>
 									</div>
 								</li>
-									<li class="d-none d-lg-block"> <a href="${path}/user/login.shop" class="btn header-btn">로그인</a></li>
+									<li class="d-none d-lg-block"> <a href="#" class="btn header-btn">로그인</a></li>
 								</ul>
 						</div>
 						
@@ -116,8 +112,10 @@
 	<!-- Header End -->
 </header>
 <main>
-    <div class="best-collection-area align-center final-paddingleft-25">
-        <decorator:body/>
+    <div class="best-collection-area align-center">
+        <div class="main-mapper">
+        	<decorator:body/>
+        </div>
     </div>
 </main>
 <footer>
