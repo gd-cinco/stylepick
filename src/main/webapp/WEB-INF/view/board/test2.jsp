@@ -5,10 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>test</title>
-	
 </head>
 <body>
-	<!-- Data Table area Start-->
     <div class="data-table-area">
         <div class="container">
             <div class="row">
@@ -31,7 +29,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                	<c:forEach begin="1" end="50" var="i">
+                                	<c:forEach begin="1" end="1000" var="i">
                                 		<tr>
                                         <td>${i}</td>
                                         <td>관리자</td>
@@ -53,7 +51,5 @@
             </div>
         </div>
     </div>
-    
-  
 </body>
 </html>

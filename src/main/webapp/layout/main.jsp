@@ -63,7 +63,8 @@
 							<div class="main-menu f-right d-none d-lg-block">
 								<nav>                                                
 									<ul id="navigation">                                                                                                                                     
-										<li><a href="#">Menu001</a></li>
+										<li><a href="http://localhost:8080/stylepick/user/main.shop">admin</a></li>
+										<li><a href="http://localhost:8080/stylepick/admin/list.shop">list</a></li>
 										<li class="hot"><a href="#">Menu002</a></li>
 										<li><a href="#">Menu003</a>
 											<ul class="submenu">
@@ -111,8 +112,10 @@
 	<!-- Header End -->
 </header>
 <main>
-    <div class="best-collection-area align-center final-paddingleft-25">
-        <decorator:body/>
+    <div class="best-collection-area align-center">
+        <div class="main-mapper">
+        	<decorator:body/>
+        </div>
     </div>
 </main>
 <footer>

@@ -23,9 +23,6 @@
 	<link rel="stylesheet" href="${path}/assets/css/style.css">
 	<link rel="stylesheet" href="${path}/assets/css/final.css">
 	
-	<!-- favicon
-		============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="${path}/assets/board/img/favicon.ico">
     <!-- owl.carousel CSS
 		============================================ -->
     <link rel="stylesheet" href="${path}/assets/board/css/owl.carousel.css">
@@ -65,6 +62,7 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="${path}/assets/board/js/vendor/modernizr-2.8.3.min.js"></script>
+    
 	<title><decorator:title/></title>
 	<decorator:head/>
 </head>
@@ -97,7 +95,7 @@
 						<!-- Logo -->
 						<div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
 							<div class="logo">
-								<a href="index.html"><img src="${path}/assets/img/logo/logo.png" alt=""></a>
+								<a href="index.html"><img src="${path}/assets/img/logo/logo2.png" alt=""></a>
 							</div>
 						</div>
 						<div class="col-xl-6 col-lg-8 col-md-7 col-sm-5">
@@ -112,6 +110,11 @@
 												<li><a href="#">SubMenu001</a></li>
 											</ul>
                                         </li>
+                                        <li><a href="${path}/board/test2.shop">게시판(임시)</a>
+                                       	    <ul class="submenu">
+												<li><a href="${path}/board/test2.shop">data-table</a></li>
+											</ul>
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>
@@ -121,7 +124,7 @@
 							<ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
 								<li class="d-none d-xl-block">
 									<div class="form-box f-right ">
-										<input type="text" name="Search" placeholder="Input003">
+										<input type="text" name="Search" placeholder="검색">
 										<div class="search-icon">
 											<i class="fas fa-search special-tag"></i>
 										</div>
@@ -137,7 +140,7 @@
 										<a href="#"><i class="fas fa-shopping-cart"></i></a>
 									</div>
 								</li>
-									<li class="d-none d-lg-block"> <a href="#" class="btn header-btn">로그인</a></li>
+									<li class="d-none d-lg-block"> <a href="${path}/user/login.shop" class="btn header-btn">로그인</a></li>
 								</ul>
 						</div>
 						
@@ -167,7 +170,7 @@
 						<div class="single-footer-caption mb-30">
 							<!-- logo -->
 							<div class="footer-logo">
-								<a href="index.html"><img src="${path}/assets/img/logo/logo2_footer.png" alt=""></a>
+								<a href="index.html"><img src="${path}/assets/img/logo/logo2.png" alt=""></a>
 							</div>
 							<div class="footer-tittle">
 								<div class="footer-pera">
@@ -337,6 +340,5 @@
     <!-- main JS
 		============================================ -->
     <script src="${path}/assets/board/js/main.js"></script>
-	  
 </body>
 </html>
