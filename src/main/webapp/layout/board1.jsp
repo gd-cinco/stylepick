@@ -95,7 +95,7 @@
 						<!-- Logo -->
 						<div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
 							<div class="logo">
-								<a href="index.html"><img src="${path}/assets/img/logo/logo.png" alt=""></a>
+								<a href="index.html"><img src="${path}/assets/img/logo/logo2.png" alt=""></a>
 							</div>
 						</div>
 						<div class="col-xl-6 col-lg-8 col-md-7 col-sm-5">
@@ -165,7 +165,7 @@
 						<div class="single-footer-caption mb-30">
 							<!-- logo -->
 							<div class="footer-logo">
-								<a href="index.html"><img src="${path}/assets/img/logo/logo2_footer.png" alt=""></a>
+								<a href="index.html"><img src="${path}/assets/img/logo/logo2.png" alt=""></a>
 							</div>
 							<div class="footer-tittle">
 								<div class="footer-pera">
