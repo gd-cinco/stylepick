@@ -70,6 +70,11 @@
 												<li><a href="#">SubMenu001</a></li>
 											</ul>
                                         </li>
+                                        <li><a href="${path}/board/test2.shop">게시판(임시)</a>
+                                       	    <ul class="submenu">
+												<li><a href="${path}/board/test2.shop">data-table</a></li>
+											</ul>
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>
@@ -79,7 +84,7 @@
 							<ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
 								<li class="d-none d-xl-block">
 									<div class="form-box f-right ">
-										<input type="text" name="Search" placeholder="Input003">
+										<input type="text" name="Search" placeholder="검색">
 										<div class="search-icon">
 											<i class="fas fa-search special-tag"></i>
 										</div>
@@ -95,7 +100,7 @@
 										<a href="#"><i class="fas fa-shopping-cart"></i></a>
 									</div>
 								</li>
-									<li class="d-none d-lg-block"> <a href="#" class="btn header-btn">로그인</a></li>
+									<li class="d-none d-lg-block"> <a href="${path}/user/login.shop" class="btn header-btn">로그인</a></li>
 								</ul>
 						</div>
 						
