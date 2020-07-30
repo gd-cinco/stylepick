@@ -23,9 +23,6 @@
 	<link rel="stylesheet" href="${path}/assets/css/style.css">
 	<link rel="stylesheet" href="${path}/assets/css/final.css">
 	
-	<!-- favicon
-		============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="${path}/assets/board/img/favicon.ico">
     <!-- owl.carousel CSS
 		============================================ -->
     <link rel="stylesheet" href="${path}/assets/board/css/owl.carousel.css">
@@ -65,6 +62,7 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="${path}/assets/board/js/vendor/modernizr-2.8.3.min.js"></script>
+    
 	<title><decorator:title/></title>
 	<decorator:head/>
 </head>
@@ -337,6 +335,5 @@
     <!-- main JS
 		============================================ -->
     <script src="${path}/assets/board/js/main.js"></script>
-	  
 </body>
 </html>
