@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="euc-kr" ?>
 <decorators defaultdir="/layout">
    <decorator name="main" page="main.jsp">
-      <pattern>*</pattern>
-      <excludes>
-      	<pattern>/board/*</pattern>
-      </excludes>
+      <pattern>*.shop</pattern>
    </decorator>
+   <excludes>
+   	<pattern>/user/login*</pattern>
+   </excludes>
    <decorator name="board" page="board1.jsp">
       <pattern>/board/*</pattern>
    </decorator>
