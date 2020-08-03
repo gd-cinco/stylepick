@@ -55,7 +55,7 @@
 						<!-- Logo -->
 						<div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
 							<div class="logo">
-								<a href="index.html"><img src="${path}/assets/img/logo/logo.png" alt=""></a>
+								<a href="#"><img src="${path}/assets/img/logo/logo.png" alt=""></a> <!-- sns 인기글 -->
 							</div>
 						</div>
 						<div class="col-xl-6 col-lg-8 col-md-7 col-sm-5">
@@ -63,14 +63,19 @@
 							<div class="main-menu f-right d-none d-lg-block">
 								<nav>                                                
 									<ul id="navigation">                                                                                                                                     
-										<li><a href="http://localhost:8080/stylepick/user/main.shop">admin</a></li>
-										<li><a href="http://localhost:8080/stylepick/admin/list.shop">list</a></li>
-										<li class="hot"><a href="#">Menu002</a></li>
+										<li><a href="../user/main.shop">admin</a></li>
+										<li><a href="../admin/list.shop">list</a></li>
+										<li><a href="../item/store.shop">store</a></li>
+										<li><a href="../board/test2.shop">board(고객센터)</a>
+										<li><a href="../user/mypage.shop">mypage</a>
+										
+										<!-- 
+										<li class="hot"><a href="#">Menu002</a></li> 핫 사용
 										<li><a href="#">Menu003</a>
-											<ul class="submenu">
+											<ul class="submenu">     		서브메뉴 사용
 												<li><a href="#">SubMenu001</a></li>
 											</ul>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </nav>
                             </div>
@@ -96,7 +101,7 @@
 										<a href="#"><i class="fas fa-shopping-cart"></i></a>
 									</div>
 								</li>
-									<li class="d-none d-lg-block"> <a href="#" class="btn header-btn">로그인</a></li>
+									<li class="d-none d-lg-block"> <a href="../user/login.shop" class="btn header-btn">로그인</a></li>
 								</ul>
 						</div>
 						

@@ -103,7 +103,7 @@
 							<div class="main-menu f-right d-none d-lg-block">
 								<nav>                                                
 									<ul id="navigation">                                                                                                                                     
-										<li><a href="#">Menu001</a></li>
+										<li><a href="../user/main.shop">main</a></li>
 										<li class="hot"><a href="#">Menu002</a></li>
 										<li><a href="#">Menu003</a>
 											<ul class="submenu">
