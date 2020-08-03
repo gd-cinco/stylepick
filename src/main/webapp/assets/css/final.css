@@ -1,6 +1,14 @@
 a {
 	color: black;
 }
-.final-paddingleft-25{
-	padding-left: 25px!important;
+
+body, h1, h2, h3, h4, h5 {
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.main-mapper {
+	width : 60%;
+	margin : 0 20%;
 }

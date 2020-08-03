@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("board")
 public class BoardController {
 	
-	@RequestMapping("test")
+	@RequestMapping("*")
 	public String testing() {
 		return null;
 	}

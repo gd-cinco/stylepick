@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import dao.SnsDao;
+import dao.ItemDao;
 import dao.UserDao;
 
 @Service	//@Component + service ( Controller와 dao의 중간)
@@ -22,6 +23,10 @@ public class ShopService {
 	
 	@Autowired
 	private SnsDao snsDao;
+
+	@Autowired
+	private ItemDao itemDao;
+
 
 	public void userInsert(User user) {
 		userDao.insert(user);
@@ -73,6 +78,7 @@ public class ShopService {
 //				}
 				return map;
 			}
+
 	
 	//[sns] ootd 작성
 	public void snsWrite(Sns sns,HttpServletRequest request) {
@@ -102,4 +108,12 @@ public class ShopService {
 			e.printStackTrace();
 		}
 	}
+
+
+			
+		//[아이템]상품 리스트 정보
+			public List<Item> getItemList() {
+				return itemDao.list();
+			}
+
 }

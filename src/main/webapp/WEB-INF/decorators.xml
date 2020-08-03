@@ -2,8 +2,11 @@
 <decorators defaultdir="/layout">
    <decorator name="main" page="main.jsp">
       <pattern>*</pattern>
+      <excludes>
+      	<pattern>/board/*</pattern>
+      </excludes>
    </decorator>
-   <excludes>
-   	<pattern>/board/*</pattern>
-   </excludes>
+   <decorator name="board" page="board1.jsp">
+      <pattern>/board/*</pattern>
+   </decorator>
 </decorators>
