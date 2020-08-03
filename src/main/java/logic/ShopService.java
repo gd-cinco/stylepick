@@ -1,12 +1,17 @@
 package logic;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import dao.SnsDao;
 import dao.UserDao;
 
 @Service	//@Component + service ( Controller와 dao의 중간)
@@ -14,6 +19,9 @@ public class ShopService {
 
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private SnsDao snsDao;
 
 	public void userInsert(User user) {
 		userDao.insert(user);
@@ -65,4 +73,33 @@ public class ShopService {
 //				}
 				return map;
 			}
+	
+	//[sns] ootd 작성
+	public void snsWrite(Sns sns,HttpServletRequest request) {
+		String imgurl = null;
+		if(sns.getImgs() != null && !sns.getImgs().isEmpty()) {
+			for(MultipartFile m : sns.getImgs()) {
+				uploadFileCreate(m,request,"sns/file/");
+				imgurl += m.getOriginalFilename() + ",";
+				imgurl = imgurl.substring(0, imgurl.length()-2);	//마지막,빼기
+				sns.setImgUrl(imgurl);
+			}
+		}
+		int max = snsDao.maxnum();
+		sns.setSns_no(++max);
+		snsDao.insert(sns);
+	}
+	
+	//[sns] ootd 작성 관련 이미지 파일 업로드
+	private void uploadFileCreate(MultipartFile picture, HttpServletRequest request, String path) {
+		String orgFile = picture.getOriginalFilename();
+		String uploadPath = request.getServletContext().getRealPath("/") + path;
+		File fpath = new File(uploadPath);
+		if(!fpath.exists()) fpath.mkdirs();
+		try {
+			picture.transferTo(new File(uploadPath + orgFile));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
