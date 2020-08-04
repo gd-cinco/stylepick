@@ -12,7 +12,7 @@
 	<category_index>0</category_index>
 	<zoom>0.8</zoom>
 	<x>0</x>
-	<y>0</y>
+	<y>83</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-07-31 00:53:31</creation_date>
-			<updated_date>2020-08-04 15:43:55</updated_date>
+			<updated_date>2020-08-04 17:52:35</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -254,6 +254,22 @@
 		</word>
 		<word>
 			<id>5</id>
+			<length>5</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description>카테고리</description>
+			<logical_name>카테고리</logical_name>
+			<physical_name>category</physical_name>
+			<type>int(n)</type>
+		</word>
+		<word>
+			<id>6</id>
 			<length>10</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -269,7 +285,7 @@
 			<type>int(n)</type>
 		</word>
 		<word>
-			<id>6</id>
+			<id>7</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -283,22 +299,6 @@
 			<logical_name>카테고리</logical_name>
 			<physical_name>category</physical_name>
 			<type>integer</type>
-		</word>
-		<word>
-			<id>7</id>
-			<length>null</length>
-			<decimal>null</decimal>
-			<array>false</array>
-			<array_dimension>null</array_dimension>
-			<unsigned>false</unsigned>
-			<zerofill>false</zerofill>
-			<binary>false</binary>
-			<args></args>
-			<char_semantics>false</char_semantics>
-			<description>카테고리</description>
-			<logical_name>카테고리</logical_name>
-			<physical_name>category</physical_name>
-			<type></type>
 		</word>
 		<word>
 			<id>8</id>
@@ -334,7 +334,7 @@
 		</word>
 		<word>
 			<id>10</id>
-			<length>null</length>
+			<length>50</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -346,7 +346,7 @@
 			<description>회사등록번호</description>
 			<logical_name>회사등록번호</logical_name>
 			<physical_name>com_regist</physical_name>
-			<type>integer</type>
+			<type>int(n)</type>
 		</word>
 		<word>
 			<id>11</id>
@@ -590,7 +590,7 @@
 		</word>
 		<word>
 			<id>26</id>
-			<length>null</length>
+			<length>2</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -602,7 +602,7 @@
 			<description></description>
 			<logical_name>상품여부</logical_name>
 			<physical_name>isshopitem</physical_name>
-			<type></type>
+			<type>int(n)</type>
 		</word>
 		<word>
 			<id>27</id>
@@ -718,7 +718,7 @@
 		</word>
 		<word>
 			<id>34</id>
-			<length>null</length>
+			<length>100</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -730,7 +730,7 @@
 			<description></description>
 			<logical_name>회원번호</logical_name>
 			<physical_name>no</physical_name>
-			<type>integer</type>
+			<type>int(n)</type>
 		</word>
 		<word>
 			<id>35</id>
@@ -766,7 +766,7 @@
 		</word>
 		<word>
 			<id>37</id>
-			<length>null</length>
+			<length>100</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -778,11 +778,11 @@
 			<description></description>
 			<logical_name>주문메모</logical_name>
 			<physical_name>order_memo</physical_name>
-			<type></type>
+			<type>varchar(n)</type>
 		</word>
 		<word>
 			<id>38</id>
-			<length>null</length>
+			<length>100</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -794,7 +794,7 @@
 			<description>주문번호</description>
 			<logical_name>주문번호</logical_name>
 			<physical_name>order_no</physical_name>
-			<type></type>
+			<type>int(n)</type>
 		</word>
 		<word>
 			<id>39</id>
@@ -1342,6 +1342,22 @@
 		</word>
 		<word>
 			<id>73</id>
+			<length>100</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description>회원아이디</description>
+			<logical_name>회원아이디</logical_name>
+			<physical_name>userid</physical_name>
+			<type>int(n)</type>
+		</word>
+		<word>
+			<id>74</id>
 			<length>30</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1357,24 +1373,8 @@
 			<type>varbinary(n)</type>
 		</word>
 		<word>
-			<id>74</id>
-			<length>20</length>
-			<decimal>null</decimal>
-			<array>false</array>
-			<array_dimension>null</array_dimension>
-			<unsigned>false</unsigned>
-			<zerofill>false</zerofill>
-			<binary>false</binary>
-			<args></args>
-			<char_semantics>false</char_semantics>
-			<description>회원아이디</description>
-			<logical_name>회원아이디</logical_name>
-			<physical_name>userid</physical_name>
-			<type>varchar(n)</type>
-		</word>
-		<word>
 			<id>75</id>
-			<length>30</length>
+			<length>20</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -1406,7 +1406,7 @@
 		</word>
 		<word>
 			<id>77</id>
-			<length>null</length>
+			<length>30</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -1418,7 +1418,7 @@
 			<description>회원아이디</description>
 			<logical_name>회원아이디</logical_name>
 			<physical_name>userid</physical_name>
-			<type></type>
+			<type>varchar(n)</type>
 		</word>
 		<word>
 			<id>78</id>
@@ -1529,13 +1529,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>7</word_id>
+					<word_id>5</word_id>
 					<id>2</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type></type>
+					<type>int(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -1562,7 +1562,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>70</word_id>
+					<word_id>71</word_id>
 					<id>3</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1628,7 +1628,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>12</word_id>
+					<word_id>13</word_id>
 					<id>5</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1809,7 +1809,7 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 			</connections>
-			<physical_name>Like</physical_name>
+			<physical_name>sns_like</physical_name>
 			<logical_name>SNS좋아요</logical_name>
 			<description></description>
 			<constraint></constraint>
@@ -1851,7 +1851,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>75</word_id>
+					<word_id>76</word_id>
 					<id>10</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2041,13 +2041,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>77</word_id>
+					<word_id>73</word_id>
 					<id>14</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type></type>
+					<type>int(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -2343,7 +2343,7 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 			</connections>
-			<physical_name>order_detail</physical_name>
+			<physical_name>buy_detail</physical_name>
 			<logical_name>주문 상세</logical_name>
 			<description></description>
 			<constraint></constraint>
@@ -2358,7 +2358,7 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type></type>
+					<type>int(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -2652,7 +2652,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>6</word_id>
+					<word_id>7</word_id>
 					<id>29</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3017,7 +3017,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>76</word_id>
+					<word_id>77</word_id>
 					<id>39</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3339,7 +3339,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>71</word_id>
+					<word_id>70</word_id>
 					<id>47</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3372,7 +3372,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>13</word_id>
+					<word_id>12</word_id>
 					<id>48</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3465,7 +3465,7 @@
 			</color>
 			<connections>
 			</connections>
-			<physical_name>order</physical_name>
+			<physical_name>buy</physical_name>
 			<logical_name>주문</logical_name>
 			<description></description>
 			<constraint></constraint>
@@ -3479,7 +3479,7 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type></type>
+					<type>int(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -3506,7 +3506,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>73</word_id>
+					<word_id>74</word_id>
 					<id>51</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3894,7 +3894,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>5</word_id>
+					<word_id>6</word_id>
 					<id>61</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3933,7 +3933,7 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type></type>
+					<type>int(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -4034,7 +4034,7 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>integer</type>
+					<type>int(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -4061,7 +4061,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>74</word_id>
+					<word_id>75</word_id>
 					<id>65</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -4496,7 +4496,7 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>integer</type>
+					<type>int(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -4661,7 +4661,7 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type></type>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
