@@ -5,6 +5,7 @@
    </decorator>
    <excludes>
    	<pattern>/user/login*</pattern>
+   	<pattern>/user/userEntry*</pattern>
    </excludes>
    <decorator name="board" page="board1.jsp">
       <pattern>/board/*</pattern>

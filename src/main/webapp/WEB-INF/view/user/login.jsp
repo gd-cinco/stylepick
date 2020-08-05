@@ -74,6 +74,13 @@ ul{
 		<form:form modelAttribute="user" method="post" action="login.shop">
 			<input type="hidden" name="username" value="이름">
 			<div style="width: 100%; display:inline;text-align: center; height: 100px;">
+<spring:hasBindErrors name="user">
+		<font color="red">
+			<c:forEach items="${errors.globalErrors }" var="error">
+				<spring:message code="${error.code}"/>
+			</c:forEach>
+		</font>
+	</spring:hasBindErrors>
     		<img src="../assets/img/logo/logo3.png" width="450px"
     		 onclick="javascript:location.href='#'" style="margin-bottom:20px; cursor: pointer;"> <%-- TODO 메인페이지 --%>
     	</div>
