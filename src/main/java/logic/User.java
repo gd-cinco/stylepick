@@ -10,9 +10,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class User {
-	@Size(min=3,max=10,message="아이디는 3자이상 10자이하로 입력하세요.")
+	@NotEmpty(message="아이디를 입력해주세요")
 	private String userid;
-	@Size(min=3,max=10,message="비밀번호는 3자이상 10자이하로 입력하세요.")
+	@NotEmpty(message="비밀번호를 입력하세요.")
 	private String password;
 	@NotEmpty(message="사용자 이름은 필수 입력사항입니다.")
 	private String username;
