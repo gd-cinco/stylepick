@@ -41,11 +41,11 @@
 		<suspend_validator>false</suspend_validator>
 		<export_setting>
 			<export_ddl_setting>
-				<output_path></output_path>
-				<encoding></encoding>
-				<line_feed></line_feed>
+				<output_path>src\main\webapp\erd\ERD.sql</output_path>
+				<encoding>UTF-8</encoding>
+				<line_feed>CR+LF</line_feed>
 				<is_open_after_saved>true</is_open_after_saved>
-				<environment_id>null</environment_id>
+				<environment_id>0</environment_id>
 				<category_id>null</category_id>
 				<ddl_target>
 					<create_comment>true</create_comment>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-07-31 00:53:31</creation_date>
-			<updated_date>2020-08-06 16:00:39</updated_date>
+			<updated_date>2020-08-06 17:10:21</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -1532,10 +1532,10 @@
 			<connections>
 				<relation>
 					<id>1</id>
-					<source>6</source>
+					<source>5</source>
 					<target>1</target>
-						<source_xp>-1</source_xp>
-						<source_yp>-1</source_yp>
+						<source_xp>100</source_xp>
+						<source_yp>54</source_yp>
 						<target_xp>-1</target_xp>
 						<target_yp>-1</target_yp>
 						<color>
@@ -1554,10 +1554,10 @@
 				</relation>
 				<relation>
 					<id>2</id>
-					<source>5</source>
+					<source>6</source>
 					<target>1</target>
-						<source_xp>100</source_xp>
-						<source_yp>54</source_yp>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
 						<target_xp>-1</target_xp>
 						<target_yp>-1</target_yp>
 						<color>
@@ -1585,7 +1585,7 @@
 				<normal_column>
 					<id>2</id>
 					<referenced_column>32</referenced_column>
-					<relation>2</relation>
+					<relation>1</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1652,7 +1652,7 @@
 				<normal_column>
 					<id>4</id>
 					<referenced_column>41</referenced_column>
-					<relation>1</relation>
+					<relation>2</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2006,7 +2006,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>13</word_id>
+					<word_id>12</word_id>
 					<id>13</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2683,7 +2683,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>12</word_id>
+					<word_id>13</word_id>
 					<id>30</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
