@@ -83,7 +83,7 @@ public class UserController {
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:login.shop";
+		return "redirect:login.shop"; //TODO 메인페이지
 	}
 	@RequestMapping("main") //login이 되어야 실행가능함, loginXXX로 지정
 	public String loginCheckmain(HttpSession session) {
