@@ -11,7 +11,7 @@ public class Sns {
 	private int type;
 	private String userid;
 	private String imgUrl;
-	private List<MultipartFile> imgs;
+	private MultipartFile imgs;
 	private String description;
 	private Date regdate;
 	private List<SnsItem> itemList = new ArrayList<SnsItem>();
@@ -39,10 +39,10 @@ public class Sns {
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
 	}
-	public List<MultipartFile> getImgs() {
+	public MultipartFile getImgs() {
 		return imgs;
 	}
-	public void setImgs(List<MultipartFile> imgs) {
+	public void setImgs(MultipartFile imgs) {
 		this.imgs = imgs;
 	}
 	public String getDescription() {

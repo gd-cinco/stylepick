@@ -9,4 +9,8 @@
    <decorator name="board" page="board1.jsp">
       <pattern>/board/*</pattern>
    </decorator>
+   <decorator name="sns" page="snslayout.jsp">
+      <pattern>/sns/*</pattern>
+   </decorator>
+
 </decorators>

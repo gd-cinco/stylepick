@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>OOTD 작성</title>
+<title>QnA 작성</title>
 <style>
 	.form {
    	 	margin-left: auto;
@@ -172,42 +172,8 @@
 				})
 			</script>
 		</div>
-		<div class="style info">
-			<h4>스타일 정보</h4>
-			<table id="Table2">
-				<tr id="tab">
-					<td style="width:20%;">카테고리</td>
-					<td style="width:60%;">상품 정보</td>
-					<td></td>
-				</tr>
-				<tr id="info">
-					<td><select name="category">
-							<option value="outer">Outer</option>
-							<option value="top">Top</option>
-							<option value="bottom">Bottom</option>
-							<option value="dress">Dress</option>
-							<option value="shoes">Shoes</option>
-						</select></td>
-					<td><input type="text" name="detail" placeholder="직접 입력" style="width: 270px;">
-						<button class="btn_3" style="padding: 3px 10px; margin-left: 7px;">상품 찾기</button></td>
-					<td><button onclick="delete_row(this)" id="imglabel">삭제하기</button></td>
-				</tr>
-			</table>
-			<button type="button" onclick="javascript:add_row()" id="imglabel" style="margin-left:45%;">추가하기</button>
-			<script>
-				function add_row(){
-					var text = document.getElementById("info").innerHTML
-					$("#Table2").append("<tr>"+text+"</tr>");	
-				}
-
-				function delete_row(obj){
-					var tr = $(obj).parent().parent();
-					tr.remove();
-				}
-			</script>
-		</div>
 		<div class="style description">
-			<h4>설명</h4>
+			<h4>질문하기</h4>
 			<form:textarea path="description" placeholder="내용을 입력해주세요" rows="5" cols="78"/>
 		</div>
 		<div class="centerbutton">

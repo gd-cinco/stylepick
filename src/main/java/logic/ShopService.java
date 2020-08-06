@@ -82,14 +82,9 @@ public class ShopService {
 	
 	//[sns] ootd 작성
 	public void snsWrite(Sns sns,HttpServletRequest request) {
-		String imgurl = null;
 		if(sns.getImgs() != null && !sns.getImgs().isEmpty()) {
-			for(MultipartFile m : sns.getImgs()) {
-				uploadFileCreate(m,request,"sns/file/");
-				imgurl += m.getOriginalFilename() + ",";
-				imgurl = imgurl.substring(0, imgurl.length()-2);	//마지막,빼기
-				sns.setImgUrl(imgurl);
-			}
+			uploadFileCreate(sns.getImgs(),request,"sns/file/");
+			sns.setImgUrl(sns.getImgs().getOriginalFilename());
 		}
 		int max = snsDao.maxnum();
 		sns.setSns_no(++max);
@@ -107,6 +102,16 @@ public class ShopService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	//[sns] ootd 목록 
+	public List<Sns> getSnsList(String ksb,String type,Integer pageNum,int limit,String searchcontent) {
+		return snsDao.list(ksb,type,pageNum,limit,searchcontent);
+	}
+	
+	//[sns] ootd 게시물 갯수
+	public int getSnsCount(String type,String searchcontent) {
+		return snsDao.listcount(type,searchcontent);
 	}
 
 
