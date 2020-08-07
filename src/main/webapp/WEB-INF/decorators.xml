@@ -13,5 +13,8 @@
    <decorator name="sns" page="snslayout.jsp">
       <pattern>/sns/*</pattern>
    </decorator>
+     <decorator name="cart" page="cartlayout.jsp">
+      <pattern>/cart/*</pattern>
+   </decorator>
 
 </decorators>
