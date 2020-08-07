@@ -204,7 +204,7 @@
 		<!-- 목록 처음에는 5번 이미지의 복사본을 붙여넣음  -->
 		<!-- 목록 끝에는 1번 이미지의 복사본을 붙여넣음  -->
 		<!-- 자세한 설명은 http://blog.naver.com/2woo30225/220838511483 에서 참고 -->
-		<li class="slide slide7"><img src="${path}/item/img/skirt.png" class="slider_image" /></li>
+		<li class="slide slide7"><img src="${path}/item/img/skirt.jpg" class="slider_image" /></li>
 		<li class="slide slide1"><img src="${path}/item/img/bag.jpg" class="slider_image" /></li>
 		<li class="slide slide2"><img src="${path}/item/img/top.jpg" class="slider_image" /></li>
 		<li class="slide slide3"><img src="${path}/item/img/cap.jpg" class="slider_image" /></li>
