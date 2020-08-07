@@ -37,11 +37,14 @@ public class SnsController {
 	}
 	
 	@PostMapping("write")
-	public ModelAndView create(Sns sns,MultipartFile imgs,List<String> category,List<String> detail,HttpServletRequest request) {
+	public ModelAndView create(Sns sns,String category,String detail,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		List<SnsItem> list = new ArrayList<SnsItem>();
-		for(int i=0;i<category.size();i++) {
-			SnsItem item = new SnsItem(0,i,category.get(i),detail.get(i));
+		String[] cg = category.split(",");
+		String[] dt = detail.split(",");
+		sns.setSns_no(service.snsNum());
+		for(int i=0;i<cg.length;i++) {
+			SnsItem item = new SnsItem(sns.getSns_no(),i,cg[i],dt[i]);
 			list.add(item);
 		}
 		sns.setItemList(list);

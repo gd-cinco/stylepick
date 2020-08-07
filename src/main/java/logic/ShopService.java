@@ -79,15 +79,18 @@ public class ShopService {
 				return map;
 			}
 
+	//[sns] ootd 번호
+	public int snsNum() {
+		int max = snsDao.maxnum();
+		return ++max;
+	}
 	
 	//[sns] ootd 작성
 	public void snsWrite(Sns sns,HttpServletRequest request) {
-		if(sns.getImgs() != null && !sns.getImgs().isEmpty()) {
-			uploadFileCreate(sns.getImgs(),request,"sns/file/");
-			sns.setImgUrl(sns.getImgs().getOriginalFilename());
+		if(sns.getImg1() != null && !sns.getImg1().isEmpty()) {
+			uploadFileCreate(sns.getImg1(),request,"sns/file/");
+			sns.setImg1url(sns.getImg1().getOriginalFilename());
 		}
-		int max = snsDao.maxnum();
-		sns.setSns_no(++max);
 		snsDao.insert(sns);
 	}
 	

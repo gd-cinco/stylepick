@@ -17,8 +17,9 @@
 	}
 	
 	h4 {
-		margin : 10px 0px;	
-	
+		margin : 10px 0 15px 0px;
+		width: fit-content;
+   		border-bottom: 3px solid #2577fd;	
 	}
 	
 	.style {
@@ -133,7 +134,7 @@
 			<h4>스타일 이미지</h4>
 			<div class="img preview-image" id="imgs">
 				<label for="input-file" id="imglabel">업로드</label> 
-				<input type="file" id="input-file" class="upload-hidden" name="imgs">
+				<form:input type="file" id="input-file" class="upload-hidden" path="img1"/>
 				<script>
 					   var imgTarget = $('.preview-image .upload-hidden');
 
@@ -180,7 +181,7 @@
 					<td style="width:60%;">상품 정보</td>
 					<td></td>
 				</tr>
-				<tr id="info">
+				<tr id="info" style="visibility: hidden; height: 0px;">
 					<td><select name="category">
 							<option value="outer">Outer</option>
 							<option value="top">Top</option>
@@ -209,6 +210,11 @@
 		<div class="style description">
 			<h4>설명</h4>
 			<form:textarea path="description" placeholder="내용을 입력해주세요" rows="5" cols="78"/>
+		</div>
+		<div class="style userinfo">
+			<h4>추가정보</h4>
+			키&nbsp;&nbsp;:&nbsp;&nbsp;<form:input type="text" path="height"/>&nbsp;&nbsp;kg&nbsp;&nbsp;&nbsp;&nbsp;
+			몸무게&nbsp;&nbsp;:&nbsp;&nbsp;<form:input type="text" path="weight"/>&nbsp;&nbsp;cm
 		</div>
 		<div class="centerbutton">
 			<button type="submit" class="btn">올리기</button>
