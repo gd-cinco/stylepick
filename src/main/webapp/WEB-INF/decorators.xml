@@ -13,5 +13,4 @@
    <decorator name="sns" page="snslayout.jsp">
       <pattern>/sns/*</pattern>
    </decorator>
-
 </decorators>
