@@ -12,3 +12,9 @@ body, h1, h2, h3, h4, h5 {
 	width : 60%;
 	margin : 0 20%;
 }
+
+.header-info-right {
+	padding-left : 0px;
+	padding-right : 26px;
+}
+
