@@ -5,9 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보</title>
+<link rel="stylesheet" href="../assets/css/user.css">
 </head>
 <body>
-<h2>환영합니다. ${sessionScope.loginUser.username}님</h2>
+<h2>환영합니다. ${sessionScope.loginUser.userid}님</h2>
 <a href="mypage.shop?id=${loginUser.userid}">mypage</a><br>
 <a href="logout.shop">로그아웃</a>
 </body>

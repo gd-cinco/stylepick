@@ -9,7 +9,7 @@
 <title>로그인</title>
 <link rel="stylesheet" href="../assets/css/user.css">
 </head>
-<body>
+<body bgcolor="#f5f6f7">
 <div class="login_background" >
 	<div class="center"> <%--가운데정렬 --%>
 	<div style="margin-top:100px; margin-bottom:50px; position: relative;"> <%--위에 떼기 --%>

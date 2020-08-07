@@ -60,11 +60,20 @@ ul{
 	height:100%;
 	min-height:570px;
 	position: absolute;
-	background-color:#f5f6f7;
 	top: 0;left: 0;right: 0;bottom:0;
 }
 .social_login_box{
 	background-color: white;
 	height: 200px;
 	margin-bottom: 30px;
+}
+.entry_text{
+	font-size: 18px;
+	font-weight: bold;
+	padding-left: 40px;
+	padding-top : 10px;
+}
+.entry_input{
+	margin-left:60px;
+	margin-right:40px;
 }
