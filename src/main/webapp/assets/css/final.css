@@ -13,8 +13,8 @@ body, h1, h2, h3, h4, h5 {
 	margin : 0 20%;
 }
 
-.header-info-right {
-	padding-left : 0px;
-	padding-right : 26px;
+.header-info-right ul li a {
+	padding-left : 1px;
+	padding-right : 36px;
 }
 
