@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/jspHeader.jsp" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,8 +38,8 @@
 	<tr>
 	<c:forEach var="y" begin="1" end="4">
 		<td>
-			<div class="style-card"> <%--http://localhost:8080/stylepick/WEB-INF/view/sns/test1.PNG 가 맞는데 스프링때문인지 안되네요 --%>
-				<div class="style-img"><img src="../assets/img/test${y}.PNG" width="226px" height="270px"></div>
+			<div class="style-card">
+				<div class="style-img"><img src="test${y}.PNG" width="226px" height="270px"></div>
 				<div class="style-content">
 					<div class="style-profile"><img src="#" width="30px" height="30px"></div>
 					<div class="style-info">
@@ -59,7 +58,7 @@
 	<c:forEach var="y" begin="1" end="4">
 		<td>
 			<div class="style-card">
-				<div class="style-img"><img src="../WEB-INF/view/sns/test${y}.PNG" width="226px" height="270px"></div>
+				<div class="style-img"><img src="test${y}.PNG" width="226px" height="270px"></div>
 				<div class="style-content">
 					<div class="style-profile"><img src="#" width="30px" height="30px"></div>
 					<div class="style-info">
