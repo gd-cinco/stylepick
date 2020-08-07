@@ -207,7 +207,8 @@
 	<!-- All JS Custom Plugins Link Here here -->
 	<script src="${path}/assets/js/vendor/modernizr-3.5.0.min.js"></script>
 	<!-- Jquery, Popper, Bootstrap -->
-	<script src="${path}/assets/js/vendor/jquery-1.12.4.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<!-- <script src="${path}/assets/js/vendor/jquery-1.12.4.min.js"></script> -->
 	<script src="${path}/assets/js/popper.min.js"></script>
 	<script src="${path}/assets/js/bootstrap.min.js"></script>
 	<!-- Jquery Mobile Menu -->
