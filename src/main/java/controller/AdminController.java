@@ -54,6 +54,27 @@ public class AdminController {
 		return mav;
 	}//check_list
 	
+	//대시보드
+	@RequestMapping("dashboard")
+	public ModelAndView check_dashboard(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}//check_dashboard
+		
+	//위젯
+	@RequestMapping("widgets")
+	public ModelAndView check_widgets(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}//check_widgets
+	
+	//차트
+		@RequestMapping("charts")
+		public ModelAndView check_charts(HttpSession session) {
+			ModelAndView mav = new ModelAndView();
+			return mav;
+		}//check_widgets
+			
 	//메일 폼 화면 열기 0710-2
 	@RequestMapping("mailForm")
 	public ModelAndView mailform (String[] idchks, HttpSession session) {

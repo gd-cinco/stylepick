@@ -22,6 +22,7 @@
 	<link rel="stylesheet" href="${path}/assets/css/nice-select.css">
 	<link rel="stylesheet" href="${path}/assets/css/style.css?ver=1.1">
 	<link rel="stylesheet" href="${path}/assets/css/final.css?ver=1">
+	<link rel="stylesheet" href="${path}/assets/css/admin.css">
 	
 	<title><decorator:title/></title>
 	<decorator:head/>
@@ -65,8 +66,8 @@
 								<nav>                                                
 									<ul id="navigation">  
 										<c:if test="${!fn:contains(path2,'sns')}" >                                                                                                                                   
-										<li><a href="../user/main.shop">admin</a></li>
-										<li><a href="../admin/list.shop">list</a></li>
+										<li><a href="../user/main.shop">main</a></li>
+										<li><a href="../admin/list.shop">admin</a></li>
 										<li><a href="../item/store.shop">store</a></li>
 										<li><a href="../board/test2.shop">board(고객센터)</a>
 										<li><a href="../user/mypage.shop">mypage</a>

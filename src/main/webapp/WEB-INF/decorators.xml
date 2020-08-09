@@ -14,5 +14,4 @@
       <pattern>/sns/*</pattern>
    </decorator>
 
-
 </decorators>
