@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>SNS 목록</title>
+<link rel="stylesheet" href="${path}/assets/css/sns.css?ver=1">
 <style>
 
 .style-card {

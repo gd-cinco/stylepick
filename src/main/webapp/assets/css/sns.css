@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+a {
+	color: black;
+}
+
+body, h1, h2, h3, h4, h5 {
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.main-mapper {
+	width : 60%;
+	margin : 0 20%;
+}
+
+
+.header-info-right ul li a {
+	padding-left : 1px;
+	padding-right : 36px;
+}
