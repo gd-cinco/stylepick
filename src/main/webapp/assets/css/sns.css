@@ -13,10 +13,61 @@ body, h1, h2, h3, h4, h5 {
 .main-mapper {
 	width : 60%;
 	margin : 0 20%;
+	padding: 2% 0;
 }
 
 
 .header-info-right ul li a {
 	padding-left : 1px;
 	padding-right : 36px;
+}
+
+.best-collection-area {
+    background-color: whitesmoke;	
+}
+
+.style-imgs {
+	width: fit-content;
+	height : fit-content;
+}
+
+.fullview-inner-wrapper {
+	border-radius: 6px;
+    position: relative;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    padding-right: 355px;
+    width: 600px;
+    background-color: white;
+    border-color: #e8ebed;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.pictures-wrapper {
+	max-width: 600px;
+    border-bottom-color: #E8EBED;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    float: left;
+}
+
+.pictures {
+	border-radius: 6px 0 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.side-position {
+    margin-right: -355px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 15px;
+    width: 315px;
+}
+
+
 }

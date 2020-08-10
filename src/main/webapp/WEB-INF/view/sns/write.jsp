@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/jspHeader.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>OOTD 작성</title>
-<link rel="stylesheet" href="${path}/assets/css/sns.css?ver=1">
+<link rel="stylesheet" href="../assets/css/sns.css?ver=1">
 <style>
 	.form {
    	 	margin-left: auto;
@@ -182,7 +183,7 @@
 					<td style="width:60%;">상품 정보</td>
 					<td></td>
 				</tr>
-				<tr id="info" style="visibility: hidden; height: 0px;">
+				<tr id="info">
 					<td><select name="category">
 							<option value="outer">Outer</option>
 							<option value="top">Top</option>

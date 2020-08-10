@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import dao.SnsDao;
+import dao.SnsItemDao;
 import dao.ItemDao;
 import dao.UserDao;
 
@@ -27,6 +28,8 @@ public class ShopService {
 	@Autowired
 	private ItemDao itemDao;
 
+	@Autowired
+	private SnsItemDao snsItemDao;
 
 	public void userInsert(User user) {
 		userDao.insert(user);
@@ -92,6 +95,9 @@ public class ShopService {
 			sns.setImg1url(sns.getImg1().getOriginalFilename());
 		}
 		snsDao.insert(sns);
+		for(SnsItem si : sns.getItemList()) {
+			snsItemDao.insert(si);
+		}		
 	}
 	
 	//[sns] ootd 작성 관련 이미지 파일 업로드

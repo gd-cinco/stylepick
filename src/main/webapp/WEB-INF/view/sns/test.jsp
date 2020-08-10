@@ -103,7 +103,7 @@
 	</c:forEach>
 	</tr>
 </table>
-<a href="write.shop" class="btn" style="margin-left:40%;">작성하기</a>
+<a href="write.shop?type=1" class="btn" style="margin-left:40%;">작성하기</a>
 </div>
 </body>
 </html>
