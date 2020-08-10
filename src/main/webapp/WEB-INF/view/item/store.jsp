@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Store</title>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="${path}/assets/css/store.css?ver=1">
 <style>
 	#slider {
 		position:relative;

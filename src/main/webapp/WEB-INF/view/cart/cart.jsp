@@ -132,7 +132,7 @@
           </table>
           <div class="checkout_btn_inner float-right">
             <a class="btn_1" href="#">쇼핑 하기</a>
-            <a class="btn_1 checkout_btn_1" href="#">구매</a>
+            <a class="btn_1 checkout_btn_1" href="../cart/checkout.shop">주문하기</a>
           </div>
         </div>
       </div>
