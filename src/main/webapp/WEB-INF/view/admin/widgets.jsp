@@ -14,6 +14,36 @@
 	}
 </script>
 <script type="text/javascript" src="http://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawMultSeries);
+
+function drawMultSeries() {
+      var data = google.visualization.arrayToDataTable([
+        ['City', '2010 Population', '2000 Population'],
+        ['New York City, NY', 8175000, 8008000],
+        ['Los Angeles, CA', 3792000, 3694000],
+        ['Chicago, IL', 2695000, 2896000],
+        ['Houston, TX', 2099000, 1953000],
+        ['Philadelphia, PA', 1526000, 1517000]
+      ]);
+
+      var options = {
+        title: 'Population of Largest U.S. Cities',
+        chartArea: {width: '50%'},
+        hAxis: {
+          title: 'Total Population',
+          minValue: 0
+        },
+        vAxis: {
+          title: 'City'
+        }
+      };
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+</script>
 </head>
 <body>
 	<div class="left-div" style="white-space:nowrap; width:10%; border-right:1px solid gray; float:left; text-align: center;">
@@ -49,6 +79,7 @@
 			<!-- 이번 달 스픽에서 가장 구매를 많이 한 회원 -->
 			<div class="double_frame" style="border: 1px  solid gray;">
 				이번 달 스픽에서 가장 구매를 많이 한 회원
+				<div id="chart_div"></div>
 			</div>
 			<!--올해 스픽에서 가장 구매를 많이 한 회원 -->
 			<div class="double_frame" style="border: 1px  solid gray;">

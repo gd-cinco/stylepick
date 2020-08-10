@@ -14,6 +14,49 @@
 	}
 </script>
 <script type="text/javascript" src="http://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+          google.charts.load('current', {'packages':['corechart']});
+          google.charts.setOnLoadCallback(numGraph1);
+          google.charts.setOnLoadCallback(numGraph2);
+
+          function numGraph1() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', '정당');
+            data.addColumn('number', '의석수');
+            data.addRows([
+              ['미래한국당', 19],
+              ['더불어시민당', 17],
+              ['정의당', 5],
+              ['국민의당', 3],
+              ['열린민주당', 3]
+            ]);
+            var options = {title:' 21대 국회의원 선거 정당별 비례대표 의석수',
+                           width:350,
+                           height:300};
+            var chart = new google.visualization.PieChart(document.getElementById('numGraph1_div'));
+            chart.draw(data, options);
+          }
+
+          function numGraph2() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', '정당');
+            data.addColumn('number', '의석수');
+            data.addRows([
+              ['민주당-시민당', 180],
+              ['통합당-미래한국', 103],
+              ['정의당', 26],
+              ['국민의당', 5],
+              ['열린민주당', 3],
+              ['무소속', 3]
+            ]);
+            var options = {title:'21대 국회의원 선거 정당별 총 의석수',
+                           width:350,
+                           height:300};
+            var chart = new google.visualization.PieChart(document.getElementById('numGraph2_div'));
+            chart.draw(data, options);
+          }
+</script>
 </head>
 <body>
 	<div class="left-div" style="white-space:nowrap; width:10%; border-right:1px solid gray; float:left; text-align: center;">
@@ -62,81 +105,17 @@
 			<!-- 주간매출 바그래프 -->
 			<div class="double_frame">
 				주간매출 바,꺾은선그래프
-				<div id="canvas-holder-one" style="width:100%; height:100%;">
-				<canvas id="chart-area-one" width="100%" height="100%"></canvas>
-				</div>
-				<script type="text/javascript">
-					var randomColorFactor = function() {
-						return Math.round(Math.random() * 255);
-					}
-					//rgb :
-						var randomColor = function(opacity){
-							return "rgba("+randomColorFactor() + ","+ randomColorFactor() + "," + randomColorFactor() + "," + (opacity || '.3') +")"; 
-					};
-					var color = randomColor(1)
-					var config = {
-						type: 'bar',
-						data: {
-							datasets : [{
-								data:[<c:forEach items="${map}" var="m">"${m.value}",</c:forEach>],
-								backgroundColor:[	<c:forEach items="${map}" var="m">randomColor(1),</c:forEach>]
-							}],
-							labels:[<c:forEach items="${map}" var="m">"${m.key}",</c:forEach>]
-						},
-						options:{
-							responsive:true,
-							legend: {display:false},
-							title:{display:true, text: '게시판 작성자 분석'},
-							scales: { yAxes: [{	ticks: {beginAtZero:true}	 }] }//scales
-						}//options
-					};//config
-					window.onload=function(){
-						var ctx = document.getElementById("chart-area-one").getContext("2d");
-						new Chart(ctx,config);
-					}
-				</script>
+				<!--Table and divs that hold the pie charts-->
+			    <div id="numGraph1_div" style="border: 1px solid #ccc"></div>
 			</div>
 			
 			<!-- 월간매출 바그래프 -->
 			<div class="double_frame">
 			월간매출 바,꺾은선그래프
-			<div id="canvas-holder-two" style="width:100%; height:100%;">
-				<canvas id="chart-area-two" width="100%" height="100%"></canvas>
-				</div>
-				<script type="text/javascript">
-					var randomColorFactor = function() {
-						return Math.round(Math.random() * 255);
-					}
-					//rgb :
-						var randomColor = function(opacity){
-							return "rgba("+randomColorFactor() + ","+ randomColorFactor() + "," + randomColorFactor() + "," + (opacity || '.3') +")"; 
-					};
-					var color = randomColor(1)
-					var config = {
-						type: 'bar',
-						data: {
-							datasets : [{
-								data:[<c:forEach items="${map}" var="m">"${m.value}",</c:forEach>],
-								backgroundColor:[	<c:forEach items="${map}" var="m">randomColor(1),</c:forEach>]
-							}],
-							labels:[<c:forEach items="${map}" var="m">"${m.key}",</c:forEach>]
-						},
-						options:{
-							responsive:true,
-							legend: {display:false},
-							title:{display:true, text: '2번째 차트'},
-							scales: { yAxes: [{	ticks: {beginAtZero:true}	 }] }//scales
-						}//options
-					};//config
-					window.onload=function(){
-						var ctx = document.getElementById("chart-area-two").getContext("2d");
-						new Chart(ctx,config);
-					}
-				</script>
-			</div>
-			<!-- 월간매출 바그래프 -->
+			<div id="numGraph2_div" style="border: 1px solid #ccc"></div>
+			</div> <!-- 월간매출 바그래프 -->
 			<br>
-	</div>
+		</div> <!-- outer_frame -->
 			<!-- To Do List -->
 			<div class="todolist_frame">
 				<h3>To Do List</h3>

@@ -28,7 +28,9 @@
 	<!-- 우측 div : 메인 컨텐츠-->
 	<div class="right-div" style="width: 80%; margin-left: 3%;  padding: 1%; float:left; background-color: '#FAFAFA';">
 		<h3>Charts</h3><br>
-		<div>차트1</div>
+		<div>
+			차트1
+		</div>
 		<br>
 		<div>차트2</div>
 		<br>
