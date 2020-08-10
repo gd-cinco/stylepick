@@ -13,7 +13,7 @@ public interface SnsMapper {
 	@Select("select ifnull(max(sns_no),0) from sns")
 	int maxnum();
 
-	@Insert("insert into sns (sns_no,type,userid,img1,description,regdate) values (#{sns_no},#{type},#{userid},#{img1url},#{description},now())")
+	@Insert("insert into sns (sns_no,type,userid,img1,description,regdate,height,weight) values (#{sns_no},#{type},#{userid},#{img1url},#{description},now(),#{height},#{weight})")
 	void insert(Sns sns);
 	
 	@Select({"<script>",

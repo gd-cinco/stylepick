@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>SNS 상세보기</title>
+<link rel="stylesheet" href="../assets/css/sns.css?ver=1">
 <style>
 	.form {
    	 	margin-left: auto;
@@ -22,18 +23,21 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-<div class="form">
+<div class="fullview-inner-wrapper">
 		<input type="hidden" name="type" value="${type}">
 		<input type="hidden" name="userid" value="${sessionScope.loginUser.userid}"/>
-	<div class="left-side">
-		<div class="style imgs">
+	<div class="pictures-wrapper">
+		<div class="pictures op-carousel">
 			<img src="#" width="600px" height="600px">
 		</div>
 	</div>
-	<div class="right-side">
+	<div class="side-position">
 		<div class="style info">
 			<table>
-				<tr></tr>
+				<tr>
+					<td>Outer</td>
+					<td>Covernat</td>
+				</tr>
 			</table>
 		</div>
 		<div class="style description">

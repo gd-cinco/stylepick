@@ -44,12 +44,12 @@ public class SnsController {
 		String[] dt = detail.split(",");
 		sns.setSns_no(service.snsNum());
 		for(int i=0;i<cg.length;i++) {
-			SnsItem item = new SnsItem(sns.getSns_no(),i,cg[i],dt[i]);
+			SnsItem item = new SnsItem(sns.getSns_no(),i+1,cg[i],dt[i]);
 			list.add(item);
 		}
 		sns.setItemList(list);
 		service.snsWrite(sns,request);
-		mav.setViewName("redirec:list.shop?ksb=1&type="+sns.getType());
+		mav.setViewName("redirec:list.shop?ksb=new&type="+sns.getType());
 		return mav;
 	}
 	

@@ -73,7 +73,7 @@
 										<li><a href="../user/mypage.shop">mypage</a>
 										</c:if>
 										<c:if test="${fn:contains(path2,'sns')}" >
-											<li class="hot"><a href="${path}/WEB-INF/view/sns/list.shop?ksb=hot&type2">인기</a></li>
+											<li class="hot"><a href="${path}/WEB-INF/view/sns/list.shop?ksb=hot&type=1">인기</a></li>
 											<li><a href="${path}/WEB-INF/view/sns/list.shop?ksb=new&type=1">최신</a></li>
 											<li><a href="${path}/WEB-INF/view/sns/list.shop?ksb=qna&type=2">QnA</a>
 										</c:if>
