@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>QnA 작성</title>
+<link rel="stylesheet" href="${path}/assets/css/sns.css?ver=1">
 <style>
 	.form {
    	 	margin-left: auto;
