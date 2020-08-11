@@ -25,10 +25,12 @@
 		var op = "width=500,height=500,left=50,top=150";
 		open("pictureForm.shop","",op);
 	}
+	
 	function allchkbox(allchk){
 		//document.getElementById('chkbox').checked=allchk.checked;
 		$("input[name='chkbox']").prop("checked",allchk.checked)
 	}
+	
 	function alreadyidchk(){
 		document.getElementById('idinputbox').style.border='1px solid #dadada'
 		var userid =  $("#userid").val();
@@ -42,8 +44,42 @@
 					$("#alreadyid").hide();
 			}
 		})
+	}
+	
+	function alreadyNicknamechk(){
+		document.getElementById('nicknameinputbox').style.border='1px solid #dadada'
+		var nickname =  $("#nickname").val();
+		$.ajax({
+			url : "confirmnickname.shop",
+			data : {nickname:nickname},
+			success : function(result){
+				if(result=='true')
+					$("#alreadyNickname").show();
+				else
+					$("#alreadyNickname").hide();
+			}
+		})
 		
 	}
+	
+	function chkboxcheck(f) {
+			var result = true;
+		if(!$("input:checkbox[id='chkbox1']").is(":checked")) {
+	        alert("이용 약관에 동의하세요.")
+	        result=false;
+	      }
+	      if(!$("input:checkbox[id='chkbox2']").is(":checked")) {
+	        alert("개인정보 수집 이용 약관에 동의하세요.")
+	        result= false;
+	      }
+	      if(!$("input:checkbox[id='chkbox3']").is(":checked")) {
+		        alert("14세 이상이여야 합니다.")
+		        result= false;
+		      }
+	      if(result) {
+	        return true;
+	      }
+	   }
 
 </script>
 </head>
@@ -59,7 +95,7 @@
 	  		</div>
 <div style="margin-top:25px; margin-bottom:50px; position: relative;"> <%--위에 떼기 --%>
     		<img src="../assets/img/logo/logo3.png" width="620px"
-    		 onclick="javascript:location.href='#'" style="margin-bottom:20px; cursor: pointer;"> <%-- TODO 메인페이지 --%>
+    		 onclick="javascript:location.href='../sns/test.shop'" style="margin-bottom:20px; cursor: pointer;"> <%-- TODO 메인페이지 --%>
     	<div class="social_login_box" >
     		<div style="padding-top: 1px; padding-left: 13px;">
     		<h2>소셜로 간편히 로그인하세요.</h2>
@@ -79,7 +115,7 @@
     		</div>
     	</div>
     	<hr>
-	<form:form modelAttribute="user" method="post" action="userEntry.shop">
+	<form:form modelAttribute="user" method="post" action="userEntry.shop" onsubmit="return chkboxcheck(this)">
 		<div style="width: 100%; display:inline;text-align: center; height: 100px;">
 			<spring:hasBindErrors name="user">
 				<font color="red">
@@ -89,7 +125,7 @@
 				</font>
 			</spring:hasBindErrors>
     	</div>
-    	<div class="social_login_box" style="height: 800px; margin-top: 15px;">
+    	<div class="social_login_box" style="height: 860px; margin-top: 15px;">
     		<div class="entry_text">
     			<a>아이디</a><a style="color: red;">*</a>
     		</div>
@@ -134,10 +170,24 @@
     			<div class="input_box" id="nicknameinputbox" >
 					<input type="text" id="nickname" name="nickname" placeholder="닉네임" class="input_input" autocomplete="off"
 					 onfocus="document.getElementById('nicknameinputbox').style.border='2px solid #35C5F0'"
-					 onblur="document.getElementById('nicknameinputbox').style.border='1px solid #dadada'">
+					 onblur="javascript:alreadyNicknamechk()">
 				</div>
     		</div>
-    		<div class="input_err" style="margin-left: 60px;"><font><form:errors path="nickname"/></font></div>
+    		<div class="input_err" style="margin-left: 60px;">
+    		<div id="alreadyNickname" style="display: none;"><font id="alreadyNicknameval">이미 존재하는 이메일입니다.</font></div>
+    		<font><form:errors path="nickname"/></font></div>
+    		
+    		<div class="entry_text">
+    			<a>이메일</a><a style="color: red;">*</a>
+    		</div>
+    		<div class="entry_input">
+    			<div class="input_box" id="emailinputbox" >
+					<input type="text" id="email" name="email" placeholder="aaa@bb.cc" class="input_input" autocomplete="off"
+					 onfocus="document.getElementById('emailinputbox').style.border='2px solid #35C5F0'"
+					 onblur="document.getElementById('emailinputbox').style.border='1px solid #dadada'">
+				</div>
+    		</div>
+    		<div class="input_err" style="margin-left: 60px;"><font><form:errors path="email"/></font></div>
     		
     		<div class="entry_text">
     			<a>프로필 사진</a>

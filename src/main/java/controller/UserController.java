@@ -42,6 +42,20 @@ public class UserController {
 			return "false";
 	}
 	
+	@RequestMapping("/confirmnickname")
+	@ResponseBody
+	public String confirm2(String nickname) {
+		int result = service.joincompare("nickname",nickname);
+		System.out.println(nickname);
+		System.out.println("개수:"+result);
+		if(result>0)
+			return "true";
+		else
+			return "false";
+	}
+	
+	
+	
 	@PostMapping("userEntry")
 	public ModelAndView add(@Valid User user,BindingResult bresult,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("user/userEntry");
@@ -54,7 +68,7 @@ public class UserController {
 			int maxno = service.getmaxno();
 			user.setNo(++maxno);
 			service.userInsert(user);
-			mav.setViewName("redirect:login.shop"); //TODO 가입완료창
+			mav.setViewName("redirect:welcome.shop"); //TODO 가입완료창
 		}catch (DataIntegrityViolationException e) {
 			e.printStackTrace();
 			bresult.reject("error.input.user");

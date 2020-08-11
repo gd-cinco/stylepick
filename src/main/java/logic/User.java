@@ -19,6 +19,7 @@ public class User {
 	@NotEmpty(message="필수정보입니다.")
 	private String nickname;
 	@Email(message="email 형식으로 입력하세요.")
+	@NotEmpty(message="필수정보입니다.")
 	private String email;
 	private String phoneno;
 	private int age;
