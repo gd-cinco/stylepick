@@ -6,12 +6,14 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import exception.LoginException;
@@ -30,6 +32,16 @@ public class UserController {
 		return null;
 	}
 	
+	@RequestMapping("/confirmid")
+	@ResponseBody
+	public String confirm(String id) {
+		int result = service.joincompare("userid",id);
+		if(result>0)
+			return "true";
+		else
+			return "false";
+	}
+	
 	@PostMapping("userEntry")
 	public ModelAndView add(@Valid User user,BindingResult bresult,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("user/userEntry");
@@ -39,11 +51,13 @@ public class UserController {
 			return mav;
 		}
 		try {
+			int maxno = service.getmaxno();
+			user.setNo(++maxno);
 			service.userInsert(user);
-			mav.setViewName("redirect:login.shop");
+			mav.setViewName("redirect:login.shop"); //TODO 가입완료창
 		}catch (DataIntegrityViolationException e) {
 			e.printStackTrace();
-			bresult.reject("error.duplicate.user");
+			bresult.reject("error.input.user");
 			mav.getModel().putAll(bresult.getModel());
 		}
 		return mav;

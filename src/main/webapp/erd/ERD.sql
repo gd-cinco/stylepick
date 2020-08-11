@@ -7,10 +7,12 @@ DROP TABLE IF EXISTS buy;
 DROP TABLE IF EXISTS Comment;
 DROP TABLE IF EXISTS CS_board;
 DROP TABLE IF EXISTS item_qna;
+DROP TABLE IF EXISTS line;
 DROP TABLE IF EXISTS item;
 DROP TABLE IF EXISTS SNS_info;
 DROP TABLE IF EXISTS sns_like;
 DROP TABLE IF EXISTS SNS;
+DROP TABLE IF EXISTS todolist;
 DROP TABLE IF EXISTS user;
 
 
@@ -23,7 +25,7 @@ CREATE TABLE buy
 	-- 주문번호
 	order_no int(100) NOT NULL COMMENT '주문번호',
 	-- 회원아이디
-	userid varbinary(30) NOT NULL COMMENT '회원아이디',
+	userid int(100) NOT NULL COMMENT '회원아이디',
 	-- 수령자이름
 	name varchar(20) NOT NULL COMMENT '수령자이름',
 	-- 수령지주소
@@ -86,7 +88,7 @@ CREATE TABLE CS_board
 	-- 카테고리
 	category int(5) COMMENT '카테고리',
 	-- 작성자
-	userid varchar(30) NOT NULL COMMENT '작성자',
+	userid int(100) NOT NULL COMMENT '작성자',
 	-- 제목
 	subject varchar(50) COMMENT '제목',
 	-- 내용
@@ -171,6 +173,19 @@ CREATE TABLE item_qna
 );
 
 
+CREATE TABLE line
+(
+	line_no int NOT NULL,
+	-- 상품번호
+	item_no int NOT NULL COMMENT '상품번호',
+	userid varchar(30) NOT NULL,
+	subject varchar(30),
+	content varchar(500),
+	evaluation int(10) NOT NULL,
+	PRIMARY KEY (line_no)
+);
+
+
 CREATE TABLE SNS
 (
 	-- sns번호
@@ -178,7 +193,7 @@ CREATE TABLE SNS
 	-- ootd, 리뷰, QnA
 	type int(10) NOT NULL COMMENT 'ootd, 리뷰, QnA',
 	-- 회원아이디
-	userid varchar(30) NOT NULL COMMENT '회원아이디',
+	userid int(100) NOT NULL COMMENT '회원아이디',
 	-- 이미지
 	imgurl varchar(200) COMMENT '이미지',
 	-- 설명
@@ -215,13 +230,23 @@ CREATE TABLE sns_like
 );
 
 
+CREATE TABLE todolist
+(
+	No int NOT NULL,
+	duedate datetime,
+	content varchar(30),
+	fin enum('y','n') NOT NULL,
+	PRIMARY KEY (No)
+);
+
+
 CREATE TABLE user
 (
 	no int(100) NOT NULL,
 	-- 회원아이디
 	userid varchar(20) NOT NULL COMMENT '회원아이디',
 	-- 회원비밀번호
-	pass varchar(30) NOT NULL COMMENT '회원비밀번호',
+	password varchar(30) NOT NULL COMMENT '회원비밀번호',
 	-- 닉네임
 	nickname varchar(30) NOT NULL COMMENT '닉네임',
 	-- 회원이메일
@@ -257,7 +282,8 @@ CREATE TABLE user
 	address varchar(100),
 	order_memo varchar(100),
 	order_tel varchar(30),
-	PRIMARY KEY (no)
+	PRIMARY KEY (no),
+	UNIQUE (com_regist)
 );
 
 
@@ -288,6 +314,14 @@ ALTER TABLE item_qna
 ;
 
 
+ALTER TABLE line
+	ADD FOREIGN KEY (item_no)
+	REFERENCES item (item_no)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
 ALTER TABLE Comment
 	ADD FOREIGN KEY (sns_no)
 	REFERENCES SNS (sns_no)
@@ -307,6 +341,30 @@ ALTER TABLE SNS_info
 ALTER TABLE sns_like
 	ADD FOREIGN KEY (sns_no)
 	REFERENCES SNS (sns_no)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE buy
+	ADD FOREIGN KEY (userid)
+	REFERENCES user (no)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE CS_board
+	ADD FOREIGN KEY (userid)
+	REFERENCES user (no)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE SNS
+	ADD FOREIGN KEY (userid)
+	REFERENCES user (no)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;

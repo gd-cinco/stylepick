@@ -30,7 +30,15 @@ public class ShopService {
 
 	@Autowired
 	private SnsItemDao snsItemDao;
+	
+	public int joincompare(String key, String val) {
+		return userDao.joincompare(key,val);
+	}
 
+	public int getmaxno() {
+		return userDao.getmaxno();
+	}
+	
 	public void userInsert(User user) {
 		userDao.insert(user);
 	}
@@ -129,5 +137,9 @@ public class ShopService {
 			public List<Item> getItemList() {
 				return itemDao.list();
 			}
+
+			
+
+			
 
 }

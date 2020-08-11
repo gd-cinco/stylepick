@@ -24,6 +24,11 @@ public class UserDao {
 	private SqlSessionTemplate template;
 	private Map<String, Object> param = new HashMap<>();
 
+	public int joincompare(String key, String val) {
+		return template.getMapper(UserMapper.class).joincompare(key,val);
+	}
+	
+	
 	public void insert(User user) {
 		template.getMapper(UserMapper.class).insert(user);
 		
@@ -56,5 +61,12 @@ public class UserDao {
 		param.put("userids", idchks);
 		return template.getMapper(UserMapper.class).select(param);
 	}
+
+
+	public int getmaxno() {
+		return template.getMapper(UserMapper.class).getmaxno();
+	}
+
+	
 	
 }
