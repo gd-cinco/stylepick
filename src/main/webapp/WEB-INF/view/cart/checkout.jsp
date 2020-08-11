@@ -25,7 +25,12 @@
 <meta charset="UTF-8">
 <title>주문하기</title>
 <style type="text/css">
-
+ .ammount{
+ float:right;
+ right:150px;
+ text-align:right;
+ margin-right: 115px;
+ }
 </style>
 </head>
 <body>
@@ -42,7 +47,6 @@
 <hr width="90%" align="left" >
 <table>
 	<tr><th>받는분</th></tr>
-	<tr><th>우편번호</th></tr>
 	<tr><th>주소</th></tr>
 	<tr><th>휴대전화</th></tr>
 	<tr><th>배송 메모</th></tr>
@@ -60,12 +64,15 @@
 
 <h2>최종 결제 금액</h2>
 <hr width="90%" align="left">
-	<div>
+		<div  class="ammount">
+	</div>
+	<div  class="ammount">
 	<div>
 	총 상품 금액
 	</div>
 	<div>원</div>
 	</div>
+
 	<br><br>
     <div class="checkout_btn_inner ">
          <center><a class="btn_1" href="#" style="width:400px">구매</a></center>

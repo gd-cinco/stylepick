@@ -22,7 +22,47 @@
       <link rel="stylesheet" href="${path}/assets/css/nice-select.css">
       <link rel="stylesheet" href="${path}/assets/css/style.css">
       	<link rel="stylesheet" href="${path}/assets/css/final.css">
-      	
+   
+   <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script> 
+      <script type="text/javascript">
+      
+      $(function(){
+    		var price =$('#price').text();
+    		var amount=price;
+    		$('#minus').click(function(e){
+    		e.preventDefault();
+    		var stat = $('#UpDown').text();
+    		var num = parseInt(stat);
+    		num--;
+    		amount = (price*num);
+    		$('#cost').val(amount);
+    		if(num<=0){
+    		alert('더이상 줄일수 없습니다.');
+    		num =1;
+    		amount=price*1;
+    		$('#cost').val(amount);
+    		$('#costcnt').val(num);
+    		}
+    		$('#UpDown').text(num);
+    		});
+    		
+    		$('#plus').click(function(e){
+    		e.preventDefault();
+    		var stat = $('#UpDown').text();
+    		var num = parseInt(stat);
+    		num++;
+    		amount = (price*num);
+    		$('#cost').val(amount);
+    		
+    		$('#UpDown').text(num);
+    		$('#costcnt').val(num);
+    		});
+    		
+    		$('#cost').val(amount);
+    		});
+
+    	</script>
+      </script>
 </head>
 <body>
   <!--================Cart Area =================-->
@@ -73,9 +113,10 @@
                       class="reduced input-number-decrement items-count" type="button">
                       <i class="ti-angle-down"></i>
                     </button> -->
-                    <span class="input-number-decrement"> <i class="ti-minus"></i></span>
-                    <input class="input-number" type="text" value="1" min="0" max="10">
-                    <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                <span id="UpDown" >1</span>
+<button id="plus" style="WIDTH: 20pt; HEIGHT: 20pt" >+</button>
+<button id="minus" style="WIDTH: 20pt; HEIGHT: 20pt" >-</button>
+                    
                   </div>
                 </td>
                 
@@ -105,9 +146,9 @@
                 </td>
                 <td>
                   <div class="product_count">
-                      <span class="input-number-decrement"> <i class="ti-minus"></i></span>
-                      <input class="input-number" type="text" value="1" min="0" max="10">
-                      <span class="input-number-increment"> <i class="ti-plus"></i></span>
+               <span id="UpDown" >1</span>
+<button id="plus" style="WIDTH: 20pt; HEIGHT: 20pt" >+</button>
+<button id="minus" style="WIDTH: 20pt; HEIGHT: 20pt" >-</button>
                   </div>
                 </td>
              
