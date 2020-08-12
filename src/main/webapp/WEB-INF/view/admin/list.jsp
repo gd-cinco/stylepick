@@ -46,7 +46,7 @@
 				<c:forEach items="${list}" var="user">
 					<tr>
 						<td>${user.userid}</td>
-						<td>${user.username}</td>
+						<td>${user.nickname}</td>
 						<td>${user.phoneno}</td>
 						<td><fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd"/></td>
 						<td>${user.email}</td>

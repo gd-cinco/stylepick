@@ -125,7 +125,7 @@
 				</font>
 			</spring:hasBindErrors>
     	</div>
-    	<div class="social_login_box" style="height: 860px; margin-top: 15px;">
+    	<div class="social_login_box" style="height: auto; margin-top: 15px;">
     		<div class="entry_text">
     			<a>아이디</a><a style="color: red;">*</a>
     		</div>

@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보</title>
-<link rel="stylesheet" href="../assets/css/user.css">
 </head>
 <body>
 <h2>환영합니다. ${sessionScope.loginUser.userid}님</h2>

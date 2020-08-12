@@ -17,8 +17,7 @@
     		 onclick="javascript:location.href='../sns/test.shop'" style="margin-bottom:20px; cursor: pointer;"> <%-- TODO 메인페이지 --%>
 		<form:form modelAttribute="user" method="post" action="login.shop">
 			<input type="hidden" name="nickname" value="이름">
-			<input type="hidden" name="password2" value="재확인">
-			<input type="hidden" name="email" value="이메일">
+			<input type="hidden" name="email" value="email@aa.bb">
 			<div style="width: 100%; display:inline;text-align: center; height: 100px;">
 			<spring:hasBindErrors name="user">
 				<font color="red">
