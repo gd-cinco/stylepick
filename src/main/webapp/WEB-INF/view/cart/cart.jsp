@@ -62,7 +62,7 @@
     		});
 
     	</script>
-      </script>
+   
 </head>
 <body>
   <!--================Cart Area =================-->
@@ -114,8 +114,8 @@
                       <i class="ti-angle-down"></i>
                     </button> -->
                 <span id="UpDown" >1</span>
-<button id="plus" style="WIDTH: 20pt; HEIGHT: 20pt" >+</button>
-<button id="minus" style="WIDTH: 20pt; HEIGHT: 20pt" >-</button>
+				<button id="plus" style="WIDTH: 20pt; HEIGHT: 20pt; background:black;" >+</button>
+				<button id="minus" style="WIDTH: 20pt; HEIGHT: 20pt"  >-</button>
                     
                   </div>
                 </td>
@@ -147,8 +147,8 @@
                 <td>
                   <div class="product_count">
                <span id="UpDown" >1</span>
-<button id="plus" style="WIDTH: 20pt; HEIGHT: 20pt" >+</button>
-<button id="minus" style="WIDTH: 20pt; HEIGHT: 20pt" >-</button>
+				<button id="plus" style="WIDTH: 20pt; HEIGHT: 20pt; background:black;" >+</button>
+				<button id="minus" style="WIDTH: 20pt; HEIGHT: 20pt"  >-</button>
                   </div>
                 </td>
              
