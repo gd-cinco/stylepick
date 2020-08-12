@@ -25,8 +25,8 @@
 			<td><form:password path="password"/>
 				<font color="red"><form:errors path="password"/></font></td></tr>
 		<tr><td>이름</td>
-			<td><form:input path="username"/>
-				<font color="red"><form:errors path="username"/></font></td></tr>			
+			<td><form:input path="nickname"/>
+				<font color="red"><form:errors path="nickname"/></font></td></tr>			
 		<tr><td>전화번호</td>
 			<td><form:input path="phoneno"/>
 				<font color="red"><form:errors path="phoneno"/></font></td></tr>

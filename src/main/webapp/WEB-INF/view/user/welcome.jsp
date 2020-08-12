@@ -23,11 +23,11 @@
 }
 .welcome_a{
 	text-decoration: none;
-  	color: #424242;
+  	color: white;
   	display:block;
   	line-height:45px;
-  	width: 70%;
-  	margin-left:15%;
+  	width: 80%;
+  	margin-left:10%;
   	height:64px;
   	text-align:center;
   	background-color: #35C5F0;
@@ -38,15 +38,16 @@
 </style>
 </head>
 <body>
-<div style="text-align: center; margin-top: 80px;">
-	<h1 style="font-size: 56px;">회원가입이 완료되었습니다!</h1>
-</div>
-<div>
-		<ul class="welcome_ul">
-    		<li class="welcome_li"><a class="welcome_a" href="../sns/test.shop">홈화면</a></li>
-	  		 <li class="welcome_li"><a class="welcome_a" href="login.shop">로그인하기</a></li>
-    	</ul>
-
+<div style="margin-left: auto;margin-right:auto; width: 60%; max-width: 750px;">
+	<div style="text-align: center; margin-top: 80px;">
+		<h1 style="font-size: 56px;">회원가입이 완료되었습니다!</h1>
+	</div>
+	<div style="margin-top: 40px;">
+			<ul class="welcome_ul">
+	    		<li class="welcome_li"><a class="welcome_a" href="../sns/test.shop">메인페이지</a></li>
+		  		 <li class="welcome_li"><a class="welcome_a" href="login.shop">로그인하기</a></li>
+	    	</ul>
+	</div>
 </div>
 </body>
 </html>
