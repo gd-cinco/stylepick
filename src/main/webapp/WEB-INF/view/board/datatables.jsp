@@ -35,8 +35,7 @@
 	$(function() {
 		var table = $('#board').DataTable({
 			data : [
-				{"no" : 1, "title" : "공지1", "author" : "관리자", "regtime" : "2020-08-12"},
-				{"no" : 2, "title" : "공지2", "author" : "관리자", "regtime" : "2020-08-12"} 
+				<c:forEach begin="1" end="100000" var="t">{"no" : ${t}, "title" : "공지 ${t}", "author" : "관리자", "regtime" : "2020-08-12"},</c:forEach>
 			],
 			responsive : true,
 			orderMulti : true,
@@ -51,10 +50,12 @@
 				"emptyTable" : "데이터가 없습니다.",
 				"lengthMenu" : "_MENU_ 개씩 보기",
 				"info" : "",
-				"infoEmpty" : "데이터가 없습니다.",
+				"infoEmpty" : "",
 				"infoFiltered" : "",
 				"search" : "검색 : ",
 				"zeroRecords" : "일치하는 데이터가 없습니다.",
+				"loadingRecords": "로딩중...",
+	            "processing":     "잠시만 기다려 주세요...",
 				"paginate" : {
 					"next" : "다음",
 					"previous" : "이전"

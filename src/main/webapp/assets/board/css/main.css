@@ -4,8 +4,12 @@ body, select, input {
     font-family: 'Jeju Gothic', sans-serif;
 }
 
-td:first-child {
+td {
 	text-align: center;
+}
+
+td:nth-child(2) {
+	text-align: left;
 }
 
 .wrap {
@@ -50,7 +54,7 @@ table.dataTable.display tbody tr:hover {
 }
 
 @media screen and (max-width: 640px) {
-    /* 검색창, 페이지당 select 등 input 관련 */
+    /* search, select */
     .dataTables_wrapper .dataTables_filter input,
     select[name=myTable_length] {
         padding: 0.2em;
