@@ -35,7 +35,7 @@
 	$(function() {
 		var table = $('#board').DataTable({
 			data : [
-				<c:forEach begin="1" end="100000" var="t">{"no" : ${t}, "title" : "공지 ${t}", "author" : "관리자", "regtime" : "2020-08-12"},</c:forEach>
+				<c:forEach begin="1" end="10000" var="t">{"no" : ${t}, "title" : "공지 ${t}", "author" : "관리자", "regtime" : "2020-08-12"},</c:forEach>
 			],
 			responsive : true,
 			orderMulti : true,
@@ -46,6 +46,9 @@
 				{"data" : "author"},
 				{"data" : "regtime"} 
 			],
+			rowId: function(r) {
+			    return r.no;
+			},
 			"language" : {
 				"emptyTable" : "데이터가 없습니다.",
 				"lengthMenu" : "_MENU_ 개씩 보기",
@@ -62,7 +65,13 @@
 				}
 			}
 		});
+		
+		$('#board').on('click', 'tr', function() {
+		    var id = table.row( this ).id();
+		    location.href='../board/detail.shop?id=' + id
+		});
 	});
+	
 	</script>
 </body>
 </html>
