@@ -1,10 +1,7 @@
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 
-body, select, input {
+th, td {
     font-family: 'Jeju Gothic', sans-serif;
-}
-
-td {
 	text-align: center;
 }
 

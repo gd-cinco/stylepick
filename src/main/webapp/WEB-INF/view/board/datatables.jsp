@@ -57,8 +57,6 @@
 				"infoFiltered" : "",
 				"search" : "검색 : ",
 				"zeroRecords" : "일치하는 데이터가 없습니다.",
-				"loadingRecords": "로딩중...",
-	            "processing":     "잠시만 기다려 주세요...",
 				"paginate" : {
 					"next" : "다음",
 					"previous" : "이전"

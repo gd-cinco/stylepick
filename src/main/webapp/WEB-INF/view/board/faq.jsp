@@ -3,13 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+<meta charset="UTF-8">
+<title>FAQ</title>
 
-	<!-- CSS -->
+	<!-- template -->
 	<link rel="stylesheet" href="${path}/assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${path}/assets/css/owl.carousel.min.css">
 	<link rel="stylesheet" href="${path}/assets/css/flaticon.css">
@@ -23,16 +20,18 @@
 	<link rel="stylesheet" href="${path}/assets/css/style.css?ver=1.1">
 	<link rel="stylesheet" href="${path}/assets/css/final.css?ver=1">
 	<link rel="stylesheet" href="${path}/assets/css/admin.css">
+
+	<!-- board -->
+	<link rel="stylesheet" type="text/css" href="${path}/assets/board/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="${path}/assets/board/css/responsive.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="${path}/assets/board/css/main.css">
 	
-	<title><decorator:title/></title>
-	<decorator:head/>
 </head>
 <body>
 <header>
 	<!-- Header Start -->
 	<div class="header-area">
 		<div class="main-header ">
-			
 			<div class="header-top top-bg d-none d-lg-block">
 				<div class="container-fluid">
 					<div class="col-xl-12">
@@ -75,12 +74,12 @@
 												<li><a href="${path}/board/faq.shop">FAQ</a></li>
 											</ul>
 										</li>
-										<li><a href="../user/mypage.shop">mypage</a>
+										<li><a href="../user/mypage.shop">mypage</a></li>
 										</c:if>
 										<c:if test="${fn:contains(path2,'sns')}" >
 											<li class="hot"><a href="${path}/WEB-INF/view/sns/list.shop?ksb=hot&type=1">인기</a></li>
 											<li><a href="${path}/WEB-INF/view/sns/list.shop?ksb=new&type=1">최신</a></li>
-											<li><a href="${path}/WEB-INF/view/sns/list.shop?ksb=qna&type=2">QnA</a>
+											<li><a href="${path}/WEB-INF/view/sns/list.shop?ksb=qna&type=2">QnA</a></li>
 										</c:if>
 										<!-- 
 										<li class="hot"><a href="#">Menu002</a></li> 핫 사용
@@ -132,8 +131,20 @@
 <main>
     <div class="best-collection-area align-center">
         <div class="main-mapper">
-        	<decorator:body/>
-        </div>
+			<div class="wrap">
+				<h1>게시판</h1>
+				<table id="board" class="display" style="width: 100%;">
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>등록일</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
     </div>
 </main>
 <footer>
@@ -216,13 +227,10 @@
 	</div>
 	<!-- Footer End-->
 </footer>
-	<!-- JS -->
-	<!-- All JS Custom Plugins Link Here here -->
+<!-- All JS Custom Plugins Link Here here -->
 	<script src="${path}/assets/js/vendor/modernizr-3.5.0.min.js"></script>
 	<!-- Jquery, Popper, Bootstrap -->
 	<script src="${path}/assets/js/vendor/jquery-1.12.4.min.js"></script>
-	<script src="${path}/assets/js/popper.min.js"></script>
-	<script src="${path}/assets/js/bootstrap.min.js"></script>
 	<!-- Jquery Mobile Menu -->
 	<script src="${path}/assets/js/jquery.slicknav.min.js"></script>
 
@@ -241,7 +249,6 @@
 	<script src="${path}/assets/js/jquery.sticky.js"></script>
         
 	<!-- contact js -->
-	<script src="${path}/assets/js/contact.js"></script>
 	<script src="${path}/assets/js/jquery.form.js"></script>
 	<script src="${path}/assets/js/jquery.validate.min.js"></script>
 	<script src="${path}/assets/js/mail-script.js"></script>
@@ -250,5 +257,53 @@
 	<!-- Jquery Plugins, main Jquery -->	
 	<script src="${path}/assets/js/plugins.js"></script>
 	<script src="${path}/assets/js/main.js"></script>
+	
+	<script src="${path}/assets/board/js/jquery-3.3.1.min.js"></script>
+	<script src="${path}/assets/board/js/jquery.dataTables.js"></script>
+	<script src="${path}/assets/board/js/dataTables.responsive.min.js"></script>
+	<script src="${path}/assets/board/js/dataTables.buttons.min.js"></script>
+	<script src="${path}/assets/board/js/buttons.html5.min.js"></script>
+	<script>
+	$(function() {
+		var table = $('#board').DataTable({
+			data : [
+				<c:forEach begin="1" end="1000" var="t">{"no" : ${t}, "title" : "FAQ ${t}", "author" : "관리자", "regtime" : "2020-08-12"},</c:forEach>
+			],
+			responsive : true,
+			orderMulti : true,
+			order : [ [ 0, 'desc' ] ],
+			columns : [
+				{"data" : "no"}, 
+				{"data" : "title"}, 
+				{"data" : "author"},
+				{"data" : "regtime"} 
+			],
+			rowId: function(r) {
+			    return r.no;
+			},
+			"language" : {
+				"emptyTable" : "데이터가 없습니다.",
+				"lengthMenu" : "_MENU_ 개씩 보기",
+				"info" : "",
+				"infoEmpty" : "",
+				"infoFiltered" : "",
+				"search" : "검색 : ",
+				"zeroRecords" : "일치하는 데이터가 없습니다.",
+				"paginate" : {
+					"next" : "다음",
+					"previous" : "이전"
+				}
+			}
+		});
+		
+		$('#board').on('click', 'tr', function() {
+		    var id = table.row( this ).id();
+		    if (id != null) {
+		    	location.href="../board/detail.shop?id=" + id	
+		    }
+		});
+	});
+	
+	</script>
 </body>
 </html>
