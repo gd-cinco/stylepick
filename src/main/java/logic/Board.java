@@ -3,39 +3,23 @@ package logic;
 import java.util.Date;
 
 public class Board {
-	private int num;
-	private int seq;
-	private String category;
-	private String author;
+	private int no;
 	private String title;
-	private String content;
-	private String fileurl;
-	private Date regtime;
-	private String stat;
+	private String author;
+	private String regtime;
 	
-	public int getNum() {
-		return num;
+	public Board() {
+		no = 1;
+		title = "test1";
+		author = "admin";
+		regtime = "2020-08-12";
 	}
-	public void setNum(int num) {
-		this.num = num;
+	
+	public int getNo() {
+		return no;
 	}
-	public int getSeq() {
-		return seq;
-	}
-	public void setSeq(int seq) {
-		this.seq = seq;
-	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
-	public String getAuthor() {
-		return author;
-	}
-	public void setAuthor(String author) {
-		this.author = author;
+	public void setNo(int no) {
+		this.no = no;
 	}
 	public String getTitle() {
 		return title;
@@ -43,36 +27,21 @@ public class Board {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getContent() {
-		return content;
+	public String getAuthor() {
+		return author;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
-	public String getFileurl() {
-		return fileurl;
-	}
-	public void setFileurl(String fileurl) {
-		this.fileurl = fileurl;
-	}
-	public Date getRegtime() {
+	public String getRegtime() {
 		return regtime;
 	}
-	public void setRegtime(Date regtime) {
+	public void setRegtime(String regtime) {
 		this.regtime = regtime;
 	}
-	public String getStat() {
-		return stat;
-	}
-	public void setStat(String stat) {
-		this.stat = stat;
-	}
-	
 	@Override
 	public String toString() {
-		return "Board [num=" + num + ", seq=" + seq + ", category=" + category + ", author=" + author + ", title="
-				+ title + ", content=" + content + ", fileurl=" + fileurl + ", regtime=" + regtime + ", stat=" + stat
-				+ "]";
+		return "Board [no=" + no + ", title=" + title + ", author=" + author + ", regtime=" + regtime + "]";
 	}
 	
 }

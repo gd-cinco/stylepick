@@ -266,9 +266,10 @@
 	<script>
 	$(function() {
 		var table = $('#board').DataTable({
-			data : [
-				<c:forEach begin="1" end="1000" var="t">{"no" : ${t}, "title" : "공지 ${t}", "author" : "관리자", "regtime" : "2020-08-12"},</c:forEach>
-			],
+			ajax: {
+				'url':'http://localhost:8080/stylepick/ajax/nd.shop',
+	            'dataSrc':''
+	        },
 			responsive : true,
 			orderMulti : true,
 			order : [ [ 0, 'desc' ] ],
