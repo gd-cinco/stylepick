@@ -25,7 +25,7 @@ public class SnsController {
 	@Autowired
 	private ShopService service;
 	
-	@RequestMapping("test")
+	@RequestMapping("main")
 	public String test(Model model) {
 		return null;
 	}
@@ -40,16 +40,26 @@ public class SnsController {
 	public ModelAndView create(Sns sns,String category,String detail,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		List<SnsItem> list = new ArrayList<SnsItem>();
-		String[] cg = category.split(",");
-		String[] dt = detail.split(",");
 		sns.setSns_no(service.snsNum());
-		for(int i=0;i<cg.length;i++) {
-			SnsItem item = new SnsItem(sns.getSns_no(),i+1,cg[i],dt[i]);
-			list.add(item);
+		if(category == null && detail == null) {
+			category = "";
+			detail = "";
+		} else {
+			String[] cg = category.split(",");
+			String[] dt = detail.split(",");
+			for(int i=0;i<cg.length;i++) {
+				SnsItem item = new SnsItem(sns.getSns_no(),i+1,cg[i],dt[i]);
+				list.add(item);
+			}
+			sns.setItemList(list);
 		}
 		sns.setItemList(list);
 		service.snsWrite(sns,request);
-		mav.setViewName("redirec:list.shop?ksb=new&type="+sns.getType());
+		if(sns.getType()==1) {
+			mav.setViewName("redirect:main.shop?ksb=new&type="+sns.getType());
+		} else if(sns.getType()==2) {
+			mav.setViewName("redirect:main.shop?type="+sns.getType());
+		}
 		return mav;
 	}
 	

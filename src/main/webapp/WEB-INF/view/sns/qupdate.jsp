@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>QnA 작성</title>
-<link rel="stylesheet" href="${path}/assets/css/sns.css?ver=1">
+<title>QnA 수정</title>
+<link rel="stylesheet" href="../assets/css/sns.css?ver=1">
 <style>
 	.form {
    	 	margin-left: auto;
@@ -127,14 +127,14 @@
 </head>
 <body>
 <div class="form">
-	<form:form modelAttribute="sns" action="write.shop" enctype="multipart/form-data" name="f">
-		<form:hidden path="type" value="${type}"/>
+	<form:form modelAttribute="sns" action="qupdate.shop" enctype="multipart/form-data" name="f">
+		<form:hidden path="type" value="2"/>
 		<form:hidden path="userid" value="${sessionScope.loginUser.userid}"/>
 		<div class="style imgs">
 			<h4>스타일 이미지</h4>
 			<div class="img preview-image" id="imgs">
 				<label for="input-file" id="imglabel">업로드</label> 
-				<input type="file" id="input-file" class="upload-hidden" name="imgs">
+				<form:input type="file" id="input-file" class="upload-hidden" path="img1"/>
 				<script>
 					   var imgTarget = $('.preview-image .upload-hidden');
 
@@ -175,10 +175,10 @@
 		</div>
 		<div class="style description">
 			<h4>질문하기</h4>
-			<form:textarea path="description" placeholder="내용을 입력해주세요" rows="5" cols="78"/>
+			<form:input type="textarea" path="description" rows="5" cols="78"/>
 		</div>
 		<div class="centerbutton">
-			<button type="submit" class="btn">올리기</button>
+			<button type="submit" class="btn">수정완료</button>
 		</div>
 	</form:form>
 </div>

@@ -40,7 +40,7 @@
 							<div class="header-info-right">
 								<ul>
 								<li>
-									<a href="../sns/test.shop" style="font-weight:bold; font-size:18px;">#OOTD</a>
+									<a href="../sns/main.shop?ksb=hot&type=1" style="font-weight:bold; font-size:18px;">#OOTD</a>
 									<a href="../item/store.shop" style="font-weight:bold; font-size:18px;">STORE</a>
 								</li>
 								</ul>
@@ -73,9 +73,9 @@
 										<li><a href="../user/mypage.shop">mypage</a>
 										</c:if>
 										<c:if test="${fn:contains(path2,'sns')}" >
-											<li class="hot"><a href="${path}/WEB-INF/view/sns/list.shop?ksb=hot&type=1">인기</a></li>
-											<li><a href="${path}/WEB-INF/view/sns/list.shop?ksb=new&type=1">최신</a></li>
-											<li><a href="${path}/WEB-INF/view/sns/list.shop?ksb=qna&type=2">QnA</a>
+											<li class="hot"><a href="../sns/main.shop?ksb=hot&type=1">인기</a></li>
+											<li><a href="../sns/main.shop?ksb=new&type=1">최신</a></li>
+											<li><a href="../sns/main.shop?type=2">QnA</a>
 										</c:if>
 										<!-- 
 										<li class="hot"><a href="#">Menu002</a></li> 핫 사용

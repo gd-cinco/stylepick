@@ -14,6 +14,7 @@
 	margin : 10px;
 	border : 1px solid #c5c2c2;
 	border-radius : 6px;
+	background-color: #ffffff;
 }
 
 .style-img {
@@ -103,7 +104,12 @@
 	</c:forEach>
 	</tr>
 </table>
-<a href="write.shop?type=1" class="btn" style="margin-left:40%;">작성하기</a>
+<c:if test="${param.type==1}">
+	<a href="write.shop" class="btn" style="margin-left:40%;">작성하기</a>
+</c:if>
+<c:if test="${param.type==2}">
+	<a href="qna.shop" class="btn" style="margin-left:40%;">작성하기</a>
+</c:if>
 </div>
 </body>
 </html>
