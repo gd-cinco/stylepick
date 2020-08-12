@@ -19,8 +19,8 @@ public interface UserMapper {
 	@Select("select ifnull(max(no),0) from user")
 	int getmaxno();
 	
-	@Insert("insert into user (no,userid,password,nickname,seller,imgurl,regdate)"
-			+ "values(#{no},#{userid},#{password},#{nickname},0,#{imgurl},now())")
+	@Insert("insert into user (no,userid,password,nickname,email,seller,imgurl,regdate)"
+			+ "values(#{no},#{userid},#{password},#{nickname},#{email},0,#{imgurl},now())")
 	void insert(User user);
 
 	@Select({"<script>",

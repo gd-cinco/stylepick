@@ -76,9 +76,10 @@
 		        alert("14세 이상이여야 합니다.")
 		        result= false;
 		      }
-	      if(result) {
+	      if(result==true) {
 	        return true;
 	      }
+	      return false;
 	   }
 
 </script>

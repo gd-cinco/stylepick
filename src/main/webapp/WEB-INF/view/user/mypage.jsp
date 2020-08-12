@@ -81,11 +81,9 @@
 	<table>
 		<tr><td>아이디</td><td>${user.userid}</td></tr>
 		<tr><td>이름</td><td>${user.nickname}</td></tr>
-		<tr><td>우편번호</td><td>${user.postcode}</td></tr>
 		<tr><td>전화번호</td><td>${user.phoneno}</td></tr>
 		<tr><td>주소</td><td>${user.address}</td></tr>
 		<tr><td>이메일</td><td>${user.email}</td></tr>
-		<tr><td>생년월일</td><td><fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd"/></td></tr>
 	</table><br>
 	<a href="update.shop?id=${user.userid}">[회원정보수정]</a>&nbsp;
 		<c:if test="${loginUser.userid !='admin'}">
