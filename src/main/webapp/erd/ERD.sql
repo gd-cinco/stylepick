@@ -259,6 +259,7 @@ CREATE TABLE user
 	imgurl varchar(200) COMMENT '회원사진',
 	-- 0남, 1여
 	gender int(5) COMMENT '0남, 1여',
+	comment varchar(100),
 	-- 소셜구분
 	sns_type int(10) COMMENT '소셜구분',
 	-- 소셜아이디

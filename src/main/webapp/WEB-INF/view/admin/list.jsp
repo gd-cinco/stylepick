@@ -41,14 +41,16 @@
 					<td colspan="7">회원목록</td>
 				</tr>
 				<tr>
-					<th>아이디</th><th>이름</th><th>전화</th><th>생일</th><th>이메일</th><th>&nbsp;</th><th><input type="checkbox" name="allchk" onchange="allchkbox(this)"></th>
+					<th>아이디</th><th>이름</th><th>전화</th><th>나이</th><th>가입날짜</th><th>이메일</th><th>&nbsp;</th><th><input type="checkbox" name="allchk" onchange="allchkbox(this)"></th>
 				</tr>
 				<c:forEach items="${list}" var="user">
 					<tr>
 						<td>${user.userid}</td>
-						<td>${user.username}</td>
+						<td>${user.nickname}</td>
 						<td>${user.phoneno}</td>
-						<td><fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd"/></td>
+						<%-- <td><fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd"/></td> --%>
+						<td>${user.age}</td>
+						<td>${user.regdate}</td>
 						<td>${user.email}</td>
 						<td>
 							<a href="../user/update.shop?id=${user.userid}">수정</a>

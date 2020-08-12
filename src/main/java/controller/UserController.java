@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,8 +47,6 @@ public class UserController {
 	@ResponseBody
 	public String confirm2(String nickname) {
 		int result = service.joincompare("nickname",nickname);
-		System.out.println(nickname);
-		System.out.println("개수:"+result);
 		if(result>0)
 			return "true";
 		else
@@ -68,7 +67,7 @@ public class UserController {
 			int maxno = service.getmaxno();
 			user.setNo(++maxno);
 			service.userInsert(user);
-			mav.setViewName("redirect:welcome.shop"); //TODO 가입완료창
+			mav.setViewName("redirect:welcome.shop");
 		}catch (DataIntegrityViolationException e) {
 			e.printStackTrace();
 			bresult.reject("error.input.user");
@@ -85,10 +84,6 @@ public class UserController {
 			bresult.reject("error.input.user");
 			return mav;
 		}
-		//1. db의 정보의 id,password비교
-		//2. 일치 : session loginUser정보 저장
-		//3. 불일치 : 비밀번호 확인 내용 출력
-		//4. db에 해당 id정보가 없는 경우 id확인내용출력
 		try {
 			User dbUser = service.getUser(user.getUserid());
 			if(user.getPassword().equals(dbUser.getPassword())) {
@@ -97,9 +92,9 @@ public class UserController {
 			}else {
 				bresult.reject("error.login.password");
 			}
-		}//catch (EmptyResultDataAccessException e) {
-		//	bresult.reject("error.login.id");
-		/*}*/catch (IndexOutOfBoundsException e) {
+		}catch (EmptyResultDataAccessException e) {
+			bresult.reject("error.login.id");
+		}catch (IndexOutOfBoundsException e) {
 			bresult.reject("error.login.id");
 		}
 		return mav;

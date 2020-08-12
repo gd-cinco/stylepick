@@ -21,12 +21,17 @@
 		<tr><td>아이디</td>
 			<td><form:input path="userid" readonly="true"/>
 				<font color="red"><form:errors path="userid"/></font></td></tr>
-		<tr><td>비밀번호</td>
-			<td><form:password path="password"/>
-				<font color="red"><form:errors path="password"/></font></td></tr>
-		<tr><td>이름</td>
-			<td><form:input path="username"/>
-				<font color="red"><form:errors path="username"/></font></td></tr>			
+		<tr><td>이메일</td>
+			<td><form:input path="email"/>
+				<font color="red"><form:errors path="email"/></font></td></tr>	
+		<tr><td>닉네임</td>
+			<td><form:input path="nickname"/>
+				<font color="red"><form:errors path="nickname"/></font></td></tr>			
+		<tr><td>나이</td>
+			<td><form:input path="age"/>
+				<font color="red"><form:errors path="age"/></font></td></tr>
+		<%--성별 --%>
+
 		<tr><td>전화번호</td>
 			<td><form:input path="phoneno"/>
 				<font color="red"><form:errors path="phoneno"/></font></td></tr>
@@ -36,12 +41,6 @@
 		<tr><td>주소</td>
 			<td><form:input path="address"/>
 				<font color="red"><form:errors path="address"/></font></td></tr>		
-		<tr><td>이메일</td>
-			<td><form:input path="email"/>
-				<font color="red"><form:errors path="email"/></font></td></tr>	
-		<tr><td>생년월일</td>
-			<td><form:input path="birthday"/>
-				<font color="red"><form:errors path="birthday"/></font></td></tr>
 		<tr><td colspan="2" align="center">
 			<input type="submit" value="수정">
 			<input type="reset" value="초기화"></td></tr> 
