@@ -1,14 +1,14 @@
-font{
+.userfont{
 	color: red;
 	font-size: 14px;
 }
-ul{
+.userul{
   	list-style-type: none;
   	text-align: left;
   	overflow: hidden;
   	margin: 0;padding: 0;
   }
-  li{
+.userli{
   	position:relative;
   	display:inline;
   	text-align:center;
@@ -16,7 +16,7 @@ ul{
   	float: left;
   	width: 50%;
   }
-  a{
+.usera{
   	text-decoration: none;
   	color: #424242;
   }
@@ -26,18 +26,25 @@ ul{
 	margin-right:auto;
 	max-width: 620px;
 }
+.default_center{
+	width:60%;
+	margin : 0 20%;
+}
 .input_box{
 	margin-top:10px;
 	margin-bottom: 5px;
 	padding: 8px 35px 4px 11px;
 	border: solid 1px #dadada;
 	background: #fff;
-	height: 29px;		
+	height: 29px;	
+	box-sizing: unset;
+	border-radius: 6px;
 }
 .input_input{
 	 width:100%;
 	 height:16px; 
 	 border: none;
+	 
 }
 .input_err{
 	margin-bottom: -2px;
@@ -67,6 +74,14 @@ ul{
 	height: 200px;
 	margin-bottom: 15px;
 }
+.social_seq_button{
+	display:block;
+	line-height:45px;
+	width: 90%;
+	height:45px;
+	text-align:center;
+	border: 1px solid #000000;
+}
 .entry_text{
 	font-size: 18px;
 	font-weight: bold;
@@ -76,4 +91,51 @@ ul{
 .entry_input{
 	margin-left:60px;
 	margin-right:40px;
+}
+.img_box{
+	width: 150px;
+	display:inline;
+	height: 150px;
+	float: left;
+	text-align: center;
+	margin-left: 60px;
+	margin-top:10px;
+	background-color: #dadada;
+}
+.img_del{
+	display:block;
+	line-height:25px;
+	width: 26%;
+	height:26px;
+	text-align:center;
+	margin-top:-149px;
+	margin-left:103px;
+	background-color: #35C5F0;
+	color: white;
+	font-weight: bold;
+}
+.table_input{
+	border: 2px solid #bcbcbc;
+	border-radius: 6px;
+	height:40px;
+	width:300px;
+	padding: 0 15px;
+}
+.update_text{
+	font-size: 18px;
+	font-weight: bold;
+	width:150px;
+	height:43px;
+	line-height: 43px;
+	float:left;
+	margin-top: 10px;
+}
+.update_input{
+	width: 450px;
+	float: left;
+}
+.update_tuple{
+	margin-top:21px;
+	width: 100%;
+	height: 50px;
 }

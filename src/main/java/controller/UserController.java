@@ -54,7 +54,6 @@ public class UserController {
 	}
 	
 	
-	
 	@PostMapping("userEntry")
 	public ModelAndView add(@Valid User user,BindingResult bresult,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("user/userEntry");
@@ -120,7 +119,7 @@ public class UserController {
 	 * 
 	 */
 	
-	@GetMapping(value = {"update","delete","mypage"})
+	@GetMapping(value = {"delete","mypage"}) //"update"
 	public ModelAndView checkview(String id,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = service.getUser(id);

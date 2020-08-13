@@ -21,7 +21,7 @@ public class User {
 	@Email(message="email 형식으로 입력하세요.")
 	@NotEmpty(message="필수정보입니다.")
 	private String email;
-	private String phoneno;
+	private String tel;
 	private int age;
 	private String imgurl;
 	private int gender; //1:남 2:여
@@ -75,11 +75,12 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPhoneno() {
-		return phoneno;
+	
+	public String getTel() {
+		return tel;
 	}
-	public void setPhoneno(String phoneno) {
-		this.phoneno = phoneno;
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 	public int getAge() {
 		return age;
@@ -174,8 +175,8 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [no=" + no + ", userid=" + userid + ", password=" + password + ", password2=" + password2
-				+ ", nickname=" + nickname + ", email=" + email + ", phoneno=" + phoneno + ", age=" + age + ", imgurl="
-				+ imgurl + ", gender=" + gender + ", sns_type=" + sns_type + ", sns_id=" + sns_id + ", seller=" + seller
+				+ ", nickname=" + nickname + ", email=" + email + ", tel=" + tel + ", age=" + age + ", imgurl=" + imgurl
+				+ ", gender=" + gender + ", sns_type=" + sns_type + ", sns_id=" + sns_id + ", seller=" + seller
 				+ ", name=" + name + ", com_name=" + com_name + ", com_regist=" + com_regist + ", com_img=" + com_img
 				+ ", com_tel=" + com_tel + ", regdate=" + regdate + ", address=" + address + ", order_memo="
 				+ order_memo + ", order_tel=" + order_tel + "]";

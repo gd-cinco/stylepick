@@ -14,13 +14,13 @@
 	<div class="center"> <%--가운데정렬 --%>
 	<div style="margin-top:100px; margin-bottom:50px; position: relative;"> <%--위에 떼기 --%>
     		<img src="../assets/img/logo/logo3.png" width="620px"
-    		 onclick="javascript:location.href='../sns/test.shop'" style="margin-bottom:20px; cursor: pointer;"> <%-- TODO 메인페이지 --%>
+    		 onclick="javascript:location.href='../sns/test.shop?ksb=hot&type=1'" style="margin-bottom:20px; cursor: pointer;">
 		<form:form modelAttribute="user" method="post" action="login.shop">
 			<input type="hidden" name="nickname" value="이름">
 			<input type="hidden" name="email" value="email@aa.bb">
 			<div style="width: 100%; display:inline;text-align: center; height: 100px;">
 			<spring:hasBindErrors name="user">
-				<font color="red">
+				<font class="userfont" color="red">
 					<c:forEach items="${errors.globalErrors }" var="error">
 						<spring:message code="${error.code}"/>
 					</c:forEach>
@@ -34,7 +34,7 @@
 					 onblur="document.getElementById('idinputbox').style.border='1px solid #dadada'">
 				</div>
 			</div>
-			<div class="input_err"><font><form:errors path="userid"/></font></div>
+			<div class="input_err"><font class="userfont"><form:errors path="userid"/></font></div>
 			<div id="pw_area">
 				<div class="input_box" id="passinputbox" >
 					<input type="password" id="password" name="password" placeholder="비밀번호" class="input_input"
@@ -42,13 +42,13 @@
 					 onblur="document.getElementById('passinputbox').style.border='1px solid #dadada'" >
 				</div>
 			</div>
-			<div class="input_err"><font><form:errors path="password"/></font></div>
+			<div class="input_err"><font class="userfont"><form:errors path="password"/></font></div>
 
 			<br><input class="input_submit" type="submit" value="로그인">
-			<ul>
-		  		<li><a href="userEntry.shop">회원가입</a></li>
-		  		<li style="width: 1px; height : 26px; background: #000; position: absolute;"/>
-		  		<li><a href="#">ID/PW 찾기</a></li> <%--TODO 아이디찾기 --%>
+			<ul class="userul">
+		  		<li class="userli"><a class="usera" href="userEntry.shop">회원가입</a></li>
+		  		<li class="userli" style="width: 1px; height : 26px; background: #000; position: absolute;"/>
+		  		<li class="userli"><a class="usera" href="#">ID/PW 찾기</a></li> <%--TODO 아이디찾기 --%>
 	  		</ul>
 		</form:form>
 		</div>
