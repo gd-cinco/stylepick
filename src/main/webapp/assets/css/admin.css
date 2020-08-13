@@ -35,6 +35,8 @@
 	font-size: x-small;
 }
 .todolist_frame {
+	margin: 2%;
+	padding: 4px;
 	background : #FFEAEA;
 }
 .todolist {

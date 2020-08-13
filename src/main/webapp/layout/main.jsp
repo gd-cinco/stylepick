@@ -104,17 +104,43 @@
 										</div>
 								    </div>
 								</li>
+								<!-- ~0812 No Need
 								<li class=" d-none d-xl-block">
 								    <div class="favorit-items">
 								        <i class="far fa-heart"></i>
 								    </div>
 								</li>
+								 -->
 								<li>
 									<div class="shopping-card">
 										<a href="#"><i class="fas fa-shopping-cart"></i></a>
 									</div>
 								</li>
-									<li class="d-none d-lg-block"> <a href="../user/login.shop" class="btn header-btn">로그인</a></li>
+									<!-- ~0812 <li class="d-none d-lg-block"> <a href="../user/login.shop" class="btn header-btn">로그인</a></li> -->
+									<!-- 0813 seyeon 로그인 후 드롭다운 / 이미지 path 변경 요망 / 화면 크기 작아지면 동그라미 안보임-->
+									<li class="d-none d-lg-block">
+										<c:if test="${empty sessionScope.loginUser}">
+											<a href="../user/login.shop" class="btn header-btn">로그인</a>
+										</c:if>
+										<c:if test="${!empty sessionScope.loginUser}">
+											<div class="main-menu f-right d-none d-lg-block">
+											    <nav>
+												    <ul id="navigation">
+													    <li>
+													    	<div class="login_circle" style="background: none;">
+														   		<img class="profile_image" src="../assets/img/client.png">
+														   	</div>
+															<ul class="submenu">
+																<li><a href="${path}/admin/list.shop">mypage (이지만 dashboard)</a></li>
+																<li><a href="${path}/admin/widgets.shop">주문내역 (이지만 widget)</a></li>
+																<li><a href="${path}/user/logout.shop">logout</a></li>
+															</ul>
+														</li>
+													   </ul> 
+												   </nav>
+											</div>
+										</c:if>
+									</li>
 								</ul>
 						</div>
 						
