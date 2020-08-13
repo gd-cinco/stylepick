@@ -18,7 +18,8 @@ public class Item {
 	private Date regdate; //등록일
 	private int readcnt; //조회수
 	
-	//옵션은 추후 db에 할지 한번에 할지 정함
+	private String option;
+	private String size;
 	
 	
 	public String getItem_no() {
@@ -93,5 +94,19 @@ public class Item {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
+	public String getOption() {
+		return option;
+	}
+	public void setOption(String option) {
+		this.option = option;
+	}
+	public String getSize() {
+		return size;
+	}
+	public void setSize(String size) {
+		this.size = size;
+	}
+	
+	
 	
 }

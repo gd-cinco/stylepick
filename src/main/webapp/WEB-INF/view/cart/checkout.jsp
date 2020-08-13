@@ -24,7 +24,7 @@
       <link rel="stylesheet" href="${path}/assets/css/nice-select.css">
       <link rel="stylesheet" href="${path}/assets/css/style.css">
       	<link rel="stylesheet" href="${path}/assets/css/final.css">
-<meta charset="UTF-8">
+
 <title>주문하기</title>
 <style type="text/css">
  .ammount{
