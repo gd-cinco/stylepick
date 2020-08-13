@@ -131,7 +131,7 @@
 														   		<img class="profile_image" src="../assets/img/client.png">
 														   	</div>
 															<ul class="submenu">
-																<li><a href="${path}/admin/list.shop">mypage (이지만 dashboard)</a></li>
+																<li><a href="${path}/sns/mypage.shop">mypage</a></li>
 																<li><a href="${path}/admin/widgets.shop">주문내역 (이지만 widget)</a></li>
 																<li><a href="${path}/user/logout.shop">logout</a></li>
 															</ul>

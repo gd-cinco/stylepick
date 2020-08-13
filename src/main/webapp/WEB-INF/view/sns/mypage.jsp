@@ -17,7 +17,7 @@
 <div class="user-info">
 	<div class="user-profile">
 		<img src="../assets/img/user.svg" width="100px" height="100px">&nbsp;&nbsp;userid
-		<a href="../user/update.shop" class="button" style="float:right; padding:10px;">수정하기</a>
+		<a href="../user/update.shop?id=${loginUser.userid}" class="button" style="float:right; padding:10px;">수정하기</a>
 	</div>
 	<div class="user-action">
 		<table>

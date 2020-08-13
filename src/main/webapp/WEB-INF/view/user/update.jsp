@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file = "/WEB-INF/view/jspHeader.jsp" %>    
+<%@include file = "/WEB-INF/view/jspHeader.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,6 +43,7 @@
 </head>
 <body>
 <form:form modelAttribute="user" method="post" action="update.shop">
+	<input type="hidden" name="password" id="password" value="123123">
 	<div class="default_center" style="height:auto; margin-top: 15px;">
 	<h2>회원 정보 수정</h2>
 	<spring:hasBindErrors name="user">
@@ -58,7 +60,7 @@
     		</div>
     		<div class="update_input">
     			<div class="input_box" id="idinputbox" >
-					<input type="text" id="userid" name="userid" value="${loginUser.userid}" class="input_input" readonly="readonly"
+					<input type="text" id="userid" name="userid" value="${user.userid}" class="input_input" readonly="readonly"
 					 onfocus="document.getElementById('idinputbox').style.border='2px solid #35C5F0'"
 					 onblur="document.getElementById('idinputbox').style.border='1px solid #dadada'">
 				</div>
@@ -71,7 +73,7 @@
     		</div>
     		<div class="update_input">
     			<div class="input_box" id="emailinputbox" >
-					<input type="text" id="email" name="email" value="${loginUser.email}" class="input_input" readonly="readonly" 
+					<input type="text" id="email" name="email" value="${user.email}" class="input_input" readonly="readonly" 
 					 onfocus="document.getElementById('emailinputbox').style.border='2px solid #35C5F0'"
 					 onblur="document.getElementById('emailinputbox').style.border='1px solid #dadada'">
 				</div>
@@ -84,7 +86,7 @@
     		</div>
     		<div class="update_input">
     			<div class="input_box" id="nicknameinputbox" >
-					<input type="text" id="nickname" name="nickname" value="${loginUser.nickname}" class="input_input" autocomplete="off"
+					<input type="text" id="nickname" name="nickname" value="${user.nickname}" class="input_input" autocomplete="off"
 					 onfocus="document.getElementById('nicknameinputbox').style.border='2px solid #35C5F0'"
 					 onblur="javascript:alreadyNicknamechk()"> <%--자기닉넴으로 안됨 --%>
 				</div>
@@ -100,7 +102,7 @@
     		</div>
     		<div class="update_input">
     			<div class="input_box" id="ageinputbox" >
-					<input type="text" id="age" name="age" value="${loginUser.age}" class="input_input" autocomplete="off"
+					<input type="text" id="age" name="age" value="${user.age}" class="input_input" autocomplete="off"
 					 onfocus="document.getElementById('ageinputbox').style.border='2px solid #35C5F0'"
 					 onblur="document.getElementById('ageinputbox').style.border='1px solid #dadada'">
 				</div>
@@ -111,11 +113,12 @@
     		<div class="update_text">
     			<a>성별</a>
     		</div>
+    		
     		<div class="update_input"> <%--입력값대로 바꾸기 --%>
     			<div class="input_box" style="border: 0px;" >
-					<input type="radio" name="gender" value="1">남
-					<input type="radio" name="gender" value="2">여
-					<input type="radio" name="gender" value="">비공개
+					<input type="radio" name="gender" <c:if test="${user.gender==1}">checked</c:if> value="1">남
+					<input type="radio" name="gender" <c:if test="${user.gender==2}">checked</c:if> value="2">여
+					<input type="radio" name="gender" <c:if test="${user.gender==0}">checked</c:if> value="0">비공개
 				</div>
     		</div>
     		</div>
@@ -126,7 +129,7 @@
     		</div>
     		<div class="update_input">
     			<div class="input_box" id="telinputbox" >
-					<input type="text" id="tel" name="tel" value="${loginUser.tel}" class="input_input" autocomplete="off"
+					<input type="text" id="tel" name="tel" value="${user.tel}" class="input_input" autocomplete="off"
 					 onfocus="document.getElementById('telinputbox').style.border='2px solid #35C5F0'"
 					 onblur="document.getElementById('telinputbox').style.border='1px solid #dadada'">
 				</div>
@@ -139,14 +142,14 @@
     		</div>
     		<div class="update_input">
     			<div class="input_box" id="commentinputbox" >
-					<input type="text" id="comment" name="comment" value="${loginUser.comment}" class="input_input" autocomplete="off"
+					<input type="text" id="comment" name="comment" value="${user.comment}" class="input_input" autocomplete="off"
 					 onfocus="document.getElementById('commentinputbox').style.border='2px solid #35C5F0'"
 					 onblur="document.getElementById('commentinputbox').style.border='1px solid #dadada'">
 				</div>
     		</div>
     		</div>
     		
-    		<div class="update_tuple" style="height: 170px; margin-bottom: 100px;">
+    		<div class="update_tuple" style="height: 170px; margin-bottom: 50px;">
     		<div class="update_text">
     			<a>프로필 사진</a>
     		</div>
@@ -156,7 +159,7 @@
   			</div>
   			</div>
   			</div>
-  			<input class="input_submit" style="font-size:36px; width:300px; margin: 0 150px;" type="submit" value="수정하기">
+  			<input class="input_submit" style="font-size:36px; width:300px; margin: 0 auto; margin-top:50px;" type="submit" value="수정하기">
     	</div>
 </form:form>
 </body>

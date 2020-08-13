@@ -119,20 +119,13 @@ public class UserController {
 	 * 
 	 */
 	
-	@GetMapping(value = {"delete","mypage"}) //"update"
+	@GetMapping(value = {"update","delete","mypage"}) 
 	public ModelAndView checkview(String id,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = service.getUser(id);
 		mav.addObject("user",user);
 		return mav;
 	}
-	/*
-	 * 1. 유효성 검증
-	 * 2. 비밀번호 검증 : 불일치
-	 * 	  유효성 출력으로 error.login.password실행
-	 * 3. 비밀번호일치  : update실행
-	 * 				로그인정보 수정, admin이 다른사람의 정보 수정시엔 로그인정보 수정안됨
-	 */
 	@PostMapping("update")
 	public ModelAndView checkupdate(@Valid User user,BindingResult bresult,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
@@ -141,13 +134,9 @@ public class UserController {
 			return mav;
 		}
 		User loginUser = (User)session.getAttribute("loginUser");
-		if(!user.getPassword().equals(loginUser.getPassword())) {
-			bresult.reject("error.login.password");
-			return mav;
-		}
 		try {
 			service.userUpdate(user);
-			mav.setViewName("redirect:mypage.shop?id="+user.getUserid());
+			mav.setViewName("redirect:../sns/mypage.shop"); //admin이아닐땐 가능
 			if(loginUser.getUserid().equals(user.getUserid())) {
 				session.setAttribute("loginUser", user);
 			}

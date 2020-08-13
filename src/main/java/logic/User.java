@@ -25,6 +25,7 @@ public class User {
 	private int age;
 	private String imgurl;
 	private int gender; //1:남 2:여
+	private String comment;
 	private int sns_type;
 	private String sns_id;
 	private int seller; //0:아님 1:판매자임
@@ -76,6 +77,12 @@ public class User {
 		this.email = email;
 	}
 	
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 	public String getTel() {
 		return tel;
 	}
@@ -176,10 +183,10 @@ public class User {
 	public String toString() {
 		return "User [no=" + no + ", userid=" + userid + ", password=" + password + ", password2=" + password2
 				+ ", nickname=" + nickname + ", email=" + email + ", tel=" + tel + ", age=" + age + ", imgurl=" + imgurl
-				+ ", gender=" + gender + ", sns_type=" + sns_type + ", sns_id=" + sns_id + ", seller=" + seller
-				+ ", name=" + name + ", com_name=" + com_name + ", com_regist=" + com_regist + ", com_img=" + com_img
-				+ ", com_tel=" + com_tel + ", regdate=" + regdate + ", address=" + address + ", order_memo="
-				+ order_memo + ", order_tel=" + order_tel + "]";
+				+ ", gender=" + gender + ", comment=" + comment + ", sns_type=" + sns_type + ", sns_id=" + sns_id
+				+ ", seller=" + seller + ", name=" + name + ", com_name=" + com_name + ", com_regist=" + com_regist
+				+ ", com_img=" + com_img + ", com_tel=" + com_tel + ", regdate=" + regdate + ", address=" + address
+				+ ", order_memo=" + order_memo + ", order_tel=" + order_tel + "]";
 	}
 	
 	

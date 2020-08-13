@@ -81,7 +81,7 @@
 	<table>
 		<tr><td>아이디</td><td>${user.userid}</td></tr>
 		<tr><td>이름</td><td>${user.nickname}</td></tr>
-		<tr><td>전화번호</td><td>${user.phoneno}</td></tr>
+		<tr><td>전화번호</td><td>${user.tel}</td></tr>
 		<tr><td>주소</td><td>${user.address}</td></tr>
 		<tr><td>이메일</td><td>${user.email}</td></tr>
 	</table><br>
