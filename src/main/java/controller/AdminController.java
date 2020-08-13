@@ -33,8 +33,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sun.net.httpserver.HttpExchange;
 
 import exception.LoginException;
+import logic.Buy;
 import logic.Mail;
 import logic.ShopService;
+import logic.Statistics;
 import logic.User;
 
 @Controller
@@ -58,6 +60,8 @@ public class AdminController {
 	@RequestMapping("dashboard")
 	public ModelAndView check_dashboard(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		long trimonth_revenue = service.salesdata();
+		mav.addObject("trimonth_revenue",trimonth_revenue);
 		return mav;
 	}//check_dashboard
 		

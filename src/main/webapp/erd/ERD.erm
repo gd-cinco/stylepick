@@ -11,8 +11,8 @@
 	</page_setting>
 	<category_index>0</category_index>
 	<zoom>0.8</zoom>
-	<x>70</x>
-	<y>422</y>
+	<x>54</x>
+	<y>252</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-07-31 00:53:31</creation_date>
-			<updated_date>2020-08-13 15:10:05</updated_date>
+			<updated_date>2020-08-13 17:01:50</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -233,7 +233,7 @@
 			<char_semantics>false</char_semantics>
 			<description>총 금액</description>
 			<logical_name>금액</logical_name>
-			<physical_name>ammount</physical_name>
+			<physical_name>amount</physical_name>
 			<type>int(n)</type>
 		</word>
 		<word>
@@ -1692,10 +1692,10 @@
 			<connections>
 				<relation>
 					<id>1</id>
-					<source>5</source>
+					<source>6</source>
 					<target>1</target>
-						<source_xp>100</source_xp>
-						<source_yp>54</source_yp>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
 						<target_xp>-1</target_xp>
 						<target_yp>-1</target_yp>
 						<color>
@@ -1714,10 +1714,10 @@
 				</relation>
 				<relation>
 					<id>2</id>
-					<source>6</source>
+					<source>5</source>
 					<target>1</target>
-						<source_xp>-1</source_xp>
-						<source_yp>-1</source_yp>
+						<source_xp>100</source_xp>
+						<source_yp>54</source_yp>
 						<target_xp>-1</target_xp>
 						<target_yp>-1</target_yp>
 						<color>
@@ -1745,7 +1745,7 @@
 				<normal_column>
 					<id>2</id>
 					<referenced_column>32</referenced_column>
-					<relation>1</relation>
+					<relation>2</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1812,7 +1812,7 @@
 				<normal_column>
 					<id>4</id>
 					<referenced_column>41</referenced_column>
-					<relation>2</relation>
+					<relation>1</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2876,7 +2876,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>55</word_id>
+					<word_id>54</word_id>
 					<id>31</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3852,7 +3852,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>54</word_id>
+					<word_id>55</word_id>
 					<id>56</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
