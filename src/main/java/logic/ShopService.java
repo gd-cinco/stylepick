@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import dao.SnsDao;
 import dao.SnsItemDao;
+import dao.AdminDao;
 import dao.ItemDao;
 import dao.UserDao;
 
@@ -30,6 +31,9 @@ public class ShopService {
 
 	@Autowired
 	private SnsItemDao snsItemDao;
+	
+	@Autowired
+	private AdminDao adminDao;
 	
 	public int joincompare(String key, String val) {
 		return userDao.joincompare(key,val);
@@ -59,12 +63,12 @@ public class ShopService {
 		return userDao.list();
 	}
 	
-	//[관리자] 메일 보낼 유저리스트 0728
+	//[admin] 메일 보낼 유저리스트 0728
 	public List<User> userlist(String[] idchks) {
 		return userDao.list(idchks);
 	}
 	
-	//[관리자] 그래프1 0728
+	//[admin] 그래프1 0728
 	public Map<String, Object> graph1() {
 		// TODO Auto-generated method stub
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -74,21 +78,28 @@ public class ShopService {
 		return map;
 	}
 	
-	//[관리자] 유저리스트 가져오기 0728
+	//[admin] 유저리스트 가져오기 0728
 	public List<User> list() {
 		// TODO Auto-generated method stub
 		return userDao.list();
 		}
 
-	//[관리자] 그래프2 0728
-			public Map<String, Object> graph2() {
-				// TODO Auto-generated method stub
-				Map<String,Object> map = new HashMap<String,Object>();
-//				for(Map<String,Object> m : boardDao.graph2()) {
-//					map.put((String)m.get("regdate"), m.get("cnt"));
-//				}
-				return map;
-			}
+	//[admin] 그래프2 0728
+	public Map<String, Object> graph2() {
+		// TODO Auto-generated method stub
+		Map<String,Object> map = new HashMap<String,Object>();
+//		for(Map<String,Object> m : boardDao.graph2()) {
+//			map.put((String)m.get("regdate"), m.get("cnt"));
+//		}
+		return map;
+	}
+	
+	//[admin] dashboard sales data
+	public long salesdata() {
+		// TODO Auto-generated method stub
+		return adminDao.salesdata();
+	}
+			
 
 	//[sns] ootd 번호
 	public int snsNum() {
@@ -137,6 +148,8 @@ public class ShopService {
 			public List<Item> getItemList() {
 				return itemDao.list();
 			}
+
+
 
 			
 

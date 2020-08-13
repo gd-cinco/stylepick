@@ -75,7 +75,7 @@
 		<!-- 1. 지표 요약 -->
 		<div class="outer_frame">
 			<div class="quarter_frame skyblue">
-				15,000,000원
+				<fmt:formatNumber value="${trimonth_revenue}" pattern="#,###" />원 
 				<p class="smaller_size">3개월 매출</p>
 			</div>
 			<div class="quarter_frame green">

@@ -1,3 +1,5 @@
+/* 0813 sy buy table에서 ammount -> amount로 수정*/
+
 SET SESSION FOREIGN_KEY_CHECKS=0;
 
 /* Drop Tables */
@@ -37,7 +39,7 @@ CREATE TABLE buy
 	-- 출고여부
 	stat int NOT NULL COMMENT '출고여부',
 	-- 총 금액
-	ammount int(100) NOT NULL COMMENT '총 금액',
+	amount int(100) NOT NULL COMMENT '총 금액',
 	-- 배송메모
 	memo varchar(200) COMMENT '배송메모',
 	PRIMARY KEY (order_no)
