@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class Item {
 	private String item_no; //상품번호
 	private String userid; //판매자 아이디
+	private String code;	//상품 코드
 	private int category; //카테고리
 	private String subject; //상품 제목
 	private String name; //상품이름
@@ -22,6 +23,12 @@ public class Item {
 	
 	public String getItem_no() {
 		return item_no;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 	public int getReadcnt() {
 		return readcnt;
