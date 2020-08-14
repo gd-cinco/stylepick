@@ -153,6 +153,32 @@ public class ShopService {
 		return itemDao.list();
 	}
 
+	//[admin] dashboard new users this month 0813
+		public int newusers() {
+			// TODO Auto-generated method stub
+			return adminDao.newusers();
+		}
+		//[admin] dashboard number of users 0813
+		public long numofusers() {
+			// TODO Auto-generated method stub
+			return adminDao.numofusers();
+		}
+		//[admin] dashboard sales of this month 0813
+		public long salesofthismonth() {
+			// TODO Auto-generated method stub
+			return adminDao.salesofthismonth();
+		}
+		//[admin] dashboard numbers of reviews 0813
+		public long numofreviews() {
+			// TODO Auto-generated method stub
+			return adminDao.numofreviews();
+		}
+		//[admin] weekly revenue 0814
+		public List<Buy> weeklyrevenue() {
+			// TODO Auto-generated method stub
+			return adminDao.weeklyrevenue();
+		}
+	
 	/**
 	 * Board
 	 */

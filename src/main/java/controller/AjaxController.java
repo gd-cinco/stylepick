@@ -26,6 +26,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import logic.Board;
+import logic.GoogleChartService;
 import logic.ShopService;
 import logic.Sns;
 
@@ -173,7 +174,16 @@ public class AjaxController {
 		return itemss;
 	}
 	
-
+	@Autowired
+	GoogleChartService googleChart;
+	
+	@RequestMapping("weeklyrevenue")
+    public JSONObject weeklyrevenue() {
+		JSONObject json = googleChart.getChartData();
+		System.out.println(json);
+        return json;
+    }
+	
 	/**
 	 * Board
 	 */
