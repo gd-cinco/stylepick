@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>NOTICE</title>
+<title>공지사항</title>
 
 	<!-- template -->
 	<link rel="stylesheet" href="${path}/assets/css/bootstrap.min.css">
@@ -67,7 +67,7 @@
 										<li><a href="../user/main.shop">main</a></li>
 										<li><a href="../admin/list.shop">admin</a></li>
 										<li><a href="../item/store.shop">store</a></li>
-										<li><a href="${path}/board/notice.shop">고객센터</a>
+										<li><a href="${path}/board/support.shop">고객센터</a>
 											<ul class="submenu">
 												<li><a href="${path}/board/notice.shop">공지사항</a></li>
 												<li><a href="${path}/board/qna.shop">Q&A</a></li>
@@ -129,23 +129,19 @@
 	<!-- Header End -->
 </header>
 <main>
-    <div class="best-collection-area align-center">
-        <div class="main-mapper">
-			<div class="wrap">
-				<h1>게시판</h1>
-				<table id="board" class="display" style="width: 100%;">
-					<thead>
-						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>등록일</th>
-						</tr>
-					</thead>
-				</table>
-			</div>
-		</div>
-    </div>
+	<div class="wrap">
+		<h1>공지사항</h1>
+		<table id="board" class="display" style="width: 100%;">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>등록일</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
 </main>
 <footer>
 	<!-- Footer Start-->
@@ -300,7 +296,7 @@
 		$('#board').on('click', 'tr', function() {
 		    var id = table.row( this ).id();
 		    if (id != null) {
-		    	location.href="../board/detail.shop?id=" + id	
+		    	location.href="../board/detail.shop?seq=notice&id=" + id	
 		    }
 		});
 	});

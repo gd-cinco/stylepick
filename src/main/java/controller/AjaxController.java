@@ -1,12 +1,15 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -19,7 +22,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import logic.Board;
 import logic.ShopService;
+import logic.Sns;
 
 //view를통하지 않고 바로 클라이언트로 전달(just data) : @Controller + @ResponseBody
 @RestController
@@ -27,6 +35,7 @@ import logic.ShopService;
 public class AjaxController {
 	@Autowired
 	ShopService service;
+	
 	@RequestMapping(value="graph1", produces="text/plain; charset=UTF8")
 	public String graph1() {
 		//알고리즘을 통해서 json 형태로 재편집(this script) -> parser로해서 ajax로 보내줌(next script)
@@ -150,4 +159,52 @@ public class AjaxController {
 		} //try and catch
 		return html.toString();
 	}
+	
+
+	@RequestMapping(value="main", produces="text/plain; charset=UTF8")
+	public List<Sns> main(String ksb,String type,String searchcontent,HttpServletRequest request) {
+		if(searchcontent == null || searchcontent.trim().contentEquals("")) {
+			searchcontent = null;
+		}
+		int pageNum = Integer.parseInt(request.getParameter("listAmount"));
+		int limit = pageNum*20;
+		System.out.println(pageNum+","+limit);
+		List<Sns> itemss = service.getSnsList(ksb,type,pageNum,limit,searchcontent);		
+		return itemss;
+	}
+	
+
+	/**
+	 * Board
+	 */
+	@RequestMapping(value="nd", produces="text/plain; charset=UTF8")
+	public String noticeData() { 
+		List<Board> list = service.getBoardList(1);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String json = null;
+		try {
+			json = mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		return json;
+	}
+	
+	@RequestMapping(value="qd", produces="text/plain; charset=UTF8")
+	public String qnaData() { 
+		List<Board> list = service.getBoardList(2);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String json = null;
+		try {
+			json = mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		return json;
+	}
+
 }

@@ -87,7 +87,7 @@ public class UserController {
 			User dbUser = service.getUser(user.getUserid());
 			if(user.getPassword().equals(dbUser.getPassword())) {
 				session.setAttribute("loginUser",dbUser);
-				mav.setViewName("redirect:main.shop");
+				mav.setViewName("redirect:../sns/main.shop");
 			}else {
 				bresult.reject("error.login.password");
 			}
@@ -102,11 +102,7 @@ public class UserController {
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:login.shop"; //TODO 메인페이지
-	}
-	@RequestMapping("main") //login이 되어야 실행가능함, loginXXX로 지정
-	public String loginCheckmain(HttpSession session) {
-		return null;
+		return "redirect:../sns/main.shop"; //TODO 메인페이지
 	}
 	/*
 	 * AOP 설정하기
@@ -119,7 +115,7 @@ public class UserController {
 	 * 
 	 */
 	
-	@GetMapping(value = {"update","delete","mypage"}) 
+	@GetMapping(value = {"update","delete"}) 
 	public ModelAndView checkview(String id,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = service.getUser(id);

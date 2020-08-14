@@ -14,7 +14,7 @@
 	<div class="center"> <%--가운데정렬 --%>
 	<div style="margin-top:100px; margin-bottom:50px; position: relative;"> <%--위에 떼기 --%>
     		<img src="../assets/img/logo/logo3.png" width="620px"
-    		 onclick="javascript:location.href='../sns/test.shop?ksb=hot&type=1'" style="margin-bottom:20px; cursor: pointer;">
+    		 onclick="javascript:location.href='../sns/main.shop'" style="margin-bottom:20px; cursor: pointer;">
 		<form:form modelAttribute="user" method="post" action="login.shop">
 			<input type="hidden" name="nickname" value="이름">
 			<input type="hidden" name="email" value="email@aa.bb">

@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import dao.SnsDao;
 import dao.SnsItemDao;
 import dao.AdminDao;
+import dao.BoardDao;
 import dao.ItemDao;
 import dao.UserDao;
 
@@ -22,7 +23,7 @@ public class ShopService {
 
 	@Autowired
 	private UserDao userDao;
-	
+	 
 	@Autowired
 	private SnsDao snsDao;
 
@@ -34,6 +35,9 @@ public class ShopService {
 	
 	@Autowired
 	private AdminDao adminDao;
+	
+	@Autowired
+	private BoardDao boardDao;
 	
 	public int joincompare(String key, String val) {
 		return userDao.joincompare(key,val);
@@ -133,7 +137,7 @@ public class ShopService {
 	}
 	
 	//[sns] ootd 목록 
-	public List<Sns> getSnsList(String ksb,String type,Integer pageNum,int limit,String searchcontent) {
+	public List<Sns> getSnsList(String ksb,String type,int pageNum,int limit,String searchcontent) {
 		return snsDao.list(ksb,type,pageNum,limit,searchcontent);
 	}
 	
@@ -144,15 +148,16 @@ public class ShopService {
 
 
 			
-		//[아이템]상품 리스트 정보
-			public List<Item> getItemList() {
-				return itemDao.list();
-			}
+	// [아이템]상품 리스트 정보
+	public List<Item> getItemList() {
+		return itemDao.list();
+	}
 
-
-
-			
-
-			
+	/**
+	 * Board
+	 */
+	public List<Board> getBoardList(int seq) {
+		return boardDao.list(seq);
+	}
 
 }
