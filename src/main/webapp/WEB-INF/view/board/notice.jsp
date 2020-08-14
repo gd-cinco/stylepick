@@ -276,8 +276,7 @@
 			columns : [
 				{"data" : "no"}, 
 				{"data" : "title"}, 
-				{"data" : "author"},
-				{"data" : "regtime"} 
+				{"data" : "author"}
 			],
 			rowId: function(r) {
 			    return r.no;

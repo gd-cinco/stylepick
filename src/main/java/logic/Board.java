@@ -3,17 +3,17 @@ package logic;
 import java.util.Date;
 
 public class Board {
-	private int no;
-	private String title;
-	private String author;
-	private String regtime;
+	private int no = 0;
+	private String title = "";
+	private String author = "";
+//	private Date regtime;
 	
-	public Board() {
-		no = 1;
-		title = "test1";
-		author = "admin";
-		regtime = "2020-08-12";
-	}
+//	public Board(int no, String title, String author) {
+//		this.no = no;
+//		this.title = title;
+//		this.author = author;
+//		this.regtime = new Date();
+//	}
 	
 	public int getNo() {
 		return no;
@@ -33,15 +33,15 @@ public class Board {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public String getRegtime() {
-		return regtime;
-	}
-	public void setRegtime(String regtime) {
-		this.regtime = regtime;
-	}
-	@Override
-	public String toString() {
-		return "Board [no=" + no + ", title=" + title + ", author=" + author + ", regtime=" + regtime + "]";
-	}
+//	public Date getRegtime() {
+//		return regtime;
+//	}
+//	public void setRegtime(Date regtime) {
+//		this.regtime = regtime;
+//	}
+//	@Override
+//	public String toString() {
+//		return "Board [no=" + no + ", title=" + title + ", author=" + author + ", regtime=" + regtime + "]";
+//	}
 	
 }
