@@ -68,7 +68,7 @@
 										<li><a href="../user/main.shop">main</a></li>
 										<li><a href="../admin/list.shop">admin</a></li>
 										<li><a href="../item/store.shop">store</a></li>
-										<li><a href="${path}/board/notice.shop">고객센터</a>
+										<li><a href="${path}/board/support.shop">고객센터</a>
 											<ul class="submenu">
 												<li><a href="${path}/board/notice.shop">공지사항</a></li>
 												<li><a href="${path}/board/qna.shop">Q&A</a></li>

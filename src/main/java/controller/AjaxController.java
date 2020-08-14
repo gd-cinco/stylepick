@@ -22,6 +22,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import logic.Board;
 import logic.ShopService;
 import logic.Sns;
 
@@ -31,6 +35,7 @@ import logic.Sns;
 public class AjaxController {
 	@Autowired
 	ShopService service;
+	
 	@RequestMapping(value="graph1", produces="text/plain; charset=UTF8")
 	public String graph1() {
 		//알고리즘을 통해서 json 형태로 재편집(this script) -> parser로해서 ajax로 보내줌(next script)
@@ -155,6 +160,7 @@ public class AjaxController {
 		return html.toString();
 	}
 	
+
 	@RequestMapping(value="main", produces="text/plain; charset=UTF8")
 	public List<Sns> main(String ksb,String type,String searchcontent,HttpServletRequest request) {
 		if(searchcontent == null || searchcontent.trim().contentEquals("")) {
@@ -167,4 +173,38 @@ public class AjaxController {
 		return itemss;
 	}
 	
+
+	/**
+	 * Board
+	 */
+	@RequestMapping(value="nd", produces="text/plain; charset=UTF8")
+	public String noticeData() { 
+		List<Board> list = service.getBoardList(1);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String json = null;
+		try {
+			json = mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		return json;
+	}
+	
+	@RequestMapping(value="qd", produces="text/plain; charset=UTF8")
+	public String qnaData() { 
+		List<Board> list = service.getBoardList(2);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String json = null;
+		try {
+			json = mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		return json;
+	}
+
 }
