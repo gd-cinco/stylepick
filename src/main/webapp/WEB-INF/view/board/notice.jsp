@@ -276,7 +276,8 @@
 			columns : [
 				{"data" : "no"}, 
 				{"data" : "title"}, 
-				{"data" : "author"}
+				{"data" : "author"},
+				{"data" : "regtime"} 
 			],
 			rowId: function(r) {
 			    return r.no;
@@ -299,7 +300,7 @@
 		$('#board').on('click', 'tr', function() {
 		    var id = table.row( this ).id();
 		    if (id != null) {
-		    	location.href="../board/detail.shop?id=" + id	
+		    	location.href="../board/detail.shop?seq=notice&id=" + id	
 		    }
 		});
 	});

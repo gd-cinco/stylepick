@@ -3,10 +3,10 @@ package logic;
 import java.util.Date;
 
 public class Board {
-	private int no = 0;
-	private String title = "";
-	private String author = "";
-//	private Date regtime;
+	private Integer no = null;
+	private String title = null;
+	private String author = null;
+	private Date regtime = null;
 	
 //	public Board(int no, String title, String author) {
 //		this.no = no;
@@ -33,15 +33,15 @@ public class Board {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-//	public Date getRegtime() {
-//		return regtime;
-//	}
-//	public void setRegtime(Date regtime) {
-//		this.regtime = regtime;
-//	}
-//	@Override
-//	public String toString() {
-//		return "Board [no=" + no + ", title=" + title + ", author=" + author + ", regtime=" + regtime + "]";
-//	}
+	public Date getRegtime() {
+		return regtime;
+	}
+	public void setRegtime(Date regtime) {
+		this.regtime = regtime;
+	}
+	@Override
+	public String toString() {
+		return "Board [no=" + no + ", title=" + title + ", author=" + author + ", regtime=" + regtime + "]";
+	}
 	
 }

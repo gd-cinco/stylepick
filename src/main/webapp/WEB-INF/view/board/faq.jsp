@@ -299,7 +299,7 @@
 		$('#board').on('click', 'tr', function() {
 		    var id = table.row( this ).id();
 		    if (id != null) {
-		    	location.href="../board/detail.shop?id=" + id	
+		    	location.href="../board/detail.shop?seq=faq&id=" + id	
 		    }
 		});
 	});
