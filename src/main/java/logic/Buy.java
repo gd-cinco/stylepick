@@ -1,5 +1,6 @@
 package logic;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -43,8 +44,8 @@ public class Buy {
 	public void setTel(int tel) {
 		this.tel = tel;
 	}
-	public Date getOrderdate() {
-		return orderdate;
+	public String getOrderdate() {
+		return new SimpleDateFormat("yyyy-MM-dd").format(orderdate);
 	}
 	public void setOrderdate(Date orderdate) {
 		this.orderdate = orderdate;

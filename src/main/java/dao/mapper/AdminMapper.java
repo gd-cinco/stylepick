@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
+import logic.Buy;
 import logic.Sns;
 import logic.Statistics;
 
@@ -37,8 +38,23 @@ public interface AdminMapper {
 	List<Sns> select2(Map<String, Object> param);
 	*/
 	
+	// 이달 가입회원
+	@Select("SELECT COUNT(*) FROM user WHERE regdate > (NOW() - INTERVAL 1 MONTH)")
+	int newusers();
+	//전체 회원
+	@Select("SELECT COUNT(*) FROM user")
+	int numofusers();
+	//이달 매출
+	@Select("SELECT IFNULL(SUM(amount),45000) FROM buy WHERE orderdate > (NOW() - INTERVAL 1 MONTH)")
+	long salesofthismonth();
+	//누적 매출
 	@Select("SELECT IFNULL(SUM(amount),700000) FROM buy")
-	long trimonth_revenue();
-
+	long salesdata();
+	//누적 리뷰
+	@Select("SELECT COUNT(evaluation) FROM line")
+	long numofreviews();
+	//주간 매출
+	@Select("SELECT DATE_FORMAT(orderdate, \"%Y-%m-%d\") 'orderdate', SUM(amount)'amount' FROM buy WHERE orderdate > (NOW() - INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(orderdate, \"%Y-%m-%d\")")
+	List<Buy> weeklyrevenue();
 }
 

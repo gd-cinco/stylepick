@@ -60,8 +60,16 @@ public class AdminController {
 	@RequestMapping("dashboard")
 	public ModelAndView check_dashboard(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		long trimonth_revenue = service.salesdata();
-		mav.addObject("trimonth_revenue",trimonth_revenue);
+		int newusers = service.newusers();
+		mav.addObject("newusers",newusers);
+		long numofusers = service.numofusers();
+		mav.addObject("numofusers",numofusers);
+		long salesofthismonth = service.salesofthismonth();
+		mav.addObject("salesofthismonth",salesofthismonth);
+		long totalrevenue = service.salesdata();
+		mav.addObject("totalrevenue",totalrevenue);
+		long numofreviews = service.numofreviews();
+		mav.addObject("numofreviews",numofreviews);
 		return mav;
 	}//check_dashboard
 		
