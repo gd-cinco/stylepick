@@ -115,7 +115,7 @@ public class UserController {
 	 * 
 	 */
 	
-	@GetMapping(value = {"update","delete","mypage"}) 
+	@GetMapping(value = {"update","delete"}) 
 	public ModelAndView checkview(String id,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = service.getUser(id);
