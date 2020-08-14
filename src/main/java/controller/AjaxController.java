@@ -161,7 +161,7 @@ public class AjaxController {
 	 */
 	@RequestMapping(value="nd", produces="text/plain; charset=UTF8")
 	public String noticeData() { 
-		List<Board> list = service.getNoticeList();
+		List<Board> list = service.getBoardList(1);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		String json = null;
@@ -174,4 +174,18 @@ public class AjaxController {
 		return json;
 	}
 	
+	@RequestMapping(value="qd", produces="text/plain; charset=UTF8")
+	public String qnaData() { 
+		List<Board> list = service.getBoardList(2);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String json = null;
+		try {
+			json = mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		return json;
+	}
 }

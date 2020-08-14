@@ -156,8 +156,8 @@ public class ShopService {
 	/**
 	 * Board
 	 */
-	public List<Board> getNoticeList() {
-		return boardDao.list();
+	public List<Board> getBoardList(int seq) {
+		return boardDao.list(seq);
 	}
 
 }

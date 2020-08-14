@@ -14,7 +14,8 @@ public class BoardDao {
 	@Autowired
 	private SqlSessionTemplate template;
 
-	public List<Board> list() {
-		return template.getMapper(BoardMapper.class).list();
+	public List<Board> list(int seq) {
+		System.out.println(seq);
+		return template.getMapper(BoardMapper.class).list(seq);
 	}
 }

@@ -129,23 +129,19 @@
 	<!-- Header End -->
 </header>
 <main>
-    <div class="best-collection-area align-center">
-        <div class="main-mapper">
-			<div class="wrap">
-				<h1>게시판</h1>
-				<table id="board" class="display" style="width: 100%;">
-					<thead>
-						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>등록일</th>
-						</tr>
-					</thead>
-				</table>
-			</div>
-		</div>
-    </div>
+	<div class="wrap">
+		<h1>게시판</h1>
+		<table id="board" class="display" style="width: 100%;">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>등록일</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
 </main>
 <footer>
 	<!-- Footer Start-->
@@ -266,9 +262,10 @@
 	<script>
 	$(function() {
 		var table = $('#board').DataTable({
-			data : [
-				<c:forEach begin="1" end="1000" var="t">{"no" : ${t}, "title" : "FAQ ${t}", "author" : "관리자", "regtime" : "2020-08-12"},</c:forEach>
-			],
+			ajax: {
+				'url':'http://localhost:8080/stylepick/ajax/nd.shop',
+	            'dataSrc':''
+	        },
 			responsive : true,
 			orderMulti : true,
 			order : [ [ 0, 'desc' ] ],

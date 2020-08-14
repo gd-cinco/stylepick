@@ -129,23 +129,21 @@
 	<!-- Header End -->
 </header>
 <main>
-    <div class="best-collection-area align-center">
-        <div class="main-mapper">
-			<div class="wrap">
-				<h1>게시판</h1>
-				<table id="board" class="display" style="width: 100%;">
-					<thead>
-						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>등록일</th>
-						</tr>
-					</thead>
-				</table>
-			</div>
-		</div>
-    </div>
+	<div class="wrap">
+		<h1>QnA 목록</h1>
+		<table id="board" class="display" style="width: 100%;">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>카테고리</th>
+					<th>작성자</th>
+					<th>등록일</th>
+					<th>상태</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
 </main>
 <footer>
 	<!-- Footer Start-->
@@ -266,17 +264,20 @@
 	<script>
 	$(function() {
 		var table = $('#board').DataTable({
-			data : [
-				<c:forEach begin="1" end="1000" var="t">{"no" : ${t}, "title" : "Q&A ${t}", "author" : "관리자", "regtime" : "2020-08-12"},</c:forEach>
-			],
+			ajax: {
+				'url':'http://localhost:8080/stylepick/ajax/qd.shop',
+	            'dataSrc':''
+	        },
 			responsive : true,
 			orderMulti : true,
 			order : [ [ 0, 'desc' ] ],
 			columns : [
-				{"data" : "no"}, 
+				{"data" : "no"},
 				{"data" : "title"}, 
+				{"data" : "category"},
 				{"data" : "author"},
-				{"data" : "regtime"} 
+				{"data" : "regtime"},
+				{"data" : "stat"}
 			],
 			rowId: function(r) {
 			    return r.no;
@@ -284,7 +285,7 @@
 			"language" : {
 				"emptyTable" : "데이터가 없습니다.",
 				"lengthMenu" : "_MENU_ 개씩 보기",
-				"info" : "",
+	            "info": "전체 _TOTAL_건",
 				"infoEmpty" : "",
 				"infoFiltered" : "",
 				"search" : "검색 : ",
