@@ -6,8 +6,10 @@
 	<excludes>
 		<pattern>/user/login*</pattern>
 		<pattern>/user/userEntry*</pattern>
-		<pattern>/board/*</pattern>
 		<pattern>/user/sellerEntry*</pattern>
+		<pattern>/board/not*</pattern>
+		<pattern>/board/qna*</pattern>
+		<pattern>/board/faq*</pattern>
 	</excludes>
 	<decorator name="sns" page="snslayout.jsp">
 		<pattern>/sns/*</pattern>
