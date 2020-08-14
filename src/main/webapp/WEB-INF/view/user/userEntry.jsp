@@ -211,7 +211,7 @@
     		</div>
     		<div class="img_box" >
   				<img src="" id="imgurl" width="150px" height="150px" <c:if test="${empty m.pic}">style="visibility: hidden;"</c:if>>
-  				<a class="img_del" href="javascript:win_upload()">등록</a>
+  				<a class="img_del usera" href="javascript:win_upload()">등록</a>
   			</div>
   			<hr style="margin-top: 180px;margin-bottom: 20px;">
   			<%--TODO css구성 --%>

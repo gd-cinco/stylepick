@@ -78,7 +78,7 @@
     		</div>
     		<div class="entry_input">
     			<div class="input_box" id="nameinputbox" >
-					<input type="text" id="name" name="name" placeholder="실명" class="input_input" autocomplete="off"
+					<input type="text" id="name" name="name" placeholder="이름" class="input_input" autocomplete="off"
 					 onfocus="document.getElementById('nameinputbox').style.border='2px solid #35C5F0'"
 					 onblur="document.getElementById('nameinputbox').style.border='1px solid #dadada'">
 				</div>
@@ -97,53 +97,49 @@
     		</div>
     		<div class="input_err" style="margin-left: 60px;">
     		<div id="emptytel" style="display: none;"><font class="userfont" id="emptytelval">필수사항입니다.</font></div></div>
-    		<hr>
+    		<hr style="margin-top: 24px; width: 90%">
 			
     		<div class="entry_text">
     			<a>회사 이름</a>
     		</div>
     		<div class="entry_input">
-    			<div class="input_box" id="comnameinputbox" >
-					<input type="text" id="comname" name="comname" placeholder="비밀번호 재입력" class="input_input" autocomplete="off"
-					 onfocus="document.getElementById('comnameinputbox').style.border='2px solid #35C5F0'"
-					 onblur="document.getElementById('nameinputbox').style.border='1px solid #dadada'">
+    			<div class="input_box" id="com_nameinputbox" >
+					<input type="text" id="com_name" name="com_name" placeholder="비밀번호 재입력" class="input_input" autocomplete="off"
+					 onfocus="document.getElementById('com_nameinputbox').style.border='2px solid #35C5F0'"
+					 onblur="document.getElementById('com_nameinputbox').style.border='1px solid #dadada'">
 				</div>
     		</div>
     		
     		<div class="entry_text">
-    			<a>닉네임</a><a style="color: red;">*</a>
+    			<a>사업자 등록번호</a>
     		</div>
     		<div class="entry_input">
-    			<div class="input_box" id="nicknameinputbox" >
-					<input type="text" id="nickname" name="nickname" placeholder="닉네임" class="input_input" autocomplete="off"
-					 onfocus="document.getElementById('nicknameinputbox').style.border='2px solid #35C5F0'"
-					 onblur="javascript:alreadyNicknamechk()">
+    			<div class="input_box" id="com_registinputbox" >
+					<input type="text" id="com_regist" name="com_regist" placeholder="사업자 등록번호" class="input_input" autocomplete="off"
+					 onfocus="document.getElementById('com_registinputbox').style.border='2px solid #35C5F0'"
+					 onblur="document.getElementById('com_registinputbox').style.border='1px solid #dadada'">
 				</div>
     		</div>
-    		<div class="input_err" style="margin-left: 60px;">
-    		<div id="alreadyNickname" style="display: none;"><font class="userfont" id="alreadyNicknameval">이미 존재하는 이메일입니다.</font></div>
-    		<font class="userfont"><form:errors path="nickname"/></font></div>
     		
     		<div class="entry_text">
-    			<a>이메일</a><a style="color: red;">*</a>
+    			<a>회사 전화번호</a>
     		</div>
     		<div class="entry_input">
-    			<div class="input_box" id="emailinputbox" >
-					<input type="text" id="email" name="email" placeholder="aaa@bb.cc" class="input_input" autocomplete="off"
-					 onfocus="document.getElementById('emailinputbox').style.border='2px solid #35C5F0'"
-					 onblur="document.getElementById('emailinputbox').style.border='1px solid #dadada'">
+    			<div class="input_box" id="com_telinputbox" >
+					<input type="text" id="com_tel" name="com_tel" placeholder="회사 전화번호" class="input_input" autocomplete="off"
+					 onfocus="document.getElementById('com_telinputbox').style.border='2px solid #35C5F0'"
+					 onblur="document.getElementById('com_telinputbox').style.border='1px solid #dadada'">
 				</div>
     		</div>
-    		<div class="input_err" style="margin-left: 60px;"><font class="userfont"><form:errors path="email"/></font></div>
-    		
+   		
     		<div class="entry_text">
-    			<a>프로필 사진</a>
+    			<a>회사 대표 사진</a>
     		</div>
     		<div class="img_box" >
-  				<img src="" id="imgurl" width="150px" height="150px" <c:if test="${empty m.pic}">style="visibility: hidden;"</c:if>>
-  				<a class="img_del" href="javascript:win_upload()">등록</a>
+  				<img src="" id="com_img" width="150px" height="150px" <c:if test="${empty m.pic}">style="visibility: hidden;"</c:if>>
+  				<a class="img_del usera" href="javascript:win_upload()">등록</a>
   			</div>
-  			<hr style="margin-top: 180px;margin-bottom: 20px;">
+  			<hr style="margin-top: 180px;margin-bottom: 20px; width: 90%">
   			<%--TODO css구성 --%>
   			<div style="width:70%; margin-left:15%; height:175px; border: 2px solid black;">
   			<input type="checkbox" name="allchk" onchange="allchkbox(this)">전체 약관에 동의합니다.<br>

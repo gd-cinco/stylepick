@@ -142,14 +142,33 @@ public class UserController {
 		}
 		return mav;
 	}
-	/*
-	 * 회원탈퇴
-	 *   1. 비밀번호 검증 불일치 : "비밀번호 오류메세지 출력. delete.shop이동
-	 *   2. 비밀번호 검증 일치 
-	 *        회원db에서 delete하기
-	 *        회원인경우 : logout하고. login.shop
-	 * 		   관리자인 경우 : main.shop으로 페이지 이동
-	 */
+	
+	@PostMapping("sellerEntry")
+	public ModelAndView checksellerEntry(User user,BindingResult bresult,HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+
+		User loginUser = (User)session.getAttribute("loginUser");
+		if(user.getName().equals(""))
+			bresult.reject("error.required.name");
+		if(user.getTel().equals(""))
+			bresult.reject("error.required.tel");
+		if(bresult.hasErrors()) {
+			bresult.reject("error.input.user");
+			return mav;
+		}
+		try {
+			service.userUpdate(user);
+			mav.setViewName("redirect:../sns/mypage.shop"); //admin이아닐땐 가능
+			if(loginUser.getUserid().equals(user.getUserid())) {
+				session.setAttribute("loginUser", user);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			bresult.reject("error.user.update");
+		}
+		return mav;
+	}
+
 	@PostMapping("delete")
 	public ModelAndView delete(String userid,String password,HttpSession session) {
 		ModelAndView mav = new ModelAndView();

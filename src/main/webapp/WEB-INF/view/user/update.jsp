@@ -157,7 +157,7 @@
     		</div>
     		<div class="img_box" style="margin-left: 0px;" >
   				<img src="" id="imgurl" width="150px" height="150px" <c:if test="${empty m.pic}">style="visibility: hidden;"</c:if>>
-  				<a class="img_del" href="javascript:win_upload()">등록</a>
+  				<a class="img_del usera" href="javascript:win_upload()">등록</a>
   			</div>
   			</div>
   			</div>
