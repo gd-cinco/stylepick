@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <script type="text/javascript">
+	var nickchecked=false;
 	function alreadyNicknamechk(){
 		document.getElementById('nicknameinputbox').style.border='1px solid #dadada'
 		var nickname =  $("#nickname").val();
@@ -14,27 +15,24 @@
 			url : "confirmnickname.shop",
 			data : {nickname:nickname},
 			success : function(result){
-				if(result=='true')
+				if(result=='true'){
 					$("#alreadyNickname").show();
-				else
+					nickchecked=false;
+				}
+				else{
 					$("#alreadyNickname").hide();
+					nickchecked=true;
+				}
 			}
-		})
+		})		
 	}
-	function alreadyNicknamechk(){
-		document.getElementById('nicknameinputbox').style.border='1px solid #dadada'
-		var nickname =  $("#nickname").val();
-		$.ajax({
-			url : "confirmnickname.shop",
-			data : {nickname:nickname},
-			success : function(result){
-				if(result=='true')
-					$("#alreadyNickname").show();
-				else
-					$("#alreadyNickname").hide();
-			}
-		})
-		
+	function submitcheck(f){
+		var result = true;
+		if(!nickchecked){
+			alert("닉네임을 확인하세요.")
+			result=false;
+		}
+		return result;
 	}
 
 </script>
@@ -42,7 +40,7 @@
 <link rel="stylesheet" href="../assets/css/user.css">
 </head>
 <body>
-<form:form modelAttribute="user" method="post" action="update.shop">
+<form:form modelAttribute="user" method="post" action="update.shop" onsubmit="return submitcheck(this)">
 	<input type="hidden" name="password" id="password" value="123123">
 	<div class="default_center" style="height:auto; margin-top: 15px;">
 	<h2>회원 정보 수정</h2>
@@ -86,7 +84,8 @@
     		</div>
     		<div class="update_input">
     			<div class="input_box" id="nicknameinputbox" >
-					<input type="text" id="nickname" name="nickname" value="${user.nickname}" class="input_input" autocomplete="off"
+					<input type="text" id="nickname" name="nickname" value="${user.nickname}"
+					placeholder="닉네임" class="input_input" autocomplete="off"
 					 onfocus="document.getElementById('nicknameinputbox').style.border='2px solid #35C5F0'"
 					 onblur="javascript:alreadyNicknamechk()"> <%--자기닉넴으로 안됨 --%>
 				</div>
@@ -102,7 +101,8 @@
     		</div>
     		<div class="update_input">
     			<div class="input_box" id="ageinputbox" >
-					<input type="text" id="age" name="age" value="${user.age}" class="input_input" autocomplete="off"
+					<input type="text" id="age" name="age" value="${user.age}"
+					placeholder="나이" class="input_input" autocomplete="off"
 					 onfocus="document.getElementById('ageinputbox').style.border='2px solid #35C5F0'"
 					 onblur="document.getElementById('ageinputbox').style.border='1px solid #dadada'">
 				</div>
@@ -129,7 +129,8 @@
     		</div>
     		<div class="update_input">
     			<div class="input_box" id="telinputbox" >
-					<input type="text" id="tel" name="tel" value="${user.tel}" class="input_input" autocomplete="off"
+					<input type="text" id="tel" name="tel" value="${user.tel}"
+					placeholder="전화번호" class="input_input" autocomplete="off"
 					 onfocus="document.getElementById('telinputbox').style.border='2px solid #35C5F0'"
 					 onblur="document.getElementById('telinputbox').style.border='1px solid #dadada'">
 				</div>
@@ -142,7 +143,8 @@
     		</div>
     		<div class="update_input">
     			<div class="input_box" id="commentinputbox" >
-					<input type="text" id="comment" name="comment" value="${user.comment}" class="input_input" autocomplete="off"
+					<input type="text" id="comment" name="comment" value="${user.comment}"
+					placeholder="한줄소개" class="input_input" autocomplete="off"
 					 onfocus="document.getElementById('commentinputbox').style.border='2px solid #35C5F0'"
 					 onblur="document.getElementById('commentinputbox').style.border='1px solid #dadada'">
 				</div>
