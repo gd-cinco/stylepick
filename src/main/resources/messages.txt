@@ -16,7 +16,6 @@ error.user.update=사용자 수정시 오류가 있습니다.
 user.userId.default=로그인 시 필요합니다.
 user.userName.default=배송 시 필요합니다.
 typeMismatch.birthday=생년월일은 YYYY-MM-DD 형식으로 입력해 주세요
-error.duplicate.user=중복된 아이디입니다
 error.board.password=비밀번호가 틀립니다
 
  

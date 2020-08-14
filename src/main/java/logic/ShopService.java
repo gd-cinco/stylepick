@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import dao.SnsDao;
+import dao.SnsItemDao;
+import dao.AdminDao;
+import dao.BoardDao;
 import dao.ItemDao;
 import dao.UserDao;
 
@@ -27,7 +30,23 @@ public class ShopService {
 	@Autowired
 	private ItemDao itemDao;
 
+	@Autowired
+	private SnsItemDao snsItemDao;
+	
+	@Autowired
+	private AdminDao adminDao;
+	
+	@Autowired
+	private BoardDao boardDao;
+	
+	public int joincompare(String key, String val) {
+		return userDao.joincompare(key,val);
+	}
 
+	public int getmaxno() {
+		return userDao.getmaxno();
+	}
+	
 	public void userInsert(User user) {
 		userDao.insert(user);
 	}
@@ -48,12 +67,12 @@ public class ShopService {
 		return userDao.list();
 	}
 	
-	//[관리자] 메일 보낼 유저리스트 0728
+	//[admin] 메일 보낼 유저리스트 0728
 	public List<User> userlist(String[] idchks) {
 		return userDao.list(idchks);
 	}
 	
-	//[관리자] 그래프1 0728
+	//[admin] 그래프1 0728
 	public Map<String, Object> graph1() {
 		// TODO Auto-generated method stub
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -63,32 +82,45 @@ public class ShopService {
 		return map;
 	}
 	
-	//[관리자] 유저리스트 가져오기 0728
+	//[admin] 유저리스트 가져오기 0728
 	public List<User> list() {
 		// TODO Auto-generated method stub
 		return userDao.list();
 		}
 
-	//[관리자] 그래프2 0728
-			public Map<String, Object> graph2() {
-				// TODO Auto-generated method stub
-				Map<String,Object> map = new HashMap<String,Object>();
-//				for(Map<String,Object> m : boardDao.graph2()) {
-//					map.put((String)m.get("regdate"), m.get("cnt"));
-//				}
-				return map;
-			}
+	//[admin] 그래프2 0728
+	public Map<String, Object> graph2() {
+		// TODO Auto-generated method stub
+		Map<String,Object> map = new HashMap<String,Object>();
+//		for(Map<String,Object> m : boardDao.graph2()) {
+//			map.put((String)m.get("regdate"), m.get("cnt"));
+//		}
+		return map;
+	}
+	
+	//[admin] dashboard sales data
+	public long salesdata() {
+		// TODO Auto-generated method stub
+		return adminDao.salesdata();
+	}
+			
 
+	//[sns] ootd 번호
+	public int snsNum() {
+		int max = snsDao.maxnum();
+		return ++max;
+	}
 	
 	//[sns] ootd 작성
 	public void snsWrite(Sns sns,HttpServletRequest request) {
-		if(sns.getImgs() != null && !sns.getImgs().isEmpty()) {
-			uploadFileCreate(sns.getImgs(),request,"sns/file/");
-			sns.setImgUrl(sns.getImgs().getOriginalFilename());
+		if(sns.getImg1() != null && !sns.getImg1().isEmpty()) {
+			uploadFileCreate(sns.getImg1(),request,"sns/file/");
+			sns.setImg1url(sns.getImg1().getOriginalFilename());
 		}
-		int max = snsDao.maxnum();
-		sns.setSns_no(++max);
 		snsDao.insert(sns);
+		for(SnsItem si : sns.getItemList()) {
+			snsItemDao.insert(si);
+		}		
 	}
 	
 	//[sns] ootd 작성 관련 이미지 파일 업로드
@@ -105,7 +137,7 @@ public class ShopService {
 	}
 	
 	//[sns] ootd 목록 
-	public List<Sns> getSnsList(String ksb,String type,Integer pageNum,int limit,String searchcontent) {
+	public List<Sns> getSnsList(String ksb,String type,int pageNum,int limit,String searchcontent) {
 		return snsDao.list(ksb,type,pageNum,limit,searchcontent);
 	}
 	
@@ -116,9 +148,16 @@ public class ShopService {
 
 
 			
-		//[아이템]상품 리스트 정보
-			public List<Item> getItemList() {
-				return itemDao.list();
-			}
+	// [아이템]상품 리스트 정보
+	public List<Item> getItemList() {
+		return itemDao.list();
+	}
+
+	/**
+	 * Board
+	 */
+	public List<Board> getBoardList(int seq) {
+		return boardDao.list(seq);
+	}
 
 }

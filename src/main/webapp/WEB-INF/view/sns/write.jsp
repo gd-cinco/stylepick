@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/jspHeader.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>OOTD 작성</title>
+<link rel="stylesheet" href="../assets/css/sns.css?ver=1">
 <style>
 	.form {
    	 	margin-left: auto;
@@ -17,8 +19,9 @@
 	}
 	
 	h4 {
-		margin : 10px 0px;	
-	
+		margin : 10px 0 15px 0px;
+		width: fit-content;
+   		border-bottom: 3px solid #c0d4fb;	
 	}
 	
 	.style {
@@ -127,13 +130,13 @@
 <body>
 <div class="form">
 	<form:form modelAttribute="sns" action="write.shop" enctype="multipart/form-data" name="f">
-		<form:hidden path="type" value="${type}"/>
+		<form:hidden path="type" value="1"/>
 		<form:hidden path="userid" value="${sessionScope.loginUser.userid}"/>
 		<div class="style imgs">
 			<h4>스타일 이미지</h4>
 			<div class="img preview-image" id="imgs">
 				<label for="input-file" id="imglabel">업로드</label> 
-				<input type="file" id="input-file" class="upload-hidden" name="imgs">
+				<form:input type="file" id="input-file" class="upload-hidden" path="img1"/>
 				<script>
 					   var imgTarget = $('.preview-image .upload-hidden');
 
@@ -209,6 +212,11 @@
 		<div class="style description">
 			<h4>설명</h4>
 			<form:textarea path="description" placeholder="내용을 입력해주세요" rows="5" cols="78"/>
+		</div>
+		<div class="style userinfo">
+			<h4>추가정보</h4>
+			키&nbsp;&nbsp;:&nbsp;&nbsp;<form:input type="text" path="height"/>&nbsp;&nbsp;kg&nbsp;&nbsp;&nbsp;&nbsp;
+			몸무게&nbsp;&nbsp;:&nbsp;&nbsp;<form:input type="text" path="weight"/>&nbsp;&nbsp;cm
 		</div>
 		<div class="centerbutton">
 			<button type="submit" class="btn">올리기</button>

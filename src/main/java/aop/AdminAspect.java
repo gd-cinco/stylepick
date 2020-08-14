@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 import exception.LoginException;
 import logic.User;
 
-@Component
-@Aspect
-@Order(3)
+//@Component
+//@Aspect
+//@Order(3)
 public class AdminAspect {
 	/*
 	 * AdminController 클래스의 모든 클래스는 admin으로 로그인 한 경우만 접근 가능

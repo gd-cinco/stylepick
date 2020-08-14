@@ -20,8 +20,9 @@
 	<link rel="stylesheet" href="${path}/assets/css/themify-icons.css">
 	<link rel="stylesheet" href="${path}/assets/css/slick.css">
 	<link rel="stylesheet" href="${path}/assets/css/nice-select.css">
-	<link rel="stylesheet" href="${path}/assets/css/style.css">
-	<link rel="stylesheet" href="${path}/assets/css/final.css">
+	<link rel="stylesheet" href="${path}/assets/css/style.css?ver=1.1">
+	<link rel="stylesheet" href="${path}/assets/css/final.css?ver=1">
+	<link rel="stylesheet" href="${path}/assets/css/admin.css">
 	
 	<title><decorator:title/></title>
 	<decorator:head/>
@@ -36,12 +37,12 @@
 				<div class="container-fluid">
 					<div class="col-xl-12">
 						<div class="row d-flex justify-content-between align-items-center">
-							<div class="header-info-left d-flex">
-								<a href="#">Input001</a>
-							</div>
 							<div class="header-info-right">
-								<ul>                                          
-									<li><a href="#">Input002</a></li>
+								<ul>
+								<li>
+									<a href="../sns/main.shop?ksb=hot&type=1" style="font-weight:bold; font-size:18px;">#OOTD</a>
+									<a href="../item/store.shop" style="font-weight:bold; font-size:18px;">STORE</a>
+								</li>
 								</ul>
 							</div>
 						</div>
@@ -62,13 +63,25 @@
 							<!-- Main-menu -->
 							<div class="main-menu f-right d-none d-lg-block">
 								<nav>                                                
-									<ul id="navigation">                                                                                                                                     
-										<li><a href="../user/main.shop">admin</a></li>
-										<li><a href="../admin/list.shop">list</a></li>
+									<ul id="navigation">  
+										<c:if test="${!fn:contains(path2,'sns')}" >                                                                                                                                   
+										<li><a href="../user/main.shop">main</a></li>
+										<li><a href="../admin/list.shop">admin</a></li>
 										<li><a href="../item/store.shop">store</a></li>
-										<li><a href="../board/test2.shop">board(고객센터)</a>
+										<li><a href="${path}/board/support.shop">고객센터</a>
+											<ul class="submenu">
+												<li><a href="${path}/board/notice.shop">공지사항</a></li>
+												<li><a href="${path}/board/qna.shop">Q&A</a></li>
+												<li><a href="${path}/board/faq.shop">FAQ</a></li>
+											</ul>
+										</li>
 										<li><a href="../user/mypage.shop">mypage</a>
-										
+										</c:if>
+										<c:if test="${fn:contains(path2,'sns')}" >
+											<li class="hot"><a href="../sns/main.shop?ksb=hot&type=1">인기</a></li>
+											<li><a href="../sns/main.shop?ksb=new&type=1">최신</a></li>
+											<li><a href="../sns/main.shop?type=2">QnA</a>
+										</c:if>
 										<!-- 
 										<li class="hot"><a href="#">Menu002</a></li> 핫 사용
 										<li><a href="#">Menu003</a>
@@ -91,17 +104,43 @@
 										</div>
 								    </div>
 								</li>
+								<!-- ~0812 No Need
 								<li class=" d-none d-xl-block">
 								    <div class="favorit-items">
 								        <i class="far fa-heart"></i>
 								    </div>
 								</li>
+								 -->
 								<li>
 									<div class="shopping-card">
 										<a href="#"><i class="fas fa-shopping-cart"></i></a>
 									</div>
 								</li>
-									<li class="d-none d-lg-block"> <a href="../user/login.shop" class="btn header-btn">로그인</a></li>
+									<!-- ~0812 <li class="d-none d-lg-block"> <a href="../user/login.shop" class="btn header-btn">로그인</a></li> -->
+									<!-- 0813 seyeon 로그인 후 드롭다운 / 이미지 path 변경 요망 / 화면 크기 작아지면 동그라미 안보임-->
+									<li class="d-none d-lg-block">
+										<c:if test="${empty sessionScope.loginUser}">
+											<a href="../user/login.shop" class="btn header-btn">로그인</a>
+										</c:if>
+										<c:if test="${!empty sessionScope.loginUser}">
+											<div class="main-menu f-right d-none d-lg-block">
+											    <nav>
+												    <ul id="navigation">
+													    <li>
+													    	<div class="login_circle" style="background: none;">
+														   		<img class="profile_image" src="../assets/img/client.png">
+														   	</div>
+															<ul class="submenu">
+																<li><a href="${path}/sns/mypage.shop">mypage</a></li>
+																<li><a href="${path}/admin/widgets.shop">주문내역 (이지만 widget)</a></li>
+																<li><a href="${path}/user/logout.shop">logout</a></li>
+															</ul>
+														</li>
+													   </ul> 
+												   </nav>
+											</div>
+										</c:if>
+									</li>
 								</ul>
 						</div>
 						

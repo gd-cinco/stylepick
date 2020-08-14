@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -9,12 +7,14 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import exception.LoginException;
@@ -33,6 +33,27 @@ public class UserController {
 		return null;
 	}
 	
+	@RequestMapping("/confirmid")
+	@ResponseBody
+	public String confirm(String id) {
+		int result = service.joincompare("userid",id);
+		if(result>0)
+			return "true";
+		else
+			return "false";
+	}
+	
+	@RequestMapping("/confirmnickname")
+	@ResponseBody
+	public String confirm2(String nickname) {
+		int result = service.joincompare("nickname",nickname);
+		if(result>0)
+			return "true";
+		else
+			return "false";
+	}
+	
+	
 	@PostMapping("userEntry")
 	public ModelAndView add(@Valid User user,BindingResult bresult,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("user/userEntry");
@@ -42,11 +63,13 @@ public class UserController {
 			return mav;
 		}
 		try {
+			int maxno = service.getmaxno();
+			user.setNo(++maxno);
 			service.userInsert(user);
-			mav.setViewName("redirect:login.shop");
+			mav.setViewName("redirect:welcome.shop");
 		}catch (DataIntegrityViolationException e) {
 			e.printStackTrace();
-			bresult.reject("error.duplicate.user");
+			bresult.reject("error.input.user");
 			mav.getModel().putAll(bresult.getModel());
 		}
 		return mav;
@@ -60,21 +83,17 @@ public class UserController {
 			bresult.reject("error.input.user");
 			return mav;
 		}
-		//1. db의 정보의 id,password비교
-		//2. 일치 : session loginUser정보 저장
-		//3. 불일치 : 비밀번호 확인 내용 출력
-		//4. db에 해당 id정보가 없는 경우 id확인내용출력
 		try {
 			User dbUser = service.getUser(user.getUserid());
 			if(user.getPassword().equals(dbUser.getPassword())) {
 				session.setAttribute("loginUser",dbUser);
-				mav.setViewName("redirect:main.shop");
+				mav.setViewName("redirect:../sns/main.shop");
 			}else {
 				bresult.reject("error.login.password");
 			}
-		}//catch (EmptyResultDataAccessException e) {
-		//	bresult.reject("error.login.id");
-		/*}*/catch (IndexOutOfBoundsException e) {
+		}catch (EmptyResultDataAccessException e) {
+			bresult.reject("error.login.id");
+		}catch (IndexOutOfBoundsException e) {
 			bresult.reject("error.login.id");
 		}
 		return mav;
@@ -83,11 +102,7 @@ public class UserController {
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:login.shop"; //TODO 메인페이지
-	}
-	@RequestMapping("main") //login이 되어야 실행가능함, loginXXX로 지정
-	public String loginCheckmain(HttpSession session) {
-		return null;
+		return "redirect:../sns/main.shop"; //TODO 메인페이지
 	}
 	/*
 	 * AOP 설정하기
@@ -100,20 +115,13 @@ public class UserController {
 	 * 
 	 */
 	
-	@GetMapping(value = {"update","delete","mypage"})
+	@GetMapping(value = {"update","delete"}) 
 	public ModelAndView checkview(String id,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = service.getUser(id);
 		mav.addObject("user",user);
 		return mav;
 	}
-	/*
-	 * 1. 유효성 검증
-	 * 2. 비밀번호 검증 : 불일치
-	 * 	  유효성 출력으로 error.login.password실행
-	 * 3. 비밀번호일치  : update실행
-	 * 				로그인정보 수정, admin이 다른사람의 정보 수정시엔 로그인정보 수정안됨
-	 */
 	@PostMapping("update")
 	public ModelAndView checkupdate(@Valid User user,BindingResult bresult,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
@@ -122,13 +130,9 @@ public class UserController {
 			return mav;
 		}
 		User loginUser = (User)session.getAttribute("loginUser");
-		if(!user.getPassword().equals(loginUser.getPassword())) {
-			bresult.reject("error.login.password");
-			return mav;
-		}
 		try {
 			service.userUpdate(user);
-			mav.setViewName("redirect:mypage.shop?id="+user.getUserid());
+			mav.setViewName("redirect:../sns/mypage.shop"); //admin이아닐땐 가능
 			if(loginUser.getUserid().equals(user.getUserid())) {
 				session.setAttribute("loginUser", user);
 			}

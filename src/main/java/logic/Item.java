@@ -15,11 +15,19 @@ public class Item {
 	private MultipartFile imgurl; //상품사진
 	private String content; //상품내용
 	private Date regdate; //등록일
+	private int readcnt; //조회수
 	
 	//옵션은 추후 db에 할지 한번에 할지 정함
 	
+	
 	public String getItem_no() {
 		return item_no;
+	}
+	public int getReadcnt() {
+		return readcnt;
+	}
+	public void setReadcnt(int readcnt) {
+		this.readcnt = readcnt;
 	}
 	public void setItem_no(String item_no) {
 		this.item_no = item_no;
@@ -78,7 +86,5 @@ public class Item {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	
-	
 	
 }

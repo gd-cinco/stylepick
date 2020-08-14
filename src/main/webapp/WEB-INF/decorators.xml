@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="euc-kr" ?>
 <decorators defaultdir="/layout">
-   <decorator name="main" page="main.jsp">
-      <pattern>*.shop</pattern>
-   </decorator>
-   <excludes>
-   	<pattern>/user/login*</pattern>
-   	<pattern>/user/userEntry*</pattern>
-   </excludes>
-   <decorator name="board" page="board1.jsp">
-      <pattern>/board/*</pattern>
-   </decorator>
-   <decorator name="sns" page="snslayout.jsp">
-      <pattern>/sns/*</pattern>
-   </decorator>
-
+	<decorator name="main" page="main.jsp">
+		<pattern>*.shop</pattern>
+	</decorator>
+	<excludes>
+		<pattern>/user/login*</pattern>
+		<pattern>/user/userEntry*</pattern>
+		<pattern>/user/sellerEntry*</pattern>
+		<pattern>/board/not*</pattern>
+		<pattern>/board/qna*</pattern>
+		<pattern>/board/faq*</pattern>
+	</excludes>
+	<decorator name="sns" page="snslayout.jsp">
+		<pattern>/sns/*</pattern>
+	</decorator>
 </decorators>

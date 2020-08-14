@@ -1,0 +1,141 @@
+.userfont{
+	color: red;
+	font-size: 14px;
+}
+.userul{
+  	list-style-type: none;
+  	text-align: left;
+  	overflow: hidden;
+  	margin: 0;padding: 0;
+  }
+.userli{
+  	position:relative;
+  	display:inline;
+  	text-align:center;
+  	font-size:15px;
+  	float: left;
+  	width: 50%;
+  }
+.usera{
+  	text-decoration: none;
+  	color: #424242;
+  }
+.center{
+	height:100%;
+	margin-left: auto;
+	margin-right:auto;
+	max-width: 620px;
+}
+.default_center{
+	width:60%;
+	margin : 0 20%;
+}
+.input_box{
+	margin-top:10px;
+	margin-bottom: 5px;
+	padding: 8px 35px 4px 11px;
+	border: solid 1px #dadada;
+	background: #fff;
+	height: 29px;	
+	box-sizing: unset;
+	border-radius: 6px;
+}
+.input_input{
+	 width:100%;
+	 height:16px; 
+	 border: none;
+	 
+}
+.input_err{
+	margin-bottom: -2px;
+	margin-top: -6px;
+}
+.input_submit{
+	margin-bottom: 12px;
+	height: 54px;
+	line-height: 52px;
+	font-size: 18px;
+	font-weight: 700;
+	display: block;
+	width: 100%;
+	cursor: pointer;
+	border: 0px solid #35C5F0;
+	background-color: #35C5F0;
+	color: #ffffff;
+}
+.login_background{
+	height:100%;
+	min-height:570px;
+	position: absolute;
+	top: 0;left: 0;right: 0;bottom:0;
+}
+.social_login_box{
+	background-color: white;
+	height: 200px;
+	margin-bottom: 15px;
+}
+.social_seq_button{
+	display:block;
+	line-height:45px;
+	width: 90%;
+	height:45px;
+	text-align:center;
+	border: 1px solid #000000;
+}
+.entry_text{
+	font-size: 18px;
+	font-weight: bold;
+	padding-left: 40px;
+	padding-top : 10px;
+}
+.entry_input{
+	margin-left:60px;
+	margin-right:40px;
+}
+.img_box{
+	width: 150px;
+	display:inline;
+	height: 150px;
+	float: left;
+	text-align: center;
+	margin-left: 60px;
+	margin-top:10px;
+	background-color: #dadada;
+}
+.img_del{
+	display:block;
+	line-height:25px;
+	width: 26%;
+	height:26px;
+	text-align:center;
+	margin-top:-149px;
+	margin-left:103px;
+	background-color: #35C5F0;
+	color: white;
+	font-weight: bold;
+}
+.table_input{
+	border: 2px solid #bcbcbc;
+	border-radius: 6px;
+	height:40px;
+	width:300px;
+	padding: 0 15px;
+}
+.update_text{
+	font-size: 18px;
+	font-weight: bold;
+	width:150px;
+	height:43px;
+	line-height: 43px;
+	float:left;
+	margin-top: 10px;
+}
+.update_input{
+	width: 450px;
+	float: left;
+}
+.update_tuple{
+	margin-top:21px;
+	width: 100%;
+	height: 50px;
+}

@@ -9,6 +9,26 @@ body, h1, h2, h3, h4, h5 {
 }
 
 .main-mapper {
-	width : 60%;
-	margin : 0 20%;
+	width : 94%;
+	margin : 0 6%;
+}
+
+
+.header-info-right ul li a {
+	padding-left : 1px;
+	padding-right : 36px;
+}
+
+.login_circle {
+	margin-top: 1%;
+	width: 47px;
+    height: 47px; 
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+.profile_image {
+	width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
