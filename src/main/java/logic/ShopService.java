@@ -133,7 +133,7 @@ public class ShopService {
 	}
 	
 	//[sns] ootd 목록 
-	public List<Sns> getSnsList(String ksb,String type,Integer pageNum,int limit,String searchcontent) {
+	public List<Sns> getSnsList(String ksb,String type,int pageNum,int limit,String searchcontent) {
 		return snsDao.list(ksb,type,pageNum,limit,searchcontent);
 	}
 	

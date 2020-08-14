@@ -25,7 +25,7 @@ public class SnsController {
 	@Autowired
 	private ShopService service;
 	
-	@RequestMapping("main")
+	@GetMapping("main")
 	public String test(Model model) {
 		return null;
 	}
@@ -63,9 +63,13 @@ public class SnsController {
 		return mav;
 	}
 	
-	@RequestMapping("list")
+	@RequestMapping("main")
 	public ModelAndView list(String ksb,String type,Integer pageNum,String searchcontent) {
 		ModelAndView mav = new ModelAndView();
+		if(type == null) {
+			ksb = "hot";
+			type = "1";
+		}
 		if(pageNum == null || pageNum.toString().equals("")) {
 			pageNum = 1;
 		}

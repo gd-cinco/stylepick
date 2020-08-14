@@ -38,7 +38,7 @@ public class SnsDao {
 		param.clear();
 		param.put("ksb",ksb);
 		param.put("type",type);
-		param.put("startrow",(pageNum - 1)*10);
+		param.put("startrow",(pageNum-1)*20);
 		param.put("limit",limit);
 		param.put("searchcontent",searchcontent);
 		if(ksb.equals("hot")) {

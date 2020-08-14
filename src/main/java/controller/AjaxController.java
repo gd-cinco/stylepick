@@ -1,12 +1,15 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import logic.ShopService;
+import logic.Sns;
 
 //view를통하지 않고 바로 클라이언트로 전달(just data) : @Controller + @ResponseBody
 @RestController
@@ -150,4 +154,17 @@ public class AjaxController {
 		} //try and catch
 		return html.toString();
 	}
+	
+	@RequestMapping(value="main", produces="text/plain; charset=UTF8")
+	public List<Sns> main(String ksb,String type,String searchcontent,HttpServletRequest request) {
+		if(searchcontent == null || searchcontent.trim().contentEquals("")) {
+			searchcontent = null;
+		}
+		int pageNum = Integer.parseInt(request.getParameter("listAmount"));
+		int limit = pageNum*20;
+		System.out.println(pageNum+","+limit);
+		List<Sns> itemss = service.getSnsList(ksb,type,pageNum,limit,searchcontent);		
+		return itemss;
+	}
+	
 }
