@@ -23,7 +23,7 @@ public class ShopService {
 
 	@Autowired
 	private UserDao userDao;
-	
+	 
 	@Autowired
 	private SnsDao snsDao;
 
