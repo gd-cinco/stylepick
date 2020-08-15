@@ -66,7 +66,7 @@
 									<ul id="navigation">  
 										<c:if test="${!fn:contains(path2,'sns')}" >                                                                                                                                   
 										<li><a href="../user/main.shop">main</a></li>
-										<li><a href="../admin/list.shop">admin</a></li>
+										<li><a href="../admin/dashboard.shop">admin</a></li>
 										<li><a href="../item/store.shop">store</a></li>
 										<li><a href="${path}/board/support.shop">고객센터</a>
 											<ul class="submenu">

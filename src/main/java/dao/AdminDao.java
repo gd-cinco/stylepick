@@ -46,10 +46,15 @@ public class AdminDao {
 		// TODO Auto-generated method stub
 		return template.getMapper(AdminMapper.class).numofreviews();
 	}
-	//주간 매출 graph on dashboard
+	//주간 매출 graph1 on dashboard
 	public List<Buy> weeklyrevenue() {
 		// TODO Auto-generated method stub
 		return template.getMapper(AdminMapper.class).weeklyrevenue();
+	}
+	//월간 매출 graph2 on dashboard
+	public List<Buy> monthlyrevenue() {
+		// TODO Auto-generated method stub
+		return template.getMapper(AdminMapper.class).monthlyrevenue();
 	}
 
 }

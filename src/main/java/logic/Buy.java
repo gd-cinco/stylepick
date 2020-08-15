@@ -14,6 +14,15 @@ public class Buy {
 	private int stat;
 	private int amount;
 	private String memo;
+	
+	private String weeks_ago;
+	
+	public String getWeeks_ago() {
+		return weeks_ago+"주전";
+	}
+	public void setWeeks_ago(String weeks_ago) {
+		this.weeks_ago = weeks_ago;
+	}
 	public int getOrder_no() {
 		return order_no;
 	}
@@ -68,11 +77,20 @@ public class Buy {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
+	/*
 	@Override
 	public String toString() {
 		return "Buy [order_no=" + order_no + ", userid=" + userid + ", name=" + name + ", address=" + address + ", tel="
 				+ tel + ", orderdate=" + orderdate + ", stat=" + stat + ", amount=" + amount + ", memo=" + memo + "]";
 	}
+	*/
+	@Override
+	public String toString() {
+		return "Buy [order_no=" + order_no + ", userid=" + userid + ", name=" + name + ", address=" + address + ", tel="
+				+ tel + ", orderdate=" + orderdate + ", stat=" + stat + ", amount=" + amount + ", memo=" + memo
+				+ ", weeks_ago=" + weeks_ago + "]";
+	}
+	
 	
 	
 	

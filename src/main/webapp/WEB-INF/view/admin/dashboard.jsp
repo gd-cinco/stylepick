@@ -27,6 +27,7 @@ google.load('visualization','1',{
 });
 //로딩이 완료되면 drawChart 함수를 호출
 google.setOnLoadCallback(drawChart); //라이브러리를 불러오는 작업이 완료되었으면 drawChart작업을 실행하라는 뜻.
+google.setOnLoadCallback(drawChart2); //2nd chart
     function drawChart() {
         var jsonData = $.ajax({
         	url : "${path}/ajax/weeklyrevenue.shop",
@@ -61,8 +62,41 @@ google.setOnLoadCallback(drawChart); //라이브러리를 불러오는 작업이
                 chart.draw(data, {
                     title : "주간 매출",
                     curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
-                    width : 600,
-                    height : 400
+                    width : 500,
+                    height : 300
+                });
+    }
+    function drawChart2() {
+        var jsonData = $.ajax({
+        	url : "${path}/ajax/monthlyrevenue.shop",
+        	//chart01에서는 json의 주소를 직접 적었지만 이 페이지에서는 컨트롤러로 이동해 맵핑해서 제이슨을 동적으로
+            //직접만들어 그 만든 json을 직접 보낸다.
+        	dataType : "json",
+        	async : false,
+        }).responseText; //제이슨파일을 text파일로 읽어들인다는 뜻
+        console.log(jsonData);
+        //데이터테이블 생성
+        var data = new google.visualization.DataTable(jsonData);
+        //제이슨 형식을 구글의 테이블 형식으로 바꿔주기 위해서 집어넣음
+        //차트를 출력할 div
+        //LineChart, ColumnChart, PieChart에 따라서 차트의 형식이 바뀐다.
+        
+        //var chart = new google.visualization.PieChart(
+                //document.getElementByld('chart_div')); //원형 그래프
+        
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div2')); //선 그래프
+        //var chart
+        //  = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+                //차트 객체.draw(데이터 테이블, 옵션) //막대그래프
+                
+                //cuveType : "function" => 곡선처리
+                
+                //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
+                chart.draw(data, {
+                    title : "최근 6주 매출",
+                    //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
+                    width : 500,
+                    height : 300
                 });
     }
 });
@@ -164,11 +198,13 @@ google.setOnLoadCallback(drawChart); //라이브러리를 불러오는 작업이
 			    <div id="chart_div1"></div>
 			</div>
 			
-			<!-- 월간매출 바그래프 -->
+			<!-- 최근 6주간 매출 추이 그래프 -->
 			<div class="double_frame">
-			월간매출 바,꺾은선그래프
-			<div id="numGraph2_div" style="border: 1px solid #ccc"></div>
-			</div> <!-- 월간매출 바그래프 -->
+			최근 6주간 매출 추이 그래프
+			<div id="chart_div2"></div>
+			<!-- <div id="numGraph2_div" style="border: 1px solid #ccc"></div> -->
+			</div>
+			<!-- 월최근 6주간 매출 추이 그래프의 끝 -->
 			<br>
 		</div> <!-- outer_frame -->
 			<!-- To Do List -->

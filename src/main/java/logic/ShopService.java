@@ -153,7 +153,7 @@ public class ShopService {
 		return itemDao.list();
 	}
 
-	//[admin] dashboard new users this month 0813
+		//[admin] dashboard new users this month 0813
 		public int newusers() {
 			// TODO Auto-generated method stub
 			return adminDao.newusers();
@@ -178,6 +178,11 @@ public class ShopService {
 			// TODO Auto-generated method stub
 			return adminDao.weeklyrevenue();
 		}
+		//[admin] monthly revenue 0815
+		public List<Buy> monthlyrevenue() {
+			// TODO Auto-generated method stub
+			return adminDao.monthlyrevenue();
+		}
 	
 	/**
 	 * Board
@@ -185,5 +190,6 @@ public class ShopService {
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
+
 
 }

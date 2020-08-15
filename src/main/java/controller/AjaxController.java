@@ -174,15 +174,24 @@ public class AjaxController {
 		return itemss;
 	}
 	
+	//[admin] 구글차트 0814
 	@Autowired
 	GoogleChartService googleChart;
 	
+	//[admin] dashboard 1.주간매출 0814
 	@RequestMapping("weeklyrevenue")
     public JSONObject weeklyrevenue() {
 		JSONObject json = googleChart.getChartData();
-		System.out.println(json);
+		//System.out.println(json);
         return json;
     }
+	//[admin] dashboard 2.주간매출 0815
+		@RequestMapping("monthlyrevenue")
+	    public JSONObject monthlyrevenue() {
+			JSONObject json = googleChart.getChartData2();
+			//System.out.println(json);
+	        return json;
+	    }
 	
 	/**
 	 * Board
