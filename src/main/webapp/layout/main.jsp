@@ -67,7 +67,18 @@
 										<c:if test="${!fn:contains(path2,'sns')}" >                                                                                                                                   
 										<li><a href="../user/main.shop">main</a></li>
 										<li><a href="../admin/dashboard.shop">admin</a></li>
-										<li><a href="../item/store.shop">store</a></li>
+										<li><a href="../item/store.shop">store</a>
+											<ul class="submenu">
+												<li><a href="#">모자</a></li>
+												<li><a href="#">아우터</a></li>
+												<li><a href="#">원피스</a></li>
+												<li><a href="#">상의</a></li>
+												<li><a href="#">하의</a></li>
+												<li><a href="#">가방</a></li>
+												<li><a href="#">신발</a></li>
+												<li><a href="#">시계</a></li>	
+											</ul>
+										</li>
 										<li><a href="${path}/board/support.shop">고객센터</a>
 											<ul class="submenu">
 												<li><a href="${path}/board/notice.shop">공지사항</a></li>
