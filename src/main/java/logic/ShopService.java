@@ -183,6 +183,11 @@ public class ShopService {
 			// TODO Auto-generated method stub
 			return adminDao.monthlyrevenue();
 		}
+		//[admin] Todolist view 0816
+		public Todolist getTodolist() {
+			// TODO Auto-generated method stub
+			return adminDao.getTodolist();
+		}
 	
 	/**
 	 * Board

@@ -9,10 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import dao.mapper.AdminMapper;
+import dao.mapper.BoardMapper;
 import dao.mapper.SnsMapper;
+import logic.Board;
 import logic.Buy;
 import logic.Sns;
 import logic.Statistics;
+import logic.Todolist;
 
 @Repository
 public class AdminDao {
@@ -21,40 +24,45 @@ public class AdminDao {
 	private SqlSessionTemplate template;
 	private Map<String,Object> param = new HashMap<>();
 
-	//이달의 가입 회원
+	//dashboard index 1-1 이달 가입회원
 	public int newusers() {
 		// TODO Auto-generated method stub
 		return template.getMapper(AdminMapper.class).newusers();
 	}
-	//전체 회원
+	//dashboard index 1-2 전체 회원
 	public long numofusers() {
 		// TODO Auto-generated method stub
 		return template.getMapper(AdminMapper.class).numofusers();
 	}
-	//이번 달 매출
+	//dashboard index 1-3 이달 매출
 	public long salesofthismonth() {
 		// TODO Auto-generated method stub
 		return template.getMapper(AdminMapper.class).salesofthismonth();
 	}
-	//누적 매출
+	//dashboard index 1-4 누적 매출
 	public long salesdata() {
 		// TODO Auto-generated method stub
 		return template.getMapper(AdminMapper.class).salesdata();
 	}
-	//누적 리뷰
+	//dashboard index 1-5 누적 리뷰
 	public long numofreviews() {
 		// TODO Auto-generated method stub
 		return template.getMapper(AdminMapper.class).numofreviews();
 	}
-	//주간 매출 graph1 on dashboard
+	//dashboard index 2-1 주간 매출
 	public List<Buy> weeklyrevenue() {
 		// TODO Auto-generated method stub
 		return template.getMapper(AdminMapper.class).weeklyrevenue();
 	}
-	//월간 매출 graph2 on dashboard
+	//dashboard index 2-2 최근 4주간 매출
 	public List<Buy> monthlyrevenue() {
 		// TODO Auto-generated method stub
 		return template.getMapper(AdminMapper.class).monthlyrevenue();
+	}
+	//dashboard index 3-1 todolist
+	public List<Todolist> getTodolist() {
+		// TODO Auto-generated method stub
+		return template.getMapper(AdminMapper.class).getTodolist();
 	}
 
 }

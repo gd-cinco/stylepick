@@ -99,16 +99,100 @@ google.setOnLoadCallback(drawChart2); //2nd chart
                     height : 300
                 });
     }
+
 });
 </script>
 
+<script>
+/*
+ * 댓글 등록하기(Ajax)
+ */
+function fn_comment(code){
+    
+    $.ajax({
+        type:'POST',
+        url : "<c:url value='/board/addComment.do'/>",
+        data:$("#commentForm").serialize(),
+        success : function(data){
+            if(data=="success")
+            {
+                getCommentList();
+                $("#comment").val("");
+            }
+        },
+        error:function(request,status,error){
+            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+       }
+        
+    });
+}
+ 
+/**
+ * 초기 페이지 로딩시 댓글 불러오기
+ */
+$(function(){
+    
+    getCommentList();
+    
+});
+ 
+/**
+ * 댓글 불러오기(Ajax)
+ */
+function getCommentList(){
+    
+    $.ajax({
+        type:'GET',
+        url : "<c:url value='/board/commentList.do'/>",
+        dataType : "json",
+        data:$("#commentForm").serialize(),
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+        success : function(data){
+            
+            var html = "";
+            var cCnt = data.length;
+            
+            if(data.length > 0){
+                
+                for(i=0; i<data.length; i++){
+                    html += "<div>";
+                    html += "<div><table class='table'><h6><strong>"+data[i].writer+"</strong></h6>";
+                    html += data[i].comment + "<tr><td></td></tr>";
+                    html += "</table></div>";
+                    html += "</div>";
+                }
+                
+            } else {
+                
+                html += "<div>";
+                html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
+                html += "</table></div>";
+                html += "</div>";
+                
+            }
+            
+            $("#cCnt").html(cCnt);
+            $("#commentList").html(html);
+            
+        },
+        error:function(request,status,error){
+            
+       }
+        
+    });
+}
+ 
+</script>
+
+
 <script type="text/javascript">
+          /*
           google.charts.load('current', {'packages':['corechart']});
           //google.charts.setOnLoadCallback(numGraph1);
           google.charts.setOnLoadCallback(numGraph2);
 			
           
-          /* function numGraph1() {
+           function numGraph1() {
             var data = new google.visualization.DataTable();
             data.addColumn('string', '정당');
             data.addColumn('number', '의석수');
@@ -124,7 +208,7 @@ google.setOnLoadCallback(drawChart2); //2nd chart
                            height:300};
             var chart = new google.visualization.PieChart(document.getElementById('numGraph1_div'));
             chart.draw(data, options);
-          } */
+          }
 
           function numGraph2() {
             var data = new google.visualization.DataTable();
@@ -143,7 +227,7 @@ google.setOnLoadCallback(drawChart2); //2nd chart
                            height:300};
             var chart = new google.visualization.PieChart(document.getElementById('numGraph2_div'));
             chart.draw(data, options);
-          }
+          }*/
 </script>
 </head>
 <body>
@@ -210,6 +294,27 @@ google.setOnLoadCallback(drawChart2); //2nd chart
 			<!-- To Do List -->
 			<div class="todolist_frame">
 				<h3>To Do List</h3>
+				
+				<table class="todolist">
+					<c:forEach var="t" items="${todolist}">
+						<tr class="todolist">
+							<td class="todolist">${t.No}</td>
+							<td class="todolist">${t.duedate}</td>
+							<td class="todolist">${t.content}</td>
+							<td class="todolist">${t.fin}</td>
+							<td>
+								<a href="ctupdateForm.me?num=${c.ct_datano}">수정</a>
+							</td>
+							<td>
+								<a href="ctdeleteForm.me?num=${c.ct_datano}" 
+								onclick="window.open(this.href,'_blank','width=460, height=150'); return false;">삭제</a>
+							</td>
+						</tr>
+					</c:forEach>
+					
+				</table>
+				
+				
 				<table class="todolist">
 					<tr class="todolist">
 						<td class="todolist">due 2020-03-03</td>

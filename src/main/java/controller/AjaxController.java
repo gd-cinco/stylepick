@@ -21,6 +21,7 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,6 +30,7 @@ import logic.Board;
 import logic.GoogleChartService;
 import logic.ShopService;
 import logic.Sns;
+import logic.Todolist;
 
 //view를통하지 않고 바로 클라이언트로 전달(just data) : @Controller + @ResponseBody
 @RestController
@@ -185,13 +187,26 @@ public class AjaxController {
 		//System.out.println(json);
         return json;
     }
-	//[admin] dashboard 2.주간매출 0815
-		@RequestMapping("monthlyrevenue")
-	    public JSONObject monthlyrevenue() {
-			JSONObject json = googleChart.getChartData2();
-			//System.out.println(json);
-	        return json;
-	    }
+	//[admin] dashboard 2.최근4주매출 0815
+	@RequestMapping("monthlyrevenue")
+	 public JSONObject monthlyrevenue() {
+		JSONObject json = googleChart.getChartData2();
+		//System.out.println(json);
+	       return json;
+	}
+	//[admin] dashboard 3.Todolist 0815
+	@RequestMapping("todolist")
+	public ModelAndView todolist(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		Todolist todolist = service.getTodolist();
+		mav.addObject("todolist",todolist);
+	       return mav;
+	}
+	
+	
+		
+		
+		
 	
 	/**
 	 * Board
