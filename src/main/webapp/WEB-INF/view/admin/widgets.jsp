@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Administrator - Widgets</title>
+<script src="${path}/assets/board/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	function graph_open(url) {
 		var op = "width=800,height=800,scrollbars=yes,left=50,top=150";
@@ -63,7 +64,22 @@ function drawMultSeries() {
 		<div class="outer_frame">
 			<!-- Daily Sales Report -->
 			<div class="double_frame" style="border: 1px  solid gray;">
-				Daily Sales Report
+				Daily Sales Report	
+				<!-- Daily Sales Report Table -->
+				<table class="admin_table">
+					<tr class="admin_table">
+						<th class="admin_table">오더 번호</th><th class="admin_table">구매일</th><th class="admin_table">아이디</th class="admin_table"><th>구매 금액</th>
+					</tr>
+					<c:forEach var="sales" items="${saleslist}">
+						<tr class="admin_table">
+							<td class="admin_table">${sales.order_no}</td>
+							<td class="admin_table"><fmt:formatDate value="${sales.orderdate}" pattern="yyyy-MM-dd HH:mm" /></td>
+							<td class="admin_table">${sales.userid}</td>
+							<td class="admin_table"><fmt:formatNumber value="${sales.amount}" pattern="#,###" /> KRW</td>
+						</tr>
+					</c:forEach>
+				</table>
+				<!-- Daily Sales Report Table의 끝-->
 			</div>
 			<!--Recently Joined Users -->
 			<div class="double_frame" style="border: 1px  solid gray;">

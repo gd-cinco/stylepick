@@ -93,7 +93,7 @@ google.setOnLoadCallback(drawChart2); //2nd chart
                 
                 //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
                 chart.draw(data, {
-                    title : "최근 6주 매출",
+                    title : "최근 4주 매출",
                     //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
                     width : 500,
                     height : 300
@@ -282,52 +282,18 @@ function getCommentList(){
 			    <div id="chart_div1"></div>
 			</div>
 			
-			<!-- 최근 6주간 매출 추이 그래프 -->
+			<!-- 최근 4주간 매출 추이 그래프 -->
 			<div class="double_frame">
-			최근 6주간 매출 추이 그래프
+			최근 4주간 매출 추이 그래프
 			<div id="chart_div2"></div>
 			<!-- <div id="numGraph2_div" style="border: 1px solid #ccc"></div> -->
 			</div>
-			<!-- 월최근 6주간 매출 추이 그래프의 끝 -->
+			<!-- 월최근 4주간 매출 추이 그래프의 끝 -->
 			<br>
 		</div> <!-- outer_frame -->
 			<!-- To Do List -->
 			<div class="todolist_frame">
 				<h3>To Do List</h3>
-				
-				<table class="todolist">
-					<c:forEach var="t" items="${todolist}">
-						<tr class="todolist">
-							<td class="todolist">${t.No}</td>
-							<td class="todolist">${t.duedate}</td>
-							<td class="todolist">${t.content}</td>
-							<td class="todolist">${t.fin}</td>
-							<td>
-								<a href="ctupdateForm.me?num=${c.ct_datano}">수정</a>
-							</td>
-							<td>
-								<a href="ctdeleteForm.me?num=${c.ct_datano}" 
-								onclick="window.open(this.href,'_blank','width=460, height=150'); return false;">삭제</a>
-							</td>
-						</tr>
-					</c:forEach>
-					
-				</table>
-				
-				
-				<table class="todolist">
-					<tr class="todolist">
-						<td class="todolist">due 2020-03-03</td>
-						<td class="todolist">신규입점모니터링</td>
-						<td class="todolist"><input type="checkbox" checked="checked"/></td>
-						<td class="todolist ">[저장] [삭제]</td>
-					</tr>
-					<tr class="todolist">
-						<td class="todolist"><input type="datetime"></td>
-						<td class="todolist" colspan="2"><input type="text"></td>
-						<td class="todolist">[저장]</td>
-					</tr>				
-				</table>
 			</div>
 	<!-- right_div -->
 <br><br><br><br><br><br><br><br><br><br><br><br>

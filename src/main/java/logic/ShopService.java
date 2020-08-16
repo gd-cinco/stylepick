@@ -98,11 +98,7 @@ public class ShopService {
 		return map;
 	}
 	
-	//[admin] dashboard sales data
-	public long salesdata() {
-		// TODO Auto-generated method stub
-		return adminDao.salesdata();
-	}
+
 			
 
 	//[sns] ootd 번호
@@ -153,40 +149,45 @@ public class ShopService {
 		return itemDao.list();
 	}
 
-		//[admin] dashboard new users this month 0813
+		//[admin] dashboard index 1-1 이달 가입회원 0813
 		public int newusers() {
 			// TODO Auto-generated method stub
 			return adminDao.newusers();
 		}
-		//[admin] dashboard number of users 0813
+		//[admin] dashboard index 1-2 전체 회원 0813
 		public long numofusers() {
 			// TODO Auto-generated method stub
 			return adminDao.numofusers();
 		}
-		//[admin] dashboard sales of this month 0813
+		//[admin] dashboard index 1-3 이달 매출 0813
 		public long salesofthismonth() {
 			// TODO Auto-generated method stub
 			return adminDao.salesofthismonth();
 		}
-		//[admin] dashboard numbers of reviews 0813
+		//[admin] dashboard index 1-4 누적 매출 0813
+		public long salesdata() {
+			// TODO Auto-generated method stub
+			return adminDao.salesdata();
+		}
+		//[admin] dashboard index 1-5 누적 리뷰 0813
 		public long numofreviews() {
 			// TODO Auto-generated method stub
 			return adminDao.numofreviews();
 		}
-		//[admin] weekly revenue 0814
+		//[admin] dashboard index 2-1 주간 매출 0814
 		public List<Buy> weeklyrevenue() {
 			// TODO Auto-generated method stub
 			return adminDao.weeklyrevenue();
 		}
-		//[admin] monthly revenue 0815
+		//[admin] dashboard index 2-2 최근 4주간 매출 0815
 		public List<Buy> monthlyrevenue() {
 			// TODO Auto-generated method stub
 			return adminDao.monthlyrevenue();
 		}
-		//[admin] Todolist view 0816
-		public Todolist getTodolist() {
+		//[admin] widget index 1-1 daily sales report 0816
+		public List<Buy> getSales() {
 			// TODO Auto-generated method stub
-			return adminDao.getTodolist();
+			return adminDao.getSales();
 		}
 	
 	/**
@@ -195,6 +196,9 @@ public class ShopService {
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
+
+
+
 
 
 }

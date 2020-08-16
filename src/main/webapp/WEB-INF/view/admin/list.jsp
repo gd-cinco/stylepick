@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원목록</title>
+<script src="${path}/assets/board/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	function allchkbox(allchk){
 		//$(".idchks").prop("checked",allchk.checked) //는 okle

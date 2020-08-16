@@ -53,8 +53,13 @@ public class Buy {
 	public void setTel(int tel) {
 		this.tel = tel;
 	}
-	public String getOrderdate() {
+	
+	public String getOrderdateinString() {
 		return new SimpleDateFormat("yyyy-MM-dd").format(orderdate);
+	}
+	
+	public Date getOrderdate() {
+		return orderdate;
 	}
 	public void setOrderdate(Date orderdate) {
 		this.orderdate = orderdate;

@@ -53,7 +53,7 @@ public class GoogleChartServiceImpl implements GoogleChartService {
         for (Buy dto : items) { //items에 저장된 값을 dto로 반복문을 돌려서 하나씩 저장한다.
             
             JSONObject orderdate = new JSONObject(); //json오브젝트 객체를 생성
-            orderdate.put("v", dto.getOrderdate()); //name변수에 dto에 저장된 주문일을 v라고 저장한다.
+            orderdate.put("v", dto.getOrderdateinString()); //name변수에 dto에 저장된 주문일을 v라고 저장한다.
             
             JSONObject amount = new JSONObject(); //json오브젝트 객체를 생성
             amount.put("v", dto.getAmount()); //name변수에 dto에 저장된 금액을 v라고 저장한다.

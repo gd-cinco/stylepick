@@ -33,6 +33,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sun.net.httpserver.HttpExchange;
 
 import exception.LoginException;
+import logic.Board;
 import logic.Buy;
 import logic.Mail;
 import logic.ShopService;
@@ -77,6 +78,8 @@ public class AdminController {
 	@RequestMapping("widgets")
 	public ModelAndView check_widgets(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		List<Buy> saleslist=service.getSales();
+		mav.addObject("saleslist",saleslist);
 		return mav;
 	}//check_widgets
 	

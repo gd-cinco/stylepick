@@ -10,10 +10,12 @@ import org.springframework.stereotype.Repository;
 
 import dao.mapper.AdminMapper;
 import dao.mapper.BoardMapper;
+import dao.mapper.SnsItemMapper;
 import dao.mapper.SnsMapper;
 import logic.Board;
 import logic.Buy;
 import logic.Sns;
+import logic.SnsItem;
 import logic.Statistics;
 import logic.Todolist;
 
@@ -59,10 +61,13 @@ public class AdminDao {
 		// TODO Auto-generated method stub
 		return template.getMapper(AdminMapper.class).monthlyrevenue();
 	}
-	//dashboard index 3-1 todolist
-	public List<Todolist> getTodolist() {
+	//[admin] widget index 1-1 daily sales report
+	public List<Buy> getSales() {
 		// TODO Auto-generated method stub
-		return template.getMapper(AdminMapper.class).getTodolist();
+		param.clear();
+		return template.getMapper(AdminMapper.class).getSales(param);
 	}
 
+	
+	
 }

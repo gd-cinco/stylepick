@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import logic.Board;
 import logic.Buy;
 import logic.Sns;
+import logic.SnsItem;
 import logic.Statistics;
 import logic.Todolist;
 
@@ -41,8 +42,11 @@ public interface AdminMapper {
 			"HAVING weeks_ago <=4 " + 
 			"ORDER BY weeks_ago ASC ")
 	List<Buy> monthlyrevenue();
-	//dashboard index 3-1 todolist
-	@Select("SELECT * FROM todolist")
-	List<Todolist>  getTodolist();
+	
+	//widget index 1-1 daily sales report
+	@Select("SELECT order_no, orderdate, userid, amount FROM buy ORDER BY order_no DESC LIMIT 5")
+	List<Buy> getSales(Map<String, Object> param);
+
+
 }
 
