@@ -194,13 +194,21 @@ public class ShopService {
 			// TODO Auto-generated method stub
 			return adminDao.getUsers();
 		}
-	
+		//[admin] widgets index 2-1 이번 달 구매 회원 랭킹 0816
+		public List<Buy> monthlyheavyusers() {
+			// TODO Auto-generated method stub
+			return adminDao.monthlyheavyusers();
+		}
+
+		
+		
 	/**
 	 * Board
 	 */
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
+
 
 
 

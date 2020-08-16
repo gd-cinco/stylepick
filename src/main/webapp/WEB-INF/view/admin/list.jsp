@@ -32,7 +32,7 @@
 				<li  id="admin_menu"><a href="../admin/widgets.shop">위젯</a></li><br>
 				<li  id="admin_menu"><a href="../admin/charts.shop">차트</a></li><br>
 				<li  id="admin_menu"><a href="../admin/list.shop">유저</a></li><br>
-				<li  id="admin_menu"><a href="../board/test2.shop">고객센터</a></li>
+				<li  id="admin_menu"><a href="../board/notice.shop">고객센터</a></li>
 			</ul>
 	</div>
 	<div class="right-div" style="width: 80%; margin-left: 3%;  padding: 1%; float:left;">

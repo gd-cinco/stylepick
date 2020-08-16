@@ -74,6 +74,12 @@ public class AdminDao {
 		param.clear();
 		return template.getMapper(AdminMapper.class).getUsers(param);
 	}
+	//[admin] widgets index 2-1 이번 달 구매 회원 랭킹
+	public List<Buy> monthlyheavyusers() {
+		// TODO Auto-generated method stub
+		param.clear();
+		return template.getMapper(AdminMapper.class).monthlyheavyusers(param);
+	}
 
 	
 	

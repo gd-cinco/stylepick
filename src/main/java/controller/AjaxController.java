@@ -186,20 +186,27 @@ public class AjaxController {
 	@Autowired
 	GoogleChartService googleChart;
 	
-	//[admin] dashboard 1.주간매출 0814
+	//[admin] dashboard index 2-1 주간 매출 0814
 	@RequestMapping("weeklyrevenue")
     public JSONObject weeklyrevenue() {
 		JSONObject json = googleChart.getChartData();
 		//System.out.println(json);
         return json;
     }
-	//[admin] dashboard 2.최근4주매출 0815
+	//[admin] dashboard index 2-2 최근 4주간 매출 0815
 	@RequestMapping("monthlyrevenue")
 	 public JSONObject monthlyrevenue() {
 		JSONObject json = googleChart.getChartData2();
 		//System.out.println(json);
-	       return json;
+	   return json;
 	}
+	//[admin] widgets index 2-1 이번 달 구매 회원 랭킹 0816
+		@RequestMapping("monthlyheavyusers")
+		 public JSONObject monthlyheavyusers() {
+			JSONObject json = googleChart.getChartData3();
+			System.out.println(json);
+		    return json;
+		}
 
 
 	

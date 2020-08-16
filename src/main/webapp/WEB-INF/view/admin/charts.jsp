@@ -23,7 +23,7 @@
 				<li  id="admin_menu"><a href="../admin/widgets.shop">위젯</a></li><br>
 				<li  id="admin_menu"><a href="../admin/charts.shop" style="color:skyblue;">차트</a></li><br>
 				<li  id="admin_menu"><a href="../admin/list.shop">유저</a></li><br>
-				<li  id="admin_menu"><a href="../board/test2.shop">고객센터</a></li>
+				<li  id="admin_menu"><a href="../board/notice.shop">고객센터</a></li>
 			</ul>
 	</div>
 	<!-- 우측 div : 메인 컨텐츠-->
