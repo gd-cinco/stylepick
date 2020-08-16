@@ -18,6 +18,7 @@ import logic.Sns;
 import logic.SnsItem;
 import logic.Statistics;
 import logic.Todolist;
+import logic.User;
 
 @Repository
 public class AdminDao {
@@ -61,11 +62,17 @@ public class AdminDao {
 		// TODO Auto-generated method stub
 		return template.getMapper(AdminMapper.class).monthlyrevenue();
 	}
-	//[admin] widget index 1-1 daily sales report
+	//widget index 1-1 daily sales report
 	public List<Buy> getSales() {
 		// TODO Auto-generated method stub
 		param.clear();
 		return template.getMapper(AdminMapper.class).getSales(param);
+	}
+	//widget index 1-2 recently joined users
+	public List<User> getUsers() {
+		// TODO Auto-generated method stub
+		param.clear();
+		return template.getMapper(AdminMapper.class).getUsers(param);
 	}
 
 	

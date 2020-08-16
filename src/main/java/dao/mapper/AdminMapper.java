@@ -12,6 +12,7 @@ import logic.Sns;
 import logic.SnsItem;
 import logic.Statistics;
 import logic.Todolist;
+import logic.User;
 
 public interface AdminMapper {
 	
@@ -46,6 +47,10 @@ public interface AdminMapper {
 	//widget index 1-1 daily sales report
 	@Select("SELECT order_no, orderdate, userid, amount FROM buy ORDER BY order_no DESC LIMIT 5")
 	List<Buy> getSales(Map<String, Object> param);
+	
+	//widget index 1-2 recently joined users
+	@Select("SELECT no, userid, gender, age, regdate FROM user ORDER BY no DESC LIMIT 5")
+	List<User> getUsers(Map<String, Object> param);
 
 
 }

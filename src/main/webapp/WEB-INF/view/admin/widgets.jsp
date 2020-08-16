@@ -63,12 +63,12 @@ function drawMultSeries() {
 		<!-- 1. 최근 기록 -->
 		<div class="outer_frame">
 			<!-- Daily Sales Report -->
-			<div class="double_frame" style="border: 1px  solid gray;">
+			<div class="double_frame" style="">
 				Daily Sales Report	
 				<!-- Daily Sales Report Table -->
 				<table class="admin_table">
 					<tr class="admin_table">
-						<th class="admin_table">오더 번호</th><th class="admin_table">구매일</th><th class="admin_table">아이디</th class="admin_table"><th>구매 금액</th>
+						<th class="admin_table">오더 번호</th><th class="admin_table">구매일</th><th class="admin_table">아이디</th><th class="admin_table">구매 금액</th>
 					</tr>
 					<c:forEach var="sales" items="${saleslist}">
 						<tr class="admin_table">
@@ -82,8 +82,30 @@ function drawMultSeries() {
 				<!-- Daily Sales Report Table의 끝-->
 			</div>
 			<!--Recently Joined Users -->
-			<div class="double_frame" style="border: 1px  solid gray;">
+			<div class="double_frame" style="">
 				Recently Joined Users
+				<!-- Recently Joined Users Table -->
+				<table class="admin_table">
+					<tr class="admin_table">
+						<th class="admin_table">회원 번호</th><th class="admin_table">가입일</th><th class="admin_table">아이디</th><th class="admin_table">성별</th><th class="admin_table">나이</th>
+					</tr>
+					<c:forEach var="users" items="${userslist}">
+						<tr class="admin_table">
+							<td class="admin_table">${users.no}</td>
+							<td class="admin_table"><fmt:formatDate value="${users.regdate}" pattern="yyyy-MM-dd HH:mm" /></td>
+							<td class="admin_table">${users.userid}</td>
+							<td class="admin_table">
+								<c:choose>
+									<c:when test="${users.gender eq '1'}">남자</c:when>
+									<c:when test="${users.gender eq '2'}">여자</c:when>
+									<c:otherwise>-</c:otherwise>
+								</c:choose>
+							</td>
+							<td class="admin_table"><c:if test="${users.age eq '0'}">-</c:if></td>
+						</tr>
+					</c:forEach>
+				</table>
+				<!-- Recently Joined Users Table의 끝-->
 			</div>
 			<br>
 		</div>

@@ -189,6 +189,11 @@ public class ShopService {
 			// TODO Auto-generated method stub
 			return adminDao.getSales();
 		}
+		//[admin] widget index 1-2 recently joined users 0816
+		public List<User> getUsers() {
+			// TODO Auto-generated method stub
+			return adminDao.getUsers();
+		}
 	
 	/**
 	 * Board
@@ -196,6 +201,7 @@ public class ShopService {
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
+
 
 
 

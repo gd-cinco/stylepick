@@ -80,6 +80,9 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView();
 		List<Buy> saleslist=service.getSales();
 		mav.addObject("saleslist",saleslist);
+		List<User> userslist=service.getUsers();
+		mav.addObject("userslist",userslist);
+		//System.out.println(userslist.toString());
 		return mav;
 	}//check_widgets
 	
