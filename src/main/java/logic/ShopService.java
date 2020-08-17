@@ -204,6 +204,21 @@ public class ShopService {
 			// TODO Auto-generated method stub
 			return adminDao.yearlyheavyusers();
 		}
+		//[admin] widgets index 3-1 우수 입점 스토어 차트 0817
+		public List<Line> topthreestores() {
+			// TODO Auto-generated method stub
+			return adminDao.topthreestores();
+		}
+		//[admin] dashboard index 3-1 To-do list 0817
+		public void addtodolist(Line line) {
+			// TODO Auto-generated method stub
+			adminDao.addtodolist();
+		}
+		//[admin] dashboard index 3-2 To-do list show 0817
+		public List<Line> selectTodolistByCode(Line line) {
+			// TODO Auto-generated method stub
+			return adminDao.selectTodolistByCode(line);
+		}
 		
 		
 	/**
@@ -212,6 +227,8 @@ public class ShopService {
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
+
+
 
 
 

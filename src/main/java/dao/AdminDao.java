@@ -14,6 +14,7 @@ import dao.mapper.SnsItemMapper;
 import dao.mapper.SnsMapper;
 import logic.Board;
 import logic.Buy;
+import logic.Line;
 import logic.Sns;
 import logic.SnsItem;
 import logic.Statistics;
@@ -85,6 +86,21 @@ public class AdminDao {
 		// TODO Auto-generated method stub
 		param.clear();
 		return template.getMapper(AdminMapper.class).yearlyheavyusers(param);
+	}
+	//widgets index 3-1 우수 입점 스토어 차트
+	public List<Line> topthreestores() {
+		// TODO Auto-generated method stub
+		return template.getMapper(AdminMapper.class).topthreestores(param);
+	}
+	//dashboard index 3-1 To-do list
+	public void addtodolist() {
+		// TODO Auto-generated method stub
+		template.getMapper(AdminMapper.class).addtodolist();
+	}
+	//dashboard index 3-2 To-do list show
+	public List<Line> selectTodolistByCode(Line line) {
+		// TODO Auto-generated method stub
+		return template.getMapper(AdminMapper.class).selectTodolistByCodes();
 	}
 
 	

@@ -34,6 +34,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import logic.Board;
 import logic.GoogleChartService;
+import logic.Line;
 import logic.ShopService;
 import logic.Sns;
 import logic.Todolist;
@@ -216,6 +217,57 @@ public class AjaxController {
 		//System.out.println(json);
 		return json;
 	}
+	//[admin] widgets index 3-1 우수 입점 스토어 차트 0817
+	@RequestMapping("topthreestores" )
+		public JSONObject topthreestores() {
+		//System.out.println("ajax 연결");
+		JSONObject json = googleChart.getChartData5();
+		//System.out.println(json);
+		return json;
+		}
+	//[admin] dashboard index 3-1 To-do list add 0817
+	@RequestMapping("addtodolist")
+    @ResponseBody
+    public String addTodolist(@ModelAttribute("line") Line line, HttpServletRequest request) throws Exception{
+        HttpSession session = request.getSession();
+        //Line loginVO = (LoginVO)session.getAttribute("loginVO");
+        try{
+            //boardVO.setWriter(loginVO.getUser_id());        
+            service.addtodolist(line);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return "success";
+    }
+	
+	//[admin] dashboard index 3-2 To-do list show 0817
+	//@RequestMapping(value="/board/commentList.do", produces="application/json; charset=utf8")
+	@RequestMapping("showtodolist")
+    @ResponseBody
+    public ResponseEntity showtodolist(@ModelAttribute("line") Todolist todo, HttpServletRequest request) throws Exception{
+        
+        HttpHeaders responseHeaders = new HttpHeaders();
+        ArrayList<HashMap> hmlist = new ArrayList<HashMap>();
+        
+        // 해당 TDL
+        List<Todolist> tdlVO = service.selectTodolistByCode(line);
+        
+        if(tdlVO.size() > 0){
+            for(int i=0; i<tdlVO.size(); i++){
+                HashMap <String, String> hm = new  HashMap<String, String>();
+                hm.put("No", ""+tdlVO.get(i).getNo());
+                hm.put("duedate", ""+tdlVO.get(i).getDuedate());
+                hm.put("content", tdlVO.get(i).getContent()); 
+                hm.put("fin", tdlVO.get(i).getFin());
+                
+                hmlist.add(hm);
+            }   
+        }
+        JSONArray json = new JSONArray(hmlist);        
+        return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
+        
+    }
+
 
 	
 	/**

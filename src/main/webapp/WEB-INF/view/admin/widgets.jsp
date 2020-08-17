@@ -30,6 +30,7 @@ $(function() {
 	//로딩이 완료되면 drawChart 함수를 호출
 	google.setOnLoadCallback(drawRankingChart1); //라이브러리를 불러오는 작업이 완료되었으면 drawChart작업을 실행하라는 뜻.
 	google.setOnLoadCallback(drawRankingChart2); //라이브러리를 불러오는 작업이 완료되었으면 drawChart작업을 실행하라는 뜻.
+	google.setOnLoadCallback(drawRankingChart3); //라이브러리를 불러오는 작업이 완료되었으면 drawChart작업을 실행하라는 뜻.
 	
 	//[admin] widgets index 2-1 이번 달 최다 구매 회원 랭킹
 	function drawRankingChart1() {
@@ -102,6 +103,43 @@ $(function() {
             }
         });
 	}
+
+	//[admin] widgets index 3-1 우수 입점 스토어 차트
+	function drawRankingChart3() {
+		var jsonData = $.ajax({
+			url : "${path}/ajax/topthreestores.shop",
+        	//컨트롤러로 이동해 (specified url을) 맵핑해서 제이슨을 동적으로
+            //직접만들어 그 만든 json을 직접 보낸다.
+        	dataType : "json",
+        	async : false,
+		}).responseText; //제이슨파일을 text파일로 읽어들인다는 뜻
+		console.log(jsonData);
+		 //데이터테이블 생성
+        //var data = new google.visualization.arrayToDataTable(jsonData); //이거아님
+		 var data = new google.visualization.DataTable(jsonData); //jackson 에서 옮기려면 이거로만써야함
+        //제이슨 형식을 구글의 테이블 형식으로 바꿔주기 위해서 집어넣음
+        //차트를 출력할 div
+        //LineChart, ColumnChart, PieChart에 따라서 차트의 형식이 바뀐다.
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div_widgets3')); //선 그래프
+       //차트 객체.draw(데이터 테이블, 옵션) //막대그래프
+       //chart.draw(data, options);
+       
+      //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
+        chart.draw(data, {
+            title : "우수입점스토어",
+            //width : 500,
+            //height : 300
+            chartArea: {width: '50%'},
+            hAxis: {
+              title: '별점평균',
+              minValue: 0
+            },
+            vAxis: {
+              title: '스토어명'
+            }
+        });
+	}
+	
 	
 });//onload function
 </script>
@@ -224,6 +262,7 @@ function drawMultSeries() {
 			<!-- 별점 추이 차트 -->
 			<div class="double_frame" style="border: 1px  solid gray;">
 				<p>우수 입점 스토어</p>
+				<div id="chart_div_widgets3"></div>
 			</div>
 			<!--우수 입점스토어 상위 3개 업체 -->
 			<div class="double_frame" style="border: 1px  solid gray;">

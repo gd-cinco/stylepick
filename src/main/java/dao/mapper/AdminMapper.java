@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 
 import logic.Board;
 import logic.Buy;
+import logic.Line;
 import logic.Sns;
 import logic.SnsItem;
 import logic.Statistics;
@@ -59,6 +60,18 @@ public interface AdminMapper {
 	//widgets index 2-2 올해 최다 구매 회원 랭킹
 	@Select("SELECT userid, SUM(amount) amount FROM buy WHERE orderdate > (NOW() - INTERVAL 12 MONTH) GROUP BY userid ORDER BY amount DESC LIMIT 10")
 	List<Buy> yearlyheavyusers(Map<String, Object> param);
+	
+	//widgets index 3-1 우수 입점 스토어 차트
+	@Select("SELECT com_name, FLOOR( DATEDIFF( CURRENT_DATE , line.regdate ) / 7 ) AS weeks_ago, AVG(evaluation) evaluation FROM user LEFT JOIN line ON user.userid = line.userid GROUP BY weeks_ago, com_name HAVING weeks_ago <=4 ORDER BY weeks_ago DESC")
+	List<Line> topthreestores(Map<String, Object> param);
+	
+	//dashboard index 3-1 To-do list
+	@Insert("INSERT INTO line (No, duedate, content, fin) VALUES (#{No}, #{duedate}, #{content}, #{fin})")
+	void addtodolist();
+	
+	//widgets index 3-2 우수 입점 스토어 차트
+	@Select("SELECT * FROM todolist")
+	List<Line> selectTodolistByCodes();
 
 
 }

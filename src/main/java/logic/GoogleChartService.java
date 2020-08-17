@@ -7,6 +7,7 @@ public interface GoogleChartService {
     public JSONObject getChartData2(); //json 타입으로 리턴
 	public JSONObject getChartData3(); //json 타입으로 리턴
 	public JSONObject getChartData4(); //json 타입으로 리턴
+	public JSONObject getChartData5(); //json 타입으로 리턴
 }
 
 
