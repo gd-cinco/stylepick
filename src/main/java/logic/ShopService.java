@@ -145,8 +145,23 @@ public class ShopService {
 
 			
 	// [아이템]상품 리스트 정보
-	public List<Item> getItemList() {
-		return itemDao.list();
+	public List<Item> getItemList(int category) {
+		return itemDao.list(category);
+	}
+	
+	public int getmaxnum() {
+		// TODO Auto-generated method stub
+		return itemDao.maxnum();
+	}
+	
+	//[아이템]상품 작성
+	public void itmeCreate(Item item, HttpServletRequest request) {
+		if(item.getImgurl() != null && !item.getImgurl().isEmpty()) {
+			uploadFileCreate(item.getImgurl(),request, "item/img/");
+			item.setPictureUrl(item.getImgurl().getOriginalFilename());
+		}
+		itemDao.insert(item);
+		
 	}
 
 		//[admin] dashboard index 1-1 이달 가입회원 0813
@@ -227,6 +242,10 @@ public class ShopService {
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
+
+	
+
+
 
 
 

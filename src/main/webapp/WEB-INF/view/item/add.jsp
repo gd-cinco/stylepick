@@ -18,7 +18,7 @@ oRow.onmouseover=function(){oTbl.clickedRowIndex=this.rowIndex}; //clickedRowInd
 var oCell = oRow.insertCell();
 
 //삽입될 Form Tag
-var frmTag = "<input type=text name=option style=width:350px; height:20px;> ";
+var frmTag = "<input type=text name=item_option style=width:350px; height:20px;> ";
 frmTag += "<input type=button value='삭제' onClick='removeRow()' style='cursor:hand'>";
 oCell.innerHTML = frmTag;
 }
@@ -67,15 +67,15 @@ oTbl1.deleteRow(oTbl1.clickedRowIndex);
 	<h1>상품 올리기</h1>
 	<h5>상품 올리기 관련 문의가 필요하시 다면 &nbsp;&nbsp; <a href="#" style="color:#35c5f0; font-size:15px">문의하러 가기</a></h5>
 	<br><br>
-<form:form modelAttribute="item" action="register.shop" enctype="multipart/form-data">
-<input type="hidden" value="${session.useid }">
+<form:form modelAttribute="item" action="register.shop" enctype="multipart/form-data" name="f">
+<form:hidden path="userid" value="${sessionScope.loginUser.userid}"/>
 	<div>
 	<div>
 	상품분류
 	</div>
 	<br>
 	<div>
-	 <select class="category1">
+	 <select class="category1" name="category">
 	 		<option value="">카테고리</option>
 	 		<option value="1">모자</option>
 	 		<option value="2">아우터</option>
@@ -91,37 +91,35 @@ oTbl1.deleteRow(oTbl1.clickedRowIndex);
 	<br>
 	<div class="subject-name">
 	<ul class="subject-name2">상품 제목</ul>
-	<dl><input type="text" maxlength="20"  style="width:400px;"/></dl>
+	<dl><input type="text" name="subject" maxlength="20"  style="width:400px;"></dl>
 	</div>
 	
 	<div>
 	<div class ="ii">
 	<ul>상품 이름</ul>
-	<dl><input type="text"/></dl>
+	<dl><form:input path="item_name" maxlength="20" /></dl>
 	</div>
 	<div class="ii">
 	<ul>상품 코드</ul>
-	<dl><input type="text"/></dl>
+	<dl><form:input path="code"/></dl>
 	</div>
 	</div>
-	
-
 	
 	<div>
 	<ul>상품 설명</ul>
-	<dl><textarea cols="99" rows="12"></textarea></dl>
+	<dl><form:textarea path="content" cols="99" rows="12" /></textarea></dl>
 	</div>
 	
 	<div>
 	<div class ="ii">
 	<ul>상품 옵션</ul>
-	<dl><input type="text"/><input name="addButton" type="button" style="cursor:hand; width:50px;" onClick="insRow()" value="+" ></dl>
+	<dl><input type="text" name="item_option"><input name="addButton" type="button" style="cursor:hand; width:50px;" onClick="insRow()" value="+" ></dl>
 	<table id="addTable" width="400" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" border="0"></table>
 	</div>
 	
 	<div class="ii">
 		<ul>사이즈</ul>
-	<dl><input type="text"/><input name="addButton1" type="button" style="cursor:hand; width:50px;" onClick="insRow1()" value="+" ></dl>
+	<dl><input type="text" name="size"/><input name="addButton1" type="button" style="cursor:hand; width:50px;" onClick="insRow1()" value="+" ></dl>
 		<table id="addTable1" width="400" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" border="0"></table>
 	</div>
 	</div>
@@ -129,18 +127,18 @@ oTbl1.deleteRow(oTbl1.clickedRowIndex);
 	<div>
 	<div class ="ii">
 	<ul>키워드</ul>
-	<dl><input type="text"/></dl>
+	<dl><form:input path="keyword"/></dl>
 
 	</div>
 	<div class="ii">
 		<ul>가격</ul>
-	<dl><input type="text"/></dl>
+	<dl><form:input path="price"/></dl>
 	</div>
 	</div>
 
 	<div>
 	<ul>대표이미지</ul>
-	<input type="file" name="picture">
+	<input type="file" name="imgurl">
 	</div>
 	<br>
 <input type="submit" class="genric-btn success medium" value="상품올리기">

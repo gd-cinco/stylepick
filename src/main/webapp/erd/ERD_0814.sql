@@ -110,6 +110,8 @@ CREATE TABLE item
 	item_no int NOT NULL COMMENT '상품번호',
 	-- 판매자아이디
 	userid varchar(30) NOT NULL COMMENT '판매자아이디',
+	-- 상품코드
+	code varchar(20) NOT NULL COMMENT '상품코드',
 	-- 카테고리
 	-- 1
 	-- 2
@@ -144,6 +146,9 @@ CREATE TABLE item
 	content varchar(500) COMMENT '상품내용',
 	-- 등록일..필요할까요?
 	regdate datetime COMMENT '등록일..필요할까요?',
+	readcnt int,
+	item_option varchar(100),
+	size varbinary(50),
 	PRIMARY KEY (item_no)
 );
 

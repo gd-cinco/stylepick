@@ -2,9 +2,15 @@ package controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import logic.Item;
@@ -18,9 +24,38 @@ public class itemController {
 		@Autowired
 		private ShopService service;
 		
-		@RequestMapping("*")	//item/list.shop
-		public String testing() {
+		@RequestMapping("store")	//item/list.shop
+		public String storeform(Model model) {
+			model.addAttribute(new Item());
 			return null;
 		}
 
+		@RequestMapping("create")
+		public String addform(Model model) {
+			model.addAttribute(new Item());
+			return "item/add";
+		}
+		
+		@RequestMapping("register")
+		public ModelAndView add(@Valid Item item, BindingResult bresult, HttpServletRequest request) {
+		ModelAndView mav=new ModelAndView("item/add");
+		if(bresult.hasErrors()) {
+			mav.getModel().putAll(bresult.getModel());
+			return mav;
+		}
+		try {
+		int max=service.getmaxnum();
+		item.setItem_no(++max);
+		service.itmeCreate(item,request);
+		mav.setViewName("redirect:/item/list.shop");
+		}catch(Exception e) {
+			e.printStackTrace();
+			mav.getModel().putAll(bresult.getModel());
+		}
+		
+		return mav;
+		}
+		
+		
+		
 }

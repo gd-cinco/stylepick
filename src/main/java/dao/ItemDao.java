@@ -15,9 +15,27 @@ import logic.Item;
 public class ItemDao {
 	@Autowired
 	private SqlSessionTemplate template;
-	private Map<String, Object> param = new HashMap<>();
+	private Map<String,Object> param =new HashMap<>();
 	
-	public List<Item> list() {
-		return template.getMapper(ItemMapper.class).select(null);
+	public int maxnum() {
+		return template.getMapper(ItemMapper.class).maxnum();
 	}
+	
+	public List<Item> list(int category) {
+		return template.getMapper(ItemMapper.class).list(category);
+	}
+
+	public void insert(Item item) {
+
+		template.getMapper(ItemMapper.class).insert(item);
+	}
+
+	
+	//조회수 증가
+//	public void readcntadd(Integer item_no) {
+//		param.clear();
+//		param.put("num", item_no);
+//		template.getMapper(ItemMapper.class).readcntadd(item_no);
+//	}
+	
 }
