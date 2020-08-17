@@ -44,17 +44,21 @@ public interface AdminMapper {
 			"ORDER BY weeks_ago DESC ")
 	List<Buy> monthlyrevenue();
 	
-	//widget index 1-1 daily sales report
+	//widgets index 1-1 daily sales report
 	@Select("SELECT order_no, orderdate, userid, amount FROM buy ORDER BY order_no DESC LIMIT 5")
 	List<Buy> getSales(Map<String, Object> param);
 	
-	//widget index 1-2 recently joined users
+	//widgets index 1-2 recently joined users
 	@Select("SELECT no, userid, gender, age, regdate FROM user ORDER BY no DESC LIMIT 5")
 	List<User> getUsers(Map<String, Object> param);
 	
 	//widgets index 2-1 이번 달 구매 회원 랭킹
 	@Select("SELECT userid, SUM(amount) amount FROM buy WHERE orderdate > (NOW() - INTERVAL 1 MONTH) GROUP BY userid ORDER BY amount DESC LIMIT 10")
 	List<Buy> monthlyheavyusers(Map<String, Object> param);
+	
+	//widgets index 2-2 올해 최다 구매 회원 랭킹
+	@Select("SELECT userid, SUM(amount) amount FROM buy WHERE orderdate > (NOW() - INTERVAL 12 MONTH) GROUP BY userid ORDER BY amount DESC LIMIT 10")
+	List<Buy> yearlyheavyusers(Map<String, Object> param);
 
 
 }

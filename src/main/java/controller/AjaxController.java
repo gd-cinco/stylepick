@@ -200,14 +200,22 @@ public class AjaxController {
 		//System.out.println(json);
 	   return json;
 	}
-	//[admin] widgets index 2-1 이번 달 구매 회원 랭킹 0816
-		@RequestMapping("monthlyheavyusers")
-		 public JSONObject monthlyheavyusers() {
-			JSONObject json = googleChart.getChartData3();
-			System.out.println(json);
-		    return json;
-		}
-
+	//[admin] widgets index 2-1 이번 달 최다 구매 회원 랭킹 0816
+	@RequestMapping("monthlyheavyusers" )
+		public JSONObject monthlyheavyusers() {
+		//System.out.println("ajax 연결");
+		JSONObject json = googleChart.getChartData3();
+		//System.out.println(json);
+		return json;
+	}
+	//[admin] widgets index 2-2 올해 최다 구매 회원 랭킹 0817
+	@RequestMapping("yearlyheavyusers" )
+		public JSONObject yearlyheavyusers() {
+		//System.out.println("ajax 연결");
+		JSONObject json = googleChart.getChartData4();
+		//System.out.println(json);
+		return json;
+	}
 
 	
 	/**

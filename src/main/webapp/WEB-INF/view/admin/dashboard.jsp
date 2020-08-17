@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Administrator - Dashboard</title>
 <script src="${path}/assets/board/js/jquery-3.3.1.min.js"></script>
+
 <script type="text/javascript">
 	function graph_open(url) {
 		var op = "width=800,height=800,scrollbars=yes,left=50,top=150";

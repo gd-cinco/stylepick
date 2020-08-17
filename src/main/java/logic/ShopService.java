@@ -184,12 +184,12 @@ public class ShopService {
 			// TODO Auto-generated method stub
 			return adminDao.monthlyrevenue();
 		}
-		//[admin] widget index 1-1 daily sales report 0816
+		//[admin] widgets index 1-1 daily sales report 0816
 		public List<Buy> getSales() {
 			// TODO Auto-generated method stub
 			return adminDao.getSales();
 		}
-		//[admin] widget index 1-2 recently joined users 0816
+		//[admin] widgets index 1-2 recently joined users 0816
 		public List<User> getUsers() {
 			// TODO Auto-generated method stub
 			return adminDao.getUsers();
@@ -199,7 +199,11 @@ public class ShopService {
 			// TODO Auto-generated method stub
 			return adminDao.monthlyheavyusers();
 		}
-
+		//[admin] widgets index 2-2 올해 최다 구매 회원 랭킹 0817
+		public List<Buy> yearlyheavyusers() {
+			// TODO Auto-generated method stub
+			return adminDao.yearlyheavyusers();
+		}
 		
 		
 	/**
@@ -208,6 +212,7 @@ public class ShopService {
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
+
 
 
 

@@ -5,9 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <meta charset="UTF-8">
 <title>Administrator - Widgets</title>
-<script src="${path}/assets/board/js/jquery-3.3.1.min.js"></script>
+<!-- <script src="${path}/assets/board/js/jquery-3.3.1.min.js"></script> -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	function graph_open(url) {
 		var op = "width=800,height=800,scrollbars=yes,left=50,top=150";
@@ -27,6 +29,9 @@ $(function() {
 	});
 	//로딩이 완료되면 drawChart 함수를 호출
 	google.setOnLoadCallback(drawRankingChart1); //라이브러리를 불러오는 작업이 완료되었으면 drawChart작업을 실행하라는 뜻.
+	google.setOnLoadCallback(drawRankingChart2); //라이브러리를 불러오는 작업이 완료되었으면 drawChart작업을 실행하라는 뜻.
+	
+	//[admin] widgets index 2-1 이번 달 최다 구매 회원 랭킹
 	function drawRankingChart1() {
 		var jsonData = $.ajax({
 			url : "${path}/ajax/monthlyheavyusers.shop",
@@ -37,17 +42,18 @@ $(function() {
 		}).responseText; //제이슨파일을 text파일로 읽어들인다는 뜻
 		console.log(jsonData);
 		 //데이터테이블 생성
-        var data = new google.visualization.arrayToDataTable(jsonData);
+        //var data = new google.visualization.arrayToDataTable(jsonData); //이거아님
+		 var data = new google.visualization.DataTable(jsonData); //jackson 에서 옮기려면 이거로만써야함
         //제이슨 형식을 구글의 테이블 형식으로 바꿔주기 위해서 집어넣음
         //차트를 출력할 div
         //LineChart, ColumnChart, PieChart에 따라서 차트의 형식이 바뀐다.
         var chart = new google.visualization.BarChart(document.getElementById('chart_div_widgets1'));
        //차트 객체.draw(데이터 테이블, 옵션) //막대그래프
-        chart.draw(data, options);
+       //chart.draw(data, options);
        
       //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
         chart.draw(data, {
-            title : "주간 매출",
+            title : "이번 달 최다 구매 회원 순위",
             //width : 500,
             //height : 300
             chartArea: {width: '50%'},
@@ -59,8 +65,42 @@ $(function() {
               title: '아이디'
             }
         });
+	}
+	
+	//[admin] widgets index 2-2 올해 최다 구매 회원 랭킹
+	function drawRankingChart2() {
+		var jsonData = $.ajax({
+			url : "${path}/ajax/yearlyheavyusers.shop",
+        	//컨트롤러로 이동해 (specified url을) 맵핑해서 제이슨을 동적으로
+            //직접만들어 그 만든 json을 직접 보낸다.
+        	dataType : "json",
+        	async : false,
+		}).responseText; //제이슨파일을 text파일로 읽어들인다는 뜻
+		console.log(jsonData);
+		 //데이터테이블 생성
+        //var data = new google.visualization.arrayToDataTable(jsonData); //이거아님
+		 var data = new google.visualization.DataTable(jsonData); //jackson 에서 옮기려면 이거로만써야함
+        //제이슨 형식을 구글의 테이블 형식으로 바꿔주기 위해서 집어넣음
+        //차트를 출력할 div
+        //LineChart, ColumnChart, PieChart에 따라서 차트의 형식이 바뀐다.
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div_widgets2'));
+       //차트 객체.draw(데이터 테이블, 옵션) //막대그래프
+       //chart.draw(data, options);
        
-       
+      //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
+        chart.draw(data, {
+            title : "올해의 최다 구매 회원 순위",
+            //width : 500,
+            //height : 300
+            chartArea: {width: '50%'},
+            hAxis: {
+              title: '구매 금액(원)',
+              minValue: 0
+            },
+            vAxis: {
+              title: '아이디'
+            }
+        });
 	}
 	
 });//onload function
@@ -167,14 +207,14 @@ function drawMultSeries() {
 		<p>스픽 구매 랭킹</p>
 		<div class="outer_frame">
 			<!-- 이번 달 스픽에서 가장 구매를 많이 한 회원 -->
-			<div class="double_frame" style="border: 1px  solid gray;">
+			<div class="double_frame" style="">
 				이번 달 스픽에서 가장 구매를 많이 한 회원
 				<div id="chart_div_widgets1"></div>
 			</div>
 			<!--올해 스픽에서 가장 구매를 많이 한 회원 -->
-			<div class="double_frame" style="border: 1px  solid gray;">
+			<div class="double_frame" style="">
 				올해 스픽에서 가장 구매를 많이 한 회원
-				<div id="chart_div"></div>
+				<div id="chart_div_widgets2"></div>
 			</div>
 			<br>
 		</div>

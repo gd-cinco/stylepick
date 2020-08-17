@@ -62,23 +62,29 @@ public class AdminDao {
 		// TODO Auto-generated method stub
 		return template.getMapper(AdminMapper.class).monthlyrevenue();
 	}
-	//widget index 1-1 daily sales report
+	//widgets index 1-1 daily sales report
 	public List<Buy> getSales() {
 		// TODO Auto-generated method stub
 		param.clear();
 		return template.getMapper(AdminMapper.class).getSales(param);
 	}
-	//widget index 1-2 recently joined users
+	//widgets index 1-2 recently joined users
 	public List<User> getUsers() {
 		// TODO Auto-generated method stub
 		param.clear();
 		return template.getMapper(AdminMapper.class).getUsers(param);
 	}
-	//[admin] widgets index 2-1 이번 달 구매 회원 랭킹
+	//widgets index 2-1 이번 달 구매 회원 랭킹
 	public List<Buy> monthlyheavyusers() {
 		// TODO Auto-generated method stub
 		param.clear();
 		return template.getMapper(AdminMapper.class).monthlyheavyusers(param);
+	}
+	//widgets index 2-2 올해 최다 구매 회원 랭킹
+	public List<Buy> yearlyheavyusers() {
+		// TODO Auto-generated method stub
+		param.clear();
+		return template.getMapper(AdminMapper.class).yearlyheavyusers(param);
 	}
 
 	
