@@ -5,8 +5,9 @@ error.required.password=패스워드를 입력해 주세요
 error.required.username=이름을 입력해 주세요
 error.required.postcode=우편번호를 입력해 주세요
 error.required.address=주소를 입력해 주세요
-error.required.phoneno=전화번호를 입력해 주세요
+error.required.tel=전화번호를 입력해 주세요
 error.required.email=E-MAIL을 입력해 주세요
+error.required.name=이름을 입력해 주세요
 
 error.login.user=로그인이 필요합니다.
 error.login.id=아이디를 확인하세요.
