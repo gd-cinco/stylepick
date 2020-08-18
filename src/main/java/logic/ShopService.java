@@ -39,11 +39,9 @@ public class ShopService {
 	
 	@Autowired
 	private BoardDao boardDao;
-	
 
 	@Autowired
 	private CommentDao commentDao;
-	
 
 	//[user] 입력창 중복확인
 	public int joincompare(String key, String val) {
@@ -291,7 +289,6 @@ public class ShopService {
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
-
 
 
 
