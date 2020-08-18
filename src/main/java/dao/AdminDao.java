@@ -102,6 +102,12 @@ public class AdminDao {
 		// TODO Auto-generated method stub
 		return template.getMapper(AdminMapper.class).selectTodolistByCodes();
 	}
+	//widgets index 3-2 최근 4주 별점 평균 상위 3개 스토어
+	public List<Line> getEvaluation() {
+		// TODO Auto-generated method stub
+		param.clear();
+		return template.getMapper(AdminMapper.class).getEvaluation(param);
+	}
 
 	
 	

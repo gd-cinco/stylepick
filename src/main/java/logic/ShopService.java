@@ -234,7 +234,11 @@ public class ShopService {
 			// TODO Auto-generated method stub
 			return adminDao.selectTodolistByCode(line);
 		}
-		
+		//[admin] widgets index 3-2 최근 4주 별점 평균 상위 3개 스토어 0818
+		public List<Line> getEvaluation() {
+			// TODO Auto-generated method stub
+			return adminDao.getEvaluation();
+		}
 		
 	/**
 	 * Board
@@ -242,6 +246,7 @@ public class ShopService {
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
+
 
 	
 

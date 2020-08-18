@@ -35,6 +35,7 @@ import com.sun.net.httpserver.HttpExchange;
 import exception.LoginException;
 import logic.Board;
 import logic.Buy;
+import logic.Line;
 import logic.Mail;
 import logic.ShopService;
 import logic.Statistics;
@@ -83,6 +84,8 @@ public class AdminController {
 		List<User> userslist=service.getUsers();
 		mav.addObject("userslist",userslist);
 		//System.out.println(userslist.toString());
+		List<Line> evaluation=service.getEvaluation();
+		mav.addObject("evaluation",evaluation);
 		return mav;
 	}//check_widgets
 	
