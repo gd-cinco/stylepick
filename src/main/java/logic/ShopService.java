@@ -72,6 +72,11 @@ public class ShopService {
 	public void userUpdate(User user) {
 		userDao.update(user);
 	}
+	
+	//[user] 판매자 정보 수정
+	public void sellerUpdate(User user) {
+		userDao.sellerupdate(user);
+	}
 
 	//[user] 회원 삭제
 	public void delete(String userid) {
@@ -289,20 +294,6 @@ public class ShopService {
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
 
 
 }

@@ -41,8 +41,14 @@ public interface UserMapper {
 	@Update("update user set nickname=#{nickname},age=#{age},"
 			+ "gender=#{gender},tel=#{tel},comment=#{comment} where userid=#{userid}")
 	void update(User user);
+	
+	@Update("update user set com_name=#{com_name}, com_regist=#{com_regist}, "
+			+ "com_tel=#{com_tel}, com_img=#{com_img} where userid=#{userid}")
+	void sellerupdate(User user);
 
 	@Delete("delete from user where userid=#{userid}")
 	void delete(Map<String, Object> param);
+
+	
 
 }

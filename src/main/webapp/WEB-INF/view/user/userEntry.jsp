@@ -74,6 +74,11 @@
 		})
 	}
 	function chkboxcheck(f) {
+			var question = confirm("등록하시겠습니까?");
+			if(!question){
+			  return false;
+			}
+			
 			var result = true;
 			if(!idchecked){
 				result=false;

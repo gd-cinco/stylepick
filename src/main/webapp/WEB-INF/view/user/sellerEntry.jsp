@@ -46,7 +46,11 @@
 
 	
 	function chkboxcheck(f) {
-			var result = true;
+		  var question = confirm("등록하시겠습니까?");
+		  if(!question){
+			  return false;
+		  }
+		  var result = true;
 		  if(!namechecked){
 			  result = false;
 			  alert("이름을 확인하세요.")

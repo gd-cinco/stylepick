@@ -76,6 +76,24 @@ public class UserController {
 		
 	}
 	
+	@PostMapping("sellerEntry")
+	public ModelAndView checksellerEntry(User user,BindingResult bresult,HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		if(bresult.hasErrors()) {
+			bresult.reject("error.input.user");
+			return mav;
+		}
+		try {
+			service.sellerEntry(user);
+			mav.setViewName("redirect:../sns/mypage.shop"); 
+		}catch (Exception e) {
+			e.printStackTrace();
+			bresult.reject("error.user.sellerEntry");
+		}
+		return mav;
+	}
+
+	
 	@PostMapping("login")
 	public ModelAndView login(@Valid User user,BindingResult bresult,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
@@ -105,13 +123,14 @@ public class UserController {
 		return "redirect:../sns/main.shop";
 	}
 	
-	@GetMapping(value = {"update","delete"}) //sellerEntry
+	@GetMapping(value = {"update","delete","sellerEntry"}) //sellerUpdate
 	public ModelAndView checkview(String id,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = service.getUser(id);
 		mav.addObject("user",user);
 		return mav;
 	}
+	
 	@PostMapping("update")
 	public ModelAndView checkupdate(@Valid User user,BindingResult bresult,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
@@ -122,7 +141,7 @@ public class UserController {
 		User loginUser = (User)session.getAttribute("loginUser");
 		try {
 			service.userUpdate(user);
-			mav.setViewName("redirect:../sns/mypage.shop"); //admin이아닐땐 가능
+			mav.setViewName("redirect:../sns/mypage.shop?userid="+user.getUserid());
 			if(loginUser.getUserid().equals(user.getUserid())) {
 				session.setAttribute("loginUser", user);
 			}
@@ -133,23 +152,27 @@ public class UserController {
 		return mav;
 	}
 	
-	@PostMapping("sellerEntry")
-	public ModelAndView checksellerEntry(User user,BindingResult bresult,HttpSession session) {
+	//@PostMapping("sellerUpdate")
+	public ModelAndView sellerupdate(User user,BindingResult bresult,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		if(bresult.hasErrors()) {
 			bresult.reject("error.input.user");
 			return mav;
 		}
+		User loginUser = (User)session.getAttribute("loginUser");
 		try {
-			service.sellerEntry(user);
-			mav.setViewName("redirect:../sns/mypage.shop"); 
+			service.sellerUpdate(user);
+			mav.setViewName("redirect:../sns/mypage.shop"); //판매자페이지
+			if(loginUser.getUserid().equals(user.getUserid())) {
+				session.setAttribute("loginUser", user);
+			}
 		}catch (Exception e) {
 			e.printStackTrace();
-			bresult.reject("error.user.sellerEntry");
+			bresult.reject("error.user.update");
 		}
 		return mav;
 	}
-
+	
 	@PostMapping("delete")
 	public ModelAndView delete(String userid,String password,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
