@@ -145,8 +145,12 @@ public class ShopService {
 
 			
 	// [아이템]상품 리스트 정보
-	public List<Item> getItemList(int category) {
-		return itemDao.list(category);
+	public List<Item> getItemList() {
+		return itemDao.list();
+	}
+	//[아이템]상품 상세보기
+	public Item getItem(Integer item_no) {
+		return itemDao.selectOne(item_no);
 	}
 	
 	public int getmaxnum() {
@@ -242,6 +246,8 @@ public class ShopService {
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
+
+
 
 	
 

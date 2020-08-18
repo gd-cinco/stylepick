@@ -67,7 +67,7 @@
 										<c:if test="${!fn:contains(path2,'sns')}" >                                                                                                                                   
 										<li><a href="../user/main.shop">main</a></li>
 										<li><a href="../admin/dashboard.shop">admin</a></li>
-										<li><a href="../item/store.shop">store</a>
+										<li><a href="../item/list.shop">스토어</a>
 											<ul class="submenu">
 												<li><a href="#">모자</a></li>
 												<li><a href="#">아우터</a></li>
