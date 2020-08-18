@@ -240,12 +240,19 @@ public class ShopService {
 			return adminDao.getEvaluation();
 		}
 		
+		//[admin] charts index 3 Yearly : 연 매출 현황 0818
+		public List<Buy> yearlyrevenue() {
+			// TODO Auto-generated method stub
+			return adminDao.yearlyrevenue();
+		}
+		
 	/**
 	 * Board
 	 */
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
+
 
 
 	

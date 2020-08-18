@@ -242,6 +242,7 @@ public class AjaxController {
 	
 	//[admin] dashboard index 3-2 To-do list show 0817
 	//@RequestMapping(value="/board/commentList.do", produces="application/json; charset=utf8")
+	/*
 	@RequestMapping("showtodolist")
     @ResponseBody
     public ResponseEntity showtodolist(@ModelAttribute("line") Todolist todo, HttpServletRequest request) throws Exception{
@@ -267,8 +268,14 @@ public class AjaxController {
         return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
         
     }
-
-
+    */
+	//[admin] charts index 3 Yearly : 연 매출 현황 0818
+		@RequestMapping("yearlyrevenue")
+		 public JSONObject yearlyrevenue() {
+			JSONObject json = googleChart.getChartData7();
+			//System.out.println(json);
+		   return json;
+		}
 	
 	/**
 	 * Board
