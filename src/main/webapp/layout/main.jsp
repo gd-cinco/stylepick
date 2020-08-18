@@ -66,8 +66,8 @@
 									<ul id="navigation">  
 										<c:if test="${!fn:contains(path2,'sns')}" >                                                                                                                                   
 										<li><a href="../user/main.shop">main</a></li>
-										<li><a href="../admin/list.shop">admin</a></li>
-										<li><a href="../item/store.shop">store</a></li>
+										<li><a href="../admin/dashboard.shop">admin</a></li>
+										<li><a href="../item/store.shop">store</a>
 											<ul class="submenu">
 												<li><a href="#">모자</a></li>
 												<li><a href="#">아우터</a></li>
@@ -78,7 +78,8 @@
 												<li><a href="#">신발</a></li>
 												<li><a href="#">시계</a></li>	
 											</ul>
-										<li><a href="${path}/board/notice.shop">고객센터</a>
+										</li>
+										<li><a href="${path}/board/support.shop">고객센터</a>
 											<ul class="submenu">
 												<li><a href="${path}/board/notice.shop">공지사항</a></li>
 												<li><a href="${path}/board/qna.shop">Q&A</a></li>
@@ -141,7 +142,7 @@
 														   		<img class="profile_image" src="../assets/img/client.png">
 														   	</div>
 															<ul class="submenu">
-																<li><a href="${path}/admin/list.shop">mypage (이지만 dashboard)</a></li>
+																<li><a href="${path}/sns/mypage.shop">mypage</a></li>
 																<li><a href="${path}/admin/widgets.shop">주문내역 (이지만 widget)</a></li>
 																<li><a href="${path}/user/logout.shop">logout</a></li>
 															</ul>

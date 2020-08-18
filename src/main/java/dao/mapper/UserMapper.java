@@ -33,12 +33,10 @@ public interface UserMapper {
 		"</script>"})
 	List<User> select(Map<String, Object> param);
 
-	@Update("update user set nickname=#{nickname},birthday=#{birthday},"
-			+ "phoneno=#{phoneno},postcode=#{postcode},address=#{address},email=#{email} where userid=#{userid}")
+	@Update("update user set nickname=#{nickname},age=#{age},"
+			+ "gender=#{gender},tel=#{tel},comment=#{comment} where userid=#{userid}")
 	void update(User user);
 
 	@Delete("delete from user where userid=#{userid}")
 	void delete(Map<String, Object> param);
-
-	
 }

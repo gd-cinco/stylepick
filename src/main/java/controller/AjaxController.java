@@ -1,12 +1,16 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -16,10 +20,24 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import logic.Board;
+import logic.GoogleChartService;
+import logic.Line;
 import logic.ShopService;
+import logic.Sns;
+import logic.Todolist;
 
 //view를통하지 않고 바로 클라이언트로 전달(just data) : @Controller + @ResponseBody
 @RestController
@@ -27,6 +45,7 @@ import logic.ShopService;
 public class AjaxController {
 	@Autowired
 	ShopService service;
+	
 	@RequestMapping(value="graph1", produces="text/plain; charset=UTF8")
 	public String graph1() {
 		//알고리즘을 통해서 json 형태로 재편집(this script) -> parser로해서 ajax로 보내줌(next script)
@@ -150,4 +169,138 @@ public class AjaxController {
 		} //try and catch
 		return html.toString();
 	}
+	
+
+	@RequestMapping(value="main", produces="text/plain; charset=UTF8")
+	public List<Sns> main(String ksb,String type,String searchcontent,HttpServletRequest request) {
+		if(searchcontent == null || searchcontent.trim().contentEquals("")) {
+			searchcontent = null;
+		}
+		int pageNum = Integer.parseInt(request.getParameter("listAmount"));
+		int limit = pageNum*20;
+		System.out.println(pageNum+","+limit);
+		List<Sns> itemss = service.getSnsList(ksb,type,pageNum,limit,searchcontent);		
+		return itemss;
+	}
+	
+	//[admin] 구글차트 0814
+	@Autowired
+	GoogleChartService googleChart;
+	
+	//[admin] dashboard index 2-1 주간 매출 0814
+	@RequestMapping("weeklyrevenue")
+    public JSONObject weeklyrevenue() {
+		JSONObject json = googleChart.getChartData();
+		//System.out.println(json);
+        return json;
+    }
+	//[admin] dashboard index 2-2 최근 4주간 매출 0815
+	@RequestMapping("monthlyrevenue")
+	 public JSONObject monthlyrevenue() {
+		JSONObject json = googleChart.getChartData2();
+		//System.out.println(json);
+	   return json;
+	}
+	//[admin] widgets index 2-1 이번 달 최다 구매 회원 랭킹 0816
+	@RequestMapping("monthlyheavyusers" )
+		public JSONObject monthlyheavyusers() {
+		//System.out.println("ajax 연결");
+		JSONObject json = googleChart.getChartData3();
+		//System.out.println(json);
+		return json;
+	}
+	//[admin] widgets index 2-2 올해 최다 구매 회원 랭킹 0817
+	@RequestMapping("yearlyheavyusers" )
+		public JSONObject yearlyheavyusers() {
+		//System.out.println("ajax 연결");
+		JSONObject json = googleChart.getChartData4();
+		//System.out.println(json);
+		return json;
+	}
+	//[admin] widgets index 3-1 우수 입점 스토어 차트 0817
+	@RequestMapping("topthreestores" )
+		public JSONObject topthreestores() {
+		//System.out.println("ajax 연결");
+		JSONObject json = googleChart.getChartData5();
+		//System.out.println(json);
+		return json;
+		}
+	//[admin] dashboard index 3-1 To-do list add 0817
+	@RequestMapping("addtodolist")
+    @ResponseBody
+    public String addTodolist(@ModelAttribute("line") Line line, HttpServletRequest request) throws Exception{
+        HttpSession session = request.getSession();
+        //Line loginVO = (LoginVO)session.getAttribute("loginVO");
+        try{
+            //boardVO.setWriter(loginVO.getUser_id());        
+            service.addtodolist(line);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return "success";
+    }
+	
+	//[admin] dashboard index 3-2 To-do list show 0817
+	//@RequestMapping(value="/board/commentList.do", produces="application/json; charset=utf8")
+	@RequestMapping("showtodolist")
+    @ResponseBody
+    public ResponseEntity showtodolist(@ModelAttribute("line") Todolist todo, HttpServletRequest request) throws Exception{
+        
+        HttpHeaders responseHeaders = new HttpHeaders();
+        ArrayList<HashMap> hmlist = new ArrayList<HashMap>();
+        
+        // 해당 TDL
+        List<Todolist> tdlVO = service.selectTodolistByCode(line);
+        
+        if(tdlVO.size() > 0){
+            for(int i=0; i<tdlVO.size(); i++){
+                HashMap <String, String> hm = new  HashMap<String, String>();
+                hm.put("No", ""+tdlVO.get(i).getNo());
+                hm.put("duedate", ""+tdlVO.get(i).getDuedate());
+                hm.put("content", tdlVO.get(i).getContent()); 
+                hm.put("fin", tdlVO.get(i).getFin());
+                
+                hmlist.add(hm);
+            }   
+        }
+        JSONArray json = new JSONArray(hmlist);        
+        return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
+        
+    }
+
+
+	
+	/**
+	 * Board
+	 */
+	@RequestMapping(value="nd", produces="text/plain; charset=UTF8")
+	public String noticeData() { 
+		List<Board> list = service.getBoardList(1);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String json = null;
+		try {
+			json = mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		return json;
+	}
+	
+	@RequestMapping(value="qd", produces="text/plain; charset=UTF8")
+	public String qnaData() { 
+		List<Board> list = service.getBoardList(2);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String json = null;
+		try {
+			json = mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		return json;
+	}
+
 }

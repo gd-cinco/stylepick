@@ -9,6 +9,9 @@
 <link rel="stylesheet" href="../assets/css/user.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
+	var idchecked=false;
+	var passchecked=false;
+	var nickchecked=false;
 	function passcheck(){
 		 document.getElementById('pw2inputbox').style.border='1px solid #dadada'
 		var pass=$("#password").val();
@@ -16,8 +19,10 @@
 	       if(pass != "" || pass2 != "") {
 	          if(pass == pass2) {
 	             $("#alert_password2").hide();
+	             passchecked=true;
 	          } else {
 	             $("#alert_password2").show();
+	             passchecked=false;
 	          }
 	       }
 	}
@@ -38,10 +43,14 @@
 			url : "confirmid.shop",
 			data : {id:userid},
 			success : function(result){
-				if(result=='true')
+				if(result=='true'){
 					$("#alreadyid").show();
-				else
+					idchecked=false;
+				}
+				else{
 					$("#alreadyid").hide();
+					idchecked=true;
+				}
 			}
 		})
 	}
@@ -53,18 +62,32 @@
 			url : "confirmnickname.shop",
 			data : {nickname:nickname},
 			success : function(result){
-				if(result=='true')
+				if(result=='true'){
 					$("#alreadyNickname").show();
-				else
+					nickchecked=false;
+				}
+				else{
 					$("#alreadyNickname").hide();
+					nickchecked=true;
+				}
 			}
 		})
-		
 	}
-	
 	function chkboxcheck(f) {
 			var result = true;
-		if(!$("input:checkbox[id='chkbox1']").is(":checked")) {
+			if(!idchecked){
+				result=false;
+				alert("아이디를 확인하세요.")
+			}
+			if(!passchecked){
+				result=false;
+				alert("패스워드를 확인하세요.")
+			}
+			if(!nickchecked){
+				result=false;
+				alert("닉네임을 확인하세요.")
+			}
+		  if(!$("input:checkbox[id='chkbox1']").is(":checked")) {
 	        alert("이용 약관에 동의하세요.")
 	        result=false;
 	      }
@@ -76,10 +99,7 @@
 		        alert("14세 이상이여야 합니다.")
 		        result= false;
 		      }
-	      if(result==true) {
-	        return true;
-	      }
-	      return false;
+	      return result;
 	   }
 
 </script>
@@ -88,30 +108,26 @@
 <div class="login_background">
 <div class="center">
 			<div style="width: 200px; margin-left:auto; padding-top: 20px" >
-			<ul>
-		  		<li><a href="../sns/test.shop">홈</a></li> <%--TODO 메인페이지 --%>
-		  		<li style="width: 1px; height : 26px; background: #000; position: absolute;"/>
-		  		<li><a href="#">고객센터</a></li> <%--TODO 고객센터 --%>
+			<ul class="userul">
+		  		<li class="userli"><a class="usera" href="../sns/main.shop">홈</a></li>
+		  		<li class="userli" style="width: 1px; height : 26px; background: #000; position: absolute;"/>
+		  		<li class="userli"><a class="usera" href="../board/">고객센터</a></li> <%--TODO 고객센터 --%>
 	  		</ul>
 	  		</div>
-<div style="margin-top:25px; margin-bottom:50px; position: relative;"> <%--위에 떼기 --%>
+<div style="margin-top:25px; margin-bottom:50px; position: relative;">
     		<img src="../assets/img/logo/logo3.png" width="620px"
-    		 onclick="javascript:location.href='../sns/test.shop'" style="margin-bottom:20px; cursor: pointer;"> <%-- TODO 메인페이지 --%>
+    		 onclick="javascript:location.href='../sns/main.shop'" style="margin-bottom:20px; cursor: pointer;">
     	<div class="social_login_box" >
     		<div style="padding-top: 1px; padding-left: 13px;">
     		<h2>소셜로 간편히 로그인하세요.</h2>
-    			<ul>
-    			<li><a style="display:block; line-height:45px; width: 90%; height:45px; text-align:center;
-	  			 border: 1px solid #000000;" href="#">Kakao</a></li>
-	  			 <li><a style="display:block; line-height:45px; width: 90%; height:45px; text-align:center;
-	  			 border: 1px solid #000000;" href="#">Facebook</a></li>
+    			<ul class="userul">
+    			<li class="userli"><a class="social_seq_button usera" href="#">Kakao</a></li>
+	  			<li class="userli"><a class="social_seq_button usera" href="#">Facebook</a></li>
     			</ul>
     			
-    			<ul style="margin-top: 15px;">
-    			<li><a style="display:block; line-height:45px; width: 90%; height:45px; text-align:center;
-	  			 border: 1px solid #000000;" href="#">Naver</a></li>
-	  			 <li><a style="display:block; line-height:45px; width: 90%; height:45px; text-align:center;
-	  			 border: 1px solid #000000;" href="#">Google</a></li>
+    			<ul class="userul" style="margin-top: 15px;">
+    			<li class="userli"><a class="social_seq_button usera" href="#">Naver</a></li>
+	  			<li class="userli"><a class="social_seq_button usera" href="#">Google</a></li>
     			</ul>
     		</div>
     	</div>
@@ -119,7 +135,7 @@
 	<form:form modelAttribute="user" method="post" action="userEntry.shop" onsubmit="return chkboxcheck(this)">
 		<div style="width: 100%; display:inline;text-align: center; height: 100px;">
 			<spring:hasBindErrors name="user">
-				<font color="red">
+				<font class="userfont" color="red">
 					<c:forEach items="${errors.globalErrors }" var="error">
 						<spring:message code="${error.code}"/>
 					</c:forEach>
@@ -138,8 +154,8 @@
 				</div>
     		</div>
     		<div class="input_err" style="margin-left: 60px;">
-    		<div id="alreadyid" style="display: none;"><font id="alreadyidval">이미 존재하는 아이디입니다.</font></div>
-    		<font><form:errors path="userid"/></font></div>
+    		<div id="alreadyid" style="display: none;"><font class="userfont" id="alreadyidval">이미 존재하는 아이디입니다.</font></div>
+    		<font class="userfont"><form:errors path="userid"/></font></div>
     		<div class="entry_text">
     			<a>비밀번호</a><a style="color: red;">*</a>
     		</div>
@@ -150,7 +166,7 @@
 					 onblur="document.getElementById('pwinputbox').style.border='1px solid #dadada'">
 				</div>
     		</div>
-    		<div class="input_err" style="margin-left: 60px;"><font><form:errors path="password"/></font></div>
+    		<div class="input_err" style="margin-left: 60px;"><font class="userfont"><form:errors path="password"/></font></div>
     		
     		<div class="entry_text">
     			<a>비밀번호 재입력</a><a style="color: red;">*</a>
@@ -162,7 +178,7 @@
 					 onblur="javascript:passcheck()">
 				</div>
     		</div>
-    		<div class="input_err" style="margin-left: 60px;"><font><a id="alert_password2" style="display: none; color: red;">비밀번호가 다릅니다.</a></font></div>
+    		<div class="input_err" style="margin-left: 60px;"><font class="userfont"><a id="alert_password2" style="display: none; color: red;">비밀번호가 다릅니다.</a></font></div>
     		
     		<div class="entry_text">
     			<a>닉네임</a><a style="color: red;">*</a>
@@ -175,8 +191,8 @@
 				</div>
     		</div>
     		<div class="input_err" style="margin-left: 60px;">
-    		<div id="alreadyNickname" style="display: none;"><font id="alreadyNicknameval">이미 존재하는 이메일입니다.</font></div>
-    		<font><form:errors path="nickname"/></font></div>
+    		<div id="alreadyNickname" style="display: none;"><font class="userfont" id="alreadyNicknameval">이미 존재하는 이메일입니다.</font></div>
+    		<font class="userfont"><form:errors path="nickname"/></font></div>
     		
     		<div class="entry_text">
     			<a>이메일</a><a style="color: red;">*</a>
@@ -188,18 +204,17 @@
 					 onblur="document.getElementById('emailinputbox').style.border='1px solid #dadada'">
 				</div>
     		</div>
-    		<div class="input_err" style="margin-left: 60px;"><font><form:errors path="email"/></font></div>
+    		<div class="input_err" style="margin-left: 60px;"><font class="userfont"><form:errors path="email"/></font></div>
     		
     		<div class="entry_text">
     			<a>프로필 사진</a>
     		</div>
-    		<div style="width: 150px; display:inline; height: 150px; float: left; text-align: center; margin-left: 60px;margin-top:10px; background-color: #dadada;">
+    		<div class="img_box" >
   				<img src="" id="imgurl" width="150px" height="150px" <c:if test="${empty m.pic}">style="visibility: hidden;"</c:if>>
-  				<a style="display:block; line-height:25px; width: 26%; height:26px; text-align:center; margin-top:-149px; margin-left:103px;
-	  				background-color: #35C5F0; color: white; font-weight: bold;" href="javascript:win_upload()">등록</a>
+  				<a class="img_del usera" href="javascript:win_upload()">등록</a>
   			</div>
   			<hr style="margin-top: 180px;margin-bottom: 20px;">
-  			<%--TODO 미구현, allchkbox 구현 및 모두체크되어야 넘어가짐 --%>
+  			<%--TODO css구성 --%>
   			<div style="width:70%; margin-left:15%; height:175px; border: 2px solid black;">
   			<input type="checkbox" name="allchk" onchange="allchkbox(this)">전체 약관에 동의합니다.<br>
   			<input type="checkbox" name="chkbox" id="chkbox1">이용약관 동의<br>
@@ -208,7 +223,7 @@
   			
   			</div>
     	</div>
-    	<input class="input_submit" style="font-size:36px; height: 90px;" type="submit" value="stylepick 가입하기">
+    	<input class="input_submit" id="submit" style="font-size:36px; height: 90px;" type="submit" value="stylepick 가입">
 	</form:form>
 </div>
 </div>
