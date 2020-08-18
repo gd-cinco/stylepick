@@ -23,6 +23,11 @@ public interface UserMapper {
 			+ "values(#{no},#{userid},#{password},#{nickname},#{email},0,#{imgurl},now())")
 	void insert(User user);
 
+	@Update("update user set seller=1, name=#{name}, tel=#{tel}, com_name=#{com_name}, "
+			+ "com_regist=#{com_regist}, com_tel=#{com_tel}, com_img=#{com_img} "
+			+ "where userid=#{userid}")
+	void sellerinsert(User user);
+	
 	@Select({"<script>",
 		"select * from user",
 		"<if test='userid !=null'> where userid = #{userid} </if>",
@@ -39,4 +44,5 @@ public interface UserMapper {
 
 	@Delete("delete from user where userid=#{userid}")
 	void delete(Map<String, Object> param);
+
 }

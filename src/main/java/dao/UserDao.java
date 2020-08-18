@@ -28,10 +28,12 @@ public class UserDao {
 		return template.getMapper(UserMapper.class).joincompare(key,val);
 	}
 	
-	
 	public void insert(User user) {
 		template.getMapper(UserMapper.class).insert(user);
-		
+	}
+	
+	public void sellerinsert(User user) {
+		template.getMapper(UserMapper.class).sellerinsert(user);	
 	}
 
 	public User selectOne(String userid) {
@@ -66,6 +68,9 @@ public class UserDao {
 	public int getmaxno() {
 		return template.getMapper(UserMapper.class).getmaxno();
 	}
+
+
+	
 
 	
 	

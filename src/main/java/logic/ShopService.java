@@ -39,30 +39,42 @@ public class ShopService {
 	@Autowired
 	private BoardDao boardDao;
 	
+	//[user] 입력창 중복확인
 	public int joincompare(String key, String val) {
 		return userDao.joincompare(key,val);
 	}
-
+	
+	//[user] no 최댓값확인
 	public int getmaxno() {
 		return userDao.getmaxno();
 	}
 	
+	//[user] 일반회원가입
 	public void userInsert(User user) {
 		userDao.insert(user);
 	}
-
+	
+	//[user] 판매자 회원 가입
+	public void sellerEntry(User user) {
+		userDao.sellerinsert(user);
+	}
+	
+	//[user] 1명 정보 가져오기
 	public User getUser(String userid) {
 		return userDao.selectOne(userid);
 	}
-
+	
+	//[user] 일반회원 정보 수정
 	public void userUpdate(User user) {
 		userDao.update(user);
 	}
 
+	//[user] 회원 삭제
 	public void delete(String userid) {
 		userDao.delete(userid);
 	}
 
+	//[user] 유저 리스트로 가져오기
 	public List<User> getUserList() {
 		return userDao.list();
 	}
@@ -242,6 +254,8 @@ public class ShopService {
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
+
+	
 
 	
 
