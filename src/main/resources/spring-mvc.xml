@@ -38,7 +38,8 @@ http://www.springframework.org/schema/websocket/spring-websocket-4.1.xsd">
 	<!-- 예외처리 관련 설정: 예외별로 뷰 지정 -->
 	<bean id="exceptionHandler" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
-			<value>exception.LoginException=exception</value>
+			<value>exception.LoginException=exception
+					exception.SnsException=exception</value>
 		</property>
 	</bean>
 </beans>

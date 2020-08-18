@@ -129,6 +129,7 @@
 								</li>
 									<!-- ~0812 <li class="d-none d-lg-block"> <a href="../user/login.shop" class="btn header-btn">로그인</a></li> -->
 									<!-- 0813 seyeon 로그인 후 드롭다운 / 이미지 path 변경 요망 / 화면 크기 작아지면 동그라미 안보임-->
+									<!-- 0818 c_hyeon 판매자가 아닐경우 등록 드롭다운 표시 -->
 									<li class="d-none d-lg-block">
 										<c:if test="${empty sessionScope.loginUser}">
 											<a href="../user/login.shop" class="btn header-btn">로그인</a>
@@ -143,6 +144,8 @@
 														   	</div>
 															<ul class="submenu">
 																<li><a href="${path}/sns/mypage.shop">mypage</a></li>
+																<c:if test="${loginUser.seller==0}"><li><a href="${path}/user/sellerEntry.shop">판매자 등록</a></c:if>
+																<c:if test="${loginUser.seller==1}"><li><a href="${path}/user/sellerUpdate.shop">판매자 정보 수정</a></c:if>
 																<li><a href="${path}/admin/widgets.shop">주문내역 (이지만 widget)</a></li>
 																<li><a href="${path}/user/logout.shop">logout</a></li>
 															</ul>

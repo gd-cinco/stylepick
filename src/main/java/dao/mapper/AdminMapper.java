@@ -72,6 +72,14 @@ public interface AdminMapper {
 	//widgets index 3-2 우수 입점 스토어 차트
 	@Select("SELECT * FROM todolist")
 	List<Line> selectTodolistByCodes();
+	
+	//widgets index 3-2 최근 4주 별점 평균 상위 3개 스토어
+	@Select("SELECT com_name, AVG(evaluation) evaluation FROM user LEFT JOIN line ON user.userid = line.userid WHERE FLOOR( DATEDIFF( CURRENT_DATE , line.regdate ) / 7 ) <=4 GROUP BY com_name ORDER BY evaluation DESC LIMIT 3")
+	List<Line> getEvaluation(Map<String, Object> param);
+	
+	//charts index 3 Yearly : 연 매출 현황
+	@Select("SELECT DATE_FORMAT(orderdate,'%Y-%m') month, SUM(amount) amount FROM buy WHERE DATE_FORMAT(orderdate,'%Y') = DATE_FORMAT(CURRENT_DATE, '%Y') GROUP BY month")
+	List<Buy> yearlyrevenue(Map<String, Object> param);
 
 
 }

@@ -11,12 +11,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import exception.SnsException;
+import logic.Comment;
 import logic.ShopService;
 import logic.Sns;
 import logic.SnsItem;
+import logic.User;
 
 
 @Controller
@@ -56,9 +58,9 @@ public class SnsController {
 		sns.setItemList(list);
 		service.snsWrite(sns,request);
 		if(sns.getType()==1) {
-			mav.setViewName("redirect:main.shop?ksb=new&type="+sns.getType());
+			mav.setViewName("redirect:main.shop?ksb=new&type=1");
 		} else if(sns.getType()==2) {
-			mav.setViewName("redirect:main.shop?type="+sns.getType());
+			mav.setViewName("redirect:main.shop?type=2");
 		}
 		return mav;
 	}
@@ -96,6 +98,32 @@ public class SnsController {
 		
 		return mav;
 		
+	}
+	
+	@PostMapping("comment")
+	public ModelAndView comment(Comment comment) {
+		ModelAndView mav = new ModelAndView();
+		comment.setReply_no(service.replyNum(comment.getSns_no()));
+		service.replyWrite(comment);
+		mav.setViewName("redirect:detail.shop?sns_no="+comment.getSns_no());
+		return mav;
+	}
+	
+	@GetMapping("detail")
+	public ModelAndView getSns(int sns_no) {
+		ModelAndView mav = new ModelAndView();
+		try {
+			Sns sns = service.getSns(sns_no);
+			User user = service.getUser(sns.getUserid());
+			List<SnsItem> snsitems = service.getSnsItem(sns.getSns_no());
+			sns.setItemList(snsitems);
+			mav.addObject("snsitems",snsitems);
+			mav.addObject("sns",sns);
+			mav.addObject("user",user);
+		} catch(Exception e) {
+			throw new SnsException("없는 게시물입니다.","main.shop?ksb=new&type=1");
+		}
+		return mav;
 	}
 	
 	

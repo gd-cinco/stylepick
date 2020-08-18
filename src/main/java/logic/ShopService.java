@@ -15,6 +15,7 @@ import dao.SnsDao;
 import dao.SnsItemDao;
 import dao.AdminDao;
 import dao.BoardDao;
+import dao.CommentDao;
 import dao.ItemDao;
 import dao.UserDao;
 
@@ -38,31 +39,51 @@ public class ShopService {
 	
 	@Autowired
 	private BoardDao boardDao;
-	
+
+	@Autowired
+	private CommentDao commentDao;
+
+	//[user] 입력창 중복확인
 	public int joincompare(String key, String val) {
 		return userDao.joincompare(key,val);
 	}
-
+	
+	//[user] no 최댓값확인
 	public int getmaxno() {
 		return userDao.getmaxno();
 	}
 	
+	//[user] 일반회원가입
 	public void userInsert(User user) {
 		userDao.insert(user);
 	}
-
+	
+	//[user] 판매자 회원 가입
+	public void sellerEntry(User user) {
+		userDao.sellerinsert(user);
+	}
+	
+	//[user] 1명 정보 가져오기
 	public User getUser(String userid) {
 		return userDao.selectOne(userid);
 	}
-
+	
+	//[user] 일반회원 정보 수정
 	public void userUpdate(User user) {
 		userDao.update(user);
 	}
+	
+	//[user] 판매자 정보 수정
+	public void sellerUpdate(User user) {
+		userDao.sellerupdate(user);
+	}
 
+	//[user] 회원 삭제
 	public void delete(String userid) {
 		userDao.delete(userid);
 	}
 
+	//[user] 유저 리스트로 가져오기
 	public List<User> getUserList() {
 		return userDao.list();
 	}
@@ -132,6 +153,33 @@ public class ShopService {
 		}
 	}
 	
+	//[sns] ootd 상세보기
+	public Sns getSns(int sns_no) {
+		return snsDao.selectOne(sns_no);
+	}
+	
+	//[sns] ootd 상세보기 - 스타일정보
+	public List<SnsItem> getSnsItem(int sns_no) {
+		return snsItemDao.list(sns_no);
+	}
+
+	
+	//[sns] ootd 댓글 번호
+	public int replyNum(int sns_no) {
+		int max = commentDao.maxnum(sns_no);
+		return ++max;
+	}
+	
+	//[sns] ootd 댓글 작성
+	public void replyWrite(Comment comment) {
+		commentDao.insert(comment);	
+	}
+	
+	//[sns] ootd 댓글 목록
+	public List<Comment> getCommentList(int sns_no) {
+		return commentDao.list(sns_no);
+	}
+	
 	//[sns] ootd 목록 
 	public List<Sns> getSnsList(String ksb,String type,int pageNum,int limit,String searchcontent) {
 		return snsDao.list(ksb,type,pageNum,limit,searchcontent);
@@ -141,7 +189,16 @@ public class ShopService {
 	public int getSnsCount(String type,String searchcontent) {
 		return snsDao.listcount(type,searchcontent);
 	}
-
+	
+	//[sns] ootd 좋아요
+	public void addlike(int sns_no, String userid) {
+		 snsDao.like(sns_no,userid);
+	}
+	
+	//[sns] ootd 좋아요 개수
+	public int getlikenum(int sns_no) {
+		return snsDao.likenum(sns_no);
+	}
 
 			
 	// [아이템]상품 리스트 정보
@@ -238,7 +295,17 @@ public class ShopService {
 			// TODO Auto-generated method stub
 			return adminDao.selectTodolistByCode(line);
 		}
+		//[admin] widgets index 3-2 최근 4주 별점 평균 상위 3개 스토어 0818
+		public List<Line> getEvaluation() {
+			// TODO Auto-generated method stub
+			return adminDao.getEvaluation();
+		}
 		
+		//[admin] charts index 3 Yearly : 연 매출 현황 0818
+		public List<Buy> yearlyrevenue() {
+			// TODO Auto-generated method stub
+			return adminDao.yearlyrevenue();
+		}
 		
 	/**
 	 * Board
@@ -246,20 +313,6 @@ public class ShopService {
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
 
 
 }

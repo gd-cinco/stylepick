@@ -181,6 +181,8 @@ function drawMultSeries() {
 				<li  id="admin_menu"><a href="../admin/widgets.shop" style="color:skyblue;">위젯</a></li><br>
 				<li  id="admin_menu"><a href="../admin/charts.shop">차트</a></li><br>
 				<li  id="admin_menu"><a href="../admin/list.shop">유저</a></li><br>
+				<li  id="admin_menu"><a href="#">매출 관리</a></li><br>
+				<li  id="admin_menu"><a href="#">스토어 관리</a></li><br>
 				<li  id="admin_menu"><a href="../board/notice.shop">고객센터</a></li>
 			</ul>
 	</div>
@@ -260,22 +262,28 @@ function drawMultSeries() {
 		<!-- 3. 우수 입점 스토어 -->
 		<div class="outer_frame">
 			<!-- 별점 추이 차트 -->
-			<div class="double_frame" style="border: 1px  solid gray;">
+			<div class="double_frame" style="">
 				<p>우수 입점 스토어</p>
 				<div id="chart_div_widgets3"></div>
 			</div>
 			<!--우수 입점스토어 상위 3개 업체 -->
-			<div class="double_frame" style="border: 1px  solid gray;">
-				<input type="text" value="1" class="input_round"/>
-					<table class="store_frame">
+			<!-- /stylepick/src/main/webapp/assets/img/pinkstore.png -->
+			<div class="double_frame" style="">
+				<c:forEach var="ev" items="${evaluation}">				
+					<table>
 						<tr>
-							<td rowspan="2">@</td>
-							<td>입점스토어명</td>
+							<td rowspan="2">
+								<input type="text" value="ev" class="input_round"/>
+								<img class="profile_image" src="../assets/img/pinkstore.png" style="width:50px; height: auto;">
+							</td>
+							<td class>${ev.com_name}</td>
 						</tr>
 						<tr>
-							<td>소개</td>
+							<td style="font-size: small;"><b>${ev.evaluation} 점</b></td>
 						</tr>
 					</table>
+					<br>
+				</c:forEach>
 			</div>
 			<br>
 		</div>
