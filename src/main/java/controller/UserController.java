@@ -123,7 +123,7 @@ public class UserController {
 		return "redirect:../sns/main.shop";
 	}
 	
-	@GetMapping(value = {"update","delete","sellerEntry"}) //sellerUpdate
+	@GetMapping(value = {"update","delete","sellerEntry","sellerUpdate"})
 	public ModelAndView checkview(String id,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = service.getUser(id);
@@ -143,6 +143,7 @@ public class UserController {
 			service.userUpdate(user);
 			mav.setViewName("redirect:../sns/mypage.shop?userid="+user.getUserid());
 			if(loginUser.getUserid().equals(user.getUserid())) {
+				user = service.getUser(user.getUserid());
 				session.setAttribute("loginUser", user);
 			}
 		}catch (Exception e) {
@@ -152,7 +153,7 @@ public class UserController {
 		return mav;
 	}
 	
-	//@PostMapping("sellerUpdate")
+	@PostMapping("sellerUpdate")
 	public ModelAndView sellerupdate(User user,BindingResult bresult,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		if(bresult.hasErrors()) {
@@ -164,6 +165,7 @@ public class UserController {
 			service.sellerUpdate(user);
 			mav.setViewName("redirect:../sns/mypage.shop"); //판매자페이지
 			if(loginUser.getUserid().equals(user.getUserid())) {
+				user = service.getUser(user.getUserid());
 				session.setAttribute("loginUser", user);
 			}
 		}catch (Exception e) {

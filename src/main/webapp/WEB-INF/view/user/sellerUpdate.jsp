@@ -21,8 +21,8 @@
 <link rel="stylesheet" href="../assets/css/user.css">
 </head>
 <body>
-<form:form modelAttribute="user" method="post" action="update.shop" onsubmit="return submitcheck(this)">
-	<input type="hidden" name="password" id="password" value="123123">
+<form:form modelAttribute="user" method="post" action="sellerUpdate.shop" onsubmit="return submitcheck(this)">
+	<input type="hidden" name="userid" id="userid" value="${user.userid}">
 	<div class="default_center" style="height:auto; margin-top: 15px;">
 	<h2>회원 정보 수정</h2>
 	<spring:hasBindErrors name="user">
