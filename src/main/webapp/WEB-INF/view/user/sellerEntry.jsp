@@ -104,7 +104,7 @@
     		<div class="entry_input">
     			<div class="input_box" id="nameinputbox" >
 					<input type="text" id="name" name="name" placeholder="이름" class="input_input" autocomplete="off"
-					 onfocus="document.getElementById('nameinputbox').style.border='2px solid #35C5F0'"
+					 onfocus="document.getElementById('nameinputbox').style.border='2px solid #FE6500'"
 					 onblur="javascript:emptynamechk()">
 				</div>
     		</div>
@@ -118,7 +118,7 @@
     			<div class="input_box" id="telinputbox" >
 					<input type="text" id="tel" name="tel" placeholder="전화번호" value="${loginUser.tel}"
 					 class="input_input" autocomplete="off"
-					 onfocus="document.getElementById('telinputbox').style.border='2px solid #35C5F0'"
+					 onfocus="document.getElementById('telinputbox').style.border='2px solid #FE6500'"
 					 onblur="javascript:emptytelchk()">
 				</div>
     		</div>
@@ -132,7 +132,7 @@
     		<div class="entry_input">
     			<div class="input_box" id="com_nameinputbox" >
 					<input type="text" id="com_name" name="com_name" placeholder="비밀번호 재입력" class="input_input" autocomplete="off"
-					 onfocus="document.getElementById('com_nameinputbox').style.border='2px solid #35C5F0'"
+					 onfocus="document.getElementById('com_nameinputbox').style.border='2px solid #FE6500'"
 					 onblur="document.getElementById('com_nameinputbox').style.border='1px solid #dadada'">
 				</div>
     		</div>
@@ -143,7 +143,7 @@
     		<div class="entry_input">
     			<div class="input_box" id="com_registinputbox" >
 					<input type="text" id="com_regist" name="com_regist" placeholder="사업자 등록번호" class="input_input" autocomplete="off"
-					 onfocus="document.getElementById('com_registinputbox').style.border='2px solid #35C5F0'"
+					 onfocus="document.getElementById('com_registinputbox').style.border='2px solid #FE6500'"
 					 onblur="document.getElementById('com_registinputbox').style.border='1px solid #dadada'">
 				</div>
     		</div>
@@ -154,7 +154,7 @@
     		<div class="entry_input">
     			<div class="input_box" id="com_telinputbox" >
 					<input type="text" id="com_tel" name="com_tel" placeholder="회사 전화번호" class="input_input" autocomplete="off"
-					 onfocus="document.getElementById('com_telinputbox').style.border='2px solid #35C5F0'"
+					 onfocus="document.getElementById('com_telinputbox').style.border='2px solid #FE6500'"
 					 onblur="document.getElementById('com_telinputbox').style.border='1px solid #dadada'">
 				</div>
     		</div>
@@ -164,7 +164,7 @@
     		</div>
     		<div class="img_box" >
   				<img src="" id="com_img" width="150px" height="150px" <c:if test="${empty m.pic}">style="visibility: hidden;"</c:if>>
-  				<a class="img_del usera" href="javascript:win_upload()">등록</a>
+  				<a class="img_del usera" style="background-color:#FE6500 " href="javascript:win_upload()">등록</a>
   			</div>
   			<hr style="margin-top: 180px;margin-bottom: 20px; width: 90%">
   			<%--TODO css구성 --%>
@@ -174,7 +174,7 @@
   			<input type="checkbox" name="chkbox" id="chkbox2">개인정보 수집 및 동의
   			</div>
     	</div>
-    	<input class="input_submit" style="font-size:36px; height: 90px;" type="submit" value="판매자 가입 ">
+    	<input class="input_submit" style="font-size:36px; height: 90px;background-color:#FE6500;" type="submit" value="판매자 가입 ">
 	</form:form>
 </div>
 </div>

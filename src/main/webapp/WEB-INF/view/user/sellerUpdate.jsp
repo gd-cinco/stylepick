@@ -40,7 +40,7 @@
     		<div class="update_input">
     			<div class="input_box" id="nameinputbox" >
 					<input type="text" id="name" name="name" value="${user.name}" class="input_input" readonly="readonly"
-					 onfocus="document.getElementById('nameinputbox').style.border='2px solid #35C5F0'"
+					 onfocus="document.getElementById('nameinputbox').style.border='2px solid #FE6500'"
 					 onblur="document.getElementById('nameinputbox').style.border='1px solid #dadada'">
 				</div>
     		</div>
@@ -54,7 +54,7 @@
     			<div class="input_box" id="com_nameinputbox" >
 					<input type="text" id="com_name" name="com_name" value="${user.com_name}"
 					placeholder="회사 이름" class="input_input" autocomplete="off"
-					 onfocus="document.getElementById('com_nameinputbox').style.border='2px solid #35C5F0'"
+					 onfocus="document.getElementById('com_nameinputbox').style.border='2px solid #FE6500'"
 					 onblur="document.getElementById('com_nameinputbox').style.border='1px solid #dadada'">
 				</div>
     		</div>
@@ -70,7 +70,7 @@
 					<input type="text" id="com_regist" name="com_regist" 
 					<c:if test="${user.com_regist==0}">value=""</c:if><c:if test="${user.com_regist!=0}">value=${user.com_regist}</c:if>
 					placeholder="사업자 등록번호" class="input_input" autocomplete="off"
-					 onfocus="document.getElementById('com_registinputbox').style.border='2px solid #35C5F0'"
+					 onfocus="document.getElementById('com_registinputbox').style.border='2px solid #FE6500'"
 					 onblur="document.getElementById('com_registinputbox').style.border='1px solid #dadada'">
 				</div>
     		</div>
@@ -84,7 +84,7 @@
     			<div class="input_box" id="com_telinputbox" >
 					<input type="text" id="com_tel" name="com_tel" value="${user.com_tel}"
 					placeholder="사업자 등록번호" class="input_input" autocomplete="off"
-					 onfocus="document.getElementById('com_telinputbox').style.border='2px solid #35C5F0'"
+					 onfocus="document.getElementById('com_telinputbox').style.border='2px solid #FE6500'"
 					 onblur="document.getElementById('com_telinputbox').style.border='1px solid #dadada'">
 				</div>
     		</div>
@@ -96,11 +96,11 @@
     		</div>
     		<div class="img_box" style="margin-left: 0px;" >
   				<img src="" id="com_img" width="150px" height="150px" <c:if test="${empty m.pic}">style="visibility: hidden;"</c:if>>
-  				<a class="img_del usera" href="javascript:win_upload()">등록</a>
+  				<a class="img_del usera" style="background-color:#FE6500 " href="javascript:win_upload()">등록</a>
   			</div>
   			</div>
   			</div>
-  			<input class="input_submit" style="font-size:36px; width:300px; margin: 0 auto; margin-top:50px;" type="submit" value="수정하기">
+  			<input class="input_submit" style="font-size:36px; width:300px; margin: 0 auto; margin-top:50px;background-color:#FE6500;" type="submit" value="수정하기">
     	</div>
 </form:form>
 </body>
