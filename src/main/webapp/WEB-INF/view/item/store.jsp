@@ -18,7 +18,6 @@
 	}
 
 
-
 	#slider .slide {
 		float: left;
 		list-style-type: none;
@@ -196,8 +195,13 @@
 </script>
 </head>
 <body>
+<div style="width:1350px;">
+<div style="float:right">
+<c:if test="${!empty sessionScope.loginUser}">
+<a href="create.shop" class="genric-btn primary circle">상품 작성</a>
+</c:if>
+</div>
 <div id="slider">
-
 	<ul class="slides">
 		<!-- 이 부분을 자신의 상황에 맞게 수정 -->
 		<!-- 5개의 이미지 목록으로 구성한 슬라이드를 만들고 싶다면, 목록 처음과 끝에 복사본을 붙여넣어야함 -->
@@ -217,7 +221,6 @@
 	</ul>
 
 	<div id="slider-nav">
-	
 		<div id="slider-nav-dot-con">
 			<!-- 이 부분을 자신의 상황에 맞게 수정 -->
 			<!-- 복사본을 제외한 슬라이드 개수가 5개라면 span은 5개-->
@@ -231,8 +234,8 @@
 			<span class="slider-nav-dot" id="nav-dot7"></span>
 			<!-- 여기까지 수정 -->
 		</div>
-	</div>
-
+</div>
+</div>
 </div>
 </body>
 </html>

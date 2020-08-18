@@ -13,7 +13,7 @@ public class Item {
 	private String item_name; //상품이름
 	private int price; //상품 가격
 	private String keyword; //키워드
-	private String pictureUrl;
+	private String pictureUrl;	//상품사진
 	private MultipartFile imgurl; //상품사진
 	private String content; //상품내용
 	private Date regdate; //등록일

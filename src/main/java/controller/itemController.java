@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import exception.ItemEmptyException;
 import logic.Item;
 import logic.ShopService;
 
@@ -23,6 +25,15 @@ public class itemController {
 		//객체 주입
 		@Autowired
 		private ShopService service;
+		
+		@RequestMapping("list")	//item/list.shop
+		public ModelAndView list() {
+			ModelAndView mav =new ModelAndView();
+			List<Item> itemList = service.getItemList();
+			
+			mav.addObject("itemList",itemList);
+			return mav;
+		}
 		
 		@RequestMapping("store")	//item/list.shop
 		public String storeform(Model model) {
@@ -56,6 +67,19 @@ public class itemController {
 		return mav;
 		}
 		
+		@GetMapping("*") // /item/*.shop
+		public ModelAndView detail(Integer item_no) {
+			ModelAndView mav =new ModelAndView();
+		
+			try {
+			Item item=service.getItem(item_no);
+			mav.addObject("item",item);
+		}catch(IndexOutOfBoundsException e) {
+			throw new ItemEmptyException("존재하지 않는 상품입니다.","list.shop");
+		}
+			
+			return mav;
+		}
 		
 		
 }

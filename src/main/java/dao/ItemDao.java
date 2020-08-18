@@ -21,13 +21,19 @@ public class ItemDao {
 		return template.getMapper(ItemMapper.class).maxnum();
 	}
 	
-	public List<Item> list(int category) {
-		return template.getMapper(ItemMapper.class).list(category);
+	public List<Item> list() {
+		return template.getMapper(ItemMapper.class).select(null);
 	}
 
 	public void insert(Item item) {
 
 		template.getMapper(ItemMapper.class).insert(item);
+	}
+
+	public Item selectOne(Integer item_no) {
+		param.clear();
+		param.put("item_no", item_no);
+		return template.getMapper(ItemMapper.class).select(param).get(0);
 	}
 
 	

@@ -106,23 +106,23 @@ CREATE TABLE CS_board
 
 CREATE TABLE item
 (
-	-- 상품번호
-	item_no int NOT NULL COMMENT '상품번호',
-	-- 판매자아이디
-	userid varchar(30) NOT NULL COMMENT '판매자아이디',
-	-- 상품코드
-	code varchar(20) NOT NULL COMMENT '상품코드',
-	-- 카테고리
-	-- 1
-	-- 2
-	-- 3
-	-- 4
-	-- 5
-	-- 6
-	-- 7
-	-- 8
-	-- 9
-	category int NOT NULL COMMENT '카테고리
+   -- 상품번호
+   item_no int NOT NULL COMMENT '상품번호',
+   -- 판매자아이디
+   userid varchar(30) NOT NULL COMMENT '판매자아이디',
+   -- 상품코드
+   code varchar(20) NOT NULL COMMENT '상품코드',
+   -- 카테고리
+   -- 1
+   -- 2
+   -- 3
+   -- 4
+   -- 5
+   -- 6
+   -- 7
+   -- 8
+   -- 9
+   category int NOT NULL COMMENT '카테고리
 1
 2
 3
@@ -132,26 +132,25 @@ CREATE TABLE item
 7
 8
 9',
-	-- 제목
-	subject varchar(50) NOT NULL COMMENT '제목',
-	-- 상품명
-	item_name varchar(50) NOT NULL COMMENT '상품명',
-	-- 상품가격
-	price int(100) NOT NULL COMMENT '상품가격',
-	-- 키워드 #
-	keyword varchar(50) COMMENT '키워드 #',
-	-- 상품사진
-	imgurl varchar(200) COMMENT '상품사진',
-	-- 상품내용
-	content varchar(500) COMMENT '상품내용',
-	-- 등록일..필요할까요?
-	regdate datetime COMMENT '등록일..필요할까요?',
-	readcnt int,
-	item_option varchar(100),
-	size varbinary(50),
-	PRIMARY KEY (item_no)
+   -- 제목
+   subject varchar(50) NOT NULL COMMENT '제목',
+   -- 상품명
+   item_name varchar(50) NOT NULL COMMENT '상품명',
+   -- 상품가격
+   price int(100) NOT NULL COMMENT '상품가격',
+   -- 키워드 #
+   keyword varchar(50) COMMENT '키워드 #',
+   -- 상품사진
+  	pictureUrl varchar(200) COMMENT '상품사진',
+   -- 상품내용
+   content varchar(500) COMMENT '상품내용',
+   -- 등록일..필요할까요?
+   regdate datetime COMMENT '등록일..필요할까요?',
+   readcnt int,
+   item_option varchar(100),
+   size varbinary(50),
+   PRIMARY KEY (item_no)
 );
-
 
 CREATE TABLE item_qna
 (

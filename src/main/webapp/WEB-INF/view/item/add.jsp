@@ -19,7 +19,7 @@ var oCell = oRow.insertCell();
 
 //삽입될 Form Tag
 
-var frmTag = "<input type=text name=option style=width:380px; height:20px;> ";
+var frmTag = "<input type=text name=item_option style=width:380px; height:20px;> ";
 frmTag += "<input type=button value='삭제' onClick='removeRow()' style='cursor:hand; width:380px;'>";
 oCell.innerHTML = frmTag;
 }
@@ -115,14 +115,14 @@ oTbl1.deleteRow(oTbl1.clickedRowIndex);
 	<div class ="oi">
 	<ul>상품 옵션</ul>
 
-	<dl><input type="text" name="item_option"><input name="addButton" type="button" style="cursor:hand; width:50px;" onClick="insRow()" value="+" ></dl>
+	<dl><input type="text" name="item_option" style="width:345px"><input name="addButton" type="button" style="cursor:hand; width:45px;" onClick="insRow()" value="+" ></dl>
 	<table id="addTable" width="400" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" border="0"></table>
 	</div>
 	
 	<div class="oi">
 		<ul>사이즈</ul>
 
-	<dl><input type="text" name="size"/><input name="addButton1" type="button" style="cursor:hand; width:50px;" onClick="insRow1()" value="+" ></dl>
+	<dl><input type="text" name="size" style="width:345px"><input name="addButton1" type="button" style="cursor:hand; width:45px;" onClick="insRow1()" value="+" ></dl>
 
 		<table id="addTable1" width="400" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" border="0"></table>
 	</div>
