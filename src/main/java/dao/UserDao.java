@@ -44,7 +44,10 @@ public class UserDao {
 
 	public void update(User user) {
 		template.getMapper(UserMapper.class).update(user);
-		
+	}
+	
+	public void sellerupdate(User user) {
+		template.getMapper(UserMapper.class).sellerupdate(user);
 	}
 
 	public void delete(String userid) {
@@ -68,6 +71,8 @@ public class UserDao {
 	public int getmaxno() {
 		return template.getMapper(UserMapper.class).getmaxno();
 	}
+
+	
 
 
 	
