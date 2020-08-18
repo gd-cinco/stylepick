@@ -108,6 +108,12 @@ public class AdminDao {
 		param.clear();
 		return template.getMapper(AdminMapper.class).getEvaluation(param);
 	}
+	//charts index 3 Yearly : 연 매출 현황
+	public List<Buy> yearlyrevenue() {
+		// TODO Auto-generated method stub
+		param.clear();
+		return template.getMapper(AdminMapper.class).yearlyrevenue(param);
+	}
 
 	
 	

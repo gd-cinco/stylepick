@@ -16,7 +16,14 @@ public class Buy {
 	private String memo;
 	
 	private String weeks_ago;
+	private String month;
 	
+	public String getMonth() {
+		return month;
+	}
+	public void setMonth(String month) {
+		this.month = month;
+	}
 	public String getWeeks_ago() {
 		return weeks_ago+"주전";
 	}
@@ -82,19 +89,13 @@ public class Buy {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
-	/*
-	@Override
-	public String toString() {
-		return "Buy [order_no=" + order_no + ", userid=" + userid + ", name=" + name + ", address=" + address + ", tel="
-				+ tel + ", orderdate=" + orderdate + ", stat=" + stat + ", amount=" + amount + ", memo=" + memo + "]";
-	}
-	*/
 	@Override
 	public String toString() {
 		return "Buy [order_no=" + order_no + ", userid=" + userid + ", name=" + name + ", address=" + address + ", tel="
 				+ tel + ", orderdate=" + orderdate + ", stat=" + stat + ", amount=" + amount + ", memo=" + memo
-				+ ", weeks_ago=" + weeks_ago + "]";
+				+ ", weeks_ago=" + weeks_ago + ", month=" + month + "]";
 	}
+	
 	
 	
 	
