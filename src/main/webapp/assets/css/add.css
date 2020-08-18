@@ -4,14 +4,21 @@
 }
 
 
+
 .ii{
 	display:inline-block; 
 	margin-right:50px;
 }
 
+.oi{
+	display:inline-block; 
+	margin-right:30px;
+}
+
 input {
   width:380px;
   font-size:20px;
+
 }
 
 .genric-btn.success{

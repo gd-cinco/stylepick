@@ -11,12 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import logic.Comment;
 import logic.ShopService;
 import logic.Sns;
 import logic.SnsItem;
+import logic.User;
 
 
 @Controller
@@ -96,6 +97,27 @@ public class SnsController {
 		
 		return mav;
 		
+	}
+	
+	@PostMapping("comment")
+	public ModelAndView comment(Comment comment) {
+		ModelAndView mav = new ModelAndView();
+		comment.setReply_no(service.replyNum(comment.getSns_no()));
+		service.replyWrite(comment);
+		mav.setViewName("redirect:detail.shop?sns_no="+comment.getSns_no());
+		return mav;
+	}
+	
+	@GetMapping("detail")
+	public ModelAndView getSns(int sns_no) {
+		ModelAndView mav = new ModelAndView();
+		Sns sns = service.getSns(sns_no);
+		User user = service.getUser(sns.getUserid());
+		List<SnsItem> snsitems = service.getSnsItem(sns.getSns_no());
+		mav.addObject("snsitems",snsitems);
+		mav.addObject("sns",sns);
+		mav.addObject("user",user);
+		return mav;
 	}
 	
 	

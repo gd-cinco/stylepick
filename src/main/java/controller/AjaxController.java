@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,24 +19,22 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import logic.Board;
+import logic.Comment;
 import logic.GoogleChartService;
 import logic.Line;
 import logic.ShopService;
 import logic.Sns;
 import logic.Todolist;
+import logic.User;
 
 //view를통하지 않고 바로 클라이언트로 전달(just data) : @Controller + @ResponseBody
 @RestController
@@ -240,6 +237,7 @@ public class AjaxController {
         return "success";
     }
 	
+
 	//[admin] dashboard index 3-2 To-do list show 0817
 	//@RequestMapping(value="/board/commentList.do", produces="application/json; charset=utf8")
 	@RequestMapping("showtodolist")
@@ -301,6 +299,22 @@ public class AjaxController {
 		}
 
 		return json;
+	}
+	
+	@RequestMapping(value="commentlist",produces="text/plain; charset=UTF8")
+	public String commentlist(int sns_no) {
+		StringBuilder html = new StringBuilder();
+		List<Comment> list = service.getCommentList(sns_no);
+		for(Comment c : list) {
+			User user = service.getUser(c.getUserid());
+			html.append("<tr style=\"margin-bottom : 10px;\"><td style=\"width:10%;\"><img src=\""+user.getImgurl()+"\" width=\"30px\" height=\"30px\"></td>");
+			html.append("<td style=\"width:20%;\">"+user.getUserid()+"</td>");
+			html.append("<td>"+c.getContent()+"</td>");
+			String regdate = new SimpleDateFormat("yy.MM.dd").format(c.getRegdate());
+			html.append("<td style=\"width:20%; font-size:13px;\">"+regdate+"</td>");
+		}
+		System.out.println(html);
+		return html.toString();
 	}
 
 }

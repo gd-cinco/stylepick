@@ -123,3 +123,11 @@ body, h1, h2, h3, h4, h5 {
 .user-cards img {
 	border-radius : 6px;
 }
+
+.reply_list {
+	width:100%
+}
+
+.reply_list tr {
+	margin-bottom : 10px;
+}

@@ -48,4 +48,10 @@ public class SnsDao {
 		}
 	}
 
+	public Sns selectOne(int sns_no) {
+		param.clear();
+		param.put("sns_no",sns_no);
+		return template.getMapper(SnsMapper.class).select(param);
+	}
+
 }

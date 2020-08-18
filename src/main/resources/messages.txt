@@ -12,7 +12,8 @@ error.required.name=이름을 입력해 주세요
 error.login.user=로그인이 필요합니다.
 error.login.id=아이디를 확인하세요.
 error.login.password=비밀번호를 확인하세요.
-error.user.update=사용자 수정시 오류가 있습니다.
+error.user.update=사용자 수정 중 문제가 발생했습니다.
+error.user.sellerEntry=판매자 등록중 문제가 발생했습니다.
 
 user.userId.default=로그인 시 필요합니다.
 user.userName.default=배송 시 필요합니다.

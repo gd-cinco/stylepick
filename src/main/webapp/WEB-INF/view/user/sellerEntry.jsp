@@ -9,6 +9,9 @@
 <link rel="stylesheet" href="../assets/css/user.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
+	var namechecked=false;
+	var telchecked=false;
+	
 	function win_upload(){
 		var op = "width=500,height=500,left=50,top=150";
 		open("pictureForm.shop","",op);
@@ -18,20 +21,40 @@
 		$("input[name='chkbox']").prop("checked",allchk.checked)
 	}
 	
+	function emptynamechk(){
+		document.getElementById('nameinputbox').style.border='1px solid #dadada'
+		var name =  $("#name").val();
+		if(name==""){
+			$("#emptyname").show();
+			namechecked = false;
+		}else{
+			$("#emptyname").hide();
+			namechecked = true;
+		}
+	}
 	function emptytelchk(){ //숫자가 아닌경우도 배제할것
 		document.getElementById('telinputbox').style.border='1px solid #dadada'
 		var tel =  $("#tel").val();
 		if(tel==""){
 			$("#emptytel").show();
+			telchecked = false;
 		}else{
 			$("#emptytel").hide();
+			telchecked = true;
 		}
-		
 	}
 
 	
 	function chkboxcheck(f) {
 			var result = true;
+		  if(!namechecked){
+			  result = false;
+			  alert("이름을 확인하세요.")
+		  }
+		  if(!telchecked){
+			  result = false;
+			  alert("전화번호를 확인하세요.")
+		  }
 		  if(!$("input:checkbox[id='chkbox1']").is(":checked")) {
 	        alert("이용 약관에 동의하세요.")
 	        result=false;
@@ -40,10 +63,7 @@
 	        alert("개인정보 수집 이용 약관에 동의하세요.")
 	        result= false;
 	      }
-	      if(result==true) {
-	        return true;
-	      }
-	      return false;
+	      return result;
 	   }
 
 </script>
@@ -63,6 +83,7 @@
     		 onclick="javascript:location.href='../sns/main.shop'" style="margin-bottom:20px; cursor: pointer;">
     		 
 	<form:form modelAttribute="user" method="post" action="sellerEntry.shop" onsubmit="return chkboxcheck(this)">
+		<input type="hidden" name="userid" value="${loginUser.userid}">
 		<div style="width: 100%; display:inline;text-align: center; height: 100px;">
 			<spring:hasBindErrors name="user">
 				<font class="userfont" color="red">
@@ -80,9 +101,11 @@
     			<div class="input_box" id="nameinputbox" >
 					<input type="text" id="name" name="name" placeholder="이름" class="input_input" autocomplete="off"
 					 onfocus="document.getElementById('nameinputbox').style.border='2px solid #35C5F0'"
-					 onblur="document.getElementById('nameinputbox').style.border='1px solid #dadada'">
+					 onblur="javascript:emptynamechk()">
 				</div>
     		</div>
+    		<div class="input_err" style="margin-left: 60px;">
+    		<div id="emptyname" style="display: none;"><font class="userfont" id="emptynameval">필수사항입니다.</font></div></div>
     		
     		<div class="entry_text">
     			<a>전화번호</a><a style="color: red;">*</a>

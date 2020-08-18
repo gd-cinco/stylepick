@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>SNS 상세보기</title>
-<link rel="stylesheet" href="../assets/css/sns.css?ver=1.1">
+<link rel="stylesheet" href="../assets/css/sns.css?ver=1.2">
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <style>
 	.form {
    	 	margin-left: auto;
@@ -38,33 +39,61 @@
 		</div>
 	</div>
 	<div class="side-position">
-	<!-- 1 : OOTD일 경우, 2 : QnA일 경우
-		<c:if test="${type==1}">
+		<c:if test="${sns.type==1 && !empty snsitems}">
 		<div class="side style-info">
 			<table>
+				<c:forEach var="s" items="${snsitems}">
 				<tr>
-					<td class="category">Outer</td>
-					<td>Covernat</td>
+					<td class="category">${s.category}</td>
+					<td>${s.detail}</td>
 				</tr>
+				</c:forEach>
 			</table>
 		</div>
 		</c:if>
-		-->
 		<div class="side style-content">
-			<div class="style-profile"><img src="../assets/img/test6.PNG" width="30px" height="30px">userid</div>
-			<div class="style-description">캐주얼룩😀#데일리룩 #캐주얼룩 #남자코디 #대학생룩 #남친룩</div>
+			<div class="style-profile"><img src="../assets/img/test6.PNG" width="30px" height="30px">${user.nickname}</div>
+			<div class="style-description">${sns.description}</div>
 		</div>
 		<div class="style-action">
 			<img src="../assets/img/test7.PNG" width="30px" height="30px">LIKE
 		</div>
 		<div class="style-comment">
 			<img src="../assets/img/test8.PNG" width="30px" height="30px">Comment (댓글수)
-			<textarea placeholder="댓글을 입력하세요" style="width:300px; height:50px; margin-top:10px;"></textarea>
-			<button style="height: 50px;float: right; margin-top:10px;">입력</button>
-			<table>
+			<form class="comment-feed__form" name="f" action="comment.shop" method="post">
+				<input type="hidden" name="sns_no" value="${param.sns_no}"/>
+				<input type="hidden" name="userid" value="${sessionScope.loginUser.userid}"/>
+				<textarea name="content" placeholder="댓글을 입력하세요" style="width:300px; height:50px; margin-top:10px;"></textarea>
+				<button type="submit" style="height: 50px;float: right; margin-top:10px;">입력</button>
+			</form>
+			<table class="reply_list"> 
 			</table>
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+
+$(function( ){
+	loadComment('${param.sns_no}');
+})
+
+function loadComment(sns_no){
+	var params = "sns_no=" + sns_no;
+	console.log(params)
+	$.ajax({
+		data : params,
+		url : "${path}/ajax/commentlist.shop",
+		success : function(data) {
+			console.log(data)
+			$(".reply_list").html(data);
+		},
+		error : function(e) {
+			alert("댓글 조회시 서버 오류:"+e.status);
+		}
+	})
+}
+
+</script>
 </body>
 </html>

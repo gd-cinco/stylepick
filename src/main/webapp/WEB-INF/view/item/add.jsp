@@ -18,8 +18,9 @@ oRow.onmouseover=function(){oTbl.clickedRowIndex=this.rowIndex}; //clickedRowInd
 var oCell = oRow.insertCell();
 
 //삽입될 Form Tag
-var frmTag = "<input type=text name=item_option style=width:350px; height:20px;> ";
-frmTag += "<input type=button value='삭제' onClick='removeRow()' style='cursor:hand'>";
+
+var frmTag = "<input type=text name=option style=width:380px; height:20px;> ";
+frmTag += "<input type=button value='삭제' onClick='removeRow()' style='cursor:hand; width:380px;'>";
 oCell.innerHTML = frmTag;
 }
 //Row 삭제
@@ -53,8 +54,8 @@ oRow1.onmouseover=function(){oTbl1.clickedRowIndex=this.rowIndex}; //clickedRowI
 var oCell = oRow1.insertCell();
 
 //삽입될 Form Tag
-var frmTag = "<input type=text name=size style=width:350px; height:20px;> ";
-frmTag += "<input type=button value='삭제' onClick='removeRow1()' style='cursor:hand'>";
+var frmTag = "<input type=text name=size style=width:380px; height:20px;> ";
+frmTag += "<input type=button value='삭제' onClick='removeRow1()' style='cursor:hand; width:380px;'>";
 oCell.innerHTML = frmTag;
 }
 //Row 삭제
@@ -111,15 +112,18 @@ oTbl1.deleteRow(oTbl1.clickedRowIndex);
 	</div>
 	
 	<div>
-	<div class ="ii">
+	<div class ="oi">
 	<ul>상품 옵션</ul>
+
 	<dl><input type="text" name="item_option"><input name="addButton" type="button" style="cursor:hand; width:50px;" onClick="insRow()" value="+" ></dl>
 	<table id="addTable" width="400" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" border="0"></table>
 	</div>
 	
-	<div class="ii">
+	<div class="oi">
 		<ul>사이즈</ul>
+
 	<dl><input type="text" name="size"/><input name="addButton1" type="button" style="cursor:hand; width:50px;" onClick="insRow1()" value="+" ></dl>
+
 		<table id="addTable1" width="400" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" border="0"></table>
 	</div>
 	</div>

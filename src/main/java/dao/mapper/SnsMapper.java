@@ -23,17 +23,20 @@ public interface SnsMapper {
 
 	@Select({"<script>",
 		"select sns_no,type,userid,img1,description,regdate from sns ",
-		"<if test='sns_no != null'> where sns_no = #{sns_no} </if>",
 		"<if test='sns_no == null'> where type = #{type} order by sns_no limit #{startrow}, #{limit}</if>",
 		"</script>"})
 	List<Sns> select1(Map<String, Object> param);
 	
 	@Select({"<script>",
 		"select sns_no,type,userid,img1,description,regdate from sns ",
-		"<if test='sns_no != null'> where sns_no = #{sns_no} </if>",
 		"<if test='sns_no == null'> where type = #{type} order by regdate limit #{startrow}, #{limit}</if>",
 		"</script>"})
 	List<Sns> select2(Map<String, Object> param);
+
+	@Select("select sns_no,type,userid,img1,description,regdate,height,weight from sns where sns_no=#{sns_no}")
+	Sns select(Map<String, Object> param);
+	
+	
 
 }
 

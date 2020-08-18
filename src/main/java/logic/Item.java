@@ -98,6 +98,7 @@ public class Item {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
+
 	public int getReadcnt() {
 		return readcnt;
 	}
@@ -110,6 +111,7 @@ public class Item {
 	}
 	public void setItem_option(String item_option) {
 		this.item_option = item_option;
+
 	}
 	public String getSize() {
 		return size;
@@ -117,6 +119,8 @@ public class Item {
 	public void setSize(String size) {
 		this.size = size;
 	}
+
+	
 	@Override
 	public String toString() {
 		return "Item [item_no=" + item_no + ", userid=" + userid + ", category=" + category + ", code=" + code
@@ -126,6 +130,7 @@ public class Item {
 	}
 	
 	
+
 
 	
 	

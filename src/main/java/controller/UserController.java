@@ -102,20 +102,10 @@ public class UserController {
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:../sns/main.shop"; //TODO 메인페이지
+		return "redirect:../sns/main.shop";
 	}
-	/*
-	 * AOP 설정하기
-	 * 1. UserController의 check로 시작하는 메서드에 매개변수가
-	 *    id,session인 경우
-	 *    -로그인 안된경우 : 로그인하세요. =>login.shop 페이지 이동
-	 *    -admin이 아니면서, 다른아이디 정보 조회시. 본인 정보만 조회가능
-	 *    					=>main.shop 페이지 이동
-	 * 
-	 * 
-	 */
 	
-	@GetMapping(value = {"update","delete"}) 
+	@GetMapping(value = {"update","delete"}) //sellerEntry
 	public ModelAndView checkview(String id,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = service.getUser(id);
@@ -146,25 +136,16 @@ public class UserController {
 	@PostMapping("sellerEntry")
 	public ModelAndView checksellerEntry(User user,BindingResult bresult,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-
-		User loginUser = (User)session.getAttribute("loginUser");
-		if(user.getName().equals(""))
-			bresult.reject("error.required.name");
-		if(user.getTel().equals(""))
-			bresult.reject("error.required.tel");
 		if(bresult.hasErrors()) {
 			bresult.reject("error.input.user");
 			return mav;
 		}
 		try {
-			service.userUpdate(user);
-			mav.setViewName("redirect:../sns/mypage.shop"); //admin이아닐땐 가능
-			if(loginUser.getUserid().equals(user.getUserid())) {
-				session.setAttribute("loginUser", user);
-			}
+			service.sellerEntry(user);
+			mav.setViewName("redirect:../sns/mypage.shop"); 
 		}catch (Exception e) {
 			e.printStackTrace();
-			bresult.reject("error.user.update");
+			bresult.reject("error.user.sellerEntry");
 		}
 		return mav;
 	}
