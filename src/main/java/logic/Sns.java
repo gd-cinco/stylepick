@@ -12,8 +12,6 @@ public class Sns {
 	private String userid;
 	private String img1url;
 	private MultipartFile img1;
-	private MultipartFile img2;
-	private MultipartFile img3;
 	private String description;
 	private Date regdate;
 	private List<SnsItem> itemList = new ArrayList<SnsItem>();
@@ -67,18 +65,6 @@ public class Sns {
 	public void setImg1(MultipartFile img1) {
 		this.img1 = img1;
 	}
-	public MultipartFile getImg2() {
-		return img2;
-	}
-	public void setImg2(MultipartFile img2) {
-		this.img2 = img2;
-	}
-	public MultipartFile getImg3() {
-		return img3;
-	}
-	public void setImg3(MultipartFile img3) {
-		this.img3 = img3;
-	}
 	public int getWeight() {
 		return weight;
 	}
@@ -94,7 +80,7 @@ public class Sns {
 	@Override
 	public String toString() {
 		return "Sns [sns_no=" + sns_no + ", type=" + type + ", userid=" + userid + ", img1url=" + img1url + ", img1="
-				+ img1 + ", img2=" + img2 + ", img3=" + img3 + ", description=" + description + ", regdate=" + regdate
+				+ img1 + ", description=" + description + ", regdate=" + regdate
 				+ ", itemList=" + itemList + ", weight=" + weight + ", height=" + height + "]";
 	}
 	

@@ -184,7 +184,16 @@ public class ShopService {
 	public int getSnsCount(String type,String searchcontent) {
 		return snsDao.listcount(type,searchcontent);
 	}
-
+	
+	//[sns] ootd 좋아요
+	public void addlike(int sns_no, String userid) {
+		 snsDao.like(sns_no,userid);
+	}
+	
+	//[sns] ootd 좋아요 개수
+	public int getlikenum(int sns_no) {
+		return snsDao.likenum(sns_no);
+	}
 
 			
 	// [아이템]상품 리스트 정보
@@ -289,6 +298,7 @@ public class ShopService {
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
+
 
 
 

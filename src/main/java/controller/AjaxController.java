@@ -237,7 +237,7 @@ public class AjaxController {
         return "success";
     }
 	
-
+/*
 	//[admin] dashboard index 3-2 To-do list show 0817
 	//@RequestMapping(value="/board/commentList.do", produces="application/json; charset=utf8")
 	@RequestMapping("showtodolist")
@@ -266,7 +266,7 @@ public class AjaxController {
         
     }
 
-
+*/
 	
 	/**
 	 * Board
@@ -313,8 +313,17 @@ public class AjaxController {
 			String regdate = new SimpleDateFormat("yy.MM.dd").format(c.getRegdate());
 			html.append("<td style=\"width:20%; font-size:13px;\">"+regdate+"</td>");
 		}
-		System.out.println(html);
 		return html.toString();
 	}
-
+	
+	@RequestMapping(value="like",produces="text/plain; charset=UTF8")
+	public String likeSns(int sns_no,String userid) {
+		System.out.println(sns_no+userid);
+		StringBuilder html = new StringBuilder();
+		service.addlike(sns_no,userid);
+		int likenum = service.getlikenum(sns_no);
+		html.append("<img src=\"../assets/img/test7.PNG\" width=\"30px\" height=\"30px\">"+likenum);
+		return html.toString();
+	}
+	
 }

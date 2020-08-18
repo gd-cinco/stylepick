@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import exception.SnsException;
 import logic.Comment;
 import logic.ShopService;
 import logic.Sns;
@@ -57,9 +58,9 @@ public class SnsController {
 		sns.setItemList(list);
 		service.snsWrite(sns,request);
 		if(sns.getType()==1) {
-			mav.setViewName("redirect:main.shop?ksb=new&type="+sns.getType());
+			mav.setViewName("redirect:main.shop?ksb=new&type=1");
 		} else if(sns.getType()==2) {
-			mav.setViewName("redirect:main.shop?type="+sns.getType());
+			mav.setViewName("redirect:main.shop?type=2");
 		}
 		return mav;
 	}
@@ -111,12 +112,17 @@ public class SnsController {
 	@GetMapping("detail")
 	public ModelAndView getSns(int sns_no) {
 		ModelAndView mav = new ModelAndView();
-		Sns sns = service.getSns(sns_no);
-		User user = service.getUser(sns.getUserid());
-		List<SnsItem> snsitems = service.getSnsItem(sns.getSns_no());
-		mav.addObject("snsitems",snsitems);
-		mav.addObject("sns",sns);
-		mav.addObject("user",user);
+		try {
+			Sns sns = service.getSns(sns_no);
+			User user = service.getUser(sns.getUserid());
+			List<SnsItem> snsitems = service.getSnsItem(sns.getSns_no());
+			sns.setItemList(snsitems);
+			mav.addObject("snsitems",snsitems);
+			mav.addObject("sns",sns);
+			mav.addObject("user",user);
+		} catch(Exception e) {
+			throw new SnsException("없는 게시물입니다.","main.shop?ksb=new&type=1");
+		}
 		return mav;
 	}
 	

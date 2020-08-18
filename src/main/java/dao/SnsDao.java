@@ -54,4 +54,17 @@ public class SnsDao {
 		return template.getMapper(SnsMapper.class).select(param);
 	}
 
+	public void like(int sns_no, String userid) {
+		param.clear();
+		param.put("sns_no",sns_no);
+		param.put("userid",userid);
+		template.getMapper(SnsMapper.class).like(param);
+	}
+
+	public int likenum(int sns_no) {
+		param.clear();
+		param.put("sns_no",sns_no);
+		return template.getMapper(SnsMapper.class).likenum(param);
+	}
+
 }

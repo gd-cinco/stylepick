@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>SNS 상세보기</title>
 <link rel="stylesheet" href="../assets/css/sns.css?ver=1.2">
+<link rel="stylesheet" href="../assets/css/icons.css?ver=1.1">
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <style>
 	.form {
@@ -27,9 +28,10 @@
 <div class="fullview-inner-wrapper">
 		<input type="hidden" name="type" value="${type}">
 		<input type="hidden" name="userid" value="${sessionScope.loginUser.userid}"/>
+		<input type="hidden" name="sns_no" value="${sns.sns_no}"/>
 	<div class="pictures-wrapper">
 		<div class="pictures op-carousel">
-			<img src="#" width="600px" height="600px">
+			<img src="file/${sns.img1url}" width="600px" height="600px">
 		</div>
 		<div class="style-button">
 			<c:if test="${sessionScope.loginUser.userid==sns.userid}">
@@ -56,7 +58,7 @@
 			<div class="style-description">${sns.description}</div>
 		</div>
 		<div class="style-action">
-			<img src="../assets/img/test7.PNG" width="30px" height="30px">LIKE
+			<button class="icobutton icobutton--heart" onclick="likeSns(${sns.sns_no},'${sessionScope.loginUser.userid}')"><span class="fa fa-heart"></span></button>
 		</div>
 		<div class="style-comment">
 			<img src="../assets/img/test8.PNG" width="30px" height="30px">Comment (댓글수)
@@ -77,6 +79,22 @@
 $(function( ){
 	loadComment('${param.sns_no}');
 })
+
+function likeSns(sns_no,userid){
+	var params = "sns_no=" + sns_no + "&userid=" + userid;
+	console.log(params)
+		$.ajax({
+		data : params,
+		url : "${path}/ajax/like.shop",
+		success : function(data) {
+			console.log(data)
+			$(".style-action").html(data);
+		},
+		error : function(e) {
+			alert("좋아요 실패:"+e.status);
+		}
+	})
+}
 
 function loadComment(sns_no){
 	var params = "sns_no=" + sns_no;
