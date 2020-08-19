@@ -22,6 +22,15 @@
 		margin : 10px 0px;
 	}
 </style>
+<script type="text/javascript">
+	function logincheck() {
+		<c:if test="${sessionScope.loginUser.userid==null}">
+			alert("로그인 후 이용하세요.");
+			return false;
+		</c:if>
+		return true;
+	}
+</script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
@@ -46,23 +55,27 @@
 			<table>
 				<c:forEach var="s" items="${snsitems}">
 				<tr>
-					<td class="category">${s.category}</td>
-					<td>${s.detail}</td>
+					<td rowspan="2" class="categoryimg"><img src="../assets/img/${s.category}.svg" width="50px" height="50px" style="margin:5px 15px;"></td>
+					<td class="category" style="padding:10px 0 1px 10px;">${s.category}</td>
+				</tr>
+				<tr>
+					<td style="padding:0 10px 5px 10px;">${s.detail}</td>
 				</tr>
 				</c:forEach>
 			</table>
 		</div>
 		</c:if>
 		<div class="side style-content">
-			<div class="style-profile"><img src="../assets/img/test6.PNG" width="30px" height="30px">${user.nickname}</div>
+			<div class="style-profile"><img src="../assets/img/test6.PNG" width="30px" height="30px" style="margin-right: 10px;">${user.nickname}</div>
 			<div class="style-description">${sns.description}</div>
 		</div>
 		<div class="style-action">
 			<button class="icobutton icobutton--heart" onclick="likeSns(${sns.sns_no},'${sessionScope.loginUser.userid}')"><span class="fa fa-heart"></span></button>
+			${likenum}
 		</div>
 		<div class="style-comment">
-			<img src="../assets/img/test8.PNG" width="30px" height="30px">Comment (댓글수)
-			<form class="comment-feed__form" name="f" action="comment.shop" method="post">
+			<img src="../assets/img/test8.PNG" width="30px" height="30px" style="margin-right: 10px;">Comment (${commentnum})
+			<form class="comment-feed__form" name="f" action="comment.shop" method="post" onsubmit="return logincheck(this)">
 				<input type="hidden" name="sns_no" value="${param.sns_no}"/>
 				<input type="hidden" name="userid" value="${sessionScope.loginUser.userid}"/>
 				<textarea name="content" placeholder="댓글을 입력하세요" style="width:300px; height:50px; margin-top:10px;"></textarea>

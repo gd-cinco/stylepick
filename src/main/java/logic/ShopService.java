@@ -195,12 +195,17 @@ public class ShopService {
 		 snsDao.like(sns_no,userid);
 	}
 	
-	//[sns] ootd 좋아요 개수
+	//[sns] ootd 좋아요수
 	public int getlikenum(int sns_no) {
 		return snsDao.likenum(sns_no);
 	}
 
-			
+	//[sns] ootd 댓글수
+	public int getcommentnum(int sns_no) {
+		return snsDao.commentnum(sns_no);
+	}
+	
+	
 	// [아이템]상품 리스트 정보
 	public List<Item> getItemList() {
 		return itemDao.list();
@@ -313,6 +318,8 @@ public class ShopService {
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
+
+
 
 
 }

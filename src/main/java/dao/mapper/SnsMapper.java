@@ -41,6 +41,9 @@ public interface SnsMapper {
 
 	@Select("select count(*) from sns_like where sns_no=#{sns_no}")
 	int likenum(Map<String, Object> param);
+
+	@Select("select count(*) from comment where sns_no=#{sns_no}")
+	int commentnum(Map<String, Object> param);
 	
 	
 

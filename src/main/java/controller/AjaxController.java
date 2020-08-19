@@ -317,7 +317,7 @@ public class AjaxController {
 		List<Comment> list = service.getCommentList(sns_no);
 		for(Comment c : list) {
 			User user = service.getUser(c.getUserid());
-			html.append("<tr style=\"margin-bottom : 10px;\"><td style=\"width:10%;\"><img src=\""+user.getImgurl()+"\" width=\"30px\" height=\"30px\"></td>");
+			html.append("<tr style=\"border-bottom:1px solid #babbbb;\"><td style=\"width:10%; padding:10px 0;\"><img src=\""+user.getImgurl()+"\" width=\"30px\" height=\"30px\"></td>");
 			html.append("<td style=\"width:20%;\">"+user.getUserid()+"</td>");
 			html.append("<td>"+c.getContent()+"</td>");
 			String regdate = new SimpleDateFormat("yy.MM.dd").format(c.getRegdate());
