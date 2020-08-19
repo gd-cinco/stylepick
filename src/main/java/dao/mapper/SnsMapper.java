@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import logic.Sns;
 
@@ -44,6 +45,15 @@ public interface SnsMapper {
 
 	@Select("select count(*) from comment where sns_no=#{sns_no}")
 	int commentnum(Map<String, Object> param);
+
+	@Update("update sns set img1=#{img1url},description=#{description},height=#{height},weight=#{weight} where sns_no=#{sns_no}")
+	void update(Sns sns);
+
+	@Select("select sns_no,type,userid,img1 img1url,description,regdate,height,weight from sns where userid=#{userid}")
+	List<Sns> mylist(Map<String, Object> param);
+
+	@Select("select count(*) from sns where userid=#{userid}")
+	int mysnsnum(Map<String, Object> param);
 	
 	
 

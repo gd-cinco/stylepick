@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/jspHeader.jsp" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -186,7 +185,7 @@
 				<tr id="info">
 					<td><select name="category">
 							<option value="outer">Outer</option>
-							<option value="top">Top</option>
+							<option value="top" selected>Top</option>
 							<option value="bottom">Bottom</option>
 							<option value="dress">Dress</option>
 							<option value="shoes">Shoes</option>

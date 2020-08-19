@@ -8,7 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
+import dao.mapper.ItemMapper;
 import dao.mapper.SnsMapper;
 import logic.Sns;
 
@@ -71,6 +71,22 @@ public class SnsDao {
 		param.clear();
 		param.put("sns_no",sns_no);
 		return template.getMapper(SnsMapper.class).commentnum(param);
+	}
+
+	public void update(Sns sns) {
+		template.getMapper(SnsMapper.class).update(sns);
+	}
+
+	public List<Sns> mylist(String userid) {
+		param.clear();
+		param.put("userid",userid);
+		return template.getMapper(SnsMapper.class).mylist(param);
+	}
+
+	public int mysnscount(String userid) {
+		param.clear();
+		param.put("userid",userid);
+		return template.getMapper(SnsMapper.class).mysnsnum(param);
 	}
 
 }

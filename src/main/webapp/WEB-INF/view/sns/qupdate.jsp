@@ -127,9 +127,10 @@
 </head>
 <body>
 <div class="form">
-	<form:form modelAttribute="sns" action="qupdate.shop" enctype="multipart/form-data" name="f">
-		<form:hidden path="type" value="2"/>
-		<form:hidden path="userid" value="${sessionScope.loginUser.userid}"/>
+	<form:form modelAttribute="sns" action="update.shop" enctype="multipart/form-data" name="f">
+		<form:hidden path="type"/>
+		<form:hidden path="userid"/>
+		<form:hidden path="sns_no"/>
 		<div class="style imgs">
 			<h4>스타일 이미지</h4>
 			<div class="img preview-image" id="imgs">

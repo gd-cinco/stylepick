@@ -36,7 +36,7 @@
 <body>
 <div class="fullview-inner-wrapper">
 		<input type="hidden" name="type" value="${type}">
-		<input type="hidden" name="userid" value="${sessionScope.loginUser.userid}"/>
+		<input type="hidden" name="loginid" value="${sessionScope.loginUser.userid}"/>
 		<input type="hidden" name="sns_no" value="${sns.sns_no}"/>
 	<div class="pictures-wrapper">
 		<div class="pictures op-carousel">
@@ -44,8 +44,13 @@
 		</div>
 		<div class="style-button">
 			<c:if test="${sessionScope.loginUser.userid==sns.userid}">
-				<a href="supdate.shop" class="button" style="padding: 10px 20px; margin: 25px 0 29px 40%; color: #ffffff;">수정</a>
-				<a href="sdelete.shop" class="button" style="margin-left: 1%;padding: 10px 20px;background-color: #ff003c;color: #ffffff;">삭제</a>
+				<c:if test="${sns.type==1}">
+					<a href="supdate.shop?sns_no=${sns.sns_no}" class="button" style="padding: 10px 20px; margin: 25px 0 29px 40%; color: #ffffff;">수정</a>
+				</c:if>
+				<c:if test="${sns.type==2}">
+					<a href="qupdate.shop?sns_no=${sns.sns_no}" class="button" style="padding: 10px 20px; margin: 25px 0 29px 40%; color: #ffffff;">수정</a>
+				</c:if>
+				<a href="sdelete.shop?sns_no=${sns.sns_no}" class="button" style="margin-left: 1%;padding: 10px 20px;background-color: #ff003c;color: #ffffff;">삭제</a>
 			</c:if>
 		</div>
 	</div>
@@ -71,10 +76,10 @@
 		</div>
 		<div class="style-action">
 			<button class="icobutton icobutton--heart" onclick="likeSns(${sns.sns_no},'${sessionScope.loginUser.userid}')"><span class="fa fa-heart"></span></button>
-			${likenum}
+			${sns.likenum}
 		</div>
 		<div class="style-comment">
-			<img src="../assets/img/test8.PNG" width="30px" height="30px" style="margin-right: 10px;">Comment (${commentnum})
+			<img src="../assets/img/test8.PNG" width="30px" height="30px" style="margin-right: 10px;">Comment (${sns.commentnum})
 			<form class="comment-feed__form" name="f" action="comment.shop" method="post" onsubmit="return logincheck(this)">
 				<input type="hidden" name="sns_no" value="${param.sns_no}"/>
 				<input type="hidden" name="userid" value="${sessionScope.loginUser.userid}"/>

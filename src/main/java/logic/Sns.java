@@ -17,6 +17,8 @@ public class Sns {
 	private List<SnsItem> itemList = new ArrayList<SnsItem>();
 	private int weight;
 	private int height;
+	private int likenum;
+	private int commentnum;
 	public int getSns_no() {
 		return sns_no;
 	}
@@ -77,12 +79,26 @@ public class Sns {
 	public void setHeight(int height) {
 		this.height = height;
 	}
+	public int getLikenum() {
+		return likenum;
+	}
+	public void setLikenum(int likenum) {
+		this.likenum = likenum;
+	}
+	public int getCommentnum() {
+		return commentnum;
+	}
+	public void setCommentnum(int commentnum) {
+		this.commentnum = commentnum;
+	}
 	@Override
 	public String toString() {
 		return "Sns [sns_no=" + sns_no + ", type=" + type + ", userid=" + userid + ", img1url=" + img1url + ", img1="
-				+ img1 + ", description=" + description + ", regdate=" + regdate
-				+ ", itemList=" + itemList + ", weight=" + weight + ", height=" + height + "]";
+				+ img1 + ", description=" + description + ", regdate=" + regdate + ", itemList=" + itemList
+				+ ", weight=" + weight + ", height=" + height + ", likenum=" + likenum + ", commentnum=" + commentnum
+				+ "]";
 	}
+	
 	
 	
 }

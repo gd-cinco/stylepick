@@ -205,6 +205,29 @@ public class ShopService {
 		return snsDao.commentnum(sns_no);
 	}
 	
+	//[sns] ootd 수정
+	public void snsUpdate(Sns sns, HttpServletRequest request) {
+		if(sns.getImg1() != null && !sns.getImg1().isEmpty()) {
+			uploadFileCreate(sns.getImg1(),request,"sns/file/");
+			sns.setImg1url(sns.getImg1().getOriginalFilename());
+		}
+		snsDao.update(sns);
+		for(SnsItem si : sns.getItemList()) {
+			snsItemDao.update(si);
+		}		
+	}
+	
+	//[sns] mypage 내가쓴글
+	public List<Sns> mysns(String userid) {
+		return snsDao.mylist(userid);
+	}
+	
+	//[sns] mypage sns수
+	public int getmySnsCount(String userid) {
+		return snsDao.mysnscount(userid);
+	}
+	
+
 	
 	// [아이템]상품 리스트 정보
 	public List<Item> getItemList() {
@@ -318,6 +341,8 @@ public class ShopService {
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
+
+
 
 
 

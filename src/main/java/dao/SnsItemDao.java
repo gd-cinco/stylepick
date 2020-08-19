@@ -27,4 +27,9 @@ public class SnsItemDao {
 		return template.getMapper(SnsItemMapper.class).select(param); 
 	}
 
+	public void update(SnsItem snsItem) {
+		template.getMapper(SnsItemMapper.class).delete(snsItem);
+		template.getMapper(SnsItemMapper.class).insert(snsItem);
+	}
+
 }

@@ -1,9 +1,11 @@
 package controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,13 +33,13 @@ public class SnsController {
 	public String test(Model model) {
 		return null;
 	}
-	
+	/*
 	@GetMapping("*")
 	public String entry(Model model) {
 		model.addAttribute(new Sns());
 		return null;
 	}
-	
+	*/
 	@PostMapping("write")
 	public ModelAndView create(Sns sns,String category,String detail,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
@@ -109,27 +111,68 @@ public class SnsController {
 		return mav;
 	}
 	
-	@GetMapping("detail")
-	public ModelAndView getSns(int sns_no) {
+	@GetMapping("*")	//detail,supdate
+	public ModelAndView getSns(Integer sns_no) {
 		ModelAndView mav = new ModelAndView();
-		try {
-			Sns sns = service.getSns(sns_no);
-			User user = service.getUser(sns.getUserid());
-			List<SnsItem> snsitems = service.getSnsItem(sns.getSns_no());
-			sns.setItemList(snsitems);
-			int commentnum = service.getcommentnum(sns_no);
-			int likenum = service.getlikenum(sns_no);
-			mav.addObject("commentnum",commentnum);
-			mav.addObject("likenum",likenum);
-			mav.addObject("snsitems",snsitems);
-			mav.addObject("sns",sns);
-			mav.addObject("user",user);
-		} catch(Exception e) {
-			throw new SnsException("없는 게시물입니다.","main.shop?ksb=new&type=1");
+		Sns sns = null;
+		if(sns_no == null) {
+			sns = new Sns();
+		} else {
+			try {
+				sns = service.getSns(sns_no);
+				User user = service.getUser(sns.getUserid());
+				List<SnsItem> snsitems = service.getSnsItem(sns.getSns_no());
+				sns.setItemList(snsitems);
+				sns.setCommentnum(service.getcommentnum(sns_no));
+				sns.setLikenum(service.getlikenum(sns_no));
+				mav.addObject("snsitems",snsitems);
+				mav.addObject("sns",sns);
+				mav.addObject("user",user);
+			} catch(Exception e) {
+				throw new SnsException("없는 게시물입니다.","main.shop?ksb=new&type=1");
+			}
 		}
+		mav.addObject("sns",sns);
 		return mav;
 	}
 	
+	@PostMapping("update")
+	public ModelAndView update(Sns sns,String category,String detail,HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("sns/supdate");
+		List<SnsItem> list = new ArrayList<SnsItem>();
+		if(category == null && detail == null) {
+			category = "";
+			detail = "";
+		} else {
+			String[] cg = category.split(",");
+			String[] dt = detail.split(",");
+			for(int i=0;i<cg.length;i++) {
+				SnsItem item = new SnsItem(sns.getSns_no(),i+1,cg[i],dt[i]);
+				list.add(item);
+			}
+			sns.setItemList(list);
+		}
+		System.out.println(sns);
+		service.snsUpdate(sns,request);
+		mav.setViewName("redirect:/sns/detail.shop?sns_no="+sns.getSns_no());
+		return mav;
+	}
+	
+	@RequestMapping("mypage")
+	public ModelAndView checkmypge(String userid,HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		User user = service.getUser(userid);
+		List<Sns> mysnslist = service.mysns(userid);
+		for(Sns s : mysnslist) {
+			s.setLikenum(service.getlikenum(s.getSns_no()));
+			s.setCommentnum(service.getcommentnum(s.getSns_no()));
+		}
+		int mysnsnum = service.getmySnsCount(userid);
+		mav.addObject("mysnsnum",mysnsnum);
+		mav.addObject("user",user);
+		mav.addObject("mysnslist",mysnslist);
+		return mav;
+	}
 	
 
 }
