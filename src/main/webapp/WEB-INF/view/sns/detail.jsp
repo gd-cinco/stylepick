@@ -47,7 +47,7 @@
 			data : params,
 			url : "${path}/ajax/delete.shop",
 			success : function(data) {
-				location.href="${path}/sns/main.shop";
+				location.href="${path}/sns/mypage.shop?userid="+${sessionScope.loginUser.userid};
 			},
 			error : function(e) {
 				alert("삭제 실패:"+e.status);

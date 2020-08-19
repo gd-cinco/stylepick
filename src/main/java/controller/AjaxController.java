@@ -169,15 +169,32 @@ public class AjaxController {
 	
 
 	@RequestMapping(value="main", produces="text/plain; charset=UTF8")
-	public List<Sns> main(String ksb,String type,String searchcontent,HttpServletRequest request) {
-		if(searchcontent == null || searchcontent.trim().contentEquals("")) {
-			searchcontent = null;
+	public String main(String ksb,String type,int listAmount,int status) {
+		StringBuilder html = new StringBuilder();
+		int limit = listAmount*20;
+		System.out.println(listAmount+","+limit);
+		List<Sns> itemss = service.getSnsList(ksb,type,listAmount,limit);
+		System.out.println(itemss);
+		for(Sns s : itemss) {
+			User user = service.getUser(s.getUserid());
+			String regdate = new SimpleDateFormat("yy.MM.dd").format(s.getRegdate());
+			html.append("<td><div class=\"style-card\" onClick=\"location.href ='/sns/detail.shop?sns_no="+s.getSns_no()+"'\">");
+			html.append("<div class=\"style-img\"><img src=\"file/"+s.getImg1url()+"\" width=\"226px\" height=\"270px\"></div>");
+			html.append("<div class=\"style-content\">");
+			html.append("<div class=\"style-profile\"><img src=\"../assets/img/test6.PNG\" width=\"30px\" height=\"30px\"></div>");
+			html.append("<div class=\"style-info\">");
+			html.append("<div class=\"style-info-first\">");
+			html.append("<a>"+user.getNickname()+"</a>");
+			html.append("<a style=\"float: right;\">"+regdate+"</a></div>");
+			html.append("<div class=\"style-info-second\" >");
+			html.append("<div class=\"txt_box\">"+s.getDescription()+"</div>...&nbsp;&nbsp;<a href=\"#\">더보기</a></div>");
+			html.append("<div class=\"style-info-third\">");
+			html.append("<img src=\"../assets/img/test7.PNG\" width=\"15px\" height=\"15px\">좋아요 수");
+			html.append("<img src=\"../assets/img/test8.PNG\" width=\"15px\" height=\"15px\">댓글 수");
+			html.append("</div></div></div></div></td>");
 		}
-		int pageNum = Integer.parseInt(request.getParameter("listAmount"));
-		int limit = pageNum*20;
-		System.out.println(pageNum+","+limit);
-		List<Sns> itemss = service.getSnsList(ksb,type,pageNum,limit,searchcontent);		
-		return itemss;
+		System.out.println(html);
+		return html.toString();
 	}
 	
 	//[admin] 구글차트 0814

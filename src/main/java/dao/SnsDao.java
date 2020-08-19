@@ -34,13 +34,13 @@ public class SnsDao {
 		return template.getMapper(SnsMapper.class).count(param);
 	}
 
-	public List<Sns> list(String ksb,String type,Integer pageNum,int limit,String searchcontent) {
+	public List<Sns> list(String ksb,String type,Integer pageNum,int limit) {
 		param.clear();
 		param.put("ksb",ksb);
 		param.put("type",type);
 		param.put("startrow",(pageNum-1)*20);
 		param.put("limit",limit);
-		param.put("searchcontent",searchcontent);
+		System.out.println(param);
 		if(ksb.equals("hot")) {
 			return template.getMapper(SnsMapper.class).select1(param);
 		} else {

@@ -83,7 +83,7 @@ public class SnsController {
 		
 		int limit = 20;
 		int listcount = service.getSnsCount(type,searchcontent);
-		List<Sns> snslist = service.getSnsList(ksb,type,pageNum,limit,searchcontent);
+		List<Sns> snslist = service.getSnsList(ksb,type,pageNum,limit);
 		
 		int maxpage = (int)((double)listcount/limit + 0.95);
 		int startpage = (int)((pageNum/10.0 + 0.9)-1)*10+1;

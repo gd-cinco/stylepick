@@ -19,4 +19,7 @@ public interface SnsItemMapper {
 
 	@Delete("delete from snsitem where sns_no=#{sns_no}")
 	void delete(SnsItem si);
+
+	@Delete("delete from snsitem where sns_no=#{sns_no}")
+	void delete2(Map<String, Object> param);
 }

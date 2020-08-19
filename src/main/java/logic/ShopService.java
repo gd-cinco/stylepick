@@ -181,8 +181,8 @@ public class ShopService {
 	}
 	
 	//[sns] ootd 목록 
-	public List<Sns> getSnsList(String ksb,String type,int pageNum,int limit,String searchcontent) {
-		return snsDao.list(ksb,type,pageNum,limit,searchcontent);
+	public List<Sns> getSnsList(String ksb,String type,int pageNum,int limit) {
+		return snsDao.list(ksb,type,pageNum,limit);
 	}
 	
 	//[sns] ootd 게시물 갯수
@@ -220,6 +220,7 @@ public class ShopService {
 	//[sns] ootd 삭제
 	public void deleteSns(int sns_no) {
 		snsDao.delete(sns_no);
+		snsItemDao.delete(sns_no);
 	}
 	
 	//[sns] mypage 내가쓴글

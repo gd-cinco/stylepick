@@ -32,4 +32,10 @@ public class SnsItemDao {
 		template.getMapper(SnsItemMapper.class).insert(snsItem);
 	}
 
+	public void delete(int sns_no) {
+		param.clear();
+		param.put("sns_no",sns_no);
+		template.getMapper(SnsItemMapper.class).delete2(param);
+	}
+
 }

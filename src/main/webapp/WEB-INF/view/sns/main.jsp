@@ -55,32 +55,6 @@
 <div class="snslist">
 <table style="margin:2% 6%;">
 	<tr class=".product__con__wrap">
-	<c:forEach var="items" items="${itemss}">
-		<td>
-			<div class="style-card" onClick="location.href ='/sns/detail.shop?=${items.sns_no}'">
-				<c:if test="${!empty board.fileurl}">
-				<div class="style-img"><img src="file/${items.img1}" width="226px" height="270px"></div>
-				</c:if>
-				<div class="style-content">
-					<div class="style-profile"><img src="../assets/img/test6.PNG" width="30px" height="30px"></div>
-					<div class="style-info">
-						<div class="style-info-first">
-							<a>userid</a>
-							<a style="float: right;">${items.regdate}</a>		
-						</div>
-						<div class="style-info-second" >
-							<div class="txt_box">${items.description}</div>
-						...&nbsp;&nbsp;<a href="#">더보기</a>
-						</div>
-						<div class="style-info-third">
-							<img src="../assets/img/test7.PNG" width="15px" height="15px">좋아요 수
-							<img src="../assets/img/test8.PNG" width="15px" height="15px">댓글 수
-						</div>
-					</div>
-				</div>
-			</div>
-		</td>
-	</c:forEach>
 	</tr>
 </table>
 <c:if test="${param.type==1}">
@@ -95,35 +69,35 @@
 	$(function(){
 		var listAmount = 1;
 		var status = 0;
-		snsList(${param.type},'${param.ksb}');
+		snsList(${param.type},'${param.ksb}',listAmount,status);
 	})
 	
-	function snsList(type,ksb){
+	function snsList(type,ksb,listAmount,status){
 		if(type==1) {	//ootd ajax
-			var params = "listAmount=" + listAmount + "&status=" + status;
+			var params = "ksb=" + ksb + "&type=" + type + "&listAmount=" + listAmount + "&status=" + status;
 			console.log(params)
 			$.ajax({
 				data:params,
 				type:"get",
-				url:"${path}/ajax/main.shop?ksb="+ksb+"&type="+type,
-			}).done(function(result){
-				console.log(result);
-				$(".product__con__wrap").empty();
-				// result의 product 가져오기 (forEach)
-				for(var items of result) {		
-					inputItem(items);
+				url:"${path}/ajax/main.shop",
+				success : function(data) {
+					console.log(data);
+					$(".product__con__wrap").empty();
+					$(".product__con__wrap").append(data);
+				},
+				error : function(e) {
+					alert("sns 조회시 서버 오류:"+e.status);
 				}
-			}).fail(function(error){
-				console.log(error);
-			});
+			})
 		} else if(type==2) { //qna ajax
+			var params = "type=" + type + "&listAmount=" + listAmount + "&status=" + status;
+			console.log(params)
 			$.ajax({
 				type:"get",
-				url:"${path}/ajax/main.shop?type="+type,
+				url:"${path}/ajax/main.shop",
 			}).done(function(result){
 				console.log(result);
 				$(".product__con__wrap").empty();
-				
 				// result의 product 가져오기 (forEach)
 				for(var items of result) {							
 					inputItem(items);
@@ -139,12 +113,12 @@
 		var string = // 다른 곳 java파일에 ""안에 붙여넣으면 자동으로 string화 		
 			"	<td>" + 
 			"		<div class=\"style-card\" onClick=\"location.href ='/sns/detail.shop?=${items.sns_no}'\">" +
-			"           	<div class=\"style-img\"><img src=\"file/${items.img1}\" width=\"226px\" height=\"270px\"></div>" +
+			"           	<div class=\"style-img\"><img src=\"file/${items.img1url}\" width=\"226px\" height=\"270px\"></div>" +
 			"			<div class=\"style-content\">" +
 			"				<div class=\"style-profile\"><img src=\"../assets/img/test6.PNG\" width=\"30px\" height=\"30px\"></div>" +
 			"				<div class=\"style-info\">" +
 			"   				<div class=\"style-info-first\"> " +
-			"						<a>userid</a>" +
+			"						<a>${items.userid}</a>" +
 			"						<a style=\"float: right;\">${items.regdate}</a>" +		
 			"					</div>" +
 			"					<div class=\"style-info-second\">" +
