@@ -217,6 +217,11 @@ public class ShopService {
 		}		
 	}
 	
+	//[sns] ootd 삭제
+	public void deleteSns(int sns_no) {
+		snsDao.delete(sns_no);
+	}
+	
 	//[sns] mypage 내가쓴글
 	public List<Sns> mysns(String userid) {
 		return snsDao.mylist(userid);
@@ -349,6 +354,8 @@ public class ShopService {
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
+
+
 
 
 

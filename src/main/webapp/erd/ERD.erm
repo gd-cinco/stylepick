@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-07-31 00:53:31</creation_date>
-			<updated_date>2020-08-19 17:38:56</updated_date>
+			<updated_date>2020-08-19 17:46:00</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -632,7 +632,7 @@
 			<args></args>
 			<char_semantics>false</char_semantics>
 			<description></description>
-			<logical_name>following</logical_name>
+			<logical_name>팔로잉</logical_name>
 			<physical_name>following</physical_name>
 			<type></type>
 		</word>
@@ -2677,7 +2677,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>60</word_id>
+					<word_id>59</word_id>
 					<id>25</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -4439,7 +4439,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>59</word_id>
+					<word_id>60</word_id>
 					<id>71</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -5632,8 +5632,8 @@
 					<relation>10</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
-					<logical_name>userid</logical_name>
-					<physical_name>userid</physical_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
 					<type>int(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>

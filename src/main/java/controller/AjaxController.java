@@ -321,6 +321,7 @@ public class AjaxController {
 		return json;
 	}
 	
+	//[sns] 댓글 목록
 	@RequestMapping(value="commentlist",produces="text/plain; charset=UTF8")
 	public String commentlist(int sns_no) {
 		StringBuilder html = new StringBuilder();
@@ -336,6 +337,7 @@ public class AjaxController {
 		return html.toString();
 	}
 	
+	//[sns] 좋아요
 	@RequestMapping(value="like",produces="text/plain; charset=UTF8")
 	public String likeSns(int sns_no,String userid) {
 		System.out.println(sns_no+userid);
@@ -344,6 +346,13 @@ public class AjaxController {
 		int likenum = service.getlikenum(sns_no);
 		html.append("<img src=\"../assets/img/test7.PNG\" width=\"30px\" height=\"30px\">"+likenum);
 		return html.toString();
+	}
+	
+	//[sns] ootd 삭제
+	@RequestMapping(value="delete",produces="text/plain; charset=UTF8")
+	public void deleteSns(int sns_no) {
+		service.deleteSns(sns_no);
+		return;
 	}
 	
 }
