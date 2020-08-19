@@ -10,7 +10,15 @@ public class Line {
 	private long evaluation;	//평점
 	private Date regdate;	//등록시간
 	
+	private String com_name;
 	
+	
+	public String getCom_name() {
+		return com_name;
+	}
+	public void setCom_name(String com_name) {
+		this.com_name = com_name;
+	}
 	public int getLine_no() {
 		return line_no;
 	}
@@ -51,8 +59,9 @@ public class Line {
 	@Override
 	public String toString() {
 		return "Line [line_no=" + line_no + ", item_no=" + item_no + ", userid=" + userid + ", content=" + content
-				+ ", evaluation=" + evaluation + ", regdate=" + regdate + "]";
+				+ ", evaluation=" + evaluation + ", regdate=" + regdate + ", com_name=" + com_name + "]";
 	}
+	
 
 
 

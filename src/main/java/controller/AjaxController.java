@@ -270,13 +270,23 @@ public class AjaxController {
 
     */
 	//[admin] charts index 3 Yearly : 연 매출 현황 0818
-		@RequestMapping("yearlyrevenue")
-		 public JSONObject yearlyrevenue() {
-			JSONObject json = googleChart.getChartData7();
-			//System.out.println(json);
-		   return json;
-		}
-
+	@RequestMapping("yearlyrevenue")
+		public JSONObject yearlyrevenue() {
+		JSONObject json = googleChart.getChartData7();
+		//System.out.println(json);
+		return json;
+	}
+		
+		
+	//[admin] charts index 4 지역별 매출 평균 >later drawChart4 getChartData8
+	
+	//[admin] charts index 5 구매건 기준 매출 산점도
+	@RequestMapping("scatterplot")
+		public JSONObject scatterplot() {
+		JSONObject json = googleChart.getChartData9();
+		return json;
+	}
+	
 	
 	/**
 	 * Board
