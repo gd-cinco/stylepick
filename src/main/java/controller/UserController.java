@@ -85,7 +85,7 @@ public class UserController {
 		}
 		try {
 			service.sellerEntry(user);
-			mav.setViewName("redirect:../sns/mypage.shop"); 
+			mav.setViewName("redirect:../user/sellerwelcome.shop"); 
 		}catch (Exception e) {
 			e.printStackTrace();
 			bresult.reject("error.user.sellerEntry");

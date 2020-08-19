@@ -11,7 +11,7 @@
 		<pattern>/board/qna*</pattern>
 		<pattern>/board/faq*</pattern>
 	</excludes>
-	<decorator name="sns" page="snslayout.jsp">
+	<!-- <decorator name="sns" page="snslayout.jsp">
 		<pattern>/sns/*</pattern>
-	</decorator>
+	</decorator> -->
 </decorators>
