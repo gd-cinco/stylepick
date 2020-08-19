@@ -186,7 +186,6 @@ CREATE TABLE line
 	-- 상품번호
 	item_no int NOT NULL COMMENT '상품번호',
 	userid varchar(30) NOT NULL,
-	subject varchar(30),
 	content varchar(500),
 	evaluation int(10) NOT NULL,
 	regdate datetime NOT NULL,
