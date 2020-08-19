@@ -17,7 +17,18 @@ public class Buy {
 	
 	private String weeks_ago;
 	private String month;
+	private Date regdate;
 	
+	
+	public String getRegdateinString() {
+		return new SimpleDateFormat("yyyy-MM").format(regdate);
+	}
+	public Date getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
 	public String getMonth() {
 		return month;
 	}
@@ -93,8 +104,9 @@ public class Buy {
 	public String toString() {
 		return "Buy [order_no=" + order_no + ", userid=" + userid + ", name=" + name + ", address=" + address + ", tel="
 				+ tel + ", orderdate=" + orderdate + ", stat=" + stat + ", amount=" + amount + ", memo=" + memo
-				+ ", weeks_ago=" + weeks_ago + ", month=" + month + "]";
+				+ ", weeks_ago=" + weeks_ago + ", month=" + month + ", regdate=" + regdate + "]";
 	}
+
 	
 	
 	

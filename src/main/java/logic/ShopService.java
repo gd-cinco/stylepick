@@ -348,13 +348,18 @@ public class ShopService {
 			// TODO Auto-generated method stub
 			return adminDao.yearlyrevenue();
 		}
-		
+		//[admin] charts index 5 구매건 기준 매출 산점도 0819
+		public List<Buy> scatterplot() {
+			// TODO Auto-generated method stub
+			return adminDao.scatterplot();
+		}
 	/**
 	 * Board
 	 */
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
+
 
 
 

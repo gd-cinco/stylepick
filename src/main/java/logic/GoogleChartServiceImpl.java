@@ -361,7 +361,7 @@ public class GoogleChartServiceImpl implements GoogleChartService {
         //db에서 리스트 받아오고, 받아온걸로 json형식으로 만들어서 리턴을 해주게 된다.
     	//List<CartDTO> items = cartService.cartMoney();
     	//Map<String, Object> items = service.weeklyrevenue(); //이게 문젠가?
-        List<Buy> items = service.yearlyrevenue(); //it works
+        List<Buy> items = service.scatterplot(); //it works
     	//System.out.println(items.toString());
         //리턴할 json 객체
         JSONObject data = new JSONObject(); //{}
@@ -372,9 +372,9 @@ public class GoogleChartServiceImpl implements GoogleChartService {
         
         //json 배열 객체, 배열에 저장할때는 JSONArray()를 사용
         JSONArray title = new JSONArray();
-        col1.put("label","월"); //col1에 자료를 저장 ("필드이름","자료형")
+        col1.put("label","가입연월"); //col1에 자료를 저장 ("필드이름","자료형")
         col1.put("type", "string");
-        col2.put("label", "금액");
+        col2.put("label", "구매 금액");
         col2.put("type", "number");
         
         //테이블행에 컬럼 추가
@@ -389,14 +389,14 @@ public class GoogleChartServiceImpl implements GoogleChartService {
         JSONArray body = new JSONArray(); //json 배열을 사용하기 위해 객체를 생성
         for (Buy dto : items) { //items에 저장된 값을 dto로 반복문을 돌려서 하나씩 저장한다.
             
-            JSONObject month = new JSONObject(); //json오브젝트 객체를 생성
-            month.put("v", dto.getMonth()); //name변수에 dto에 저장된 주문일을 v라고 저장한다.
+            JSONObject regdate = new JSONObject(); //json오브젝트 객체를 생성
+            regdate.put("v", dto.getRegdateinString()); //name변수에 dto에 저장된 주문일을 v라고 저장한다.
             
             JSONObject amount = new JSONObject(); //json오브젝트 객체를 생성
             amount.put("v", dto.getAmount()); //name변수에 dto에 저장된 금액을 v라고 저장한다.
             
             JSONArray row = new JSONArray(); //json 배열 객체 생성 (위에서 저장한 변수를 칼럼에 저장하기위해)
-            row.add(month); //name을 row에 저장 (테이블의 행)
+            row.add(regdate); //name을 row에 저장 (테이블의 행)
             row.add(amount); //name을 row에 저장 (테이블의 행)
             
             JSONObject cell = new JSONObject(); 

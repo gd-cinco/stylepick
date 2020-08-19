@@ -169,7 +169,7 @@ google.setOnLoadCallback(drawChart5);
                 
                 //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
                 chart.draw(data, {
-                    title : "가입일자 대비 구매금액 scatter plot",
+                    title : "가입연월 대비 구매금액 scatter plot",
                     //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
                     width : 1200,
                     height : 500,

@@ -114,6 +114,12 @@ public class AdminDao {
 		param.clear();
 		return template.getMapper(AdminMapper.class).yearlyrevenue(param);
 	}
+	//charts index 5 구매건 기준 매출 산점도
+	public List<Buy> scatterplot() {
+		// TODO Auto-generated method stub
+		param.clear();
+		return template.getMapper(AdminMapper.class).scatterplot(param);
+	}
 
 	
 	

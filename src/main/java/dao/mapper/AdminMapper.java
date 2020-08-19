@@ -80,6 +80,10 @@ public interface AdminMapper {
 	//charts index 3 Yearly : 연 매출 현황
 	@Select("SELECT DATE_FORMAT(orderdate,'%Y-%m') month, SUM(amount) amount FROM buy WHERE DATE_FORMAT(orderdate,'%Y') = DATE_FORMAT(CURRENT_DATE, '%Y') GROUP BY month")
 	List<Buy> yearlyrevenue(Map<String, Object> param);
+	
+	//charts index 5 구매건 기준 매출 산점도
+	@Select("SELECT user.userid, SUM(buy.amount) amount, DATE_FORMAT(user.regdate,'%Y-%m') regdate  from buy LEFT JOIN user ON buy.userid = user.userid WHERE orderdate > (NOW() - INTERVAL 1 YEAR) GROUP BY user.userid ORDER BY regdate")
+	List<Buy> scatterplot(Map<String, Object> param);
 
 
 }
