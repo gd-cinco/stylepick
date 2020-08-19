@@ -64,8 +64,7 @@
 							<div class="main-menu f-right d-none d-lg-block">
 								<nav>                                                
 									<ul id="navigation">  
-										<c:if test="${!fn:contains(path2,'sns')}" >                                                                                                                                   
-										<li><a href="../user/main.shop">main</a></li>
+										<c:if test="${!fn:contains(path2,'sns')}" >
 										<li><a href="../admin/dashboard.shop">admin</a></li>
 										<li><a href="../item/list.shop">스토어</a>
 											<ul class="submenu">
