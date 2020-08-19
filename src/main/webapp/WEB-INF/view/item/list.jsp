@@ -9,17 +9,38 @@
 </head>
 <body>
 <a href="create.shop">상품 등록</a>
-<a href="../cart/cartView.shop" style="float:right;">장바구니</a>
- <table border="1" style="border-collapse:collapse;">
-	<tr><th width="80">상품ID</th><th width="320">상품명</th>
-		<th width="100">가격</th><th width="80">수정</th></tr>
+<c:if test="${listcount >0 }">
+ <table style="border-collapse:collapse;">
+ 
+ 	<tr>
 		<c:forEach items="${itemList }" var="item">
-			<tr><td align="center">${item.subject }</td>
-			<td align="left"><a href="detail.shop?item_no=${item.item_no }">${item.item_name }</a></td>
-			<td align="right"><fmt:formatNumber value="${item.price }" type="CURRENCY" currencySymbol=""/>원</td>
-			<td><img src="img/${item.pictureUrl }"></td>
-			</tr>
+			<td>
+			<div class="item_detail" onClick="location.href='detail.shop?item_no=${item.item_no}'">
+				<div>
+				 <img src="img/${item.pictureUrl }" width="226px" height="270px">
+				</div>
+				<div>
+					${item.subject}
+				</div>
+				<div>
+				<fmt:formatNumber value="${item.price }" type="CURRENCY" currencySymbol=""/>원
+				</div>
+			</div>
+			</td>
 		</c:forEach>
+	</tr>
+		
+		
+		<tr><td colspan="4">
+			
+				<c:forEach var="a" begin="${startpage }" end="${endpage }">
+					<c:if test="${a==pageNum }">[${a }]</c:if>
+					<c:if test="${a !=pageNum }"><a href="javascript:listpage('${a}')">[${a}]</a></c:if>
+					</c:forEach></td></tr>
+		</c:if>
+		<c:if test="${listcount==0 }">
+			<tr><td colspan="4">등록된 게시물이 없습니다</td></tr></c:if>
+		
 </table> 
 
 

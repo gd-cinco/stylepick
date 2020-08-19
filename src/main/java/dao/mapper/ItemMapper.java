@@ -23,8 +23,15 @@ public interface ItemMapper {
 		"</script>"})
 	List<Item> select(Map<String, Object> param);
 
+	@Select({"<script>",
+		"select count(*) from item ",
+		"<if test='searchcontent != null'>where ${searchtype} like '%${searchcontent}%'</if>",
+		"</script>"
+})
+int count(Map<String, Object> param);
+
 	
 	//조회수 증가
-//	@Update("update item set readcnt = readcnt+1 where item_no =#{item_no}")
-//	void readcntadd(Integer item_no);
+	@Update("update item set readcnt = readcnt+1 where item_no =#{item_no}")
+	void readcntadd(Integer item_no);
 }

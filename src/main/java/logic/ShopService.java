@@ -230,11 +230,17 @@ public class ShopService {
 
 	
 	// [아이템]상품 리스트 정보
-	public List<Item> getItemList() {
+	public List<Item> getItemList(Integer pageNum, int limit, String searchtype, String searchcontent) {
 		return itemDao.list();
 	}
+	public int getItemCount(String searchtype, String searchcontent) {
+		return itemDao.count(searchtype, searchcontent);
+	}
 	//[아이템]상품 상세보기
-	public Item getItem(Integer item_no) {
+	public Item getItem(Integer item_no, boolean able) {
+		if(able) {
+			itemDao.readcntadd(item_no);
+		}
 		return itemDao.selectOne(item_no);
 	}
 	
@@ -242,6 +248,8 @@ public class ShopService {
 		// TODO Auto-generated method stub
 		return itemDao.maxnum();
 	}
+	
+
 	
 	//[아이템]상품 작성
 	public void itmeCreate(Item item, HttpServletRequest request) {
@@ -341,9 +349,6 @@ public class ShopService {
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
-
-
-
 
 
 

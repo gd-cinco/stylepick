@@ -6,36 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>환영합니다!</title>
-<style type="text/css">
-.welcome_ul{
-	list-style-type: none;
-  	text-align: center;
-  	overflow: hidden;
-  	margin: 0;padding: 0;
-}
-.welcome_li{
-	position:relative;
-  	display:inline;
-  	text-align:center;
-  	font-size:15px;
-  	float: left;
-  	width: 50%;
-}
-.welcome_a{
-	text-decoration: none;
-  	color: white;
-  	display:block;
-  	line-height:45px;
-  	width: 80%;
-  	margin-left:10%;
-  	height:64px;
-  	text-align:center;
-  	background-color: #35C5F0;
-  	font-size: 33px;
-  	font-weight: bold;
-  	line-height: 65px;
-}
-</style>
+<link rel="stylesheet" href="../assets/css/user.css">
 </head>
 <body>
 <div style="margin-left: auto;margin-right:auto; width: 60%; max-width: 750px;">

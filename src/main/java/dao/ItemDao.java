@@ -36,12 +36,17 @@ public class ItemDao {
 		return template.getMapper(ItemMapper.class).select(param).get(0);
 	}
 
-	
+	public int count(String searchtype, String searchcontent) {
+		return template.getMapper(ItemMapper.class).count(param);
+	}
+
+
+
 	//조회수 증가
-//	public void readcntadd(Integer item_no) {
-//		param.clear();
-//		param.put("num", item_no);
-//		template.getMapper(ItemMapper.class).readcntadd(item_no);
-//	}
+	public void readcntadd(Integer item_no) {
+		param.clear();
+		param.put("item_no", item_no);
+		template.getMapper(ItemMapper.class).readcntadd(item_no);
+	}
 	
 }
