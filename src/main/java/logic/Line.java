@@ -3,14 +3,12 @@ package logic;
 import java.util.Date;
 
 public class Line {
-	private int line_no ;
-	private int item_no;
-	private String userid;
-	private String subject;
-	private String content;
-	private long evaluation;
-	private Date regdate;
-	private String com_name;
+	private int line_no ;  //한줄평 no
+	private int item_no;	//아이템 작성할 곳 no
+	private String userid;	//작성자 아이디
+	private String content;	//내용
+	private long evaluation;	//평점
+	private Date regdate;	//등록시간
 	
 	
 	public int getLine_no() {
@@ -31,12 +29,7 @@ public class Line {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
-	public String getSubject() {
-		return subject;
-	}
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
+
 	public String getContent() {
 		return content;
 	}
@@ -55,19 +48,14 @@ public class Line {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	public String getCom_name() {
-		return com_name;
-	}
-	public void setCom_name(String com_name) {
-		this.com_name = com_name;
-	}
 	@Override
 	public String toString() {
-		return "Line [line_no=" + line_no + ", item_no=" + item_no + ", userid=" + userid + ", subject=" + subject
-				+ ", content=" + content + ", evaluation=" + evaluation + ", regdate=" + regdate + ", com_name="
-				+ com_name + "]";
+		return "Line [line_no=" + line_no + ", item_no=" + item_no + ", userid=" + userid + ", content=" + content
+				+ ", evaluation=" + evaluation + ", regdate=" + regdate + "]";
 	}
-	
+
+
+
 	
 	
 	
