@@ -89,4 +89,10 @@ public class SnsDao {
 		return template.getMapper(SnsMapper.class).mysnsnum(param);
 	}
 
+	public void delete(int sns_no) {
+		param.clear();
+		param.put("sns_no",sns_no);
+		template.getMapper(SnsMapper.class).delete(param);
+	}
+
 }

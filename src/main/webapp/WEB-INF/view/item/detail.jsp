@@ -61,22 +61,27 @@ function fnMove(seq){
 
 <div>
 <br><br>
-<h2 style="width:1000px; background:#f8f8f8;"><center><span>상품 정보&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>상품 한줄평&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>상품 후기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>Q&A</span></center></h2>
+<h2 style="width:1000px; background:#f8f8f8;"><center><span><a href="#target">상품 정보</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span><a href="#target1">상품 한줄평</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span><a href="#target2">상품 후기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span><a href="#target3">Q&A</a></span></center></h2>
 <br><br>
 </div>
 
-<div>
+<div id="target">
 	 <div class="hr-sect"><h4>상품 정보</h4></div>
-	<textarea placeholder="Disabled" disabled>${item.content }</textarea>
+	<textarea style="background:white;" placeholder="Disabled" disabled>${item.content }</textarea>
+	<br><br><br><br>
 </div>
-<div>
+<div id="target1">
+
 	 <div class="hr-sect"><h4>한줄평</h4></div>
+	 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
-<div>
+<div id="target2">
 	 <div class="hr-sect"><h4>상품 후기</h4></div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
-<div>
+<div id="target3">
 	 <div class="hr-sect"><h4>Q&A</h4></div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
 <a href="update.shop?item_no=${item.item_no }">[수정]</a>
 <a href="delete.shop?item_no=${item.item_no }">[삭제]</a>

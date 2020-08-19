@@ -30,6 +30,30 @@
 		</c:if>
 		return true;
 	}
+	
+	function deletecheck(sns_no) {
+		var question = confirm("삭제하시겠습니까?");
+		if(question){
+			deleteSns(sns_no);
+		} else {
+			return false;
+		}
+	}
+	
+	function deleteSns(sns_no){
+		var params = "sns_no=" + sns_no;
+		console.log(params)
+			$.ajax({
+			data : params,
+			url : "${path}/ajax/delete.shop",
+			success : function(data) {
+				location.href="${path}/sns/main.shop";
+			},
+			error : function(e) {
+				alert("삭제 실패:"+e.status);
+			}
+		})
+	}	
 </script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -50,7 +74,7 @@
 				<c:if test="${sns.type==2}">
 					<a href="qupdate.shop?sns_no=${sns.sns_no}" class="button" style="padding: 10px 20px; margin: 25px 0 29px 40%; color: #ffffff;">수정</a>
 				</c:if>
-				<a href="sdelete.shop?sns_no=${sns.sns_no}" class="button" style="margin-left: 1%;padding: 10px 20px;background-color: #ff003c;color: #ffffff;">삭제</a>
+				<a href="javascript:deletecheck(${sns.sns_no})" class="button" style="margin-left: 1%;padding: 10px 20px;background-color: #ff003c;color: #ffffff;">삭제</a>
 			</c:if>
 		</div>
 	</div>

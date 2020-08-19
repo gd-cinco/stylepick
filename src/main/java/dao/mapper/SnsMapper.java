@@ -3,6 +3,7 @@ package dao.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -54,6 +55,9 @@ public interface SnsMapper {
 
 	@Select("select count(*) from sns where userid=#{userid}")
 	int mysnsnum(Map<String, Object> param);
+
+	@Delete("delete from sns where sns_no=#{sns_no}")
+	void delete(Map<String, Object> param);
 	
 	
 
