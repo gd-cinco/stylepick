@@ -67,4 +67,10 @@ public class SnsDao {
 		return template.getMapper(SnsMapper.class).likenum(param);
 	}
 
+	public int commentnum(int sns_no) {
+		param.clear();
+		param.put("sns_no",sns_no);
+		return template.getMapper(SnsMapper.class).commentnum(param);
+	}
+
 }

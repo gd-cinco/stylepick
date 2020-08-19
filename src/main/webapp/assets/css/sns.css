@@ -52,7 +52,8 @@ body, h1, h2, h3, h4, h5 {
     border-bottom-style: solid;
     border-bottom-width: 1px;
     float: left;
-    border-right: 1px solid #E8EBED
+    border-right: 1px solid #E8EBED;
+    min-height : 698px;
 }
 
 .pictures {
@@ -89,7 +90,9 @@ body, h1, h2, h3, h4, h5 {
 }
 
 .category {
-	background-color: #e5ebf7;
+	/*background-color: #e5ebf7;
+	width:30%;
+	text-align:center;*/
 }
 
 .user-info {
@@ -130,4 +133,19 @@ body, h1, h2, h3, h4, h5 {
 
 .reply_list tr {
 	margin-bottom : 10px;
+}
+
+.style-info table {
+	width:100%;
+}
+
+.style-info table tr td {
+
+}
+
+.categoryimg {
+	width : 20%;
+	background-color: #f7f7f7;
+    border-radius: 6px;
+    border-bottom : 10px solid #ffffff;
 }

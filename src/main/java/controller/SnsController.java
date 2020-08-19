@@ -117,6 +117,10 @@ public class SnsController {
 			User user = service.getUser(sns.getUserid());
 			List<SnsItem> snsitems = service.getSnsItem(sns.getSns_no());
 			sns.setItemList(snsitems);
+			int commentnum = service.getcommentnum(sns_no);
+			int likenum = service.getlikenum(sns_no);
+			mav.addObject("commentnum",commentnum);
+			mav.addObject("likenum",likenum);
 			mav.addObject("snsitems",snsitems);
 			mav.addObject("sns",sns);
 			mav.addObject("user",user);

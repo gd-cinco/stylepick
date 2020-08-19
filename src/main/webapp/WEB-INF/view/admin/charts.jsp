@@ -31,6 +31,8 @@ google.load('visualization','1',{
 //google.setOnLoadCallback(drawChart1); //라이브러리를 불러오는 작업이 완료되었으면 drawChart작업을 실행하라는 뜻.
 google.setOnLoadCallback(drawChart2);
 google.setOnLoadCallback(drawChart3);
+//google.setOnLoadCallback(drawChart4);
+google.setOnLoadCallback(drawChart5);
 
 	/*
 	function drawChart1() {
@@ -140,6 +142,42 @@ google.setOnLoadCallback(drawChart3);
                     height : 500
                 });
     }
+    //charts index 4 지역별 매출 평균 >later drawChart4
+    
+    //charts index 5 구매건 기준 매출 산점도
+    function drawChart5() {
+        var jsonData = $.ajax({
+        	url : "${path}/ajax/scatterplot.shop",
+        	//chart01에서는 json의 주소를 직접 적었지만 이 페이지에서는 컨트롤러로 이동해 맵핑해서 제이슨을 동적으로
+            //직접만들어 그 만든 json을 직접 보낸다.
+        	dataType : "json",
+        	async : false,
+        }).responseText; //제이슨파일을 text파일로 읽어들인다는 뜻
+        console.log(jsonData);
+        //데이터테이블 생성
+        var data = new google.visualization.DataTable(jsonData);
+        //제이슨 형식을 구글의 테이블 형식으로 바꿔주기 위해서 집어넣음
+        //차트를 출력할 div
+        //LineChart, ColumnChart, PieChart에 따라서 차트의 형식이 바뀐다.
+        
+        //var chart = new google.visualization.PieChart(document.getElementByld('chart_div')); //원형 그래프
+        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div5')); //scatter plot
+        //var chart = new google.visualization.LineChart(document.getElementById('chart_div5')); //선 그래프
+        //var chart = new google.visualization.ColumnChart(document.getElementById('chart_div')); //막대그래프
+        //차트 객체.draw(데이터 테이블, 옵션)
+        //cuveType : "function" => 곡선처리
+                
+                //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
+                chart.draw(data, {
+                    title : "가입일자 대비 구매금액 scatter plot",
+                    //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
+                    width : 1200,
+                    height : 500,
+                    hAxis: {title: '가입연월', minValue: 0}, // maxValue: 15
+                    vAxis: {title: '구매 금액', minValue: 0},
+                    legend: 'none'
+                });
+    }
 
 });
 </script>
@@ -188,18 +226,26 @@ google.setOnLoadCallback(drawChart3);
 		<h5 style="font-weight: bold; font-size: large; margin: 30px 0 30px 0;">2. 매출 구분 상세</h5>
 		<div>
 			<div id="mint_square"></div> 지역별 매출 평균
+			<br>
+			<div id="chart_div4"></div>
 		</div>
 		<br>
 		<div>
-			<div id="mint_square"></div> 구매건 별 매출 산점도
+			<div id="mint_square"></div> 구매건 기준 매출 산점도
+			<br>
+			<div id="chart_div5"></div>
 		</div>
 		<br>
 		<div>
 			<div id="mint_square"></div> 카테고리 별 판매 현황(월)
+			<br>
+			<div id="chart_div6"></div>
 		</div>
 		<br>
 		<div>
 			<div id="mint_square"></div> 스토어 매출 점유율
+			<br>
+			<div id="chart_div7"></div>
 		</div>
 		<br>
 		

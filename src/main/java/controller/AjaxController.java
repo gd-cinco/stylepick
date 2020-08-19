@@ -270,13 +270,23 @@ public class AjaxController {
 
     */
 	//[admin] charts index 3 Yearly : 연 매출 현황 0818
-		@RequestMapping("yearlyrevenue")
-		 public JSONObject yearlyrevenue() {
-			JSONObject json = googleChart.getChartData7();
-			//System.out.println(json);
-		   return json;
-		}
-
+	@RequestMapping("yearlyrevenue")
+		public JSONObject yearlyrevenue() {
+		JSONObject json = googleChart.getChartData7();
+		//System.out.println(json);
+		return json;
+	}
+		
+		
+	//[admin] charts index 4 지역별 매출 평균 >later drawChart4 getChartData8
+	
+	//[admin] charts index 5 구매건 기준 매출 산점도
+	@RequestMapping("scatterplot")
+		public JSONObject scatterplot() {
+		JSONObject json = googleChart.getChartData9();
+		return json;
+	}
+	
 	
 	/**
 	 * Board
@@ -317,7 +327,7 @@ public class AjaxController {
 		List<Comment> list = service.getCommentList(sns_no);
 		for(Comment c : list) {
 			User user = service.getUser(c.getUserid());
-			html.append("<tr style=\"margin-bottom : 10px;\"><td style=\"width:10%;\"><img src=\""+user.getImgurl()+"\" width=\"30px\" height=\"30px\"></td>");
+			html.append("<tr style=\"border-bottom:1px solid #babbbb;\"><td style=\"width:10%; padding:10px 0;\"><img src=\""+user.getImgurl()+"\" width=\"30px\" height=\"30px\"></td>");
 			html.append("<td style=\"width:20%;\">"+user.getUserid()+"</td>");
 			html.append("<td>"+c.getContent()+"</td>");
 			String regdate = new SimpleDateFormat("yy.MM.dd").format(c.getRegdate());
