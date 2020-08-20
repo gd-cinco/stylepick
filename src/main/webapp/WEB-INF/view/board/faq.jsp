@@ -21,7 +21,7 @@
 	$(function() {
 		var table = $('#board').DataTable({
 			ajax: {
-				'url':'http://localhost:8080/stylepick/ajax/board.shop?',
+				'url':'http://localhost:8080/stylepick/ajax/fd.shop?c=${param.c}',
 	            'dataSrc':''
 	        },
 			responsive : true,
