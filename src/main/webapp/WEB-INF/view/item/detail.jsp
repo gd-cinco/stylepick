@@ -8,18 +8,21 @@
 <title>상품 상세보기</title>
 <link rel="stylesheet" href="${path}/assets/css/detail.css?ver=1">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script>
-function fnMove(seq){
-    var offset = $("#div" + seq).offset();
-    $('html, body').animate({scrollTop : offset.top}, 400);
+<script >
+//버튼클릭시 javascript 호출합니다.
+function javascript(){
+    window.open('line.shop','popName',
+                'width=800,height=500,top=200,left=400,');
 }
 </script>
+
+
 </head>
 <body>
 <form action="../cart/cartAdd.shop">
 <div>
 <div class="pic" >
-  <img src="img/${item.pictureUrl }" width="400px" height="450px" id="img">
+  <img src="img/${item.pictureUrl }" width="350px" height="450px" id="img">
 </div>
 
 <div class="etc">
@@ -53,26 +56,39 @@ function fnMove(seq){
 		</select></dt></dl>
 	</ul>
 	
-	<input type="submit" style="width:400px;height:40px;color: #4cd3e3; border: 1px solid #4cd3e3;background: #fff;" value="장바구니">
-	<a href="#" class="genric-btn success radius" style="width:400px;">구매하기</a>
+
 </div>
+<br><br>
+</div>
+<div >
+	<input type="submit"  style="width:400px;height:40px;color: #4cd3e3; border: 1px solid #4cd3e3;background: #fff; margin-left:550px; cursor:pointer;" value="장바구니">
+	<!-- <a href="#" class="genric-btn success radius" style="width:400px; margin-left:150px;">구매하기</a> -->
 </div>
 </form>
 
+<div style="width:1000px;">
 <div>
 <br><br>
 <h2 style="width:1000px; background:#f8f8f8;"><center><span><a href="#target">상품 정보</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span><a href="#target1">상품 한줄평</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span><a href="#target2">상품 후기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span><a href="#target3">Q&A</a></span></center></h2>
 <br><br>
 </div>
-
 <div id="target">
 	 <div class="hr-sect"><h4>상품 정보</h4></div>
+	 <br>
 	<textarea style="background:white;" placeholder="Disabled" disabled>${item.content }</textarea>
 	<br><br><br><br>
 </div>
 <div id="target1">
 
 	 <div class="hr-sect"><h4>한줄평</h4></div>
+	 <div style="float:right;">
+	   <input type='button' class="genric-btn info-border circle arrow" style="width:101px;" onclick='javascript()' value='한줄평'/></div>
+	<div>
+	<!--별점 평균 사진 놓을 곳  -->
+	<table>
+	<tr><td>별</td><td>내용</td><td>등록일</td><td>사용자</td></tr>
+	</table>
+	</div>
 	 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
 <div id="target2">
@@ -85,5 +101,6 @@ function fnMove(seq){
 </div>
 <a href="update.shop?item_no=${item.item_no }">[수정]</a>
 <a href="delete.shop?item_no=${item.item_no }">[삭제]</a>
+</div>
 </body>
 </html>

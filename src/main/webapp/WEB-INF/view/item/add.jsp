@@ -108,7 +108,7 @@ oTbl1.deleteRow(oTbl1.clickedRowIndex);
 	
 	<div>
 	<ul>상품 설명</ul>
-	<dl><form:textarea path="content" cols="99" rows="12" /></textarea></dl>
+	<dl><form:textarea path="content" cols="99" rows="12" /></dl>
 	</div>
 	
 	<div>

@@ -27,49 +27,18 @@
 </head>
 <body>
 <a href="create.shop">상품 등록</a>
-<!-- <c:if test="${listcount >0 }">
- <table style="border-collapse:collapse;">
- 
- 	<tr>
-		<c:forEach items="${itemList }" var="item">
-			<td>
-			<div class="item_detail" onClick="location.href='detail.shop?item_no=${item.item_no}'">
-				<div>
-				 <img src="img/${item.pictureUrl }" width="226px" height="270px">
-				</div>
-				<div>
-					${item.subject}
-				</div>
-				<div>
-				<fmt:formatNumber value="${item.price }" type="CURRENCY" currencySymbol=""/>원
-				</div>
-			</div>
-			</td>
-		</c:forEach>
-	</tr>
-		
-		
-		<tr><td colspan="4">
-			
-				<c:forEach var="a" begin="${startpage }" end="${endpage }">
-					<c:if test="${a==pageNum }">[${a }]</c:if>
-					<c:if test="${a !=pageNum }"><a href="javascript:listpage('${a}')">[${a}]</a></c:if>
-					</c:forEach></td></tr>
-		</c:if>
-		<c:if test="${listcount==0 }">
-			<tr><td colspan="4">등록된 게시물이 없습니다</td></tr></c:if>
-		
-</table> -->
+ <c:if test="${listcount <0 }">
+ <h1>게시글이 아직 존재 하지 않습니다.</h1>
+ </c:if>
 
-
-
+ <c:if test="${listcount >0 }">
  <div class="container">
 	<div class="row">
- 		<div class="col-md-8">
+ 	
            		 <div class="product_list">
            		 	<div class="row">
            		 <c:forEach items="${itemList }" var="item">
-             			       <div class="col-lg-6 col-sm-6">
+             			       <div class="col-xl-4 col-lg-4 col-md-6"  style="max-width: 60.333333%;">
                                 <div class="single_product_item">
                  <div class="item_detail" onClick="location.href='detail.shop?item_no=${item.item_no}'">
 				<div>
@@ -77,20 +46,22 @@
 				</div>
 				<div>
 					${item.subject}
-				</div>
-				<div>
+			<ul>
+				<li>
 				<fmt:formatNumber value="${item.price }" type="CURRENCY" currencySymbol=""/>원
+				</li>
+			</ul>
 				</div>
 				</div>
-                                </div>
-                            </div>
+                        	 </div>
+                         </div>
                  </c:forEach>
                  </div>
               </div>
 		</div>
 	</div>
-</div>
 
+</c:if>
 
 
 
@@ -135,5 +106,6 @@
         <script src="./assets/js/mixitup.min.js"></script>
         <script src="./assets/js/jquery.counterup.min.js"></script>
         <script src="./assets/js/waypoints.min.js"></script>
+ 
 </body>
 </html>

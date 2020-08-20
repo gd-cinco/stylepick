@@ -27,7 +27,7 @@ public class itemController {
 		private ShopService service;
 		
 		@RequestMapping("list")	//item/list.shop
-		public ModelAndView list(Integer pageNum,String searchtype, String searchcontent) {
+		public ModelAndView list(Integer pageNum,String searchtype, String searchcontent, Integer category) {
 			ModelAndView mav =new ModelAndView();
 			if(pageNum==null || pageNum.toString().equals("")){
 				pageNum=1;
@@ -38,7 +38,7 @@ public class itemController {
 			}
 			int limit = 10;
 			int listcount=service.getItemCount(searchtype,searchcontent);
-			List<Item> itemList = service.getItemList(pageNum, limit,searchtype,searchcontent);
+			List<Item> itemList = service.getItemList(pageNum, limit,searchtype,searchcontent,category);
 			int maxpage = (int)((double)listcount/limit + 0.95);
 			int startpage = (int)((pageNum/10.0 + 0.9)-1)*10+1;
 			int endpage = startpage + 9;

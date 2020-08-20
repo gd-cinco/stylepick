@@ -20,6 +20,7 @@ public interface ItemMapper {
 	@Select({"<script>",
 		"select * from item",
 		"<if test='item_no != null'> where item_no=#{item_no} </if>",
+		"<if test='category != null'> where category=#{category} </if>",
 		"</script>"})
 	List<Item> select(Map<String, Object> param);
 
@@ -30,8 +31,18 @@ public interface ItemMapper {
 })
 int count(Map<String, Object> param);
 
-	
-	//조회수 증가
+		//조회수 증가
 	@Update("update item set readcnt = readcnt+1 where item_no =#{item_no}")
 	void readcntadd(Integer item_no);
+
+	
+
+
+
+
+
+	
+
+
+
 }
