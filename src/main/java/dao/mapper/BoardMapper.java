@@ -7,6 +7,10 @@ import org.apache.ibatis.annotations.Select;
 import logic.Board;
 
 public interface BoardMapper {
-	@Select("select * from board where seq=#{seq}")
-	List<Board> list(int seq);
+	@Select({"<script>",
+		"select * from board where seq=#{seq}",
+		"<if test='category != null'> and substring_index(category,',',1)=#{category}</if>",
+		"</script>"
+	})
+	List<Board> list(int seq, String category);
 }

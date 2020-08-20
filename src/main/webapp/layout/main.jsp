@@ -143,8 +143,8 @@
 														   	</div>
 															<ul class="submenu">
 																<li><a href="${path}/sns/mypage.shop?userid=${sessionScope.loginUser.userid}">mypage</a></li>
-																<c:if test="${loginUser.seller==0}"><li><a href="${path}/user/sellerEntry.shop">판매자 등록</a></c:if>
-																<c:if test="${loginUser.seller==1}"><li><a href="${path}/user/sellerUpdate.shop">판매자 정보 수정</a></c:if>
+																<c:if test="${loginUser.seller==0}"><li><a href="${path}/user/sellerEntry.shop?id=${sessionScope.loginUser.userid}">판매자 등록</a></c:if>
+																<c:if test="${loginUser.seller==1}"><li><a href="${path}/user/sellerUpdate.shop?id=${sessionScope.loginUser.userid}">판매자 정보 수정</a></c:if>
 																<li><a href="${path}/admin/widgets.shop">주문내역 (이지만 widget)</a></li>
 																<li><a href="${path}/user/logout.shop">logout</a></li>
 															</ul>

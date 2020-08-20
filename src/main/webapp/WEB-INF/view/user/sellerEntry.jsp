@@ -98,6 +98,10 @@
 			</spring:hasBindErrors>
     	</div>
     	<div class="social_login_box" style="height: auto; margin-top: 15px;">
+    		
+    		<div style="width: 100%; text-align: center;">
+    			<h1 class="sellEntry_header">판매자 신청</h1>
+    		</div>
     		<div class="entry_text">
     			<a>이름</a><a style="color: red;">*</a>&nbsp;&nbsp;&nbsp;<a style="font-size: 15px; color: black;">등록후 변경 불가능합니다.</a>
     		</div>
