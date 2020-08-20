@@ -236,8 +236,8 @@ public class ShopService {
 
 	
 	// [아이템]상품 리스트 정보
-	public List<Item> getItemList(Integer pageNum, int limit, String searchtype, String searchcontent) {
-		return itemDao.list();
+	public List<Item> getItemList(Integer pageNum, int limit, String searchtype, String searchcontent,Integer category) {
+		return itemDao.list(category);
 	}
 	public int getItemCount(String searchtype, String searchcontent) {
 		return itemDao.count(searchtype, searchcontent);
@@ -254,8 +254,6 @@ public class ShopService {
 		// TODO Auto-generated method stub
 		return itemDao.maxnum();
 	}
-	
-
 	
 	//[아이템]상품 작성
 	public void itmeCreate(Item item, HttpServletRequest request) {
