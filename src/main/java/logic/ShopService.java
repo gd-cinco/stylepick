@@ -17,6 +17,7 @@ import dao.AdminDao;
 import dao.BoardDao;
 import dao.CommentDao;
 import dao.ItemDao;
+import dao.LineDao;
 import dao.UserDao;
 
 @Service	//@Component + service ( Controller와 dao의 중간)
@@ -42,6 +43,9 @@ public class ShopService {
 
 	@Autowired
 	private CommentDao commentDao;
+	
+	@Autowired
+	private LineDao lineDao;
 
 	//[user] 입력창 중복확인
 	public int joincompare(String key, String val) {
@@ -261,8 +265,14 @@ public class ShopService {
 			uploadFileCreate(item.getImgurl(),request, "item/img/");
 			item.setPictureUrl(item.getImgurl().getOriginalFilename());
 		}
-		itemDao.insert(item);
-		
+		itemDao.insert(item);	
+	}
+	
+	//[아이템]상품 한줄평
+	public void lineWrite(Line line, HttpServletRequest request) {
+		int max= lineDao.maxnum();
+		line.setLine_no(++max);
+		lineDao.insert(line);
 	}
 
 		//[admin] dashboard index 1-1 이달 가입회원 0813
@@ -361,5 +371,7 @@ public class ShopService {
 	public List<Board> getFaqList(String category) {
 		return boardDao.faqlist(category);
 	}
+
+
 
 }
