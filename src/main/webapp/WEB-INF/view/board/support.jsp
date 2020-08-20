@@ -22,10 +22,10 @@
 	</div>
 	<br><br><br>
 	<div class="button-group-area">
-		<a href="#" class="genric-btn danger">카테고리 1</a>
-		<a href="#" class="genric-btn danger">카테고리 2</a>
-		<a href="#" class="genric-btn danger">카테고리 3</a>
-		<a href="#" class="genric-btn danger">카테고리 4</a>
+		<a href="${path}/board/faq.shop?c=buy" class="genric-btn danger">구매</a>
+		<a href="${path}/board/faq.shop?c=sell" class="genric-btn danger">판매</a>
+		<a href="${path}/board/faq.shop?c=ootd" class="genric-btn danger">OOTD</a>
+		<a href="${path}/board/faq.shop?c=etc" class="genric-btn danger">기타</a>
 	</div>
 </div>
 <br><br><br>

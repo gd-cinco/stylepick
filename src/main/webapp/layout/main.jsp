@@ -68,14 +68,14 @@
 										<li><a href="../admin/dashboard.shop">admin</a></li>
 										<li><a href="../item/list.shop">스토어</a>
 											<ul class="submenu">
-												<li><a href="#">모자</a></li>
-												<li><a href="#">아우터</a></li>
-												<li><a href="#">원피스</a></li>
-												<li><a href="#">상의</a></li>
-												<li><a href="#">하의</a></li>
-												<li><a href="#">가방</a></li>
-												<li><a href="#">신발</a></li>
-												<li><a href="#">시계</a></li>	
+												<li><a href="${path}/item/list.shop?category=1">모자</a></li>
+												<li><a href="${path}/item/list.shop?category=2">아우터</a></li>
+												<li><a href="${path}/item/list.shop?category=3">원피스</a></li>
+												<li><a href="${path}/item/list.shop?category=4">상의</a></li>
+												<li><a href="${path}/item/list.shop?category=5">하의</a></li>
+												<li><a href="${path}/item/list.shop?category=6">가방</a></li>
+												<li><a href="${path}/item/list.shop?category=7">신발</a></li>
+												<li><a href="${path}/item/list.shop?category=8">시계</a></li>	
 											</ul>
 										</li>
 										<li><a href="${path}/board/support.shop">고객센터</a>
@@ -143,8 +143,8 @@
 														   	</div>
 															<ul class="submenu">
 																<li><a href="${path}/sns/mypage.shop?userid=${sessionScope.loginUser.userid}">mypage</a></li>
-																<c:if test="${loginUser.seller==0}"><li><a href="${path}/user/sellerEntry.shop">판매자 등록</a></c:if>
-																<c:if test="${loginUser.seller==1}"><li><a href="${path}/user/sellerUpdate.shop">판매자 정보 수정</a></c:if>
+																<c:if test="${loginUser.seller==0}"><li><a href="${path}/user/sellerEntry.shop?id=${sessionScope.loginUser.userid}">판매자 등록</a></c:if>
+																<c:if test="${loginUser.seller==1}"><li><a href="${path}/user/sellerUpdate.shop?id=${sessionScope.loginUser.userid}">판매자 정보 수정</a></c:if>
 																<li><a href="${path}/admin/widgets.shop">주문내역 (이지만 widget)</a></li>
 																<li><a href="${path}/user/logout.shop">logout</a></li>
 															</ul>

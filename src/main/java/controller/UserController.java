@@ -154,7 +154,7 @@ public class UserController {
 	}
 	
 	@PostMapping("sellerUpdate")
-	public ModelAndView sellerupdate(User user,BindingResult bresult,HttpSession session) {
+	public ModelAndView checksellerupdate(User user,BindingResult bresult,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		if(bresult.hasErrors()) {
 			bresult.reject("error.input.user");

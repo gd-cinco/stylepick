@@ -354,6 +354,25 @@ public class AjaxController {
 		return json;
 	}
 	
+	@RequestMapping(value="fd", produces="text/plain; charset=UTF8")
+	public String faqData(HttpServletRequest request) {
+		String category = request.getParameter("c");
+		if (category == "") {
+			category = null;
+		}
+		List<Board> list = service.getFaqList(category);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String json = null;
+		try {
+			json = mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		return json;
+	}
+	
 	//[sns] 댓글 목록
 	@RequestMapping(value="commentlist",produces="text/plain; charset=UTF8")
 	public String commentlist(int sns_no) {
