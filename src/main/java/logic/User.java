@@ -39,6 +39,26 @@ public class User {
 	private String order_memo;
 	private String order_tel;
 	
+	private int num; //[admin] charts index 1 스타일픽 회원 수
+	
+	public int getNum() {
+		return num;
+	}
+
+	public void setNumofusers(int numofusers) {
+		this.num = numofusers;
+	}
+
+	public String getSellerinString() {
+		String rst = "";
+		if(seller==0) {
+			rst = "users";
+		} else {
+			rst = "sellers";
+		}
+		return rst;
+	}
+	
 	public int getNo() {
 		return no;
 	}
@@ -179,6 +199,18 @@ public class User {
 	public void setOrder_tel(String order_tel) {
 		this.order_tel = order_tel;
 	}
+
+	@Override
+	public String toString() {
+		return "User [no=" + no + ", userid=" + userid + ", password=" + password + ", password2=" + password2
+				+ ", nickname=" + nickname + ", email=" + email + ", tel=" + tel + ", age=" + age + ", imgurl=" + imgurl
+				+ ", gender=" + gender + ", comment=" + comment + ", sns_type=" + sns_type + ", sns_id=" + sns_id
+				+ ", seller=" + seller + ", name=" + name + ", com_name=" + com_name + ", com_regist=" + com_regist
+				+ ", com_img=" + com_img + ", com_tel=" + com_tel + ", regdate=" + regdate + ", address=" + address
+				+ ", order_memo=" + order_memo + ", order_tel=" + order_tel + ", num=" + num + "]";
+	}
+	
+	/* previous toString
 	@Override
 	public String toString() {
 		return "User [no=" + no + ", userid=" + userid + ", password=" + password + ", password2=" + password2
@@ -188,6 +220,9 @@ public class User {
 				+ ", com_img=" + com_img + ", com_tel=" + com_tel + ", regdate=" + regdate + ", address=" + address
 				+ ", order_memo=" + order_memo + ", order_tel=" + order_tel + "]";
 	}
+	*/
+	
+	
 	
 	
 	

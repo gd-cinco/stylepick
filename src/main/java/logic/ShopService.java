@@ -342,7 +342,11 @@ public class ShopService {
 			// TODO Auto-generated method stub
 			return adminDao.getEvaluation();
 		}
-		
+		//[admin] charts index 1 스타일픽 회원 수 0820
+		public List<User> totnumofusers() {
+			// TODO Auto-generated method stub
+			return adminDao.totnumofusers();
+		}
 		//[admin] charts index 3 Yearly : 연 매출 현황 0818
 		public List<Buy> yearlyrevenue() {
 			// TODO Auto-generated method stub
@@ -353,12 +357,27 @@ public class ShopService {
 			// TODO Auto-generated method stub
 			return adminDao.scatterplot();
 		}
+		//[admin] charts index 6-1 카테고리별 판매 현황(월) 0820
+		public List<Buy> salesbycategories() {
+			// TODO Auto-generated method stub
+			return adminDao.salesbycategories();
+		}
+		//[admin] charts index 7-2 상위 10개 스토어 (월 매출 기준) 0820
+		public List<Buy> toptenstores() {
+			// TODO Auto-generated method stub
+			return adminDao.toptenstores();
+		}
+		
+		
 	/**
 	 * Board
 	 */
 	public List<Board> getBoardList(int seq) {
 		return boardDao.list(seq);
 	}
+
+
+
 
 
 
