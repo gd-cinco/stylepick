@@ -21,7 +21,7 @@ public class BoardDao {
 		List<Board> list = template.getMapper(BoardMapper.class).list(seq);
 		int i = 1;
 		for (Board b : list) {
-			b.setNo(i++);
+			b.setCount(i++);
 		}
 		return list;
 	}
@@ -31,8 +31,18 @@ public class BoardDao {
 		List<Board> list = template.getMapper(BoardMapper.class).faqlist(param);
 		int i = 1;
 		for (Board b : list) {
-			b.setNo(i++);
+			b.setCount(i++);
 		}
 		return list;
+	}
+
+	public void readcnt(Integer no) {
+		param.clear();
+		param.put("no", no);
+		template.getMapper(BoardMapper.class).readcnt(param);
+	}
+
+	public Board selectOne(Integer no) {
+		return template.getMapper(BoardMapper.class).selectOne(no);
 	}
 }

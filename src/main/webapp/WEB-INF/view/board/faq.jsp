@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../../header/header.jsp"%>
 <main>
+	<input type="button" onclick="location.href='${path}/board/addfaq.shop'" value="추가">
 	<div class="wrap">
 		<h1>FAQ</h1>
 		<table id="board" class="display" style="width: 100%;">
@@ -28,7 +29,7 @@
 			orderMulti : true,
 			order : [ [ 0, 'desc' ] ],
 			columns : [
-				{"data" : "no"}, 
+				{"data" : "count"}, 
 				{"data" : "title"}, 
 				{"data" : "category"}
 			],
@@ -51,9 +52,9 @@
 		});
 		
 		$('#board').on('click', 'tr', function() {
-		    var id = table.row( this ).id();
-		    if (id != null) {
-		    	location.href="../board/detail.shop?seq=faq&id=" + id	
+		    var no = table.row( this ).id();
+		    if (no != null) {
+		    	location.href="../board/detail.shop?no=" + no
 		    }
 		});
 	});
