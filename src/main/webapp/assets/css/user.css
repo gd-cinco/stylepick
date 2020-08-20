@@ -1,4 +1,6 @@
-
+.blacka{
+	color:black !important;
+}
 .userfont{
 	color: red;
 	font-size: 14px;
@@ -173,4 +175,65 @@
     margin-bottom: 40px;
     padding-top: 10px;
     font-size: 40px;
+}
+.a_blockbutton{
+	display: block;
+	border: 0px;
+	font-size:16px;
+	width: 71px;
+	height: 30px;
+	font-weight: bold;
+	text-align: center;
+	color:black !important;
+}
+.user-profile {
+	float : left;
+    margin-top: 45px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 30px;
+}
+.user-info {
+	height:180px;
+	background-color:#FFF;
+	margin-bottom : 20px;
+	font-size : 20px;
+	border: 2px solid #000;
+}
+.user-info table {
+	text-align : center;
+}
+
+.user-info table tr td {
+	padding-right: 20px;
+	font-weight: bold;
+}
+.user-imgdiv{
+display: inline;
+float: left;
+height: 180px;
+width: 180px;
+margin: 0px;
+text-align: center;
+padding-top: 26px;
+}
+.blockbutton_selected{
+border-bottom: 3px solid #35C5F0;
+color: #35C5F0 !important;
+}
+.blockbutton_selected2{
+border-bottom: 3px solid #FE6500;
+color: #FE6500 !important;
+}
+.dummycolor{
+border:0px;
+height: 90px;
+background-color: #35C5F0;
+margin-top:-198px;
+width:99.55%;
+margin-left: 2px;
+}
+.order_leftdiv{
+	width: 10%;
+	border-right: 1px solid black
 }
