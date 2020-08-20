@@ -291,7 +291,7 @@ function getCommentList(){
 			<div id="chart_div2"></div>
 			<!-- <div id="numGraph2_div" style="border: 1px solid #ccc"></div> -->
 			</div>
-			<!-- 월최근 4주간 매출 추이 그래프의 끝 -->
+			<!-- 최근 4주간 매출 추이 그래프의 끝 -->
 			<br>
 		</div> <!-- outer_frame -->
 			<!-- To Do List -->

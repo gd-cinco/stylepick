@@ -77,6 +77,10 @@ public interface AdminMapper {
 	@Select("SELECT com_name, AVG(evaluation) evaluation FROM user LEFT JOIN line ON user.userid = line.userid WHERE FLOOR( DATEDIFF( CURRENT_DATE , line.regdate ) / 7 ) <=4 GROUP BY com_name ORDER BY evaluation DESC LIMIT 3")
 	List<Line> getEvaluation(Map<String, Object> param);
 	
+	//charts index 1 스타일픽 회원 수
+	@Select("SELECT seller, COUNT(NO) num FROM user GROUP BY seller")
+	List<User> totnumofusers(Map<String, Object> param);
+	
 	//charts index 3 Yearly : 연 매출 현황
 	@Select("SELECT DATE_FORMAT(orderdate,'%Y-%m') month, SUM(amount) amount FROM buy WHERE DATE_FORMAT(orderdate,'%Y') = DATE_FORMAT(CURRENT_DATE, '%Y') GROUP BY month")
 	List<Buy> yearlyrevenue(Map<String, Object> param);
@@ -84,7 +88,15 @@ public interface AdminMapper {
 	//charts index 5 구매건 기준 매출 산점도
 	@Select("SELECT user.userid, SUM(buy.amount) amount, DATE_FORMAT(user.regdate,'%Y-%m') regdate  from buy LEFT JOIN user ON buy.userid = user.userid WHERE orderdate > (NOW() - INTERVAL 1 YEAR) GROUP BY user.userid ORDER BY regdate")
 	List<Buy> scatterplot(Map<String, Object> param);
-
+	
+	//charts index 6-1 카테고리별 판매 현황(월)
+	@Select("SELECT item.category, SUM(buy.amount) amount FROM buy LEFT OUTER JOIN buy_detail ON buy.order_no = buy_detail.order_no LEFT OUTER JOIN item ON buy_detail.item_no=item.item_no WHERE DATE_FORMAT(orderdate,'%Y') = DATE_FORMAT(CURRENT_DATE, '%Y') GROUP BY item.category")
+	List<Buy> salesbycategories(Map<String, Object> param);
+	
+	//charts index 7-2 상위 10개 스토어 (월 매출 기준)
+	@Select("SELECT IFNULL(user.com_name,'기본샵') com_name, SUM(buy.amount) amount FROM buy LEFT OUTER JOIN user ON buy.userid=user.userid WHERE DATE_FORMAT(buy.orderdate,'%Y-%m')=DATE_FORMAT(CURDATE(),'%Y-%m') GROUP BY user.com_name ORDER BY amount DESC LIMIT 10")
+	List<Buy> toptenstores(Map<String, Object> param);
+	
 
 }
 

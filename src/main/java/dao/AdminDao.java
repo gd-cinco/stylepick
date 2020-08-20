@@ -120,6 +120,24 @@ public class AdminDao {
 		param.clear();
 		return template.getMapper(AdminMapper.class).scatterplot(param);
 	}
+	//charts index 6-1 카테고리별 판매 현황(월)
+	public List<Buy> salesbycategories() {
+		// TODO Auto-generated method stub
+		param.clear();
+		return template.getMapper(AdminMapper.class).salesbycategories(param);
+	}
+	//charts index 1 스타일픽 회원 수
+	public List<User> totnumofusers() {
+		// TODO Auto-generated method stub
+		param.clear();
+		return template.getMapper(AdminMapper.class).totnumofusers(param);
+	}
+	//charts index 7-2 상위 10개 스토어 (월 매출 기준)
+	public List<Buy> toptenstores() {
+		// TODO Auto-generated method stub
+		param.clear();
+		return template.getMapper(AdminMapper.class).toptenstores(param);
+	}
 
 	
 	

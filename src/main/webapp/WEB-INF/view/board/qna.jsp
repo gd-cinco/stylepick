@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../../../header/header.jsp"%>
 <main>
+	<input type="button" value="모두보기">
+	<input type="button" value="답변완료된 질문 보기">
 	<div class="wrap">
 		<h1>QnA 목록</h1>
 		<table id="board" class="display" style="width: 100%;">
@@ -32,7 +34,7 @@
 			orderMulti : true,
 			order : [ [ 0, 'desc' ] ],
 			columns : [
-				{"data" : "no"},
+				{"data" : "count"},
 				{"data" : "title"}, 
 				{"data" : "category"},
 				{"data" : "author"},
@@ -58,9 +60,9 @@
 		});
 		
 		$('#board').on('click', 'tr', function() {
-		    var id = table.row( this ).id();
-		    if (id != null) {
-		    	location.href="../board/detail.shop?seq=qna&id=" + id	
+		    var no = table.row( this ).id();
+		    if (no != null) {
+		    	location.href="../board/detail.shop?no=" + no
 		    }
 		});
 	});
