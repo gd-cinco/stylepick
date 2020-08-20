@@ -170,6 +170,9 @@ public class AjaxController {
 	//[sns]
 	@RequestMapping(value="main", produces="text/plain; charset=UTF8")
 	public String main(String ksb,String type,int listAmount,int status) {
+		if(ksb == null) {
+			ksb = "";
+		}
 		StringBuilder html = new StringBuilder();
 		int limit = 16;
 		System.out.println(listAmount+","+limit);

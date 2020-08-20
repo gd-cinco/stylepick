@@ -43,9 +43,10 @@ public class SnsDao {
 		System.out.println(param);
 		if(ksb.equals("hot")) {
 			return template.getMapper(SnsMapper.class).select1(param);
-		} else {
+		} else if(ksb.equals("new") || ksb.trim().isEmpty()){
 			return template.getMapper(SnsMapper.class).select2(param);
 		}
+		return null;
 	}
 
 	public Sns selectOne(int sns_no) {
