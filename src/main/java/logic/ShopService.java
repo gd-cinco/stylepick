@@ -181,8 +181,8 @@ public class ShopService {
 	}
 	
 	//[sns] ootd 목록 
-	public List<Sns> getSnsList(String ksb,String type,int pageNum,int limit) {
-		return snsDao.list(ksb,type,pageNum,limit);
+	public List<Sns> getSnsList(String ksb,String type,int listAmount,int limit) {
+		return snsDao.list(ksb,type,listAmount,limit);
 	}
 	
 	//[sns] ootd 게시물 갯수
