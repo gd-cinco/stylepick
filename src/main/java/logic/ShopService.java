@@ -360,9 +360,8 @@ public class ShopService {
 		return boardDao.list(seq);
 	}
 
-
-
-
-
+	public List<Board> getFaqList(String category) {
+		return boardDao.faqlist(category);
+	}
 
 }
