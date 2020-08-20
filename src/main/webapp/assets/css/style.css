@@ -300,9 +300,9 @@ a {
 }
 
 /* line 83, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
-a:hover {
+/* a:hover {
   color: #fff;
-}
+} */
 
 /* line 86, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
 a:focus,
@@ -313,7 +313,6 @@ a:hover,
 }
 
 /* line 92, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
-a,
 button {
   color: #fff;
   outline: medium none;

@@ -18,8 +18,28 @@ public class Buy {
 	private String weeks_ago;
 	private String month;
 	private Date regdate;
+	private int category;
+	private String com_name;
 	
 	
+	public String getCom_name() {
+		return com_name;
+	}
+	public void setCom_name(String com_name) {
+		this.com_name = com_name;
+	}
+	public String getCategoryinString() {
+		String rtn = "";
+		if(category==1) rtn="모자";
+		else rtn="바지";
+		return rtn;
+	}
+	public int getCategory() {
+		return category;
+	}
+	public void setCategory(int category) {
+		this.category = category;
+	}
 	public String getRegdateinString() {
 		return new SimpleDateFormat("yyyy-MM").format(regdate);
 	}
@@ -104,8 +124,11 @@ public class Buy {
 	public String toString() {
 		return "Buy [order_no=" + order_no + ", userid=" + userid + ", name=" + name + ", address=" + address + ", tel="
 				+ tel + ", orderdate=" + orderdate + ", stat=" + stat + ", amount=" + amount + ", memo=" + memo
-				+ ", weeks_ago=" + weeks_ago + ", month=" + month + ", regdate=" + regdate + "]";
+				+ ", weeks_ago=" + weeks_ago + ", month=" + month + ", regdate=" + regdate + ", category=" + category
+				+ ", com_name=" + com_name + "]";
 	}
+	
+
 
 	
 	

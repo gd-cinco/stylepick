@@ -301,27 +301,48 @@ public class AjaxController {
         return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
         
     }
-
+	
 
 
     */
+	//[admin] charts index 1 스타일픽 회원 수 0820
+			@RequestMapping("totnumofusers")
+				public JSONObject totnumofusers() {
+				JSONObject json = googleChart.getChartData6();
+				return json;
+			}
 	//[admin] charts index 3 Yearly : 연 매출 현황 0818
 	@RequestMapping("yearlyrevenue")
 		public JSONObject yearlyrevenue() {
 		JSONObject json = googleChart.getChartData7();
 		//System.out.println(json);
 		return json;
-	}
-		
-		
-	//[admin] charts index 4 지역별 매출 평균 >later drawChart4 getChartData8
+	}	
+	//[admin] charts index 4-1 지역별 매출 평균 >later drawChart4 getChartData8
+	//[admin] charts index 4-2 지역별 매출 평균 >later drawChart5 getChartData9
 	
-	//[admin] charts index 5 구매건 기준 매출 산점도
+	//[admin] charts index 5 구매건 기준 매출 산점도 0819
 	@RequestMapping("scatterplot")
 		public JSONObject scatterplot() {
-		JSONObject json = googleChart.getChartData9();
+		JSONObject json = googleChart.getChartData10();
 		return json;
 	}
+	//[admin] charts index 6-1 카테고리별 판매 현황(월) 0820
+	@RequestMapping("salesbycategories")
+		public JSONObject salesbycategories() {
+		JSONObject json = googleChart.getChartData11();
+		return json;
+	}
+	//[admin] charts index 6-2 카테고리별 판매 현황(월) getChartData12(); later
+	//[admin] charts index 7-1 스토어 매출 점유율 트리 getChartData13(); later
+	
+	//[admin] charts index 7-2 상위 10개 스토어 (월 매출 기준)
+	@RequestMapping("toptenstores")
+		public JSONObject toptenstores() {
+		JSONObject json = googleChart.getChartData14();
+		return json;
+		}
+	
 	
 	
 	/**

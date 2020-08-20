@@ -259,12 +259,16 @@ public class ShopService {
 		return itemDao.maxnum();
 	}
 	
-	//[아이템]상품 작성
+
+
+	// [아이템]상품 작성
+
 	public void itmeCreate(Item item, HttpServletRequest request) {
-		if(item.getImgurl() != null && !item.getImgurl().isEmpty()) {
-			uploadFileCreate(item.getImgurl(),request, "item/img/");
+		if (item.getImgurl() != null && !item.getImgurl().isEmpty()) {
+			uploadFileCreate(item.getImgurl(), request, "item/img/");
 			item.setPictureUrl(item.getImgurl().getOriginalFilename());
 		}
+
 		itemDao.insert(item);	
 	}
 	
@@ -273,94 +277,132 @@ public class ShopService {
 		int max= lineDao.maxnum();
 		line.setLine_no(++max);
 		lineDao.insert(line);
+
+		itemDao.insert(item);
+
 	}
 
-		//[admin] dashboard index 1-1 이달 가입회원 0813
-		public int newusers() {
-			// TODO Auto-generated method stub
-			return adminDao.newusers();
-		}
-		//[admin] dashboard index 1-2 전체 회원 0813
-		public long numofusers() {
-			// TODO Auto-generated method stub
-			return adminDao.numofusers();
-		}
-		//[admin] dashboard index 1-3 이달 매출 0813
-		public long salesofthismonth() {
-			// TODO Auto-generated method stub
-			return adminDao.salesofthismonth();
-		}
-		//[admin] dashboard index 1-4 누적 매출 0813
-		public long salesdata() {
-			// TODO Auto-generated method stub
-			return adminDao.salesdata();
-		}
-		//[admin] dashboard index 1-5 누적 리뷰 0813
-		public long numofreviews() {
-			// TODO Auto-generated method stub
-			return adminDao.numofreviews();
-		}
-		//[admin] dashboard index 2-1 주간 매출 0814
-		public List<Buy> weeklyrevenue() {
-			// TODO Auto-generated method stub
-			return adminDao.weeklyrevenue();
-		}
-		//[admin] dashboard index 2-2 최근 4주간 매출 0815
-		public List<Buy> monthlyrevenue() {
-			// TODO Auto-generated method stub
-			return adminDao.monthlyrevenue();
-		}
-		//[admin] widgets index 1-1 daily sales report 0816
-		public List<Buy> getSales() {
-			// TODO Auto-generated method stub
-			return adminDao.getSales();
-		}
-		//[admin] widgets index 1-2 recently joined users 0816
-		public List<User> getUsers() {
-			// TODO Auto-generated method stub
-			return adminDao.getUsers();
-		}
-		//[admin] widgets index 2-1 이번 달 구매 회원 랭킹 0816
-		public List<Buy> monthlyheavyusers() {
-			// TODO Auto-generated method stub
-			return adminDao.monthlyheavyusers();
-		}
-		//[admin] widgets index 2-2 올해 최다 구매 회원 랭킹 0817
-		public List<Buy> yearlyheavyusers() {
-			// TODO Auto-generated method stub
-			return adminDao.yearlyheavyusers();
-		}
-		//[admin] widgets index 3-1 우수 입점 스토어 차트 0817
-		public List<Line> topthreestores() {
-			// TODO Auto-generated method stub
-			return adminDao.topthreestores();
-		}
-		//[admin] dashboard index 3-1 To-do list 0817
-		public void addtodolist(Line line) {
-			// TODO Auto-generated method stub
-			adminDao.addtodolist();
-		}
-		//[admin] dashboard index 3-2 To-do list show 0817
-		public List<Line> selectTodolistByCode(Line line) {
-			// TODO Auto-generated method stub
-			return adminDao.selectTodolistByCode(line);
-		}
-		//[admin] widgets index 3-2 최근 4주 별점 평균 상위 3개 스토어 0818
-		public List<Line> getEvaluation() {
-			// TODO Auto-generated method stub
-			return adminDao.getEvaluation();
-		}
-		
-		//[admin] charts index 3 Yearly : 연 매출 현황 0818
-		public List<Buy> yearlyrevenue() {
-			// TODO Auto-generated method stub
-			return adminDao.yearlyrevenue();
-		}
-		//[admin] charts index 5 구매건 기준 매출 산점도 0819
-		public List<Buy> scatterplot() {
-			// TODO Auto-generated method stub
-			return adminDao.scatterplot();
-		}
+	// [admin] dashboard index 1-1 이달 가입회원 0813
+	public int newusers() {
+		// TODO Auto-generated method stub
+		return adminDao.newusers();
+	}
+
+	// [admin] dashboard index 1-2 전체 회원 0813
+	public long numofusers() {
+		// TODO Auto-generated method stub
+		return adminDao.numofusers();
+	}
+
+	// [admin] dashboard index 1-3 이달 매출 0813
+	public long salesofthismonth() {
+		// TODO Auto-generated method stub
+		return adminDao.salesofthismonth();
+	}
+
+	// [admin] dashboard index 1-4 누적 매출 0813
+	public long salesdata() {
+		// TODO Auto-generated method stub
+		return adminDao.salesdata();
+	}
+
+	// [admin] dashboard index 1-5 누적 리뷰 0813
+	public long numofreviews() {
+		// TODO Auto-generated method stub
+		return adminDao.numofreviews();
+	}
+
+	// [admin] dashboard index 2-1 주간 매출 0814
+	public List<Buy> weeklyrevenue() {
+		// TODO Auto-generated method stub
+		return adminDao.weeklyrevenue();
+	}
+
+	// [admin] dashboard index 2-2 최근 4주간 매출 0815
+	public List<Buy> monthlyrevenue() {
+		// TODO Auto-generated method stub
+		return adminDao.monthlyrevenue();
+	}
+
+	// [admin] widgets index 1-1 daily sales report 0816
+	public List<Buy> getSales() {
+		// TODO Auto-generated method stub
+		return adminDao.getSales();
+	}
+
+	// [admin] widgets index 1-2 recently joined users 0816
+	public List<User> getUsers() {
+		// TODO Auto-generated method stub
+		return adminDao.getUsers();
+	}
+
+	// [admin] widgets index 2-1 이번 달 구매 회원 랭킹 0816
+	public List<Buy> monthlyheavyusers() {
+		// TODO Auto-generated method stub
+		return adminDao.monthlyheavyusers();
+	}
+
+	// [admin] widgets index 2-2 올해 최다 구매 회원 랭킹 0817
+	public List<Buy> yearlyheavyusers() {
+		// TODO Auto-generated method stub
+		return adminDao.yearlyheavyusers();
+	}
+
+	// [admin] widgets index 3-1 우수 입점 스토어 차트 0817
+	public List<Line> topthreestores() {
+		// TODO Auto-generated method stub
+		return adminDao.topthreestores();
+	}
+
+	// [admin] dashboard index 3-1 To-do list 0817
+	public void addtodolist(Line line) {
+		// TODO Auto-generated method stub
+		adminDao.addtodolist();
+	}
+
+	// [admin] dashboard index 3-2 To-do list show 0817
+	public List<Line> selectTodolistByCode(Line line) {
+		// TODO Auto-generated method stub
+		return adminDao.selectTodolistByCode(line);
+	}
+
+	// [admin] widgets index 3-2 최근 4주 별점 평균 상위 3개 스토어 0818
+	public List<Line> getEvaluation() {
+		// TODO Auto-generated method stub
+		return adminDao.getEvaluation();
+	}
+
+	// [admin] charts index 1 스타일픽 회원 수 0820
+	public List<User> totnumofusers() {
+		// TODO Auto-generated method stub
+		return adminDao.totnumofusers();
+	}
+
+	// [admin] charts index 3 Yearly : 연 매출 현황 0818
+	public List<Buy> yearlyrevenue() {
+		// TODO Auto-generated method stub
+		return adminDao.yearlyrevenue();
+	}
+
+	// [admin] charts index 5 구매건 기준 매출 산점도 0819
+	public List<Buy> scatterplot() {
+		// TODO Auto-generated method stub
+		return adminDao.scatterplot();
+	}
+
+	// [admin] charts index 6-1 카테고리별 판매 현황(월) 0820
+	public List<Buy> salesbycategories() {
+		// TODO Auto-generated method stub
+		return adminDao.salesbycategories();
+	}
+
+	// [admin] charts index 7-2 상위 10개 스토어 (월 매출 기준) 0820
+	public List<Buy> toptenstores() {
+		// TODO Auto-generated method stub
+		return adminDao.toptenstores();
+
+	}
+
 	/**
 	 * Board
 	 */
@@ -373,5 +415,14 @@ public class ShopService {
 	}
 
 
+
+
+
+	public Board getBoard(Integer no, boolean readcntable) {
+		if (readcntable) {
+			boardDao.readcnt(no);
+		}
+		return boardDao.selectOne(no);
+	}
 
 }

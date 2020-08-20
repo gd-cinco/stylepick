@@ -124,11 +124,20 @@ public class UserController {
 	}
 	
 	@GetMapping(value = {"update","delete","sellerEntry","sellerUpdate"})
-	public ModelAndView checkview(String id,HttpSession session) {
+	public ModelAndView /*check*/view(String id,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = service.getUser(id);
 		mav.addObject("user",user);
 		return mav;
+	}
+	
+	@GetMapping(value = {"orderList*","sellList*"})
+	public ModelAndView checksessionview(HttpSession session){
+		ModelAndView mav = new ModelAndView();
+		User user = (User)session.getAttribute("loginUser");
+		mav.addObject("user",user);
+		return mav;
+		
 	}
 	
 	@PostMapping("update")

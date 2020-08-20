@@ -27,17 +27,23 @@ $(function() {
 google.load('visualization','1',{
     'packages' : ['corechart']
 });
+google.charts.load('current', {'packages':['treemap']})
 //로딩이 완료되면 drawChart 함수를 호출
-//google.setOnLoadCallback(drawChart1); //라이브러리를 불러오는 작업이 완료되었으면 drawChart작업을 실행하라는 뜻.
+google.setOnLoadCallback(drawChart1); //라이브러리를 불러오는 작업이 완료되었으면 drawChart작업을 실행하라는 뜻.
 google.setOnLoadCallback(drawChart2);
 google.setOnLoadCallback(drawChart3);
 //google.setOnLoadCallback(drawChart4);
-google.setOnLoadCallback(drawChart5);
+//google.setOnLoadCallback(drawChart5);
+google.setOnLoadCallback(drawChart6);
+google.setOnLoadCallback(drawChart7);
+google.setOnLoadCallback(drawChart8);
+google.setOnLoadCallback(drawChart9);
+google.setOnLoadCallback(drawChart10);
 
-	/*
+	
 	function drawChart1() {
 	    var jsonData = $.ajax({
-	    	url : "${path}/ajax/numofusers.shop",
+	    	url : "${path}/ajax/totnumofusers.shop",
 	    	//chart01에서는 json의 주소를 직접 적었지만 이 페이지에서는 컨트롤러로 이동해 맵핑해서 제이슨을 동적으로
 	        //직접만들어 그 만든 json을 직접 보낸다.
 	    	dataType : "json",
@@ -53,21 +59,20 @@ google.setOnLoadCallback(drawChart5);
 	    //var chart = new google.visualization.PieChart(
 	            //document.getElementByld('chart_div')); //원형 그래프
 	    
-	    var chart = new google.visualization.LineChart(document.getElementById('chart_div2')); //선 그래프
-	    //var chart
-	    //  = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+	    //var chart = new google.visualization.LineChart(document.getElementById('chart_div2')); //선 그래프
+	    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
 	            //차트 객체.draw(데이터 테이블, 옵션) //막대그래프
 	            
 	            //cuveType : "function" => 곡선처리
 	            
 	            //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
 	            chart.draw(data, {
-	                title : "일반회원 스토어회원 추이",
+	                title : "스타일픽 회원",
 	                //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
 	                width : 1200,
 	                height : 500
 	            });
-	}*/
+	}
 
 	//charts index 2 Weekly : 일자별 매출 현황 0818
     function drawChart2() {
@@ -142,10 +147,11 @@ google.setOnLoadCallback(drawChart5);
                     height : 500
                 });
     }
-    //charts index 4 지역별 매출 평균 >later drawChart4
+    //charts index 4-1 지역별 매출 평균 >later drawChart4
+    //charts index 4-2 지역별 매출 평균 >later drawChart5
     
     //charts index 5 구매건 기준 매출 산점도
-    function drawChart5() {
+    function drawChart6() {
         var jsonData = $.ajax({
         	url : "${path}/ajax/scatterplot.shop",
         	//chart01에서는 json의 주소를 직접 적었지만 이 페이지에서는 컨트롤러로 이동해 맵핑해서 제이슨을 동적으로
@@ -153,15 +159,27 @@ google.setOnLoadCallback(drawChart5);
         	dataType : "json",
         	async : false,
         }).responseText; //제이슨파일을 text파일로 읽어들인다는 뜻
-        console.log(jsonData);
+        console.log(jsonData);        
+        
         //데이터테이블 생성
         var data = new google.visualization.DataTable(jsonData);
         //제이슨 형식을 구글의 테이블 형식으로 바꿔주기 위해서 집어넣음
         //차트를 출력할 div
         //LineChart, ColumnChart, PieChart에 따라서 차트의 형식이 바뀐다.
+        /*
+        var data = google.visualization.arrayToDataTable([
+          ['Age', 'Weight'],
+          [ 8,      12],
+          [ 4,      5.5],
+          [ 11,     14],
+          [ 4,      5],
+          [ 3,      3.5],
+          [ 6.5,    7]
+        ]);
+        */
         
         //var chart = new google.visualization.PieChart(document.getElementByld('chart_div')); //원형 그래프
-        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div5')); //scatter plot
+        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div6')); //scatter plot
         //var chart = new google.visualization.LineChart(document.getElementById('chart_div5')); //선 그래프
         //var chart = new google.visualization.ColumnChart(document.getElementById('chart_div')); //막대그래프
         //차트 객체.draw(데이터 테이블, 옵션)
@@ -175,9 +193,190 @@ google.setOnLoadCallback(drawChart5);
                     height : 500,
                     hAxis: {title: '가입연월', minValue: 0}, // maxValue: 15
                     vAxis: {title: '구매 금액', minValue: 0},
-                    legend: 'none'
+                    legend: 'none',
                 });
     }
+    
+  	//charts index 6-1 카테고리별 판매 현황(월)
+    function drawChart7() {
+        var jsonData = $.ajax({
+        	url : "${path}/ajax/salesbycategories.shop",
+        	//chart01에서는 json의 주소를 직접 적었지만 이 페이지에서는 컨트롤러로 이동해 맵핑해서 제이슨을 동적으로
+            //직접만들어 그 만든 json을 직접 보낸다.
+        	dataType : "json",
+        	async : false,
+        }).responseText; //제이슨파일을 text파일로 읽어들인다는 뜻
+        console.log(jsonData);
+        //데이터테이블 생성
+        var data = new google.visualization.DataTable(jsonData);
+        //제이슨 형식을 구글의 테이블 형식으로 바꿔주기 위해서 집어넣음
+        //차트를 출력할 div
+        //LineChart, ColumnChart, PieChart에 따라서 차트의 형식이 바뀐다.
+        
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div7')); //pie plot
+        //var chart = new google.visualization.ScatterChart(document.getElementById('chart_div7')); //scatter plot
+        //var chart = new google.visualization.LineChart(document.getElementById('chart_div5')); //선 그래프
+        //var chart = new google.visualization.ColumnChart(document.getElementById('chart_div')); //막대그래프
+        //차트 객체.draw(데이터 테이블, 옵션)
+        //cuveType : "function" => 곡선처리
+                
+                //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
+       var options = {
+          title: '이달의 구매 카테고리 비율',
+          //is3D: true,
+          width:500,
+          height:500
+        };
+       chart.draw(data, options);
+
+    }
+  	
+  	//charts index 6-2 카테고리별 판매 현황(월)
+    function drawChart8() {
+        var jsonData = $.ajax({
+        	url : "${path}/ajax/salesbycategories.shop", //안만듦
+        	//chart01에서는 json의 주소를 직접 적었지만 이 페이지에서는 컨트롤러로 이동해 맵핑해서 제이슨을 동적으로
+            //직접만들어 그 만든 json을 직접 보낸다.
+        	dataType : "json",
+        	async : false,
+        }).responseText; //제이슨파일을 text파일로 읽어들인다는 뜻
+        console.log(jsonData);
+        //데이터테이블 생성
+        var data = new google.visualization.DataTable(jsonData);
+        //제이슨 형식을 구글의 테이블 형식으로 바꿔주기 위해서 집어넣음
+        //차트를 출력할 div
+        //LineChart, ColumnChart, PieChart에 따라서 차트의 형식이 바뀐다.
+        
+        var data = google.visualization.arrayToDataTable([
+	        ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
+	         'Western', 'Literature', { role: 'annotation' } ],
+	        ['2010', 10, 24, 20, 32, 18, 5, ''],
+	        ['2020', 16, 22, 23, 30, 16, 9, ''],
+	        ['2030', 28, 19, 29, 30, 12, 13, '']
+      	]);
+        
+        //var chart = new google.visualization.PieChart(document.getElementById('chart_div')); //pie plot
+        //var chart = new google.visualization.ScatterChart(document.getElementById('chart_div')); //scatter plot
+        //var chart = new google.visualization.LineChart(document.getElementById('chart_div')); //선 그래프
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div8')); //막대그래프
+        //차트 객체.draw(데이터 테이블, 옵션)
+        //cuveType : "function" => 곡선처리
+                
+                //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
+       var options = {
+          title: '월별 구매금액(카테고리 구분)',
+          width:500,
+          height:500,
+          bar: { groupWidth: '75%' },
+          isStacked: true
+        };
+       chart.draw(data, options);
+
+    }
+  	
+  	//charts index 7-1 스토어 매출 점유율 트리
+    function drawChart9() {
+        var jsonData = $.ajax({
+        	url : "${path}/ajax/salesbycategories.shop", //안만듦
+        	//chart01에서는 json의 주소를 직접 적었지만 이 페이지에서는 컨트롤러로 이동해 맵핑해서 제이슨을 동적으로
+            //직접만들어 그 만든 json을 직접 보낸다.
+        	dataType : "json",
+        	async : false,
+        }).responseText; //제이슨파일을 text파일로 읽어들인다는 뜻
+        console.log(jsonData);
+        //데이터테이블 생성
+        var data = new google.visualization.DataTable(jsonData);
+        //제이슨 형식을 구글의 테이블 형식으로 바꿔주기 위해서 집어넣음
+        //차트를 출력할 div
+        //LineChart, ColumnChart, PieChart에 따라서 차트의 형식이 바뀐다.
+        
+        var data = google.visualization.arrayToDataTable([
+          ['Location', 'Parent', 'Market trade volume (size)', 'Market increase/decrease (color)'],
+          ['Global',    null,                 0,                               0],
+          ['America',   'Global',             0,                               0],
+          ['Europe',    'Global',             0,                               0],
+          ['Asia',      'Global',             0,                               0],
+          ['Australia', 'Global',             0,                               0],
+          ['Africa',    'Global',             0,                               0],
+          ['Brazil',    'America',            11,                              10],
+          ['USA',       'America',            52,                              31],
+          ['Mexico',    'America',            24,                              12],
+          ['Canada',    'America',            16,                              -23],
+          ['France',    'Europe',             42,                              -11],
+          ['Germany',   'Europe',             31,                              -2],
+          ['Sweden',    'Europe',             22,                              -13],
+          ['Italy',     'Europe',             17,                              4],
+          ['UK',        'Europe',             21,                              -5],
+          ['China',     'Asia',               36,                              4],
+          ['Japan',     'Asia',               20,                              -12],
+          ['India',     'Asia',               40,                              63],
+          ['Laos',      'Asia',               4,                               34],
+          ['Mongolia',  'Asia',               1,                               -5],
+          ['Israel',    'Asia',               12,                              24],
+          ['Iran',      'Asia',               18,                              13],
+          ['Pakistan',  'Asia',               11,                              -52],
+          ['Egypt',     'Africa',             21,                              0],
+          ['S. Africa', 'Africa',             30,                              43],
+          ['Sudan',     'Africa',             12,                              2],
+          ['Congo',     'Africa',             10,                              12],
+          ['Zaire',     'Africa',             8,                               10]
+        ]);
+        
+        var chart  = new google.visualization.TreeMap(document.getElementById('chart_div9')); //tree map
+        //var chart = new google.visualization.PieChart(document.getElementById('chart_div')); //pie chart
+        //var chart = new google.visualization.ScatterChart(document.getElementById('chart_div')); //scatter plot
+        //var chart = new google.visualization.LineChart(document.getElementById('chart_div')); //선 그래프
+        //var chart = new google.visualization.ColumnChart(document.getElementById('chart_div8')); //막대그래프
+        //차트 객체.draw(데이터 테이블, 옵션)
+        //cuveType : "function" => 곡선처리
+                
+                //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
+       var options = {
+          title: '월별 구매금액(카테고리 구분)',
+          width:300,
+          height:300,
+          minColor: '#f00',
+          midColor: '#ddd',
+          maxColor: '#0d0',
+          headerHeight: 15,
+          fontColor: 'black',
+          showScale: true
+        };
+       chart.draw(data, options);
+
+    }
+ 	 //charts index 7-2 상위 10개 스토어 (월 매출 기준)
+    function drawChart10() {
+        var jsonData = $.ajax({
+        	url : "${path}/ajax/toptenstores.shop",
+        	//chart01에서는 json의 주소를 직접 적었지만 이 페이지에서는 컨트롤러로 이동해 맵핑해서 제이슨을 동적으로
+            //직접만들어 그 만든 json을 직접 보낸다.
+        	dataType : "json",
+        	async : false,
+        }).responseText; //제이슨파일을 text파일로 읽어들인다는 뜻
+        console.log(jsonData);
+        //데이터테이블 생성
+        var data = new google.visualization.DataTable(jsonData);
+        //제이슨 형식을 구글의 테이블 형식으로 바꿔주기 위해서 집어넣음
+        //차트를 출력할 div
+        //LineChart, ColumnChart, PieChart에 따라서 차트의 형식이 바뀐다.
+        
+       	//var chart = new google.visualization.PieChart(document.getElementById('chart_div7')); //pie plot
+        //var chart = new google.visualization.ScatterChart(document.getElementById('chart_div7')); //scatter plot
+        //var chart = new google.visualization.LineChart(document.getElementById('chart_div5')); //선 그래프
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div10')); //막대그래프
+        //차트 객체.draw(데이터 테이블, 옵션)
+        //cuveType : "function" => 곡선처리
+                
+                //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
+       var options = {
+          title: '상위 10개 스토어 (월 매출 기준)',
+          width:500,
+          height:500
+        };
+       chart.draw(data, options);
+    }
+
 
 });
 </script>
@@ -228,24 +427,31 @@ google.setOnLoadCallback(drawChart5);
 			<div id="mint_square"></div> 지역별 매출 평균
 			<br>
 			<div id="chart_div4"></div>
+			<div id="chart_div5"></div>
 		</div>
 		<br>
 		<div>
 			<div id="mint_square"></div> 구매건 기준 매출 산점도
 			<br>
-			<div id="chart_div5"></div>
+			<div id="chart_div6"></div>
 		</div>
 		<br>
 		<div>
 			<div id="mint_square"></div> 카테고리 별 판매 현황(월)
 			<br>
-			<div id="chart_div6"></div>
+			<div style="width: 1200px; overflow: hidden;">
+				<div id="chart_div7" style="float: left;"></div>
+				<div id="chart_div8" style="float: left;"></div>
+			</div>
 		</div>
 		<br>
 		<div>
 			<div id="mint_square"></div> 스토어 매출 점유율
 			<br>
-			<div id="chart_div7"></div>
+			<div style="width: 1200px; overflow: hidden;">
+				<div id="chart_div9" style="float: left;"></div>
+				<div id="chart_div10" style="float: left;"></div>
+			</div>
 		</div>
 		<br>
 		
