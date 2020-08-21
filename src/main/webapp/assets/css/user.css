@@ -1,3 +1,12 @@
+.order_table{
+	width:100%;
+	border-collapse: collapse;
+}
+.order{
+	border: 3px solid #bcbcbc;
+	text-align: center;
+	padding: 8px;
+}
 .blacka{
 	color:black !important;
 }
@@ -236,6 +245,10 @@ width:100%;
 	float:left;
 	display:inline;
 	margin-top:10px;
+}
+.order_downview{
+	height: 200px;
+	padding-top: 20px;
 }
 .order_leftdiv{
 	width: 10%;

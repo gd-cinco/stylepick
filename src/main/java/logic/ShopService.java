@@ -15,9 +15,12 @@ import dao.SnsDao;
 import dao.SnsItemDao;
 import dao.AdminDao;
 import dao.BoardDao;
+
 import dao.CommentDao;
 import dao.ItemDao;
 import dao.LineDao;
+import dao.SaleDao;
+import dao.SaleItemDao;
 import dao.UserDao;
 
 @Service	//@Component + service ( Controller와 dao의 중간)
@@ -31,6 +34,8 @@ public class ShopService {
 
 	@Autowired
 	private ItemDao itemDao;
+	
+
 
 	@Autowired
 	private SnsItemDao snsItemDao;
@@ -46,6 +51,12 @@ public class ShopService {
 	
 	@Autowired
 	private LineDao lineDao;
+	
+	@Autowired
+	private SaleDao saleDao;
+	
+	@Autowired
+	private SaleItemDao saleItemDao;
  
 	//[user] 입력창 중복확인
 	public int joincompare(String key, String val) {
@@ -90,6 +101,12 @@ public class ShopService {
 	//[user] 유저 리스트로 가져오기
 	public List<User> getUserList() {
 		return userDao.list();
+	}
+	
+	//[user] 내 주문리스트 요약보기
+	public List<Userorder> getUserOrder(String userid) {
+		System.out.println("!1"+userid);
+		return userDao.userorder(userid);
 	}
 	
 	//[admin] 메일 보낼 유저리스트 0728
@@ -291,9 +308,6 @@ public class ShopService {
 		int max= lineDao.maxnum();
 		line.setLine_no(++max);
 		lineDao.insert(line);
-
-//		itemDao.insert(item);
-
 	}
 	
 	//[item] 상품 수정
@@ -451,6 +465,26 @@ public class ShopService {
 		boardDao.insert(board);
 	}
 
+	public Sale checkend(User loginUser, Cart cart) {
+		Sale sale = new Sale();
+		int maxno = saleDao.getMaxSaleid();
+		sale.setSaleid(++maxno);
+		sale.setUser(loginUser);
+		sale.setUserid(loginUser.getUserid());
+		
+		saleDao.insert(sale);
+		// 장바구니 판매 상품 정보
+		List<ItemSet> itemList = cart.getItemSetList();
+		int seq = 0;
+		for(ItemSet itemSet : itemList) {
+			++seq;
+			SaleItem saleItem = new SaleItem(sale.getSaleid(), seq, itemSet);
+			sale.getItemList().add(saleItem);
+			saleItemDao.insert(saleItem);
+		}
+		
+		return sale;
+	}
 
 
 

@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import exception.ItemEmptyException;
@@ -90,7 +92,7 @@ public class itemController {
 		return mav;
 		}
 		
-		@GetMapping("*") // /item/*.shop
+		@RequestMapping("*") // /item/*.shop
 		public ModelAndView detail(Integer item_no,HttpServletRequest request) {
 			ModelAndView mav =new ModelAndView();
 			Item item=null;
@@ -124,6 +126,27 @@ public class itemController {
 			service.itemUpdate(item,request);
 			mav.setViewName("redirect:/item/detail.shop?item_no="+item.getItem_no());
 			return mav;
+		
+		@RequestMapping("imgupload")
+		//upload : ckeditor에서 전달해 주는 파일 정보의 이름
+		// 			<input type="file" name="upload">
+		//CKEditorFuncNum: ckeditor에서 
+		public String imgupload(MultipartFile upload,String CKEditorFuncNum, HttpServletRequest request, Model model) {
+			String path=request.getServletContext().getRealPath("/") + "item/imgfile/"; //이미지는 저장할 폴더를 지정
+			File f = new File(path);
+			if(!f.exists()) f.mkdirs();
+			if(!upload.isEmpty()) {	//업로드될 파일을 저장할 File 객체 지정
+				File file= new File(path, upload.getOriginalFilename());
+				try {
+					upload.transferTo(file);	//업로드 파일 생성
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			String fileName =request.getServletContext().getContextPath()+"/item/imgfile/" +upload.getOriginalFilename();
+			model.addAttribute("fileName",fileName);
+			model.addAttribute("CKEditorFuncNum", CKEditorFuncNum);
+			return "ckedit";
 		}
 	
 }

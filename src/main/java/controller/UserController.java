@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import exception.LoginException;
 import logic.ShopService;
 import logic.User;
+import logic.Userorder;
 
 @Controller
 @RequestMapping("user")
@@ -131,13 +134,24 @@ public class UserController {
 		return mav;
 	}
 	
+	@GetMapping("orderList")
+	public ModelAndView checkorderList(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		User user = (User)session.getAttribute("loginUser");
+		mav.addObject("user",user);
+		
+		List<Userorder> order = service.getUserOrder(user.getUserid());
+		mav.addObject("order",order);
+		
+		return mav;
+	}
+	
 	@GetMapping(value = {"orderList*","sellList*"})
 	public ModelAndView checksessionview(HttpSession session){
 		ModelAndView mav = new ModelAndView();
 		User user = (User)session.getAttribute("loginUser");
 		mav.addObject("user",user);
 		return mav;
-		
 	}
 	
 	@PostMapping("update")

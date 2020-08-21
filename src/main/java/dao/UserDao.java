@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import dao.mapper.UserMapper;
 import logic.User;
+import logic.Userorder;
 
 @Repository
 public class UserDao {
@@ -70,6 +71,10 @@ public class UserDao {
 
 	public int getmaxno() {
 		return template.getMapper(UserMapper.class).getmaxno();
+	}
+
+	public List<Userorder> userorder(String userid) {
+		return template.getMapper(UserMapper.class).getuserorder(userid);
 	}
 
 	

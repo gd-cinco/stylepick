@@ -228,6 +228,10 @@ oTbl1.deleteRow(oTbl1.clickedRowIndex);
 	<div>
 	<ul>상품 설명</ul>
 	<dl><form:textarea path="content" cols="99" rows="12" /></dl>
+	<script type="text/javascript">CKEDITOR.replace("content",{
+		filebrowserImageUploadUrl : "imgupload.shop"
+	});
+	</script>
 	</div>
 	
 	<div style="margin-bottom:15px;">
