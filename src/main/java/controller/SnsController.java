@@ -40,6 +40,13 @@ public class SnsController {
 		return null;
 	}
 	*/
+	
+	@GetMapping(value={"write","qna"})
+	public String loginCheckWrite(Model model,HttpSession session) {
+		model.addAttribute(new Sns());
+		return null;
+	}
+	
 	@PostMapping("write")
 	public ModelAndView create(Sns sns,String category,String detail,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
@@ -158,20 +165,27 @@ public class SnsController {
 		return mav;
 	}
 	
-	@RequestMapping("mypage")
+	@GetMapping("mypage")
 	public ModelAndView checkmypge(String userid,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = service.getUser(userid);
-		List<Sns> mysnslist = service.mysns(userid);
-		for(Sns s : mysnslist) {
-			s.setLikenum(service.getlikenum(s.getSns_no()));
-			s.setCommentnum(service.getcommentnum(s.getSns_no()));
-		}
 		int mysnsnum = service.getmySnsCount(userid);
+		int follownum = service.getFollowCount(userid);
+		int followernum = service.getFollowerCount(userid);
+		mav.addObject("follownum",follownum);
+		mav.addObject("followernum",followernum);
 		mav.addObject("mysnsnum",mysnsnum);
 		mav.addObject("user",user);
-		mav.addObject("mysnslist",mysnslist);
 		return mav;
+	}
+	
+	@RequestMapping("follow")
+	public ModelAndView follow(String fuser,HttpSession session) {
+		ModelAndView mav = new ModelAndView("sns/mypage");
+		User loginUser = (User)session.getAttribute("loginUser");
+		service.Follow(loginUser.getUserid(),fuser);
+		mav.setViewName("redirect:/sns/mypage.shop?userid="+fuser);
+		return mav;	
 	}
 	
 

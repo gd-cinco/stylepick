@@ -101,7 +101,9 @@
     		</div>
     		<div class="update_input">
     			<div class="input_box" id="ageinputbox" >
-					<input type="text" id="age" name="age" value="${user.age}"
+					<input type="text" id="age" name="age"
+					<c:if test="${user.age==0}"></c:if>
+					<c:if test="${user.age!=0}">value='${user.age}'</c:if>
 					placeholder="나이" class="input_input" autocomplete="off"
 					 onfocus="document.getElementById('ageinputbox').style.border='2px solid #35C5F0'"
 					 onblur="document.getElementById('ageinputbox').style.border='1px solid #dadada'">

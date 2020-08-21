@@ -3,6 +3,7 @@ package dao.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -25,4 +26,12 @@ public interface BoardMapper {
 
 	@Select("select * from board where no=#{no}")
 	Board selectOne(int no);
+
+	@Select("SELECT IFNULL(MAX(no),0) FROM board")
+	int maxno();
+
+	@Insert("INSERT INTO board " 
+			+ " (no, title, author, seq, category, stat, regtime, readcnt, content, file1) "
+			+ " VALUES (#{no}, #{title}, #{author}, #{seq}, #{category}, #{stat}, NOW(), 0, #{content}, #{file1}) ")
+	void insert(Board board);
 }

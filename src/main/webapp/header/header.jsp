@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자주 묻는 질문</title>
+<title>고객센터</title>
 
 	<!-- template -->
 	<link rel="stylesheet" href="${path}/assets/css/bootstrap.min.css">

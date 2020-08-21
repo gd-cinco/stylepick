@@ -41,7 +41,7 @@
 			</table>
 		</div>
 	</div>
-	</div>	
+	</div>
 	<div style="height: 200px;">
 		<div class="order_leftdiv">
 		<ul>
