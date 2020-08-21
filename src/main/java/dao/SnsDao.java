@@ -78,11 +78,9 @@ public class SnsDao {
 		template.getMapper(SnsMapper.class).update(sns);
 	}
 
-	public List<Sns> mylist(String userid,int listAmount,int limit) {
+	public List<Sns> mylist(String userid) {
 		param.clear();
 		param.put("userid",userid);
-		param.put("startrow",(listAmount-1)*8);
-		param.put("limit",limit);
 		return template.getMapper(SnsMapper.class).mylist(param);
 	}
 
@@ -96,25 +94,6 @@ public class SnsDao {
 		param.clear();
 		param.put("sns_no",sns_no);
 		template.getMapper(SnsMapper.class).delete(param);
-	}
-
-	public void userFollow(String loginuser, String followuser) {
-		param.clear();
-		param.put("loginuser",loginuser);
-		param.put("followuser",followuser);
-		template.getMapper(SnsMapper.class).follow(param);
-	}
-
-	public int FollowCount(String userid) {
-		param.clear();
-		param.put("userid",userid);
-		return template.getMapper(SnsMapper.class).follownum(param);
-	}
-
-	public int FollowerCount(String userid) {
-		param.clear();
-		param.put("userid",userid);
-		return template.getMapper(SnsMapper.class).followernum(param);
 	}
 
 }

@@ -167,11 +167,7 @@ public class AjaxController {
 		return html.toString();
 	}
 	
-	/**
-	 * Sns
-	 */
-	
-	//[sns] 게시물 불러오기
+	//[sns]
 	@RequestMapping(value="main", produces="text/plain; charset=UTF8")
 	public String main(String ksb,String type,int listAmount,int status) {
 		if(ksb == null) {
@@ -218,96 +214,6 @@ public class AjaxController {
 			System.out.println(html);
 			return html.toString();
 		}
-	}
-	
-	
-	//[sns] 내가 쓴 게시물 불러오기
-		@RequestMapping(value="mypage", produces="text/plain; charset=UTF8")
-		public String mypage(String userid,int listAmount,int status) {
-			StringBuilder html = new StringBuilder();
-			int limit = 8;
-			System.out.println(listAmount+","+limit);
-			List<Sns> itemss = service.mysns(userid,listAmount,limit);
-			if(itemss.isEmpty()) {
-				return null;
-			} else {
-				System.out.println(itemss);
-				//html.append("<table style=\"margin:2% 6%;\">");
-				int i = 1;
-				for(Sns s : itemss) {
-					if(i%4==1) {
-						html.append("<tr>");
-					}
-					s.setLikenum(service.getlikenum(s.getSns_no()));
-					s.setCommentnum(service.getcommentnum(s.getSns_no()));
-					User user = service.getUser(s.getUserid());
-					String regdate = new SimpleDateFormat("yy.MM.dd").format(s.getRegdate());
-					html.append("<td><div class=\"style-card\" onClick=\"location.href ='../sns/detail.shop?sns_no="+s.getSns_no()+"'\">\r\n" + 
-							"					<c:if test=\"${!empty s.img1url}\">\r\n" + 
-							"						<div class=\"style-img\"><img id=\"thumb\" src=\"file/"+s.getImg1url()+"\" width=\"228px\" height=\"270px\"></div>\r\n" + 
-							"					</c:if>\r\n" + 
-							"					<div class=\"style-content\">\r\n" + 
-							"						<div class=\"style-profile\"><img src=\"../assets/img/test6.PNG\" width=\"30px\" height=\"30px\"></div>\r\n" + 
-							"						<div class=\"style-info\">\r\n" + 
-							"							<div class=\"style-info-first\">\r\n" + 
-							"								<a>"+user.getNickname()+"</a>\r\n" + 
-							"								<a style=\"float: right;\">"+regdate+"</a>		\r\n" + 
-							"							</div>\r\n" + 
-							"							<div class=\"style-info-second\" >\r\n" + 
-							"								<div class=\"txt_box\">"+s.getDescription()+"</div>\r\n" + 
-							"							...&nbsp;&nbsp;<a href=\"#\">더보기</a>\r\n" + 
-							"							</div>\r\n" + 
-							"							<div class=\"style-info-third\">\r\n" + 
-							"								<img src=\"../assets/img/test7.PNG\" width=\"15px\" height=\"15px\">&nbsp;&nbsp;"+s.getLikenum()+"&nbsp;&nbsp;&nbsp;&nbsp;\r\n" + 
-							"								<img src=\"../assets/img/test8.PNG\" width=\"15px\" height=\"15px\">&nbsp;&nbsp;"+s.getCommentnum()+"\r\n" + 
-							"							</div>\r\n" + 
-							"						</div>\r\n" + 
-							"					</div>\r\n" + 
-							"				</div>\r\n" + 
-							"				</td>");
-					if(i%4==0) {
-						html.append("</tr>");
-					}
-					i++;
-				}
-				//html.append("</table>");
-				System.out.println(html);
-				return html.toString();
-			}
-		}
-	
-	//[sns] 댓글 목록
-	@RequestMapping(value="commentlist",produces="text/plain; charset=UTF8")
-	public String commentlist(int sns_no) {
-		StringBuilder html = new StringBuilder();
-		List<Comment> list = service.getCommentList(sns_no);
-		for(Comment c : list) {
-			User user = service.getUser(c.getUserid());
-			html.append("<tr style=\"border-bottom:1px solid #babbbb;\"><td style=\"width:10%; padding:10px 0;\"><img src=\""+user.getImgurl()+"\" width=\"30px\" height=\"30px\"></td>");
-			html.append("<td style=\"width:20%;\">"+user.getUserid()+"</td>");
-			html.append("<td>"+c.getContent()+"</td>");
-			String regdate = new SimpleDateFormat("yy.MM.dd").format(c.getRegdate());
-			html.append("<td style=\"width:20%; font-size:13px;\">"+regdate+"</td>");
-		}
-		return html.toString();
-	}
-	
-	//[sns] 좋아요
-	@RequestMapping(value="like",produces="text/plain; charset=UTF8")
-	public String likeSns(int sns_no,String userid) {
-		System.out.println(sns_no+userid);
-		StringBuilder html = new StringBuilder();
-		service.addlike(sns_no,userid);
-		int likenum = service.getlikenum(sns_no);
-		html.append("<img src=\"../assets/img/test7.PNG\" width=\"30px\" height=\"30px\" style=\"margin-right:5px;\">"+likenum);
-		return html.toString();
-	}
-	
-	//[sns] ootd 삭제
-	@RequestMapping(value="delete",produces="text/plain; charset=UTF8")
-	public void deleteSns(int sns_no) {
-		service.deleteSns(sns_no);
-		return;
 	}
 	
 	//[admin] 구글차트 0814
@@ -491,6 +397,38 @@ public class AjaxController {
 		return json;
 	}
 	
-
+	//[sns] 댓글 목록
+	@RequestMapping(value="commentlist",produces="text/plain; charset=UTF8")
+	public String commentlist(int sns_no) {
+		StringBuilder html = new StringBuilder();
+		List<Comment> list = service.getCommentList(sns_no);
+		for(Comment c : list) {
+			User user = service.getUser(c.getUserid());
+			html.append("<tr style=\"border-bottom:1px solid #babbbb;\"><td style=\"width:10%; padding:10px 0;\"><img src=\""+user.getImgurl()+"\" width=\"30px\" height=\"30px\"></td>");
+			html.append("<td style=\"width:20%;\">"+user.getUserid()+"</td>");
+			html.append("<td>"+c.getContent()+"</td>");
+			String regdate = new SimpleDateFormat("yy.MM.dd").format(c.getRegdate());
+			html.append("<td style=\"width:20%; font-size:13px;\">"+regdate+"</td>");
+		}
+		return html.toString();
+	}
+	
+	//[sns] 좋아요
+	@RequestMapping(value="like",produces="text/plain; charset=UTF8")
+	public String likeSns(int sns_no,String userid) {
+		System.out.println(sns_no+userid);
+		StringBuilder html = new StringBuilder();
+		service.addlike(sns_no,userid);
+		int likenum = service.getlikenum(sns_no);
+		html.append("<img src=\"../assets/img/test7.PNG\" width=\"30px\" height=\"30px\">"+likenum);
+		return html.toString();
+	}
+	
+	//[sns] ootd 삭제
+	@RequestMapping(value="delete",produces="text/plain; charset=UTF8")
+	public void deleteSns(int sns_no) {
+		service.deleteSns(sns_no);
+		return;
+	}
 	
 }

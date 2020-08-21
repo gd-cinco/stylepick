@@ -45,12 +45,4 @@ public class BoardDao {
 	public Board selectOne(Integer no) {
 		return template.getMapper(BoardMapper.class).selectOne(no);
 	}
-
-	public int maxno() {
-		return template.getMapper(BoardMapper.class).maxno();
-	}
-
-	public void insert(Board board) {
-		template.getMapper(BoardMapper.class).insert(board);
-	}
 }

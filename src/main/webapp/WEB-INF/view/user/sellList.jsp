@@ -18,12 +18,12 @@
 	</ul>
 	<hr style="margin-top: 0px;">
 	<div class="user-info" >
-	<div class="user-info dummycolor" style="background-color: #FE6500"></div>
-	<div style="display: inline; float: left;height: 180px;width: 180px; margin: 0px;text-align: center; padding-top: 26px;margin-top: -113px;"><img src="../assets/img/user.svg" width="125px" height="125px"></div>
-	<div style="display: inline; float: left; width: 75%;margin-top:-64px;">
+	<div style="display: inline; float: left;height: 180px;width: 180px; margin: 0px;text-align: center; padding-top: 26px;"><img src="../assets/img/user.svg" width="125px" height="125px"></div>
+	<div style="display: inline; float: left; width: 75%">
 		<div class="user-profile">
 			${user.com_name}
 		</div>
+	</div>
 		<div class="user-action">
 			<table>
 				<tr>
@@ -41,19 +41,15 @@
 			</table>
 		</div>
 	</div>
-	</div>	
-	<div style="height: 200px;">
+	<div class="user-info dummycolor" style="background-color: #FE6500"></div>
+
 		<div class="order_leftdiv">
 		<ul>
-			<li><a class="a_leftdivbtn leftdivbtn_selected2" href="sellList.shop">요약보기</a></li>
-			<li><a class="a_leftdivbtn" href="sellList_item.shop">등록상품</a></li>
-			<li><a class="a_leftdivbtn" href="sellList_list.shop">내 한줄평</a></li>
-			<li><a class="a_leftdivbtn" href="sellList_qna.shop">문의관리</a></li>
+			<li><a href="sellList.shop">요약보기</a></li>
+			<li><a href="sellList_item.shop">등록상품</a></li>
+			<li><a href="sellList_list.shop">내 한줄평</a></li>
+			<li><a href="sellList_qna.shop">문의관리</a></li>
 		</ul>
-		</div>
-		<div class="order_main">
-			<h1>내용</h1>
-		</div>
 	</div>
 </div>
 </body>

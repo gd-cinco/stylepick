@@ -51,8 +51,8 @@
         비회원도 이메일로 답변받으실 수 있습니다.
       </div>
       <div align="center" style="margin-bottom: 30px">
-        <button type="button" class="btn btn-secondary" onclick="location.href='${path}/user/login.shop'">회원</button>
-        <button type="button" class="btn btn-primary" onclick="location.href='${path}/board/addqna.shop'">비회원</button>
+        <button type="button" class="btn btn-secondary">회원</button>
+        <button type="button" class="btn btn-primary">비회원</button>
       </div>
     </div>
   </div>

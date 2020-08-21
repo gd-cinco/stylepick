@@ -31,7 +31,7 @@ public interface SnsMapper {
 	
 	@Select({"<script>",
 		"select sns_no,type,userid,img1 img1url,description,regdate from sns ",
-		"<if test='sns_no == null'> where type = #{type} order by regdate desc limit #{startrow}, #{limit}</if>",
+		"<if test='sns_no == null'> where type = #{type} order by regdate limit #{startrow}, #{limit}</if>",
 		"</script>"})
 	List<Sns> select2(Map<String, Object> param);
 
@@ -50,7 +50,7 @@ public interface SnsMapper {
 	@Update("update sns set img1=#{img1url},description=#{description},height=#{height},weight=#{weight} where sns_no=#{sns_no}")
 	void update(Sns sns);
 
-	@Select("select sns_no,type,userid,img1 img1url,description,regdate,height,weight from sns where userid=#{userid} limit #{startrow}, #{limit}")
+	@Select("select sns_no,type,userid,img1 img1url,description,regdate,height,weight from sns where userid=#{userid}")
 	List<Sns> mylist(Map<String, Object> param);
 
 	@Select("select count(*) from sns where userid=#{userid}")
@@ -58,15 +58,6 @@ public interface SnsMapper {
 
 	@Delete("delete from sns where sns_no=#{sns_no}")
 	void delete(Map<String, Object> param);
-
-	@Insert("insert into follow (userid,following) values(#{loginuser},#{followuser})")
-	void follow(Map<String, Object> param);
-
-	@Select("select count(*) from follow where userid=#{userid}")
-	int follownum(Map<String, Object> param);
-
-	@Select("select count(*) from follow where following=#{userid}")
-	int followernum(Map<String, Object> param);
 	
 	
 

@@ -13,7 +13,9 @@
   </welcome-file-list>
   <servlet>
   	<servlet-name>stylepick1</servlet-name>
-  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<servlet-class>
+  	org.springframework.web.servlet.DispatcherServlet
+  	</servlet-class>
   	<init-param>
   		<param-name>contextConfigLocation</param-name>
   		<param-value>

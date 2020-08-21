@@ -135,7 +135,7 @@
     		</div>
     		<div class="entry_input">
     			<div class="input_box" id="com_nameinputbox" >
-					<input type="text" id="com_name" name="com_name" placeholder="회사이름" class="input_input" autocomplete="off"
+					<input type="text" id="com_name" name="com_name" placeholder="비밀번호 재입력" class="input_input" autocomplete="off"
 					 onfocus="document.getElementById('com_nameinputbox').style.border='2px solid #FE6500'"
 					 onblur="document.getElementById('com_nameinputbox').style.border='1px solid #dadada'">
 				</div>

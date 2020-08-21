@@ -47,7 +47,7 @@
 			data : params,
 			url : "${path}/ajax/delete.shop",
 			success : function(data) {
-				location.href="${path}/sns/mypage.shop?userid="+'${sessionScope.loginUser.userid}';
+				location.href="${path}/sns/mypage.shop?userid="+${sessionScope.loginUser.userid};
 			},
 			error : function(e) {
 				alert("삭제 실패:"+e.status);
@@ -95,7 +95,7 @@
 		</div>
 		</c:if>
 		<div class="side style-content">
-			<div class="style-profile"><img src="../assets/img/test6.PNG" width="30px" height="30px" style="margin-right: 10px;"><a href="mypage.shop?userid=${user.userid}">${user.nickname}</a></div>
+			<div class="style-profile"><img src="../assets/img/test6.PNG" width="30px" height="30px" style="margin-right: 10px;">${user.nickname}</div>
 			<div class="style-description">${sns.description}</div>
 		</div>
 		<div class="style-action">

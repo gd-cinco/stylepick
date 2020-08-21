@@ -31,7 +31,7 @@ public class User {
 	private int seller; //0:아님 1:판매자임
 	private String name;
 	private String com_name;
-	private String com_regist;
+	private int com_regist;
 	private String com_img;
 	private String com_tel;
 	private Date regdate;
@@ -157,19 +157,12 @@ public class User {
 	public void setCom_name(String com_name) {
 		this.com_name = com_name;
 	}
-
-	public String getCom_regist() {
+	public int getCom_regist() {
 		return com_regist;
 	}
-
-	public void setCom_regist(String com_regist) {
+	public void setCom_regist(int com_regist) {
 		this.com_regist = com_regist;
 	}
-
-	public void setNum(int num) {
-		this.num = num;
-	}
-
 	public String getCom_img() {
 		return com_img;
 	}
@@ -216,4 +209,24 @@ public class User {
 				+ ", com_img=" + com_img + ", com_tel=" + com_tel + ", regdate=" + regdate + ", address=" + address
 				+ ", order_memo=" + order_memo + ", order_tel=" + order_tel + ", num=" + num + "]";
 	}
+	
+	/* previous toString
+	@Override
+	public String toString() {
+		return "User [no=" + no + ", userid=" + userid + ", password=" + password + ", password2=" + password2
+				+ ", nickname=" + nickname + ", email=" + email + ", tel=" + tel + ", age=" + age + ", imgurl=" + imgurl
+				+ ", gender=" + gender + ", comment=" + comment + ", sns_type=" + sns_type + ", sns_id=" + sns_id
+				+ ", seller=" + seller + ", name=" + name + ", com_name=" + com_name + ", com_regist=" + com_regist
+				+ ", com_img=" + com_img + ", com_tel=" + com_tel + ", regdate=" + regdate + ", address=" + address
+				+ ", order_memo=" + order_memo + ", order_tel=" + order_tel + "]";
+	}
+	*/
+	
+	
+	
+	
+	
+
+	
+	
 }
