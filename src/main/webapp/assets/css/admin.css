@@ -95,3 +95,16 @@
       float: left;
       margin-right: 15px;
 }
+
+
+.user_list_table {
+	border: 1px solid gray;
+	border-collapse: collapse;
+	text-align: center;
+	margin: 0 10px 0 10px;
+	padding: 0 10px 0 10px;
+}
+
+.user_list_th {
+	background-color: #FAFAFA;
+}
