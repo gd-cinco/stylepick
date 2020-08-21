@@ -31,7 +31,7 @@ public interface SnsMapper {
 	
 	@Select({"<script>",
 		"select sns_no,type,userid,img1 img1url,description,regdate from sns ",
-		"<if test='sns_no == null'> where type = #{type} order by regdate limit #{startrow}, #{limit}</if>",
+		"<if test='sns_no == null'> where type = #{type} order by regdate desc limit #{startrow}, #{limit}</if>",
 		"</script>"})
 	List<Sns> select2(Map<String, Object> param);
 

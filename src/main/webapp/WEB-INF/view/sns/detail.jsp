@@ -95,7 +95,7 @@
 		</div>
 		</c:if>
 		<div class="side style-content">
-			<div class="style-profile"><img src="../assets/img/test6.PNG" width="30px" height="30px" style="margin-right: 10px;">${user.nickname}</div>
+			<div class="style-profile"><img src="../assets/img/test6.PNG" width="30px" height="30px" style="margin-right: 10px;"><a href="mypage.shop?userid=${user.userid}">${user.nickname}</a></div>
 			<div class="style-description">${sns.description}</div>
 		</div>
 		<div class="style-action">
