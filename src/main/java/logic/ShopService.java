@@ -92,6 +92,12 @@ public class ShopService {
 		return userDao.list();
 	}
 	
+	//[user] 내 주문리스트 요약보기
+	public List<Userorder> getUserOrder(String userid) {
+		System.out.println("!1"+userid);
+		return userDao.userorder(userid);
+	}
+	
 	//[admin] 메일 보낼 유저리스트 0728
 	public List<User> userlist(String[] idchks) {
 		return userDao.list(idchks);
@@ -439,6 +445,8 @@ public class ShopService {
 		board.setNo(++max);
 		boardDao.insert(board);
 	}
+
+	
 
 
 }
