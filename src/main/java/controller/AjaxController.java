@@ -242,7 +242,7 @@ public class AjaxController {
 					s.setCommentnum(service.getcommentnum(s.getSns_no()));
 					User user = service.getUser(s.getUserid());
 					String regdate = new SimpleDateFormat("yy.MM.dd").format(s.getRegdate());
-					html.append("<td><div class=\"style-card\" onClick=\"location.href ='${path}/sns/detail.shop?sns_no="+s.getSns_no()+"'\">\r\n" + 
+					html.append("<td><div class=\"style-card\" onClick=\"location.href ='../sns/detail.shop?sns_no="+s.getSns_no()+"'\">\r\n" + 
 							"					<c:if test=\"${!empty s.img1url}\">\r\n" + 
 							"						<div class=\"style-img\"><img id=\"thumb\" src=\"file/"+s.getImg1url()+"\" width=\"228px\" height=\"270px\"></div>\r\n" + 
 							"					</c:if>\r\n" + 
@@ -299,7 +299,7 @@ public class AjaxController {
 		StringBuilder html = new StringBuilder();
 		service.addlike(sns_no,userid);
 		int likenum = service.getlikenum(sns_no);
-		html.append("<img src=\"../assets/img/test7.PNG\" width=\"30px\" height=\"30px\">"+likenum);
+		html.append("<img src=\"../assets/img/test7.PNG\" width=\"30px\" height=\"30px\" style=\"margin-right:5px;\">"+likenum);
 		return html.toString();
 	}
 	
