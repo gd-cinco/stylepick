@@ -64,7 +64,7 @@
 		<br>
 	</div>
 	<div>
-<textarea path="content" cols="99" rows="12" ></textarea>
+<textarea name="content" cols="99" rows="12" ></textarea>
 </div>
 <input type="submit" class="genric-btn success medium" value="작성">
 </form:form>
