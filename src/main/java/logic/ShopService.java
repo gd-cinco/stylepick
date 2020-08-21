@@ -475,7 +475,4 @@ public class ShopService {
 		return sale;
 	}
 
-
-
-
 }
