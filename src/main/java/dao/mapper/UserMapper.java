@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import logic.User;
+import logic.Userorder;
 
 public interface UserMapper {
 	
@@ -48,6 +49,12 @@ public interface UserMapper {
 
 	@Delete("delete from user where userid=#{userid}")
 	void delete(Map<String, Object> param);
+
+	@Select("select i.item_name, b.orderdate, d.quantity*i.price price, "
+			+ " b.stat FROM item i,buy b,buy_detail d WHERE "
+			+ " i.item_no=d.item_no AND b.order_no=d.order_no "
+			+ " AND b.userid=#{userid}")
+	List<Userorder> getuserorder(String userid);
 
 	
 

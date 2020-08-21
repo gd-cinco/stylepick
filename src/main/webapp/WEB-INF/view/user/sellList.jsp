@@ -42,7 +42,7 @@
 		</div>
 	</div>
 	</div>	
-	<div style="height: 200px;">
+	<div class="order_downview">
 		<div class="order_leftdiv">
 		<ul>
 			<li><a class="a_leftdivbtn leftdivbtn_selected2" href="sellList.shop">요약보기</a></li>

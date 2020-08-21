@@ -44,7 +44,7 @@
 	</div>
 	</div>
 	
-	<div style="height: 200px;">
+	<div class="order_downview">
 		<div class="order_leftdiv">
 			<ul>
 				<li><a class="a_leftdivbtn leftdivbtn_selected" href="orderList.shop">요약보기</a></li>
@@ -55,7 +55,23 @@
 		<div class="order_main">
 			<div class="order_main_block">
 				<a class="order_header">주문내역</a>
+				<table class="order_table">
+					<tr class="order">
+					<th class="order" style="width: 40%">품목</th>
+					<th class="order" style="width: 20%">주문일자</th>
+					<th class="order" style="width: 20%">가격</th>
+					<th class="order" style="width: 20%">상태</th>
+					</tr>
+					<c:forEach items="${order}" var="item" end="5" varStatus="stat">
+						<tr class="order">
+							<td class="order">${item.item_name}</td>
+							<td class="order"><fmt:formatDate value="${item.orderdate}" pattern="yyyy-MM-dd"/></td>
+							<td class="order">${item.price}</td>
+							<td class="order">${item.stat}</td>
+						</tr>
+					</c:forEach>
 				
+				</table>
 			</div>
 		</div>
 	</div>
