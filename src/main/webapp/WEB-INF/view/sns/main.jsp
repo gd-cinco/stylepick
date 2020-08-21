@@ -57,12 +57,6 @@
 	<table style="margin: 0 6% 2% 6%;" class="snslist">
 	</table>
 </div>
-<c:if test="${param.type==1}">
-	<a href="write.shop" class="btn" style="margin-left:43%;">작성하기</a>
-</c:if>
-<c:if test="${param.type==2}">
-	<a href="qna.shop" class="btn" style="margin-left:43%;">작성하기</a>
-</c:if>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 

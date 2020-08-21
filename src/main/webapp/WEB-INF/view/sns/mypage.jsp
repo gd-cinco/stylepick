@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-<link rel="stylesheet" href="../assets/css/sns.css?ver=1.2">
+<link rel="stylesheet" href="../assets/css/sns.css?ver=1.3">
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <style>
 .main-mapper {
@@ -18,6 +18,8 @@
 	border : 1px solid #c5c2c2;
 	border-radius : 6px;
 	background-color: #ffffff;
+	width: 230px;
+    height: 395px;
 }
 
 .style-img {
@@ -41,22 +43,41 @@
   display: -webkit-box; 
   display: -ms-flexbox; 
   display: box; margin-top:1px;  
-  max-height:50px;  
+  max-height:26px;  
   overflow:hidden;  
   vertical-align:top;  
   text-overflow: ellipsis;  
   word-break:break-all;  
   -webkit-box-orient:vertical;  
   -webkit-line-clamp:3  
-} 
+}
+
+.user-profile {
+	float : left;
+    margin-top: 45px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
 </style>
 </head>
 <body>
 <div class="user-info">
-	<div class="user-profile">
-		<img src="../assets/img/user.svg" width="100px" height="100px">&nbsp;&nbsp;${user.nickname}
-		<c:if test="${loginUser.userid!=user.userid}"><button class="following">+</button></c:if>
-		<a href="../user/update.shop?id=${user.userid}" class="button" style="float:right; padding:10px;">수정하기</a>
+	<div style="display: inline; float: left;height: 180px;width: 180px; margin: 0px;text-align: center; padding-top: 10px;">
+		<img src="../assets/img/user.svg" width="125px" height="125px"></div>
+		<div style="display: inline; float: left; width: 75%">
+		<div class="user-profile">
+			${user.nickname}
+			<c:if test="${!empty loginUser}">
+				<c:if test="${user.userid!=loginUser.userid}">
+					<button class="followbtn" onclick="location.href='../sns/follow.shop?fuser=${user.userid}'"></button>
+				</c:if>
+			</c:if>
+			<c:if test="${user.userid==loginUser.userid}">
+				<button class="btn" onclick="location.href='../user/update.shop?userid=${user.userid}'" style="margin-left:15px;width:90px;padding:15px 8px;font-size:15px;">수정하기</button>
+			</c:if>
+		</div>
 	</div>
 	<div class="user-action">
 		<table>
@@ -67,8 +88,8 @@
 			</tr>
 			<tr>
 				<td>${mysnsnum}</td>
-				<td>10</td>
-				<td>11</td>
+				<td>${follownum}</td>
+				<td>${followernum}</td>
 			</tr>
 		</table>
 	</div>
@@ -76,35 +97,63 @@
 <h5>MY STYLE</h5>
 <hr>
 <div class="user-cards">
-	<table>
-		<tr>
-			<c:forEach var="s" items="${mysnslist}">
-				<td><div class="style-card" onClick="location.href ='${path}/sns/detail.shop?sns_no=${s.sns_no}'">
-					<c:if test="${!empty s.img1url}">
-						<div class="style-img"><img src="file/${s.img1url}" width="226px" height="270px"></div>
-					</c:if>
-					<div class="style-content">
-						<div class="style-profile"><img src="../assets/img/test6.PNG" width="30px" height="30px"></div>
-						<div class="style-info">
-							<div class="style-info-first">
-								<a>${s.userid}</a>
-								<a style="float: right;"><fmt:formatDate pattern="yyyy.MM.dd" value="${s.regdate}"/></a>		
-							</div>
-							<div class="style-info-second" >
-								<div class="txt_box">${s.description}</div>
-							...&nbsp;&nbsp;<a href="#">더보기</a>
-							</div>
-							<div class="style-info-third">
-								<img src="../assets/img/test7.PNG" width="15px" height="15px">&nbsp;&nbsp;${s.likenum}&nbsp;&nbsp;&nbsp;&nbsp;
-								<img src="../assets/img/test8.PNG" width="15px" height="15px">&nbsp;&nbsp;${s.commentnum}
-							</div>
-						</div>
-					</div>
-				</div>
-				</td>
-			</c:forEach>
-		</tr>
+	<table class="snslist">
 	</table>
 </div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+
+	var listAmount = 1;
+	var status = 0;
+	var userid = '${param.userid}';
+	
+	$(function(){
+		snsList(userid,listAmount,status);
+	})
+	
+	function snsList(userid,listAmount,status){
+			var params = "userid=" + userid + "&listAmount=" + listAmount + "&status=" + status;
+			$.ajax({
+				data:params,
+				type:"get",
+				url:"${path}/ajax/mypage.shop",
+				success : function(data) {
+					$(".snslist").append(data);
+				},
+				error : function(e) {
+					alert("sns 조회시 서버 오류:"+e.status);
+				}
+			})
+	}
+	
+	$(window).scroll(function() {
+		// 스크롤이 80% 이상이 되면 해당 컨텐츠가 자동 생성
+		console.log(((window.scrollY + window.innerHeight) / $('body').prop("scrollHeight") * 100));
+		if(((window.scrollY + window.innerHeight) / $('body').prop("scrollHeight") * 100) > 90) 
+		  {
+			if(status == 0){
+				listAmount++;
+				var params = "userid=" + userid + "&listAmount=" + listAmount + "&status=" + status;
+			 	console.log("work"+params);
+				status = 1;
+				$.ajax({
+					data: params,
+					type: "get",
+					url: "${path}/ajax/mypage.shop",
+					success : function(data) {
+						console.log(data);
+						$(".snslist").append(data);
+						if(data != null){
+							status = 0;						
+						}
+					},
+					error : function(e) {
+						alert("sns 조회시 서버 오류:"+e.status);
+					}
+				})
+			}
+		}
+	});
+</script>
 </body>
 </html>

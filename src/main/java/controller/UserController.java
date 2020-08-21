@@ -105,7 +105,7 @@ public class UserController {
 			User dbUser = service.getUser(user.getUserid());
 			if(user.getPassword().equals(dbUser.getPassword())) {
 				session.setAttribute("loginUser",dbUser);
-				mav.setViewName("redirect:../sns/main.shop");
+				mav.setViewName("redirect:../sns/main.shop?ksb=hot&type=1");
 			}else {
 				bresult.reject("error.login.password");
 			}
@@ -120,7 +120,7 @@ public class UserController {
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:../sns/main.shop";
+		return "redirect:../sns/main.shop?ksb=hot&type=1";
 	}
 	
 	@GetMapping(value = {"update","delete","sellerEntry","sellerUpdate"})
