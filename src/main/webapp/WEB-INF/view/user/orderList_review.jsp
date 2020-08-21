@@ -53,10 +53,7 @@
 			</ul>
 		</div>
 		<div class="order_main">
-			<div class="order_main_block">
-				<a class="order_header">주문내역</a>
-				
-			</div>
+				<h1>내용</h1>
 		</div>
 	</div>
 </div>
