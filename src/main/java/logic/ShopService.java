@@ -278,8 +278,6 @@ public class ShopService {
 		line.setLine_no(++max);
 		lineDao.insert(line);
 
-		itemDao.insert(item);
-
 	}
 
 	// [admin] dashboard index 1-1 이달 가입회원 0813
