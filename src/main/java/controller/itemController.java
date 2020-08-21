@@ -1,13 +1,17 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,10 +23,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import exception.ItemEmptyException;
+import exception.QnaException;
 import logic.Item;
+import logic.Qna;
 import logic.ShopService;
 import logic.Sns;
 import logic.SnsItem;
+import logic.User;
 
 @Controller		
 @RequestMapping("item")
@@ -60,11 +67,16 @@ public class itemController {
 			return mav;
 		}
 		
+		
+	
+		
 		@RequestMapping("store")	//item/list.shop
 		public String storeform(Model model) {
 			model.addAttribute(new Item());
 			return null;
 		}
+		
+	
 
 		@RequestMapping("create")
 		public String addform(Model model) {
@@ -72,9 +84,27 @@ public class itemController {
 			return "item/add";
 		}
 		
+		@PostMapping("qna")
+		public ModelAndView add(@Valid Qna qna,BindingResult bresult,HttpServletRequest request) {
+			ModelAndView mav = new ModelAndView("item/qna");
+			if(bresult.hasErrors()) {
+				mav.getModel().putAll(bresult.getModel());
+				return mav;
+			}
+			try {
+				service.qnaWrite(qna,request);
+				mav.setViewName("redirect:list.shop");
+			}catch (DataIntegrityViolationException e) {
+				e.printStackTrace();
+				throw new QnaException("게시물 등록에 실패!","write.shop");
+			}
+			return mav;
+			
+		}
+		
 		@RequestMapping("register")
 		public ModelAndView add(@Valid Item item, BindingResult bresult, HttpServletRequest request) {
-		ModelAndView mav=new ModelAndView("item/add");
+		ModelAndView mav=new ModelAndView();
 		if(bresult.hasErrors()) {
 			mav.getModel().putAll(bresult.getModel());
 			return mav;
@@ -93,7 +123,7 @@ public class itemController {
 		}
 		
 		@RequestMapping("*") // /item/*.shop
-		public ModelAndView detail(Integer item_no,HttpServletRequest request) {
+		public ModelAndView detail(Integer item_no,HttpServletRequest request,Integer pageNum,String searchtype, String searchcontent) {
 			ModelAndView mav =new ModelAndView();
 			Item item=null;
 			try {
@@ -116,6 +146,32 @@ public class itemController {
 		}catch(IndexOutOfBoundsException e) {
 			throw new ItemEmptyException("존재하지 않는 상품입니다.","list.shop");
 		}
+			if(pageNum==null || pageNum.toString().equals("")){
+				pageNum=1;
+			}
+			if(searchtype == null || searchcontent == null ||searchtype.trim().equals("") || searchcontent.trim().equals("")) {
+				searchtype =null;
+				searchcontent =null;
+			}
+			int limit = 6;
+			int listcount = service.qnacount(searchtype,searchcontent);
+			List<Qna> qnalist = service.qnalist(pageNum, limit,searchtype,searchcontent);
+			int maxpage = (int) ((double) listcount / limit + 0.95);
+			int startpage = ((int) (pageNum / 10.0 + 0.9) - 1) * 10 + 1;// 시작페이지번호
+			int endpage = startpage + 9;// 종료페이지 번호
+
+			if (endpage > maxpage) endpage = maxpage;
+			int qnano = listcount - (pageNum - 1) * limit;
+		
+		
+			mav.addObject("listcount",listcount);
+			mav.addObject("qnalist",qnalist);
+			mav.addObject("pageNum",pageNum);
+			mav.addObject("qnano",qnano);
+			mav.addObject("startpage",startpage);
+			mav.addObject("maxpage",maxpage);
+			mav.addObject("endpage",endpage);
+			mav.addObject("today",new SimpleDateFormat("yyyyMMdd").format(new Date()));
 			
 			return mav;
 		}
@@ -126,6 +182,7 @@ public class itemController {
 			service.itemUpdate(item,request);
 			mav.setViewName("redirect:/item/detail.shop?item_no="+item.getItem_no());
 			return mav;
+		}
 		
 		@RequestMapping("imgupload")
 		//upload : ckeditor에서 전달해 주는 파일 정보의 이름

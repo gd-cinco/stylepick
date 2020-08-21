@@ -19,6 +19,7 @@ import dao.BoardDao;
 import dao.CommentDao;
 import dao.ItemDao;
 import dao.LineDao;
+import dao.QnaDao;
 import dao.SaleDao;
 import dao.SaleItemDao;
 import dao.UserDao;
@@ -35,7 +36,8 @@ public class ShopService {
 	@Autowired
 	private ItemDao itemDao;
 	
-
+	@Autowired
+	private QnaDao qnaDao;
 
 	@Autowired
 	private SnsItemDao snsItemDao;
@@ -484,6 +486,21 @@ public class ShopService {
 		}
 		
 		return sale;
+	}
+
+	public void qnaWrite(Qna qna, HttpServletRequest request) {
+		int max= qnaDao.maxnum();
+		qna.setQna_no(++max);
+		qna.setGrp(max);
+		qnaDao.insert(qna);
+	}
+
+	public int qnacount(String searchtype, String searchcontent) {
+		return qnaDao.count(searchtype, searchcontent);
+	}
+
+	public List<Qna> qnalist(Integer pageNum, int limit, String searchtype, String searchcontent) {
+		return qnaDao.qnalist(pageNum,limit, searchtype, searchcontent);
 	}
 
 

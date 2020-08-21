@@ -263,7 +263,7 @@ oTbl1.deleteRow(oTbl1.clickedRowIndex);
 	</div>
 	</div>
 	<br>
-<input type="submit" class="genric-btn success medium" value="상품올리기">
+		<input type="submit" class="genric-btn success medium" value="상품올리기">
 	</div>
  
 </form:form>
