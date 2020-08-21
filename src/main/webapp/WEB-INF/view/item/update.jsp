@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>상품 등록</title>
+<title>상품 수정</title>
 <link rel="stylesheet" href="${path}/assets/css/add.css?ver=1.1">
 <style>
 	#imglabel { 
@@ -153,7 +153,7 @@ oTbl1.deleteRow(oTbl1.clickedRowIndex);
 	<h1 style="width: fit-content;border-bottom: 3px solid #c0d4fb;">상품 올리기</h1>
 	<h5>상품 올리기 관련 문의가 필요하시 다면 &nbsp;&nbsp; <a href="#" style="color:#35c5f0; font-size:15px">문의하러 가기</a></h5>
 	<br>
-<form:form modelAttribute="item" action="register.shop" enctype="multipart/form-data" name="f">
+<form:form modelAttribute="item" action="update.shop" enctype="multipart/form-data" name="f">
 <form:hidden path="userid" value="${sessionScope.loginUser.userid}"/>
 	<div>
 	<div>
@@ -161,22 +161,21 @@ oTbl1.deleteRow(oTbl1.clickedRowIndex);
 	</div>
 	<div>
 	 <select class="category1" name="category">
-	 		<option value="">카테고리</option>
-	 		<option value="1">모자</option>
-	 		<option value="2">아우터</option>
-	 		<option value="3">원피스</option>
-	 		<option value="4">상의</option>
-	 		<option value="5">하의</option>
-	 		<option value="6">가방</option>
-	 		<option value="7">신발</option>
-	 		<option value="8">시계</option>
+	 		<option value="1" <c:if test="${item.category==1}">selected</c:if>>모자</option>
+	 		<option value="2" <c:if test="${item.category==2}">selected</c:if>>아우터</option>
+	 		<option value="3" <c:if test="${item.category==3}">selected</c:if>>원피스</option>
+	 		<option value="4" <c:if test="${item.category==4}">selected</c:if>>상의</option>
+	 		<option value="5" <c:if test="${item.category==5}">selected</c:if>>하의</option>
+	 		<option value="6" <c:if test="${item.category==6}">selected</c:if>>가방</option>
+	 		<option value="7" <c:if test="${item.category==7}">selected</c:if>>신발</option>
+	 		<option value="8" <c:if test="${item.category==8}">selected</c:if>>시계</option>
 	 </select>
 	</div>
 	<br>
 	<br>
 	<div class="subject-name">
 	<ul class="subject-name2">상품 제목</ul>
-	<dl><input type="text" name="subject" maxlength="20"  style="width:400px;"></dl>
+	<dl><form:input type="text" path="subject" maxlength="20"  style="width:400px;"/></dl>
 	</div>
 	<div style="margin-bottom:15px;">
 	<ul>대표 이미지</ul>
@@ -217,10 +216,10 @@ oTbl1.deleteRow(oTbl1.clickedRowIndex);
 	<div>
 	<div class ="ii">
 	<ul>상품 이름</ul>
-	<dl><form:input path="item_name" maxlength="20" /></dl>
+	<dl><form:input path="item_name" maxlength="20"/></dl>
 	</div>
 	<div class="ii">
-	<ul>상품 코드</ul>
+	<ul>상품 코드 (상품코드는 변경할 수 없습니다.)</ul>
 	<dl><form:input path="code"/></dl>
 	</div>
 	</div>
@@ -232,18 +231,28 @@ oTbl1.deleteRow(oTbl1.clickedRowIndex);
 	
 	<div style="margin-bottom:15px;">
 	<div class ="oi">
-	<ul>상품 옵션</ul>
-
-	<dl><input type="text" name="item_option" style="width:345px"><input name="addButton" type="button" style="cursor:hand; width:45px;" onClick="insRow()" value="+" ></dl>
-	<table id="addTable" width="400" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" border="0"></table>
+		<ul>상품 옵션</ul>
+		<dl><input type="text" name="item_option" style="width:345px"><input name="addButton" type="button" style="cursor:hand; width:45px;" onClick="insRow()" value="+" ></dl>
+		<table id="addTable" width="400" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" border="0">
+			<c:forEach var="o" items="${option}">
+			<tr><td>
+				<input type=text name=item_option style="width:380px;" value="${o}">
+				<input type=button value='삭제' onClick='removeRow()' style="cursor:hand; width:380px; margin-bottom:10px;">
+			</td></tr>
+			</c:forEach>
+		</table>
 	</div>
-	
 	<div class="oi2">
 		<ul>사이즈</ul>
-
-	<dl><input type="text" name="size" style="width:345px"><input name="addButton1" type="button" style="cursor:hand; width:45px;" onClick="insRow1()" value="+" ></dl>
-
-		<table id="addTable1" width="400" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" border="0"></table>
+		<dl><input type="text" name="size" style="width:345px"><input name="addButton1" type="button" style="cursor:hand; width:45px;" onClick="insRow1()" value="+" ></dl>
+		<table id="addTable1" width="400" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" border="0">
+			<c:forEach var="s" items="${size}">
+			<tr><td>
+				<input type=text name=size style="width:380px;" value="${s}">
+				<input type=button value='삭제' onClick='removeRow1()' style="cursor:hand; width:380px; margin-bottom:10px;">
+			</td></tr>
+			</c:forEach>
+		</table>
 	</div>
 	</div>
 	

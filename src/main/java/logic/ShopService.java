@@ -295,6 +295,16 @@ public class ShopService {
 //		itemDao.insert(item);
 
 	}
+	
+	//[item] 상품 수정
+	public void itemUpdate(Item item, HttpServletRequest request) {
+		if (item.getImgurl() != null && !item.getImgurl().isEmpty()) {
+			uploadFileCreate(item.getImgurl(), request, "item/img/");
+			item.setPictureUrl(item.getImgurl().getOriginalFilename());
+		}
+
+		itemDao.update(item);	
+	}
 
 	// [admin] dashboard index 1-1 이달 가입회원 0813
 	public int newusers() {
@@ -440,6 +450,8 @@ public class ShopService {
 		board.setNo(++max);
 		boardDao.insert(board);
 	}
+
+
 
 
 }

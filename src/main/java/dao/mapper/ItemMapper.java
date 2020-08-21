@@ -35,6 +35,9 @@ int count(Map<String, Object> param);
 	@Update("update item set readcnt = readcnt+1 where item_no =#{item_no}")
 	void readcntadd(Integer item_no);
 
+	@Update("upate item set subject=#{subject},item_name=#{item_name},price=#{price},keyword=#{keyword},pictureUrl=#{pictureUrl},content=#{content},item_option=#{item_option},size=#{size}")
+	void update(Item item);
+
 	
 
 

@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import exception.ItemEmptyException;
 import logic.Item;
 import logic.ShopService;
+import logic.Sns;
+import logic.SnsItem;
 
 @Controller		
 @RequestMapping("item")
@@ -95,9 +99,16 @@ public class itemController {
 					item =new Item();
 				}else {
 					boolean readcntable=false;
-					if(request.getRequestURI().contains("detail.shop"))
+					if(request.getRequestURI().contains("detail.shop")) {
 						readcntable=true;
+					}
 					item=service.getItem(item_no,readcntable);
+					if(request.getRequestURI().contains("update.shop")) {
+						String[] option = item.getItem_option().split(",");
+						String[] size = item.getSize().split(",");
+						mav.addObject("option",option);
+						mav.addObject("size",size);
+					}
 				}
 			mav.addObject("item",item);
 		}catch(IndexOutOfBoundsException e) {
@@ -107,5 +118,12 @@ public class itemController {
 			return mav;
 		}
 		
+		@PostMapping("update")
+		public ModelAndView update(Item item,HttpServletRequest request) {
+			ModelAndView mav = new ModelAndView("item/supdate");
+			service.itemUpdate(item,request);
+			mav.setViewName("redirect:/item/detail.shop?item_no="+item.getItem_no());
+			return mav;
+		}
 	
 }

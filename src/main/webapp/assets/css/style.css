@@ -7256,14 +7256,14 @@ del {
 /* line 205, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_elements.scss */
 .genric-btn.success {
   color: #fff;
-  background: #4cd3e3;
+  background: #2577fd;
   border: 1px solid transparent;
 }
 
 /* line 209, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_elements.scss */
 .genric-btn.success:hover {
-  color: #4cd3e3;
-  border: 1px solid #4cd3e3;
+  color: #2577fd;
+  border: 1px solid #2577fd;
   background: #fff;
 }
 
