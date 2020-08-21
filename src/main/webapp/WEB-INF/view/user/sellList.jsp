@@ -18,12 +18,12 @@
 	</ul>
 	<hr style="margin-top: 0px;">
 	<div class="user-info" >
-	<div style="display: inline; float: left;height: 180px;width: 180px; margin: 0px;text-align: center; padding-top: 26px;"><img src="../assets/img/user.svg" width="125px" height="125px"></div>
-	<div style="display: inline; float: left; width: 75%">
+	<div class="user-info dummycolor" style="background-color: #FE6500"></div>
+	<div style="display: inline; float: left;height: 180px;width: 180px; margin: 0px;text-align: center; padding-top: 26px;margin-top: -113px;"><img src="../assets/img/user.svg" width="125px" height="125px"></div>
+	<div style="display: inline; float: left; width: 75%;margin-top:-64px;">
 		<div class="user-profile">
 			${user.com_name}
 		</div>
-	</div>
 		<div class="user-action">
 			<table>
 				<tr>
@@ -41,7 +41,7 @@
 			</table>
 		</div>
 	</div>
-	<div class="user-info dummycolor" style="background-color: #FE6500"></div>
+	</div>
 
 		<div class="order_leftdiv">
 		<ul>
