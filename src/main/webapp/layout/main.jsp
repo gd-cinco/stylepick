@@ -8,7 +8,7 @@
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-
+	<script type="text/javascript" src="http://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 	<!-- CSS -->
 	<link rel="stylesheet" href="${path}/assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${path}/assets/css/owl.carousel.min.css">
