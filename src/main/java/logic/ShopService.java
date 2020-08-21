@@ -15,6 +15,8 @@ import dao.SnsDao;
 import dao.SnsItemDao;
 import dao.AdminDao;
 import dao.BoardDao;
+import dao.BuyDao;
+import dao.BuydetailDao;
 import dao.CommentDao;
 import dao.ItemDao;
 import dao.LineDao;
@@ -31,6 +33,8 @@ public class ShopService {
 
 	@Autowired
 	private ItemDao itemDao;
+	
+
 
 	@Autowired
 	private SnsItemDao snsItemDao;
@@ -291,9 +295,12 @@ public class ShopService {
 		int max= lineDao.maxnum();
 		line.setLine_no(++max);
 		lineDao.insert(line);
-
-//		itemDao.insert(item);
 	}
+	
+	
+	
+
+	
 
 	// [admin] dashboard index 1-1 이달 가입회원 0813
 	public int newusers() {
@@ -439,6 +446,8 @@ public class ShopService {
 		board.setNo(++max);
 		boardDao.insert(board);
 	}
+
+
 
 
 }
