@@ -46,7 +46,7 @@ public class ShopService {
 	
 	@Autowired
 	private LineDao lineDao;
-
+ 
 	//[user] 입력창 중복확인
 	public int joincompare(String key, String val) {
 		return userDao.joincompare(key,val);
@@ -228,8 +228,8 @@ public class ShopService {
 	}
 	
 	//[sns] mypage 내가쓴글
-	public List<Sns> mysns(String userid) {
-		return snsDao.mylist(userid);
+	public List<Sns> mysns(String userid,int listAmount,int limit) {
+		return snsDao.mylist(userid,listAmount,limit);
 	}
 	
 	//[sns] mypage sns수
@@ -237,6 +237,20 @@ public class ShopService {
 		return snsDao.mysnscount(userid);
 	}
 	
+	//[sns] 팔로우 기능
+	public void Follow(String loginuser, String followuser) {
+		snsDao.userFollow(loginuser,followuser);
+	}
+	
+	//[sns] 팔로잉수
+	public int getFollowCount(String userid) {
+		return snsDao.FollowCount(userid);
+	}
+
+	//[sns] 팔로워수
+	public int getFollowerCount(String userid) {
+		return snsDao.FollowerCount(userid);
+	}
 
 	
 	// [아이템]상품 리스트 정보
@@ -277,7 +291,6 @@ public class ShopService {
 		int max= lineDao.maxnum();
 		line.setLine_no(++max);
 		lineDao.insert(line);
-
 	}
 
 	// [admin] dashboard index 1-1 이달 가입회원 0813
@@ -412,15 +425,18 @@ public class ShopService {
 		return boardDao.faqlist(category);
 	}
 
-
-
-
-
 	public Board getBoard(Integer no, boolean readcntable) {
 		if (readcntable) {
 			boardDao.readcnt(no);
 		}
 		return boardDao.selectOne(no);
 	}
+
+	public void boardWrite(Board board, HttpServletRequest request) {
+		int max = boardDao.maxno();
+		board.setNo(++max);
+		boardDao.insert(board);
+	}
+
 
 }
