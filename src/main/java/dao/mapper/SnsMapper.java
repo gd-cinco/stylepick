@@ -50,7 +50,7 @@ public interface SnsMapper {
 	@Update("update sns set img1=#{img1url},description=#{description},height=#{height},weight=#{weight} where sns_no=#{sns_no}")
 	void update(Sns sns);
 
-	@Select("select sns_no,type,userid,img1 img1url,description,regdate,height,weight from sns where userid=#{userid}")
+	@Select("select sns_no,type,userid,img1 img1url,description,regdate,height,weight from sns where userid=#{userid} limit #{startrow}, #{limit}")
 	List<Sns> mylist(Map<String, Object> param);
 
 	@Select("select count(*) from sns where userid=#{userid}")
@@ -58,6 +58,15 @@ public interface SnsMapper {
 
 	@Delete("delete from sns where sns_no=#{sns_no}")
 	void delete(Map<String, Object> param);
+
+	@Insert("insert into follow (userid,following) values(#{loginuser},#{followuser})")
+	void follow(Map<String, Object> param);
+
+	@Select("select count(*) from follow where userid=#{userid}")
+	int follownum(Map<String, Object> param);
+
+	@Select("select count(*) from follow where following=#{userid}")
+	int followernum(Map<String, Object> param);
 	
 	
 

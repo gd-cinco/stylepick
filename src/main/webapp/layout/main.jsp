@@ -17,11 +17,11 @@
 	<link rel="stylesheet" href="${path}/assets/css/animate.min.css">
 	<link rel="stylesheet" href="${path}/assets/css/magnific-popup.css">
 	<link rel="stylesheet" href="${path}/assets/css/fontawesome-all.min.css">
-	<link rel="stylesheet" href="${path}/assets/css/themify-icons.css">
+	<link rel="stylesheet" href="${path}/assets/css/themify-icons.css?ver=1">
 	<link rel="stylesheet" href="${path}/assets/css/slick.css">
 	<link rel="stylesheet" href="${path}/assets/css/nice-select.css">
 	<link rel="stylesheet" href="${path}/assets/css/style.css?ver=1.1">
-	<link rel="stylesheet" href="${path}/assets/css/final.css?ver=1">
+	<link rel="stylesheet" href="${path}/assets/css/final.css?ver=1.1">
 	<link rel="stylesheet" href="${path}/assets/css/admin.css">
 	
 	<title><decorator:title/></title>
@@ -289,5 +289,13 @@
 	<!-- Jquery Plugins, main Jquery -->	
 	<script src="${path}/assets/js/plugins.js"></script>
 	<script src="${path}/assets/js/main.js"></script>
+	<c:if test="${fn:contains(path2,'sns/main')}" >
+		<c:if test="${param.type==1}">
+			<button id="upload" onclick="location.href='../sns/write.shop'" style="position:fixed; margin-bottom:70px; font-size:xx-large;">+</button>
+		</c:if>
+		<c:if test="${param.type==2}">
+			<button id="upload" onclick="location.href='../sns/qna.shop'" style="position:fixed; margin-bottom:70px; font-size:xx-large;">+</button>
+		</c:if>
+	</c:if>
 </body>
 </html>

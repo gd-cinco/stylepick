@@ -131,7 +131,7 @@
 		<form:hidden path="type" value="2"/>
 		<form:hidden path="userid" value="${sessionScope.loginUser.userid}"/>
 		<div class="style imgs">
-			<h4>스타일 이미지</h4>
+			<h4>첨부 이미지</h4>
 			<div class="img preview-image" id="imgs">
 				<label for="input-file" id="imglabel">업로드</label> 
 				<form:input type="file" id="input-file" class="upload-hidden" path="img1"/>

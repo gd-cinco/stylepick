@@ -32,3 +32,26 @@ body, h1, h2, h3, h4, h5 {
     height: 100%;
     object-fit: cover;
 }
+
+#upload {
+	background: #2577fd;
+    height: 60px;
+    width: 60px;
+    right: 31px;
+    bottom: 18px;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 53px;
+    border: 2px solid transparent;
+}
+
+#scrollUp {
+	background: #fdfdfd;
+    color: #2577fd;
+    line-height: 55px;
+    width: 60px;
+    height: 60px;
+    border: 1px solid #b5b2b2;
+}

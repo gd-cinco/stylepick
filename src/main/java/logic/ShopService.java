@@ -228,8 +228,8 @@ public class ShopService {
 	}
 	
 	//[sns] mypage 내가쓴글
-	public List<Sns> mysns(String userid) {
-		return snsDao.mylist(userid);
+	public List<Sns> mysns(String userid,int listAmount,int limit) {
+		return snsDao.mylist(userid,listAmount,limit);
 	}
 	
 	//[sns] mypage sns수
@@ -237,6 +237,20 @@ public class ShopService {
 		return snsDao.mysnscount(userid);
 	}
 	
+	//[sns] 팔로우 기능
+	public void Follow(String loginuser, String followuser) {
+		snsDao.userFollow(loginuser,followuser);
+	}
+	
+	//[sns] 팔로잉수
+	public int getFollowCount(String userid) {
+		return snsDao.FollowCount(userid);
+	}
+
+	//[sns] 팔로워수
+	public int getFollowerCount(String userid) {
+		return snsDao.FollowerCount(userid);
+	}
 
 	
 	// [아이템]상품 리스트 정보
@@ -426,5 +440,6 @@ public class ShopService {
 		board.setNo(++max);
 		boardDao.insert(board);
 	}
+
 
 }

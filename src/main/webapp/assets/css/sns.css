@@ -120,7 +120,7 @@ body, h1, h2, h3, h4, h5 {
 }
 
 .user-cards table tr td {
-	padding : 0 20px;
+	padding : 0 7px;
 }
 
 .user-cards img {
@@ -164,4 +164,13 @@ body, h1, h2, h3, h4, h5 {
 
 .style-info-first {
 	margin : 6px 0;
+}
+
+.followbtn {
+	 background: url( "../img/adduser.jpg" ) no-repeat;
+	 width:54px;
+	 height:33px;
+	 border: 2px solid #00b1ff;
+	 border-radius: 6px;
+     margin-left: 8px;
 }
