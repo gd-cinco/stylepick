@@ -13,12 +13,14 @@ public class Board {
 	private Date regtime = null;
 	private String stat = null;
 	private Integer readcnt = null;
+	private String content;
+	private String file1;
 	
 	public Board() {
 		
 	}
 	
-	public Board(Integer no, String title, String author, Integer seq, String category, String stat, Date regtime, int readcnt) {
+	public Board(Integer no, String title, String author, Integer seq, String category, String stat, Date regtime, int readcnt, String content, String file1) {
 		this.no = no;
 		this.seq = seq;
 		this.category = category;
@@ -27,6 +29,8 @@ public class Board {
 		this.regtime = regtime;
 		this.stat = stat;
 		this.readcnt = readcnt;
+		this.content = content;
+		this.file1 = file1;
 	}
 	public int getNo() {
 		return no;
@@ -79,7 +83,31 @@ public class Board {
 	public void setNo(Integer no) {
 		this.no = no;
 	}
-	
 
+	public Integer getReadcnt() {
+		return readcnt;
+	}
+
+	public void setReadcnt(Integer readcnt) {
+		this.readcnt = readcnt;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getFile1() {
+		return file1;
+	}
+
+	public void setFile1(String file1) {
+		this.file1 = file1;
+	}
+	
+	
 	
 }
