@@ -80,7 +80,7 @@ function javascript(){
 <div id="target">
 	 <div class="hr-sect"><h4>상품 정보</h4></div>
 	 <br>
-	<textarea style="background:white;" placeholder="Disabled" disabled>${item.content }</textarea>
+	<div>${item.content }</div>
 	<br><br><br><br>
 </div>
 <div id="target1">

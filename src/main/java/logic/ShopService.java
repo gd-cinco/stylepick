@@ -15,8 +15,7 @@ import dao.SnsDao;
 import dao.SnsItemDao;
 import dao.AdminDao;
 import dao.BoardDao;
-import dao.BuyDao;
-import dao.BuydetailDao;
+
 import dao.CommentDao;
 import dao.ItemDao;
 import dao.LineDao;
