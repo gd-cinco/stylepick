@@ -62,7 +62,7 @@ public interface AdminMapper {
 	List<Buy> yearlyheavyusers(Map<String, Object> param);
 	
 	//widgets index 3-1 우수 입점 스토어 차트
-	@Select("SELECT com_name, FLOOR( DATEDIFF( CURRENT_DATE , line.regdate ) / 7 ) AS weeks_ago, AVG(evaluation) evaluation FROM user LEFT JOIN line ON user.userid = line.userid GROUP BY weeks_ago, com_name HAVING weeks_ago <=4 ORDER BY weeks_ago DESC")
+	@Select("SELECT com_name, IFNULL(FLOOR( DATEDIFF( CURRENT_DATE , line.regdate ) / 7 ),0) AS weeks_ago, AVG(evaluation) evaluation FROM user LEFT JOIN line ON user.userid = line.userid GROUP BY weeks_ago, com_name HAVING weeks_ago <=4 ORDER BY weeks_ago DESC;")
 	List<Line> topthreestores(Map<String, Object> param);
 	
 	//dashboard index 3-1 To-do list
