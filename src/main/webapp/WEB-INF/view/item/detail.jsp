@@ -11,7 +11,7 @@
 <script >
 //버튼클릭시 javascript 호출합니다.
 function javascript(){
-    window.open('line.shop','popName',
+    window.open('line.shop?item_no=${param.item_no}','popName',
                 'width=800,height=500,top=200,left=400,');
 }
 </script>
@@ -19,20 +19,24 @@ function javascript(){
 
 </head>
 <body>
-<form action="../cart/cartAdd.shop">
+
 <div>
+<form action="../cart/cart.shop">
 <div class="pic" >
   <img src="img/${item.pictureUrl }" width="350px" height="450px" id="img">
 </div>
-
+	<input type="hidden" name="item_no" value="${item.item_no }">
+	<input type="hidden" name="userid" value="${item.userid }">
+	<input type="hidden" name="item_name" value="${item.item_name }">
+	<input type="hidden" name="item_price" value="${item.price }">
 <div class="etc">
 	<ul>
 		<dl>
 		<dt><h5>${item.userid }</h5></dt>
-		
 		<dt><h2>${item.item_name }</h2></dt>
 		<dt><h3>${item.price }원</h3></dt>
 		<dt>${item.keyword }</dt>
+
 	</ul>
 	<ul>
 		<dl><dt><select name="option">
@@ -59,13 +63,14 @@ function javascript(){
 
 </div>
 <br><br>
-</div>
+
 <div >
-	<input type="submit"  style="width:400px;height:40px;color: #4cd3e3; border: 1px solid #4cd3e3;background: #fff; margin-left:550px; cursor:pointer;" value="장바구니">
+	<input  class="genric-btn success radius"  style="width:400px; margin-left:50px; type="button" value="상품목록" onclick="location.href='list.shop'">
+	<input type="submit"  style="width:400px;height:40px;color: #4cd3e3; border: 1px solid #4cd3e3;background: #fff; margin-left:100px; cursor:pointer;" value="장바구니">
 	<!-- <a href="#" class="genric-btn success radius" style="width:400px; margin-left:150px;">구매하기</a> -->
 </div>
 </form>
-
+</div>
 <div style="width:1000px;">
 <div>
 <br><br>
