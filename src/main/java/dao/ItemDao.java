@@ -50,5 +50,9 @@ public class ItemDao {
 		param.put("item_no", item_no);
 		template.getMapper(ItemMapper.class).readcntadd(item_no);
 	}
+
+	public void update(Item item) {
+		template.getMapper(ItemMapper.class).update(item);
+	}
 	
 }

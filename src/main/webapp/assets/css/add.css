@@ -1,18 +1,31 @@
 .main-mapper {
-	width : 60%;
-	margin : 0 28%;
+	width: 46%;
+    margin: 0 30%;
+    padding: 2% 1% 2% 2%;
+    background-color: #fff;
 }
 
-
+.best-collection-area {
+    background-color: whitesmoke;
+    padding: 2% 0;	
+}
 
 .ii{
 	display:inline-block; 
-	margin-right:50px;
+	margin-right:40px;
+}
+
+.ii2{
+	display:inline-block; 
 }
 
 .oi{
 	display:inline-block; 
-	margin-right:30px;
+	margin-right:14px;
+}
+
+.oi2{
+	display:inline-block; 
 }
 
 input {
@@ -22,7 +35,7 @@ input {
 }
 
 .genric-btn.success{
-	margin-left:250px;
+	margin-left:2150px;
 }
 
 .subject-name{
