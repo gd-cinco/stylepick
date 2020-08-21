@@ -191,6 +191,7 @@
     font-weight: bold;
     font-size: 30px;
     width: 75%;
+    height: 45px;
 }
 .user-info {
 	height:180px;
@@ -240,4 +241,29 @@ width:100%;
 	width: 10%;
 	border-right: 1px solid black;
 	float: left;
+}
+.order_main{
+	width:90%;
+	float:left;
+	padding-left: 20px;
+	height: 200px;
+}
+.a_leftdivbtn{
+	display: block;
+	border: 0px;
+	font-size:18px;
+	width:100%;
+	height: 38px;
+	font-weight: bold;
+	text-align: center;
+	color:black !important;
+}
+.leftdivbtn_selected{
+color: #35C5F0 !important;
+}
+.leftdivbtn_selected2{
+color: #FE6500 !important;
+}
+.order_header{
+	font-size: 24px;
 }

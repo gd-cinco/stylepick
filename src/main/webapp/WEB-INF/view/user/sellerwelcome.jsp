@@ -15,7 +15,7 @@
 	</div>
 	<div style="margin-top: 40px;">
 			<ul class="welcome_ul">
-	    		<li class="welcome_li"><a class="welcome_a" href="../sns/main.shop">메인페이지</a></li>
+	    		<li class="welcome_li"><a class="welcome_a" href="../sns/main.shop?ksb=hot&type=1">메인페이지</a></li>
 		  		 <li class="welcome_li"><a class="welcome_a" href="sellermypage.shop">마이페이지</a></li>
 	    	</ul>
 	</div>
