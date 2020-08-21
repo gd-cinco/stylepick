@@ -46,7 +46,7 @@ public class ShopService {
 	
 	@Autowired
 	private LineDao lineDao;
-
+ 
 	//[user] 입력창 중복확인
 	public int joincompare(String key, String val) {
 		return userDao.joincompare(key,val);
@@ -278,7 +278,7 @@ public class ShopService {
 		line.setLine_no(++max);
 		lineDao.insert(line);
 
-		itemDao.insert(item);
+//		itemDao.insert(item);
 
 	}
 
@@ -414,15 +414,17 @@ public class ShopService {
 		return boardDao.faqlist(category);
 	}
 
-
-
-
-
 	public Board getBoard(Integer no, boolean readcntable) {
 		if (readcntable) {
 			boardDao.readcnt(no);
 		}
 		return boardDao.selectOne(no);
+	}
+
+	public void boardWrite(Board board, HttpServletRequest request) {
+		int max = boardDao.maxno();
+		board.setNo(++max);
+		boardDao.insert(board);
 	}
 
 }
