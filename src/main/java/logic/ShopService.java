@@ -20,6 +20,8 @@ import dao.BuydetailDao;
 import dao.CommentDao;
 import dao.ItemDao;
 import dao.LineDao;
+import dao.SaleDao;
+import dao.SaleItemDao;
 import dao.UserDao;
 
 @Service	//@Component + service ( Controller와 dao의 중간)
@@ -50,6 +52,12 @@ public class ShopService {
 	
 	@Autowired
 	private LineDao lineDao;
+	
+	@Autowired
+	private SaleDao saleDao;
+	
+	@Autowired
+	private SaleItemDao saleItemDao;
  
 	//[user] 입력창 중복확인
 	public int joincompare(String key, String val) {
@@ -445,6 +453,27 @@ public class ShopService {
 		int max = boardDao.maxno();
 		board.setNo(++max);
 		boardDao.insert(board);
+	}
+
+	public Sale checkend(User loginUser, Cart cart) {
+		Sale sale = new Sale();
+		int maxno = saleDao.getMaxSaleid();
+		sale.setSaleid(++maxno);
+		sale.setUser(loginUser);
+		sale.setUserid(loginUser.getUserid());
+		
+		saleDao.insert(sale);
+		// 장바구니 판매 상품 정보
+		List<ItemSet> itemList = cart.getItemSetList();
+		int seq = 0;
+		for(ItemSet itemSet : itemList) {
+			++seq;
+			SaleItem saleItem = new SaleItem(sale.getSaleid(), seq, itemSet);
+			sale.getItemList().add(saleItem);
+			saleItemDao.insert(saleItem);
+		}
+		
+		return sale;
 	}
 
 

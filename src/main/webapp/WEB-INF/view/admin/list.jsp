@@ -5,8 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <meta charset="UTF-8">
-<title>회원목록</title>
+<title>Users list</title>
 <script src="${path}/assets/board/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	function allchkbox(allchk){
@@ -39,38 +40,48 @@
 	</div>
 	<div class="right-div" style="width: 80%; margin-left: 3%;  padding: 1%; float:left;">
 		<form action="mailForm.shop" method="post">
-			<table>
-				<tr>
-					<td colspan="7">회원목록</td>
-				</tr>
-				<tr>
-					<th>아이디</th><th>이름</th><th>전화</th><th>나이</th><th>가입날짜</th><th>이메일</th><th>&nbsp;</th><th><input type="checkbox" name="allchk" onchange="allchkbox(this)"></th>
+			<h3>Users</h3><br>
+		
+			<h4 style="text-align: center; margin-bottom: 50px;">Stylepick Sales Report</h4>
+			<br>
+		
+			<table class="user_list_table">
+				<tr class="user_list_table">
+					<th class="user_list_th">아이디</th><th class="user_list_th">이름</th><th class="user_list_th">이메일</th><th class="user_list_th">전화</th><th class="user_list_th">나이</th><th class="user_list_th">성별</th><th class="user_list_th">가입날짜</th><th class="user_list_th">회원수정/마이페이지</th>
+					<!-- 
+					<th><input type="checkbox" name="allchk" onchange="allchkbox(this)"></th>
+					 -->
 				</tr>
 				<c:forEach items="${list}" var="user">
-					<tr>
-						<td>${user.userid}</td>
-						<td>${user.nickname}</td>
-						<td>${user.phoneno}</td>
+					<tr class="user_list_table">
+						<td class="user_list_table">${user.userid}</td>
+						<td class="user_list_table">${user.nickname}</td>
+						<td class="user_list_table">${user.email}</td>
+						<td class="user_list_table">${user.tel}</td>
 						<%-- <td><fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd"/></td> --%>
-						<td>${user.age}</td>
-						<td>${user.regdate}</td>
-						<td>${user.email}</td>
-						<td>
+						<td class="user_list_table">${user.age}</td>
+						<td class="user_list_table">${user.gender}</td>
+						<td class="user_list_table">${user.regdate}</td>
+						<td class="user_list_table">
 							<a href="../user/update.shop?id=${user.userid}">수정</a>
 							<a href="../user/delete.shop?id=${user.userid}">강제탈퇴</a>
 							<a href="../user/mypage.shop?id=${user.userid}">회원정보</a>
 						</td>
-						<td>
+						<!-- 
+						<td class="user_list_table">
 							<input type="checkbox" name="idchks" class="idchks" value="${user.userid}">
 						</td>
+						 -->
 					</tr>
 				</c:forEach>
+				<!-- 
 				<tr>
-					<td colspan="7">
+					<td colspan="9" class="user_list_table">
 						<input type="submit" value="메일보내기">
 						<input type="button" value="게시물작성그래프보기(막대)" onclick="graph_open('graph1')">
 					</td>
 				</tr>
+				 -->
 			</table>
 		</form>
 	</div>

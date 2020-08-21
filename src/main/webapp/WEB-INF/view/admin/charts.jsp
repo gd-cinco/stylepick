@@ -27,7 +27,7 @@ $(function() {
 google.load('visualization','1',{
     'packages' : ['corechart']
 });
-google.charts.load('current', {'packages':['treemap']})
+google.charts.load('current', {'packages':['treemap']});
 //로딩이 완료되면 drawChart 함수를 호출
 google.setOnLoadCallback(drawChart1); //라이브러리를 불러오는 작업이 완료되었으면 drawChart작업을 실행하라는 뜻.
 google.setOnLoadCallback(drawChart2);
