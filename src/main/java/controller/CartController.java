@@ -42,7 +42,7 @@ public class CartController {
 //		session.removeAttribute("CART");
 //		mav.addObject("sale", sale);
 //		mav.addObject("total", total);
-		mav.setViewName("http://localhost:8080/stylepick/cart/pay.shop");
+		mav.setViewName("redirect:pay.shop");
 		return mav;
 	}
 }

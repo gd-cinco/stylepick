@@ -2,11 +2,20 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+<head></head>
 <body>
-pay!!
+<!--// mode : development or production-->
+<script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"
+    data-client-id="u86j4ripEt8LRfPGzQ8"
+    data-mode="production"
+    data-merchant-user-key="123"
+    data-merchant-pay-key="123"
+    data-product-name="상품명을 입력하세요"
+    data-total-pay-amount="1000"
+    data-tax-scope-amount="1000"
+    data-tax-ex-scope-amount="0"
+    data-return-url="http://localhost:8080/stylepick/cart/payresult.shop?">
+</script>
+
 </body>
 </html>
