@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import logic.Buy;
 import logic.User;
 import logic.Userorder;
 
@@ -74,6 +75,9 @@ public interface UserMapper {
 	@Select("SELECT COUNT(*) FROM buy_detail, buy "
 			+ "WHERE buy.order_no=buy_detail.order_no AND buy.userid=#{userid}")
 	int getmyshipping(String userid);
+	
+	@Select("SELECT * FROM buy WHERE userid=#{userid}")
+	List<Buy> getusersale(String userid);
 
 	//[admin] storelist 스토어 관리 0822
 	@Select({"<script>",
@@ -86,8 +90,6 @@ public interface UserMapper {
 		"open='(' close=')'>#{id}</foreach></if>",
 		"</script>"})
 	List<User> storelist(Object object);
-
-	
 
 
 }
