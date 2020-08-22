@@ -124,10 +124,10 @@ public class ShopService {
 		return map;
 	}
 	
-	//[admin] 유저리스트 가져오기 0728
-	public List<User> list() {
+	//[admin] 유저리스트 가져오기 0822 0728
+	public List<User> list(String searchtype, String searchcontent) {
 		// TODO Auto-generated method stub
-		return userDao.list();
+		return userDao.list(searchtype, searchcontent);
 		}
 
 	//[admin] 그래프2 0728
@@ -437,7 +437,11 @@ public class ShopService {
 	public List<Buy> toptenstores() {
 		// TODO Auto-generated method stub
 		return adminDao.toptenstores();
-
+	}
+	//[admin] storelist 스토어 관리 0822
+	public List<User> storelist(String searchtype, String searchcontent) {
+		// TODO Auto-generated method stub
+		return userDao.storelist(searchtype, searchcontent);
 	}
 
 	/**
@@ -484,6 +488,8 @@ public class ShopService {
 		
 		return sale;
 	}
+
+	
 
 
 

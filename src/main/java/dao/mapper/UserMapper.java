@@ -29,15 +29,26 @@ public interface UserMapper {
 			+ "where userid=#{userid}")
 	void sellerinsert(User user);
 	
+	
 	@Select({"<script>",
 		"select * from user",
-		"<if test='userid !=null'> where userid = #{userid} </if>",
+		"<if test='userid !=null'> where userid = #{userid}</if>",
 		"<if test='userid ==null'> where userid != 'admin'</if>",
+		"<if test='searchtype!=null and searchcontent!=null'>${searchtype} LIKE #{searchcontent}</if>",
 		"<if test='userids !=null'> and userid in ",
 		"<foreach collection='userids' item='id' separator=',' ",
 		"open='(' close=')'>#{id}</foreach></if>",
 		"</script>"})
 	List<User> select(Map<String, Object> param);
+	
+	/*
+	 * 	// ***** '%${searchcontent}%'에서 #와 다르게 $는 '가 안붙는다.
+	@Select({"<script>",
+		"SELECT num,name,pass,subject,content,file1 fileurl,regdate,readcnt,grp,grplevel,grpstep FROM board",
+		"<if test='searchtype!=null and searchcontent!=null'>WHERE ${searchtype} LIKE #{searchcontent}</if>",
+		" order by grp desc, grpstep limit #{startrow}, #{limit}",
+		"</script>"})
+	 */
 
 	@Update("update user set nickname=#{nickname},age=#{age},"
 			+ "gender=#{gender},tel=#{tel},comment=#{comment} where userid=#{userid}")
@@ -55,6 +66,18 @@ public interface UserMapper {
 			+ " i.item_no=d.item_no AND b.order_no=d.order_no "
 			+ " AND b.userid=#{userid}")
 	List<Userorder> getuserorder(String userid);
+
+	//[admin] storelist 스토어 관리 0822
+	@Select({"<script>",
+		"select * from user",
+		"<if test='userid !=null'> where userid = #{userid} and seller=1</if>",
+		"<if test='userid ==null'> where seller = 1</if>",
+		"<if test='searchtype!=null and searchcontent!=null'>${searchtype} LIKE #{searchcontent}</if>",
+		"<if test='userids !=null'> and userid in ",
+		"<foreach collection='userids' item='id' separator=',' ",
+		"open='(' close=')'>#{id}</foreach></if>",
+		"</script>"})
+	List<User> storelist(Object object);
 
 	
 
