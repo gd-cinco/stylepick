@@ -24,7 +24,6 @@ public class Buy {
 	
 	//오더번호, 판매일, 스토어, 대표 품명, 금액, 상태, 배송지
 	
-	
 	public String getItem_name() {
 		return item_name;
 	}

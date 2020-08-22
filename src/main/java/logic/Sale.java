@@ -10,6 +10,10 @@ public class Sale {
 	private Date saledate;
 	private User user;
 	private List<SaleItem> itemList = new ArrayList<SaleItem>();
+	private String name;
+	private String address;
+	private long tel;
+	private String memo;
 
 	public long getTotal() {
 		long sum = 0;
@@ -59,9 +63,43 @@ public class Sale {
 		this.itemList = itemList;
 	}
 
-	@Override
-	public String toString() {
-		return "Sale [saleid=" + saleid + ", userid=" + userid + ", saledate=" + saledate + ", user=" + user + "]";
+	public String getName() {
+		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public long getTel() {
+		return tel;
+	}
+
+	public void setTel(long tel) {
+		this.tel = tel;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
+	@Override
+	public String toString() {
+		return "Sale [saleid=" + saleid + ", userid=" + userid + ", saledate=" + saledate + ", user=" + user
+				+ ", itemList=" + itemList + ", name=" + name + ", address=" + address + ", tel=" + tel + ", memo="
+				+ memo + "]";
+	}
+	
 }

@@ -514,8 +514,7 @@ public class ShopService {
 		boardDao.insert(board);
 	}
 
-	public Sale checkend(User loginUser, Cart cart) {
-		Sale sale = new Sale();
+	public Sale checkend(Sale sale, Cart cart, User loginUser) {
 		int maxno = saleDao.getMaxSaleid();
 		sale.setSaleid(++maxno);
 		sale.setUser(loginUser);

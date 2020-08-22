@@ -1,18 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head></head>
 <body>
-<!--// mode : development or production-->
+<script src="${pageContext.request.contextPath}/assets/board/js/jquery-3.3.1.min.js"></script>
 <script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"
     data-client-id="u86j4ripEt8LRfPGzQ8"
     data-mode="production"
     data-merchant-user-key="123"
     data-merchant-pay-key="123"
-    data-product-name="상품명을 입력하세요"
-    data-total-pay-amount="1000"
-    data-tax-scope-amount="1000"
+    data-product-name="${outMap.name}"
+    data-total-pay-amount="${outMap.total}"
+    data-tax-scope-amount="${outMap.total}"
     data-tax-ex-scope-amount="0"
     data-return-url="http://localhost:8080/stylepick/cart/payresult.shop?">
 </script>

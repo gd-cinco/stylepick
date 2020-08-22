@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,13 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import exception.CartEmptyException;
-import logic.Buy;
 import logic.Cart;
 import logic.Item;
 import logic.ItemSet;
+import logic.Sale;
 import logic.ShopService;
 import logic.User;
 
@@ -66,6 +68,39 @@ public class CartController {
 			mav.addObject("message","장바구니 상품이 삭제되지 않았습니다.");
 		}
 		mav.addObject("cart",cart);
+		return mav;
+	}
+	
+	@GetMapping("checkout")
+	void checkout() {}
+	
+	@RequestMapping("end")
+	public ModelAndView checkend(Sale sale, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		Cart cart = (Cart)session.getAttribute("CART");
+		User loginUser = (User)session.getAttribute("loginUser");
+		
+		Sale res = service.checkend(sale, cart, loginUser);
+		long total = cart.getTotal();
+		
+		// 결제창에 표시될 내용
+		Map<String, String> outMap = new HashMap<>();
+		String name = res.getItemList().get(0).getItem().getItem_name();
+		int count = cart.getItemSetList().size();
+		if (count > 1) {
+			name += " 외 " + (count - 1) + "건";
+		}
+		outMap.put("name", name);
+		outMap.put("count", count + "");
+		outMap.put("total", total + "");
+		
+		session.removeAttribute("CART");
+		
+		//mav.addObject("sale", res);
+		//mav.addObject("total", total);
+		
+		mav.addObject("outMap", outMap);
+		mav.setViewName("redirect:pay.shop");
 		return mav;
 	}
 }

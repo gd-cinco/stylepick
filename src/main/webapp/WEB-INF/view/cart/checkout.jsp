@@ -12,11 +12,17 @@
 	text-align: right;
 	margin-right: 115px;
 }
+th, td {
+	margin: 8px;
+}
 </style>
 
 <!-- 주소 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="${path}/assets/board/js/jquery-3.3.1.min.js"></script>
 <script>
+	var addr1 = ""
+	var addr3 = $("#addr3").val()
 	function execPostCode() {
 		new daum.Postcode({
 			oncomplete : function(data) {
@@ -56,22 +62,43 @@
 				/* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
 				document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
 				document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
+				
+				addr1 = data.zonecode + " " + fullRoadAddr + " "
+				if (addr3 == "undefined" || addr3 == null) {
+					addr3 = ""
+				}
+			    $("#address").val(addr1 + addr3)
 			}
 		}).open();
 	}
 </script>
 </head>
 <body>
+	<c:set var="total" value="0"/>
 	<section class="cart_area section">
 		<div class="container">
 			<h1>주문/결제</h1>
 			<br>
 			<h2>주문상품</h2>
 			<table>
-			
+				<tbody>
+					<tr>
+						<th>상품명</th>
+						<th>수량</th>
+						<th>가격</th>
+					</tr>
+					<c:forEach items="${sessionScope.CART.itemSetList}" var="c">
+						<tr>
+							<td>${c.item.item_name}</td>
+							<td>${itemSet.quantity}</td>
+							<td>${itemSet.item.price}</td>
+							<c:set var="total" value="${total + itemSet.item.price}"/>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 			<br>
-			<form:form modelAttribute="checkout" method="post" action="end.shop" name="f">
+			<form:form modelAttribute="sale" method="post" action="end.shop" name="f">
 				<h2>배송지</h2>
 				<hr width="90%" align="left">
 				<table>
@@ -96,7 +123,7 @@
 					</tr>
 					<tr class="form-group">
 						<th>상세주소</th>
-						<td><input class="form-control" placeholder="상세주소" name="addr3" id="addr3" type="text" /></td>
+						<td><input class="form-control" placeholder="상세주소" name="addr3" id="addr3" type="text" required="required"/></td>
 					</tr>
 					<tr>
 						<th>휴대전화</th>
@@ -104,9 +131,10 @@
 					</tr>
 					<tr>
 						<th>배송 메모</th>
-						<td><textarea cols="60" rows="5"></textarea></td>
+						<td><textarea cols="60" rows="5" name="memo"></textarea></td>
 					</tr>
 				</table>
+				<input type="hidden" name="address" id="address">
 				<br>
 				<h2>주문자</h2>
 				<hr width="90%" align="left">
@@ -135,7 +163,7 @@
 				<div class="ammount"></div>
 				<div class="ammount">
 					<div>총 상품 금액</div>
-					<div>원</div>
+					<div>${total}원</div>
 				</div>
 				<br>
 				<br>
@@ -147,5 +175,17 @@
 			</form:form>
 		</div>
 	</section>
+<script>
+	$(function() {
+		$("#addr3").on("propertychange change keyup paste input", function() {
+		    var current = $(this).val();
+		    if(current == addr3) {
+		        return;
+		    }
+		    addr3 = current;
+		    $("#address").val(addr1 + addr3)
+		});
+	})
+</script>
 </body>
 </html>
