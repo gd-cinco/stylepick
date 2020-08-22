@@ -1,6 +1,51 @@
 @charset "UTF-8";
 
 .main-mapper {
-	width : 60%;
-	margin : 0 19%;
+	width: 63.3%;
+    margin: 0 19%;
+}
+
+.mainbox {
+	width:100%;
+	height:550px;
+	margin:40px 0 20px 0;
+}
+
+.boxtitle {
+	text-align:center;
+	font-size: 30px;
+    font-weight: bolder;
+    margin-bottom:20px;
+}
+
+
+.boxitemlist {
+	width:100%;
+	height:382px;
+	margin-bottom: 10px;
+}
+
+
+.boxitem {
+	width:290px;
+	margin-right:10px;
+	float:left;
+}
+
+.itembrand {
+	margin: 10px;
+	font-weight: bold;
+}
+
+.itemsubject {
+	margin: 10px;
+}
+
+.itemprice {
+	margin: 0 10px 10px 10px;
+	font-weight: bold;
+}
+
+.boxbutton {
+	margin-left: 520px;
 }

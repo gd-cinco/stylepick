@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Store</title>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link rel="stylesheet" href="${path}/assets/css/store.css?ver=1">
+<link rel="stylesheet" href="${path}/assets/css/store.css?ver=1.1">
 <style>
 	#slider {
 		position:relative;
@@ -236,6 +236,54 @@
 		</div>
 </div>
 </div>
+</div>
+<div class="mainbox Ranking">
+	<div class="boxtitle">인기 상품</div>
+	<div class="boxitemlist">
+		<c:forEach begin="1" end="4">
+			<div class="boxitem">
+				<img src="#" width="290px" height="270px" >
+				<div class="itembrand">브랜드명</div>
+				<div class="itemsubject">상품명</div>
+				<div class="itemprice">상품가격</div>
+			</div>
+		</c:forEach>
+	</div>
+	<div class="boxbutton">
+		<button class="btn" onclick="location.href='rank.shop'">더보기 ></button>
+	</div>
+</div>
+<div class="mainbox Keyword">
+	<div class="boxtitle">실시간 인기 키워드</div>
+	<div class="boxitemlist">
+		<c:forEach begin="1" end="4">
+			<div class="boxitem">
+				<img src="#" width="290px" height="270px" >
+				<div class="itembrand">브랜드명</div>
+				<div class="itemsubject">상품명</div>
+				<div class="itemprice">상품가격</div>
+			</div>
+		</c:forEach>
+	</div>
+	<div class="boxbutton">
+		<button class="btn" onclick="location.href='rank.shop'">더보기 ></button>
+	</div>
+</div>
+<div class="mainbox Newitem">
+	<div class="boxtitle">최신 상품</div>
+	<div class="boxitemlist">
+		<c:forEach begin="1" end="4">
+			<div class="boxitem">
+				<img src="#" width="290px" height="270px" >
+				<div class="itembrand">브랜드명</div>
+				<div class="itemsubject">상품명</div>
+				<div class="itemprice">상품가격</div>
+			</div>
+		</c:forEach>
+	</div>
+	<div class="boxbutton">
+		<button class="btn" onclick="location.href='rank.shop'">더보기 ></button>
+	</div>
 </div>
 </body>
 </html>
