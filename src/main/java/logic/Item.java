@@ -23,7 +23,8 @@ public class Item {
 	private String item_option; //옵션
 	private String size;	//사이즈
 	
-	
+	//판매자명
+	private String name;
 	
 
 	public int getItem_no() {
@@ -119,19 +120,17 @@ public class Item {
 	public void setSize(String size) {
 		this.size = size;
 	}
-
-	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	@Override
 	public String toString() {
 		return "Item [item_no=" + item_no + ", userid=" + userid + ", category=" + category + ", code=" + code
 				+ ", subject=" + subject + ", item_name=" + item_name + ", price=" + price + ", keyword=" + keyword
 				+ ", pictureUrl=" + pictureUrl + ", imgurl=" + imgurl + ", content=" + content + ", regdate=" + regdate
-				+ ", readcnt=" + readcnt + ", item_option=" + item_option + ", size=" + size + "]";
+				+ ", readcnt=" + readcnt + ", item_option=" + item_option + ", size=" + size + ", name=" + name + "]";
 	}
-	
-	
-
-
-	
-	
 }

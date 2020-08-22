@@ -40,7 +40,13 @@ public class itemController {
 		@Autowired
 		private ShopService service;
 		
-		@RequestMapping("list")	//item/list.shop
+		@GetMapping("list")
+		public String test(Model model) {
+			return null;
+		}
+		
+		/*
+		@PostMapping("list")	//item/list.shop
 		public ModelAndView list(Integer pageNum,String searchtype, String searchcontent, Integer category) {
 			ModelAndView mav =new ModelAndView();
 			if(pageNum==null || pageNum.toString().equals("")){
@@ -67,7 +73,7 @@ public class itemController {
 			mav.addObject("listcount",listcount);
 			return mav;
 		}
-		
+		*/
 		
 	
 		

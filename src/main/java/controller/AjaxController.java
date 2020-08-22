@@ -30,6 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import logic.Board;
 import logic.Comment;
 import logic.GoogleChartService;
+import logic.Item;
 import logic.Line;
 import logic.ShopService;
 import logic.Sns;
@@ -494,6 +495,52 @@ public class AjaxController {
 		}
 
 		return json;
+	}
+	
+	//[item] 상품 목록 불러오기
+	@RequestMapping(value="list", produces="text/plain; charset=UTF8")
+	public String list(Integer category,int listAmount,int status,String searchtype, String searchcontent) {
+		StringBuilder html = new StringBuilder();
+		if(searchtype == null || searchcontent == null ||searchtype.trim().equals("") || searchcontent.trim().equals("")) {
+			searchtype =null;
+			searchcontent =null;
+		}
+		int limit = 16;
+		List<Item> itemss = service.getItemList(listAmount, limit,searchtype,searchcontent,category);
+		if(itemss.isEmpty()) {
+			return null;
+		} else {
+			System.out.println(itemss);
+			//html.append("<table style=\"margin:2% 6%;\">");
+			int i = 1;
+			for(Item it : itemss) {
+				if(i%4==1) {
+					html.append("<div class=\"row\">");
+				}
+				User seller = service.getUser(it.getUserid());
+				it.setName(seller.getName());
+				html.append("<div class=\"col-xl-4 col-lg-4 col-md-6\"  style=\"max-width: 60.333333%;\">");
+				html.append("<div class=\"single_product_item\">");
+				html.append("<div class=\"item_detail\" onClick=\"location.href='detail.shop?item_no="+it.getItem_no()+"'\">");
+				html.append("<div><img src=\"img/"+it.getPictureUrl()+"\" width=\"226px\" height=\"270px\"></div>");
+				html.append("									<div>\r\n" + 
+						"										<ul>\r\n" + 
+						"											<li>"+it.getName()+"</li>\r\n" + 
+						"											<li>"+it.getSubject()+"</li>\r\n" + 
+						"											<li><fmt:formatNumber value=\""+it.getPrice()+"\" type=\"CURRENCY\" currencySymbol=\"\"/>원</li>\r\n" + 
+						"										</ul>\r\n" + 
+						"									</div>");
+				html.append("								</div>\r\n" + 
+						"                       		</div>\r\n" + 
+						"                    	</div>");
+				if(i%4==0) {
+					html.append("</div>");
+				}
+				i++;
+			}
+			System.out.println(html);
+			return html.toString();
+		}
 	}
 	
 

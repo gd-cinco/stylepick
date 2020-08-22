@@ -282,8 +282,8 @@ public class ShopService {
 
 	
 	// [아이템]상품 리스트 정보
-	public List<Item> getItemList(Integer pageNum, int limit, String searchtype, String searchcontent,Integer category) {
-		return itemDao.list(category);
+	public List<Item> getItemList(Integer listAmount, int limit, String searchtype, String searchcontent,Integer category) {
+		return itemDao.list(category,listAmount,limit);
 	}
 	public int getItemCount(String searchtype, String searchcontent) {
 		return itemDao.count(searchtype, searchcontent);

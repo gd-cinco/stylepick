@@ -1,111 +1,100 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ include file="/header/main.jsp" %>
+ <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>상품 목록</title>
- <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>eCommerce HTML-5 Template </title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-    <!-- CSS here -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="assets/css/flaticon.css">
-        <link rel="stylesheet" href="assets/css/slicknav.css">
-        <link rel="stylesheet" href="assets/css/animate.min.css">
-        <link rel="stylesheet" href="assets/css/magnific-popup.css">
-        <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="assets/css/themify-icons.css">
-        <link rel="stylesheet" href="assets/css/slick.css">
-        <link rel="stylesheet" href="assets/css/nice-select.css">
-        <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="${path}/assets/css/list.css?ver=1">
+<script type="text/javascript" src="http://cdn.ckeditor.com/4.5.7/full/ckeditor.js"></script>
+<script type="text/javascript" src="http://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
 </head>
 <body>
-<a href="create.shop">상품 등록</a>
- <c:if test="${listcount <0 }">
- <h1>게시글이 아직 존재 하지 않습니다.</h1>
- </c:if>
-
- <c:if test="${listcount >0 }">
- <div class="container">
-	<div class="row">
- 	
-           		 <div class="product_list">
-           		 	<div class="row">
-           		 <c:forEach items="${itemList }" var="item">
-             			       <div class="col-xl-4 col-lg-4 col-md-6"  style="max-width: 60.333333%;">
-                                <div class="single_product_item">
-                 <div class="item_detail" onClick="location.href='detail.shop?item_no=${item.item_no}'">
-				<div>
-				 <img src="img/${item.pictureUrl }" width="226px" height="270px">
-				</div>
-				<div>
-					${item.subject}
-			<ul>
-				<li>
-				<fmt:formatNumber value="${item.price }" type="CURRENCY" currencySymbol=""/>원
-				</li>
-			</ul>
-				</div>
-				</div>
-                        	 </div>
-                         </div>
-                 </c:forEach>
-                 </div>
-              </div>
-		</div>
+<div class="item-list">
+	<div class="categoryName">
+		<c:choose>
+			<c:when test="${param.category==1}">모자</c:when>
+			<c:when test="${param.category==2}">아우터</c:when>
+			<c:when test="${param.category==3}">원피스</c:when>
+			<c:when test="${param.category==4}">상의</c:when>
+			<c:when test="${param.category==5}">하의</c:when>
+			<c:when test="${param.category==6}">가방</c:when>
+			<c:when test="${param.category==7}">신발</c:when>
+			<c:when test="${param.category==8}">시계</c:when>
+		</c:choose>
 	</div>
+	<div class="itemContainer">
+	</div>
+<a href="create.shop" class="btn">상품 등록</a>
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
 
-</c:if>
-
-
-
-   <!-- All JS Custom Plugins Link Here here -->
-        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
-        
-        <!-- Jquery, Popper, Bootstrap -->
-        <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
-        <script src="./assets/js/popper.min.js"></script>
-        <script src="./assets/js/bootstrap.min.js"></script>
-        <!-- Jquery Mobile Menu -->
-        <script src="./assets/js/jquery.slicknav.min.js"></script>
-
-        <!-- Jquery Slick , Owl-Carousel Plugins -->
-        <script src="./assets/js/owl.carousel.min.js"></script>
-        <script src="./assets/js/slick.min.js"></script>
-
-        <!-- One Page, Animated-HeadLin -->
-        <script src="./assets/js/wow.min.js"></script>
-        <script src="./assets/js/animated.headline.js"></script>
-        <script src="./assets/js/jquery.magnific-popup.js"></script>
-
-        <!-- Scrollup, nice-select, sticky -->
-        <script src="./assets/js/jquery.scrollUp.min.js"></script>
-        <script src="./assets/js/jquery.nice-select.min.js"></script>
-        <script src="./assets/js/jquery.sticky.js"></script>
-        
-        <!-- contact js -->
-        <script src="./assets/js/contact.js"></script>
-        <script src="./assets/js/jquery.form.js"></script>
-        <script src="./assets/js/jquery.validate.min.js"></script>
-        <script src="./assets/js/mail-script.js"></script>
-        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
-        
-        <!-- Jquery Plugins, main Jquery -->    
-        <script src="./assets/js/plugins.js"></script>
-        <script src="./assets/js/main.js"></script>
-
-        <!-- swiper js -->
-        <script src="./assets/js/swiper.min.js"></script>
-            <!-- swiper js -->
-        <script src="./assets/js/mixitup.min.js"></script>
-        <script src="./assets/js/jquery.counterup.min.js"></script>
-        <script src="./assets/js/waypoints.min.js"></script>
- 
+	var listAmount = 1;
+	var status = 0;
+	<c:if test="${!empty param.category}">
+		var category = ${param.category};
+	</c:if>
+	<c:if test="${empty param.category}">
+		var category = null;
+	</c:if>
+	
+	$(function(){
+			snsList(category,listAmount,status);
+	})
+	
+	function snsList(category,listAmount,status){
+			var params = "category=" + category + "&listAmount=" + listAmount + "&status=" + status;
+			console.log(params);
+			$.ajax({
+				data:params,
+				type:"get",
+				url:"${path}/ajax/list.shop",
+				success : function(data) {
+					console.log("넘어오는 데이터 : "+data)
+					$(".itemContainer").append(data);
+				},
+				error : function(e) {
+					alert("상품 조회시 서버 오류:"+e.status);
+				}
+			})
+	}
+	
+	$(window).scroll(function() {
+		// 스크롤이 80% 이상이 되면 해당 컨텐츠가 자동 생성
+		console.log(((window.scrollY + window.innerHeight) / $('body').prop("scrollHeight") * 100));
+		if(((window.scrollY + window.innerHeight) / $('body').prop("scrollHeight") * 100) > 90) 
+		  {
+			if(status == 0){
+				listAmount++;
+				<c:if test="${!empty param.category}">
+					var params = "category=" + category + "&listAmount=" + listAmount + "&status=" + status;
+				</c:if>
+				<c:if test="${empty param.category}">
+					var params = "listAmount=" + listAmount + "&status=" + status;
+				</c:if>
+			 	console.log("work"+params);
+				status = 1;
+				$.ajax({
+					data: params,
+					type: "get",
+					url: "${path}/ajax/list.shop",
+					success : function(data) {
+						console.log(data);
+						$(".itemContainer").append(data);
+						if(data != null){
+							status = 0;						
+						}
+					},
+					error : function(e) {
+						alert("상품 조회시 서버 오류:"+e.status);
+					}
+				})
+			}
+		}
+	});
+</script>
 </body>
 </html>

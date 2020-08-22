@@ -168,6 +168,21 @@
 <main>
     <div class="best-collection-area align-center">
         <div class="main-mapper">
+        	<c:if test="${fn:contains(path2,'item/list')}" >
+        		<div class="item-category">
+        			<ul>
+        				<li><a href="${path}/item/list.shop">전체</a></li>
+        				<li><a href="${path}/item/list.shop?category=1">모자</a></li>
+        				<li><a href="${path}/item/list.shop?category=2">아우터</a></li>
+        				<li><a href="${path}/item/list.shop?category=3">원피스</a></li>
+        				<li><a href="${path}/item/list.shop?category=4">상의</a></li>
+        				<li><a href="${path}/item/list.shop?category=5">하의</a></li>
+        				<li><a href="${path}/item/list.shop?category=6">가방</a></li>
+        				<li><a href="${path}/item/list.shop?category=7">신발</a></li>
+        				<li><a href="${path}/item/list.shop?category=8">시계</a></li>
+        			</ul>
+        		</div>
+        	</c:if>
         	<decorator:body/>
         </div>
     </div>

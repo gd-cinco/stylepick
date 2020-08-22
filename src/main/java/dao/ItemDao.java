@@ -21,9 +21,11 @@ public class ItemDao {
 		return template.getMapper(ItemMapper.class).maxnum();
 	}
 	
-	public List<Item> list(Integer category) {
+	public List<Item> list(Integer category,Integer listAmount, int limit) {
 		param.clear();
 		param.put("category", category);
+		param.put("startrow",(listAmount-1)*16);
+		param.put("limit", limit);
 		return template.getMapper(ItemMapper.class).select(param);
 	}
 
