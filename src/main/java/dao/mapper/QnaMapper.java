@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import logic.Qna;
 
@@ -34,5 +35,8 @@ public interface QnaMapper {
 		
 	})
 	List<Qna> select(Map<String, Object> param);
+
+	@Update("update qna set grpstep = grpstep +1 where grp =#{grp} and grpstep >#{grpstep}")
+	void grpStep(Map<String, Object> param);
 
 }

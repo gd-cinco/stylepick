@@ -83,7 +83,7 @@
 	  		</ul>
 	  		</div>
 <div style="margin-top:25px; margin-bottom:50px; position: relative;">
-    		<img src="../assets/img/logo/logo3.png" width="620px"
+    		<img src="../assets/img/splogo.PNG" width="620px"
     		 onclick="javascript:location.href='../sns/main.shop'" style="margin-bottom:20px; cursor: pointer;">
     		 
 	<form:form modelAttribute="user" method="post" action="sellerEntry.shop" onsubmit="return chkboxcheck(this)">

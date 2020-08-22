@@ -20,9 +20,24 @@ function javascript1(){
                 'width=800,height=500,top=200,left=400,');
 }
 
+
+function javascript2(){
+    window.open('reply.shop?qna_no=${param.qna_no }','popName',
+                'width=800,height=500,top=200,left=400,');
+}
 </script>
 
-
+<style>
+  table {
+    width: 100%;
+    border: 1px solid #444444;
+    border-collapse: collapse;
+  }
+  th, td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+  }
+</style>
 </head>
 <body>
 
@@ -35,6 +50,7 @@ function javascript1(){
 	<input type="hidden" name="userid" value="${item.userid }">
 	<input type="hidden" name="item_name" value="${item.item_name }">
 	<input type="hidden" name="item_price" value="${item.price }">
+	<input type="hidden" name="pictureUrl" value="${item.pictureUrl}">
 <div class="etc">
 	<ul>
 		<dl>
@@ -45,10 +61,10 @@ function javascript1(){
 
 	</ul>
 	<ul>
-		<dl><dt><select name="option">
+		<dl><dt><select name="item_option">
 				<option>옵션</option>
 				<c:forEach items="${item.item_option}" var="i">
-					<option value=${i }><c:out value="${i }"/></option>
+					<option ><c:out value="${i }"/></option>
 				</c:forEach>
 		</select></dt>
 		<dd><select name="size" id="sel">
@@ -98,6 +114,7 @@ function javascript1(){
 	<!--별점 평균 사진 놓을 곳  -->
 	<table>
 	<tr><td>별</td><td>내용</td><td>등록일</td><td>사용자</td></tr>
+	
 	</table>
 	</div>
 	 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -110,23 +127,29 @@ function javascript1(){
 	 <div class="hr-sect"><h4>Q&A</h4></div>
 	  <div style="float:right;">
 	   <input type='button' class="genric-btn info-border circle arrow" style="width:101px;" onclick='javascript1()' value='작성하기'/></div>
+	<br><br><br>
 	<div>
 	<div>
 	<table>
 		<c:forEach items="${qnalist }" var="qna">
-		<tr><td><c:if test="${qna.type ==0 }">Q</c:if><c:if test="${qna.type ==1 }">A</c:if></td>
-		<td>${qna.userid }</td><td>
+		<tr><td style="font-size:20px; color:#4ebafc"><c:if test="${qna.type ==0 }">Q</c:if><c:if test="${qna.type ==1 }">A</c:if></td>
+		<td>${qna.userid } &nbsp;&nbsp;&nbsp;
 	<fmt:formatDate var="rdate" value="${qna.regdate }" pattern="yyyyMMdd"/>
 				<c:if test="${today==rdate }">
 					<fmt:formatDate value="${qna.regdate}" pattern="HH:mm:ss"/>
 					</c:if>
 			<c:if test="${today !=rdate }">
-					<fmt:formatDate value="${qna.regdate}" pattern="yyyy-MM-dd HH:mm"/>
+					<fmt:formatDate value="${qna.regdate}" pattern="yyyy-MM-dd "/>
 					</c:if>
-					</td>
-					</tr>
-					<tr><td>${qna.content }</td></tr>
+				<br>
+					${qna.content }</td>
+					<td>
+					 <input type='button' style="width:101px;" onclick='javascript2()' value='답글'/>
+				
+					
 		</c:forEach>
+
+	
 	</table>
 	</div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

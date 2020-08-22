@@ -9,5 +9,6 @@
 		<pattern>/user/sellerEntry*</pattern>
 		<pattern>/item/line*</pattern>
 		<pattern>/item/qna*</pattern>
+		<pattern>/item/rep*</pattern>
 	</excludes>
 </decorators>

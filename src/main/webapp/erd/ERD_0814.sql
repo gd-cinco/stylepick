@@ -205,6 +205,7 @@ CREATE TABLE line
 	content varchar(500),
 	evaluation int(10) NOT NULL,
 	regdate datetime NOT NULL,
+	oreder_no int(50),
 	PRIMARY KEY (line_no)
 );
 
