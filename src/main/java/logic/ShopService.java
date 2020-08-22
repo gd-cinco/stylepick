@@ -530,8 +530,20 @@ public class ShopService {
 	}
 
 	//Q&A 목록
-	public List<Qna> qnalist(Integer pageNum, int limit, String searchtype, String searchcontent) {
-		return qnaDao.qnalist(pageNum,limit, searchtype, searchcontent);
+	public List<Qna> qnalist(Integer pageNum, int limit, String searchtype, String searchcontent, Integer item_no) {
+		return qnaDao.qnalist(pageNum,limit, searchtype, searchcontent,item_no);
+	}
+
+
+
+	public void qnaReply(Qna qna) {
+		qnaDao.updateGrpStrp(qna);
+		int max=qnaDao.maxnum();
+		qna.setQna_no(++max);
+		qna.setGrplevel(qna.getGrplevel() + 1);
+		qna.setGrpstep(qna.getGrpstep() +1);
+	 	qnaDao.insert(qna);
+		
 	}
 
 

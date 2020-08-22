@@ -5,6 +5,7 @@ import java.util.Date;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -101,6 +102,16 @@ public class itemController {
 			return mav;
 			
 		}
+	
+		@PostMapping("reply")
+		public ModelAndView reply(@Valid Qna qna) {
+			ModelAndView mav = new ModelAndView("item/reply");
+			service.qnaReply(qna);
+			mav.setViewName("redirect:list.shop");
+				
+
+			return mav;
+		}
 		
 		@RequestMapping("register")
 		public ModelAndView add(@Valid Item item, BindingResult bresult, HttpServletRequest request) {
@@ -123,9 +134,10 @@ public class itemController {
 		}
 		
 		@RequestMapping("*") // /item/*.shop
-		public ModelAndView detail(Integer item_no,HttpServletRequest request,Integer pageNum,String searchtype, String searchcontent) {
+		public ModelAndView detail(Integer item_no,Integer qna_no,HttpServletRequest request,Integer pageNum,String searchtype, String searchcontent) {
 			ModelAndView mav =new ModelAndView();
 			Item item=null;
+			Qna qna=new Qna();
 			try {
 				if(item_no == null) {
 					item =new Item();
@@ -142,10 +154,13 @@ public class itemController {
 						mav.addObject("size",size);
 					}
 				}
+				
+			mav.addObject("qna",qna);
 			mav.addObject("item",item);
 		}catch(IndexOutOfBoundsException e) {
 			throw new ItemEmptyException("존재하지 않는 상품입니다.","list.shop");
 		}
+			
 			if(pageNum==null || pageNum.toString().equals("")){
 				pageNum=1;
 			}
@@ -155,7 +170,7 @@ public class itemController {
 			}
 			int limit = 6;
 			int listcount = service.qnacount(searchtype,searchcontent);
-			List<Qna> qnalist = service.qnalist(pageNum, limit,searchtype,searchcontent);
+			List<Qna> qnalist = service.qnalist(pageNum, limit,searchtype,searchcontent,item_no);
 			int maxpage = (int) ((double) listcount / limit + 0.95);
 			int startpage = ((int) (pageNum / 10.0 + 0.9) - 1) * 10 + 1;// 시작페이지번호
 			int endpage = startpage + 9;// 종료페이지 번호
@@ -163,7 +178,7 @@ public class itemController {
 			if (endpage > maxpage) endpage = maxpage;
 			int qnano = listcount - (pageNum - 1) * limit;
 		
-		
+			
 			mav.addObject("listcount",listcount);
 			mav.addObject("qnalist",qnalist);
 			mav.addObject("pageNum",pageNum);
@@ -172,6 +187,8 @@ public class itemController {
 			mav.addObject("maxpage",maxpage);
 			mav.addObject("endpage",endpage);
 			mav.addObject("today",new SimpleDateFormat("yyyyMMdd").format(new Date()));
+			
+			
 			
 			return mav;
 		}
