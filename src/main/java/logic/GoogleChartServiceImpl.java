@@ -1,5 +1,6 @@
 package logic;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -437,6 +438,9 @@ public class GoogleChartServiceImpl implements GoogleChartService {
         //이런형식으로 추가가된다. {"cols" : [{"label" : 지역구","type":"string"}
         //,{"label" : "금액", "type" : "number"}]}
         
+        
+        
+        List<Integer> overlap = new ArrayList<Integer>();
         JSONArray body = new JSONArray(); //json 배열을 사용하기 위해 객체를 생성
         for (Buy dto : items) { //items에 저장된 값을 dto로 반복문을 돌려서 하나씩 저장한다.
             /*
@@ -459,6 +463,22 @@ public class GoogleChartServiceImpl implements GoogleChartService {
             JSONObject address = new JSONObject(); //json오브젝트 객체를 생성
             address.put("v", dto.getAddress()); //name변수에 dto에 저장된 주문일을 v라고 저장한다.
             
+            //================================================================================
+            int count=0;	//중복일경우 중복된 지점을 체크하기 위한 초기화
+            for (Object object : body) {
+            	String bodyaddress = object.toString().substring(12);				//주소   ex) 안산시 단원
+				bodyaddress = bodyaddress.substring(0,bodyaddress.indexOf("\""));
+				if(bodyaddress.equals(dto.getAddress())) {							//현재 추가하고있는 주소가 이미 있다면
+					String bodyamount=object.toString().substring(object.toString().indexOf("\"",23)+2);  //body의 amount값을 가져올수 있으면 안이래도되는데..
+					bodyamount=bodyamount.substring(0,bodyamount.indexOf("}"));		//이 두줄은 amount값을 가져옴
+					
+					dto.setAmount((dto.getAmount()+Integer.parseInt(bodyamount)));	//기존에 있던 amount와 현재 amount를 더함
+					overlap.add(count);												//body[count]는 중복된 컬럼이므로 후에 삭제하기위해 저장
+				}
+				count++;
+			}
+            //================================================================================
+            
             JSONObject amount = new JSONObject(); //json오브젝트 객체를 생성
             amount.put("v", dto.getAmount()); //name변수에 dto에 저장된 금액을 v라고 저장한다.
             
@@ -466,13 +486,20 @@ public class GoogleChartServiceImpl implements GoogleChartService {
             row.add(address); //name을 row에 저장 (테이블의 행)
             row.add(amount); //name을 row에 저장 (테이블의 행)
             
-            JSONObject cell = new JSONObject(); 
+           
+            JSONObject cell = new JSONObject();
             cell.put("c", row); //cell 2개를 합쳐서 "c"라는 이름으로 추가
             body.add(cell); //레코드 1개 추가
                 
         }
-        data.put("rows", body); //data에 body를 저장하고 이름을 rows라고 한다.
+        //Chyeon , 중복된 array 제거
+        int count = 0;
+        for (int over : overlap) {
+			body.remove(over-count); //한번삭제하면 뒤에있는 값이 땡겨지므로 1씩 빼야한다.
+			count++;
+		}
         
+        data.put("rows", body); //data에 body를 저장하고 이름을 rows라고 한다.
         return data; //이 데이터가 넘어가면 json형식으로 넘어가게되서 json이 만들어지게 된다.
     }
     
