@@ -64,8 +64,16 @@ public interface UserMapper {
 	@Select("select i.item_name, b.orderdate, d.quantity*i.price price, "
 			+ " b.stat FROM item i,buy b,buy_detail d WHERE "
 			+ " i.item_no=d.item_no AND b.order_no=d.order_no "
-			+ " AND b.userid=#{userid}")
+			+ " AND b.userid=#{userid} order by orderdate")
 	List<Userorder> getuserorder(String userid);
+	
+	@Select("select i.item_name, l.evaluation from line l,item i where "
+			+ "i.item_no=l.item_no")
+	List<Userorder> getuserline(String userid);
+	
+	@Select("SELECT COUNT(*) FROM buy_detail, buy "
+			+ "WHERE buy.order_no=buy_detail.order_no AND buy.userid=#{userid}")
+	int getmyshipping(String userid);
 
 	//[admin] storelist 스토어 관리 0822
 	@Select({"<script>",
@@ -80,5 +88,6 @@ public interface UserMapper {
 	List<User> storelist(Object object);
 
 	
+
 
 }

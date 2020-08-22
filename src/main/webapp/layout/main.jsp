@@ -114,13 +114,6 @@
 										</div>
 								    </div>
 								</li>
-								<!-- ~0812 No Need
-								<li class=" d-none d-xl-block">
-								    <div class="favorit-items">
-								        <i class="far fa-heart"></i>
-								    </div>
-								</li>
-								 -->
 								<li>
 									<div class="shopping-card">
 										<a href="#"><i class="fas fa-shopping-cart"></i></a>
@@ -142,7 +135,8 @@
 														   		<img class="profile_image" src="../assets/img/client.png">
 														   	</div>
 															<ul class="submenu">
-																<li><a href="${path}/sns/mypage.shop?userid=${sessionScope.loginUser.userid}">mypage</a></li>
+																<c:if test="${loginUser.userid.equals('admin')}"><li><a href="${path}/admin/dashboard.shop">관리자 페이지</a></li></c:if>
+																<c:if test="${!loginUser.userid.equals('admin')}"><li><a href="${path}/sns/mypage.shop?userid=${sessionScope.loginUser.userid}">mypage</a></li></c:if>
 																<c:if test="${loginUser.seller==0}"><li><a href="${path}/user/sellerEntry.shop?id=${sessionScope.loginUser.userid}">판매자 등록</a></c:if>
 																<c:if test="${loginUser.seller==1}"><li><a href="${path}/user/sellerUpdate.shop?id=${sessionScope.loginUser.userid}">판매자 정보 수정</a></c:if>
 																<li><a href="${path}/user/orderList.shop">주문내역</a></li>

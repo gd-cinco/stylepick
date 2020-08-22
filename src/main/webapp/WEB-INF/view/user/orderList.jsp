@@ -31,11 +31,11 @@
 			<table>
 				<tr>
 					<td>배송중</td>
-					<td>구매후기</td>
+					<td>쓰지않은 한줄평</td>
 					<td>최근 본 상품</td>
 				</tr>
 				<tr>
-					<td>5</td>
+					<td>${shipping}</td>
 					<td>10</td>
 					<td>11</td>
 				</tr>
@@ -44,7 +44,7 @@
 	</div>
 	</div>
 	
-	<div class="order_downview">
+	<div class="order_downview" >
 		<div class="order_leftdiv">
 			<ul>
 				<li><a class="a_leftdivbtn leftdivbtn_selected" href="orderList.shop">요약보기</a></li>
@@ -54,7 +54,12 @@
 		</div>
 		<div class="order_main">
 			<div class="order_main_block">
+				<div style="width: 50%; float: left; text-align: left;">
 				<a class="order_header">주문내역</a>
+				</div>
+				<div style="width: 50%;float: left; text-align: right;">
+				<a href="orderList_order.shop">더보기 >></a>
+				</div>
 				<table class="order_table">
 					<tr class="order">
 					<th class="order" style="width: 40%">품목</th>
@@ -62,15 +67,37 @@
 					<th class="order" style="width: 20%">가격</th>
 					<th class="order" style="width: 20%">상태</th>
 					</tr>
-					<c:forEach items="${order}" var="item" end="5" varStatus="stat">
+					<c:forEach items="${order}" var="item" end="4" varStatus="stat">
 						<tr class="order">
 							<td class="order">${item.item_name}</td>
 							<td class="order"><fmt:formatDate value="${item.orderdate}" pattern="yyyy-MM-dd"/></td>
 							<td class="order">${item.price}</td>
-							<td class="order">${item.stat}</td>
+							<td class="order">
+								<c:if test="${item.stat==0}">배송중</c:if>
+								<c:if test="${item.stat==1}">배송완료</c:if> 
+							</td>
 						</tr>
 					</c:forEach>
-				
+				</table>
+			</div>
+			<div class="order_main_block" style="padding-top: 20px;">
+				<div style="width: 50%; float: left; text-align: left;">
+				<a class="order_header">내 한줄평</a>
+				</div>
+				<div style="width: 50%;float: left; text-align: right;">
+				<a href="orderList_review.shop">더보기 >></a>
+				</div>
+				<table class="order_table">
+					<tr class="order">
+					<th class="order" style="width: 60%">상품 제목</th>
+					<th class="order" style="width: 40%">평점</th>
+					</tr>
+					<c:forEach items="${line}" var="item" end="4" varStatus="stat">
+						<tr class="order">
+							<td class="order">${item.item_name}</td>
+							<td class="order">${item.evaluation}</td>
+						</tr>
+					</c:forEach>
 				</table>
 			</div>
 		</div>

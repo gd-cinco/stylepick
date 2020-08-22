@@ -127,7 +127,7 @@ public class UserController {
 	}
 	
 	@GetMapping(value = {"update","delete","sellerEntry","sellerUpdate"})
-	public ModelAndView /*check*/view(String id,HttpSession session) {
+	public ModelAndView checkview(String id,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = service.getUser(id);
 		mav.addObject("user",user);
@@ -135,10 +135,13 @@ public class UserController {
 	}
 	
 	@GetMapping("orderList")
-	public ModelAndView checkorderList(HttpSession session) {
+	public ModelAndView checkorderList(String id, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = (User)session.getAttribute("loginUser");
 		mav.addObject("user",user);
+		
+		int shipping = service.getmyshipping(user.getUserid());
+		mav.addObject("shipping",shipping);
 		
 		List<Userorder> order = service.getUserOrder(user.getUserid());
 		mav.addObject("order",order);

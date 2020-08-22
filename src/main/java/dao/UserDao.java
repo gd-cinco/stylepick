@@ -88,6 +88,14 @@ public class UserDao {
 		return template.getMapper(UserMapper.class).getuserorder(userid);
 	}
 	
+	public List<Userorder> userline(String userid) {
+		return template.getMapper(UserMapper.class).getuserline(userid);
+	}
+	
+	public int getmyshipping(String userid) {
+		return template.getMapper(UserMapper.class).getmyshipping(userid);
+	}
+	
 	//[admin] storelist 스토어 관리 0822
 	public List<User> storelist(String searchtype, String searchcontent) {
 		// TODO Auto-generated method stub
@@ -100,11 +108,4 @@ public class UserDao {
 		return template.getMapper(UserMapper.class).storelist(null);
 	}
 
-	
-
-
-	
-
-	
-	
 }

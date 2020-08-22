@@ -107,8 +107,17 @@ public class ShopService {
 	
 	//[user] 내 주문리스트 요약보기
 	public List<Userorder> getUserOrder(String userid) {
-		System.out.println("!1"+userid);
 		return userDao.userorder(userid);
+	}
+	
+	//[user] 내 한줄평 요약보기
+	public List<Userorder> getline(String userid) {
+		return userDao.userline(userid);
+	}
+	
+	//[user] 주문배송 - 배송중
+	public int getmyshipping(String userid) {
+		return userDao.getmyshipping(userid);
 	}
 	
 	//[admin] 메일 보낼 유저리스트 0728
@@ -524,12 +533,6 @@ public class ShopService {
 	public List<Qna> qnalist(Integer pageNum, int limit, String searchtype, String searchcontent) {
 		return qnaDao.qnalist(pageNum,limit, searchtype, searchcontent);
 	}
-
-	
-
-
-
-
 
 
 }
