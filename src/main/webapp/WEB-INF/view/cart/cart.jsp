@@ -30,8 +30,8 @@
               <tr>
                 <td>
                   <div class="media">
-                    <div class="d-flex" style="width=350px" height="250px"">
-                    <img src="img/${itemSet.item.pictureUrl }"  id="img"><br>
+                    <div class="d-flex" style="width=350px; height:250px;">
+                    <img src="../item/img/${itemSet.item.pictureUrl }"  id="img"><br>
                     </div>
                       
                     <div class="media-body" style="inline-block">
@@ -41,7 +41,7 @@
                 </td>
                 <td>
                 <div>
-                <h6>${itemSet.item.item_option}</h6> <!--옵션-->
+                <h6>${itemSet.item_option}</h6> <!--옵션-->
                 </div>
                 </td>
                 <td>
@@ -49,19 +49,19 @@
                 </td>
                 <td>
                  <div>
-           
-              <select name="quantity">
-								<c:forEach begin="1" end="10" var="i">
-									<option>${i}</option>
-								</c:forEach>
-							</select>
-                    
+				${itemSet.quantity}개
                   </div>
                 </td>
                 
                 <td>
-                  <h5>${itemSet.quantity * itemSet.item.price }</h5>
-                </td>
+                  <h5>
+                
+                  ${itemSet.quantity * itemSet.item.price }  </h5> 
+             </td>
+             <td>
+             <c:set var="tot" value="${tot +(itemSet.quantity * itemSet.item.price)}" />
+               <a href="cartDelete.shop?index=${stat.index }">취소</a>
+             </td>
               </tr>
    </c:forEach>
               
@@ -69,12 +69,14 @@
                 <td></td>
                 <td></td>
                 <td></td>
+              
                 <td>
                   <h5>결제 금액</h5>
                 </td>
                 <td>
-                  <h5>140,000원</h5>
+                  <h5>${tot }원</h5>
                 </td>
+                <td></td>
               </tr>
             </tbody>
           </table>
