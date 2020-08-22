@@ -143,6 +143,9 @@ public class UserController {
 		List<Userorder> order = service.getUserOrder(user.getUserid());
 		mav.addObject("order",order);
 		
+		List<Userorder> line = service.getline(user.getUserid());
+		mav.addObject("line",line);
+		
 		return mav;
 	}
 	
@@ -168,7 +171,9 @@ public class UserController {
 			if(loginUser.getUserid().equals(user.getUserid())) {
 				user = service.getUser(user.getUserid());
 				session.setAttribute("loginUser", user);
-			}
+			}else if(loginUser.getUserid().equals("admin"))
+				mav.setViewName("redirect:../admin/list.shop");
+			
 		}catch (Exception e) {
 			e.printStackTrace();
 			bresult.reject("error.user.update");
