@@ -26,6 +26,9 @@
 	
 	<title><decorator:title/></title>
 	<decorator:head/>
+	<c:if test="${fn:contains(path2,'board')}" >
+		<%@ include file="/header/theader.jsp"%>
+	</c:if>
 </head>
 <body>
 <header>
@@ -290,6 +293,9 @@
 		<c:if test="${param.type==2}">
 			<button id="upload" onclick="location.href='../sns/qna.shop'" style="position:fixed; margin-bottom:70px; font-size:xx-large;">+</button>
 		</c:if>
+	</c:if>
+	<c:if test="${fn:contains(path2,'board/faq') || fn:contains(path2,'board/qna') || fn:contains(path2,'board/notice')}" >
+		<%@ include file="/header/tfooter.jsp"%>
 	</c:if>
 </body>
 </html>
