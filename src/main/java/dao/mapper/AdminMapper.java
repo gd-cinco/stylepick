@@ -97,6 +97,10 @@ public interface AdminMapper {
 	@Select("SELECT SUBSTRING_INDEX(address, '구', 1) address, amount FROM buy ORDER BY address ASC")
 	List<Buy> boxplot(Map<String, Object> param);
 	
+	//salesmgr 매출 관리 0822
+	@Select("select * from buy order by order_no DESC")
+	List<Buy> saleslist(Map<String, Object> param);
+	
 
 }
 
