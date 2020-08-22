@@ -48,7 +48,7 @@ function javascript1(){
 		<dl><dt><select name="option">
 				<option>옵션</option>
 				<c:forEach items="${item.item_option}" var="i">
-					<option><c:out value="${i }"/></option>
+					<option value=${i }><c:out value="${i }"/></option>
 				</c:forEach>
 		</select></dt>
 		<dd><select name="size" id="sel">
