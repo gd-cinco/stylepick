@@ -7260,10 +7260,22 @@ del {
   border: 1px solid transparent;
 }
 
+.genric-btn.success2 {
+  color: #fff;
+  background: #ff003c;
+  border: 1px solid transparent;
+}
+
 /* line 209, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_elements.scss */
 .genric-btn.success:hover {
   color: #2577fd;
   border: 1px solid #2577fd;
+  background: #fff;
+}
+
+.genric-btn.success2:hover {
+  color: #ff003c;
+  border: 1px solid #ff003c;
   background: #fff;
 }
 
@@ -7274,10 +7286,22 @@ del {
   background: #fff;
 }
 
+.genric-btn.success2-border {
+  color: #ff003c;
+  border: 1px solid #ff003c;
+  background: #fff;
+}
+
 /* line 219, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_elements.scss */
 .genric-btn.success-border:hover {
   color: #fff;
   background: #4cd3e3;
+  border: 1px solid transparent;
+}
+
+.genric-btn.success2-border:hover {
+  color: #fff;
+  background: #ff003c;
   border: 1px solid transparent;
 }
 

@@ -20,12 +20,15 @@
 	<link rel="stylesheet" href="${path}/assets/css/themify-icons.css?ver=1">
 	<link rel="stylesheet" href="${path}/assets/css/slick.css">
 	<link rel="stylesheet" href="${path}/assets/css/nice-select.css">
-	<link rel="stylesheet" href="${path}/assets/css/style.css?ver=1.1">
+	<link rel="stylesheet" href="${path}/assets/css/style.css?ver=1.2">
 	<link rel="stylesheet" href="${path}/assets/css/final.css?ver=1.1">
 	<link rel="stylesheet" href="${path}/assets/css/admin.css">
 	
 	<title><decorator:title/></title>
 	<decorator:head/>
+	<c:if test="${fn:contains(path2,'board')}" >
+		<%@ include file="/header/theader.jsp"%>
+	</c:if>
 </head>
 <body>
 <header>
@@ -56,7 +59,7 @@
 						<!-- Logo -->
 						<div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
 							<div class="logo">
-								<a href="#"><img src="${path}/assets/img/logo/logo.png" alt=""></a> <!-- sns 인기글 -->
+								<a href="../sns/main.shop?ksb=hot&type=1"><img src="${path}/assets/img/logo/splogo5.jpg" alt=""></a> <!-- sns 인기글 -->
 							</div>
 						</div>
 						<div class="col-xl-6 col-lg-8 col-md-7 col-sm-5">
@@ -290,6 +293,9 @@
 		<c:if test="${param.type==2}">
 			<button id="upload" onclick="location.href='../sns/qna.shop'" style="position:fixed; margin-bottom:70px; font-size:xx-large;">+</button>
 		</c:if>
+	</c:if>
+	<c:if test="${fn:contains(path2,'board/faq') || fn:contains(path2,'board/qna') || fn:contains(path2,'board/notice')}" >
+		<%@ include file="/header/tfooter.jsp"%>
 	</c:if>
 </body>
 </html>

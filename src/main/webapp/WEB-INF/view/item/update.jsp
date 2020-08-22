@@ -5,9 +5,8 @@
 <html>
 <head>
 <meta charset="utf-8">
-
 <title>상품 수정</title>
-<link rel="stylesheet" href="${path}/assets/css/add.css?ver=1.1">
+<link rel="stylesheet" href="${path}/assets/css/add.css?ver=1.2">
 <style>
 	#imglabel { 
 		display: inline-block; 
@@ -268,7 +267,8 @@ oTbl1.deleteRow(oTbl1.clickedRowIndex);
 	</div>
 	</div>
 	<br>
-<input type="submit" class="genric-btn success medium" value="상품올리기">
+<input type="submit" class="genric-btn success medium" value="상품 수정" style="width: 150px;height: 45px;">
+<input type="button" class="genric-btn success2 medium" value="상품 삭제" onclick="location.href='delete.shop?=${item.item_no}'" style="width: 150px;margin-left: 20px;height: 45px;">
 	</div>
  
 </form:form>

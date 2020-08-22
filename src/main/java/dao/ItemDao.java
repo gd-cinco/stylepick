@@ -55,5 +55,9 @@ public class ItemDao {
 		template.getMapper(ItemMapper.class).update(item);
 	}
 
+	public void delete(int item_no) {
+		template.getMapper(ItemMapper.class).delete(item_no);
+	}
+
 	
 }

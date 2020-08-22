@@ -331,6 +331,12 @@ public class ShopService {
 
 		itemDao.update(item);	
 	}
+	
+	//[item] 상품 삭제
+	public void itemDelete(int item_no) {
+		itemDao.delete(item_no);
+		
+	}
 
 	//장바구니
 	public Item getItem(Integer item_no) {
@@ -545,6 +551,8 @@ public class ShopService {
 	 	qnaDao.insert(qna);
 		
 	}
+
+
 
 
 }

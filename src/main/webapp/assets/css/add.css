@@ -21,7 +21,7 @@
 
 .oi{
 	display:inline-block; 
-	margin-right:14px;
+	margin-right:10px;
 }
 
 .oi2{
@@ -35,7 +35,15 @@ input {
 }
 
 .genric-btn.success{
-	margin-left:2150px;
+	margin-left: 230px;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.genric-btn.success2{
+	margin-left: 230px;
+    font-size: medium;
+    font-weight: bold;
 }
 
 .subject-name{
