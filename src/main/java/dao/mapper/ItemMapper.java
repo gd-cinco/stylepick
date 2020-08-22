@@ -3,6 +3,7 @@ package dao.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -35,8 +36,11 @@ int count(Map<String, Object> param);
 	@Update("update item set readcnt = readcnt+1 where item_no =#{item_no}")
 	void readcntadd(Integer item_no);
 
-	@Update("upate item set subject=#{subject},item_name=#{item_name},price=#{price},keyword=#{keyword},pictureUrl=#{pictureUrl},content=#{content},item_option=#{item_option},size=#{size}")
+	@Update("update item set subject=#{subject},item_name=#{item_name},price=#{price},keyword=#{keyword},pictureUrl=#{pictureUrl},content=#{content},item_option=#{item_option},size=#{size}")
 	void update(Item item);
+
+	@Delete("delete from item where item_no=#{item_no}")
+	void delete(int item_no);
 
 	
 

@@ -331,6 +331,12 @@ public class ShopService {
 
 		itemDao.update(item);	
 	}
+	
+	//[item] 상품 삭제
+	public void itemDelete(int item_no) {
+		itemDao.delete(item_no);
+		
+	}
 
 	//장바구니
 	public Item getItem(Integer item_no) {
@@ -533,6 +539,8 @@ public class ShopService {
 	public List<Qna> qnalist(Integer pageNum, int limit, String searchtype, String searchcontent) {
 		return qnaDao.qnalist(pageNum,limit, searchtype, searchcontent);
 	}
+
+
 
 
 }

@@ -20,7 +20,7 @@
 	<link rel="stylesheet" href="${path}/assets/css/themify-icons.css?ver=1">
 	<link rel="stylesheet" href="${path}/assets/css/slick.css">
 	<link rel="stylesheet" href="${path}/assets/css/nice-select.css">
-	<link rel="stylesheet" href="${path}/assets/css/style.css?ver=1.1">
+	<link rel="stylesheet" href="${path}/assets/css/style.css?ver=1.2">
 	<link rel="stylesheet" href="${path}/assets/css/final.css?ver=1.1">
 	<link rel="stylesheet" href="${path}/assets/css/admin.css">
 	

@@ -176,9 +176,22 @@ public class itemController {
 			return mav;
 		}
 		
+		@GetMapping("update")
+		public ModelAndView getItem(Integer item_no,HttpServletRequest request) {
+			ModelAndView mav =new ModelAndView();
+			boolean readcntable=false;
+			Item item=service.getItem(item_no,readcntable);
+			String[] option = item.getItem_option().split(",");
+			String[] size = item.getSize().split(",");
+			mav.addObject("option",option);
+			mav.addObject("size",size);
+			mav.addObject("item",item);
+			return mav;
+		}
+		
 		@PostMapping("update")
 		public ModelAndView update(Item item,HttpServletRequest request) {
-			ModelAndView mav = new ModelAndView("item/supdate");
+			ModelAndView mav = new ModelAndView("item/update");
 			service.itemUpdate(item,request);
 			mav.setViewName("redirect:/item/detail.shop?item_no="+item.getItem_no());
 			return mav;
@@ -204,6 +217,14 @@ public class itemController {
 			model.addAttribute("fileName",fileName);
 			model.addAttribute("CKEditorFuncNum", CKEditorFuncNum);
 			return "ckedit";
+		}
+		
+		@PostMapping("delete")
+		public ModelAndView delete(int item_no) {
+			ModelAndView mav = new ModelAndView("item/update");
+			service.itemDelete(item_no);
+			mav.setViewName("redirect:/sns/main.shop");
+			return mav;
 		}
 	
 }
