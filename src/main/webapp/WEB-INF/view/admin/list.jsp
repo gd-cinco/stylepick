@@ -25,6 +25,12 @@
 		window.open(url+".shop","graph",op);
 	}
 </script>
+<script type="text/javascript">
+	function listpage(page){
+		document.searchform.pageNum.value=page;
+		document.searchform.submit();
+	}
+</script>
 </head>
 <body>
 	<div class="left-div" style="white-space:nowrap; width:10%; border-right:1px solid gray; float:left; text-align: center;">
@@ -44,8 +50,27 @@
 		
 			<h4 style="text-align: center; margin-bottom: 50px;">스타일픽 개인 회원 리스트</h4>
 			<br>
-		
-			<table class="user_list_table">
+
+			<!-- <table class="user_list_table"> -->
+			<table>
+				<tr>
+					<td colspan="8" style="padding : 30px; margin : 30px;">
+						<!-- 검색바 -->
+						<select name="searchtype" style="width:100px;">
+										<option value="">검색어</option>
+										<option value="userid">아이디</option>
+										<option value="name">이름</option>
+										<option value="content">이메일</option>
+										<option value="content">나이</option>
+										<option value="content">성별</option>
+						</select>
+						<script type="text/javascript">
+							searchform.searchtype.value="${param.searchtype}";
+						</script>
+						<input type="text" name="searchcontent" value="${param.searchContent}" style="width:250px; border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+						<input type="submit" value="검색">
+					</td>
+				</tr>
 				<tr class="user_list_table">
 					<th class="user_list_th">아이디</th><th class="user_list_th">이름</th><th class="user_list_th">이메일</th><th class="user_list_th">전화</th><th class="user_list_th">나이</th><th class="user_list_th">성별</th><th class="user_list_th">가입날짜</th><th class="user_list_th">회원수정/마이페이지</th>
 					<!-- 
