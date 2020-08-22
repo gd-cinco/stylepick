@@ -312,6 +312,7 @@ public class ShopService {
 		lineDao.insert(line);
 	}
 	
+	
 	//[item] 상품 수정
 	public void itemUpdate(Item item, HttpServletRequest request) {
 		if (item.getImgurl() != null && !item.getImgurl().isEmpty()) {
@@ -322,6 +323,12 @@ public class ShopService {
 		itemDao.update(item);	
 	}
 
+	//장바구니
+	public Item getItem(Integer item_no) {
+		return itemDao.selectOne(item_no);
+	}
+	
+	
 	// [admin] dashboard index 1-1 이달 가입회원 0813
 	public int newusers() {
 		// TODO Auto-generated method stub
@@ -488,6 +495,9 @@ public class ShopService {
 		return sale;
 	}
 
+	
+	
+	//Q&A 작성
 	public void qnaWrite(Qna qna, HttpServletRequest request) {
 		int max= qnaDao.maxnum();
 		qna.setQna_no(++max);
@@ -495,13 +505,17 @@ public class ShopService {
 		qnaDao.insert(qna);
 	}
 
+	//Q&A
 	public int qnacount(String searchtype, String searchcontent) {
 		return qnaDao.count(searchtype, searchcontent);
 	}
 
+	//Q&A 목록
 	public List<Qna> qnalist(Integer pageNum, int limit, String searchtype, String searchcontent) {
 		return qnaDao.qnalist(pageNum,limit, searchtype, searchcontent);
 	}
+
+
 
 
 

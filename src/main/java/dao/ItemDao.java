@@ -54,5 +54,6 @@ public class ItemDao {
 	public void update(Item item) {
 		template.getMapper(ItemMapper.class).update(item);
 	}
+
 	
 }

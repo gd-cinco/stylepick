@@ -23,45 +23,7 @@
       <link rel="stylesheet" href="${path}/assets/css/style.css">
       	<link rel="stylesheet" href="${path}/assets/css/final.css">
    
-   <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script> 
-      <script type="text/javascript">
-      
-      $(function(){
-    		var price =$('#price').text();
-    		var amount=price;
-    		$('#minus').click(function(e){
-    		e.preventDefault();
-    		var stat = $('#UpDown').text();
-    		var num = parseInt(stat);
-    		num--;
-    		amount = (price*num);
-    		$('#cost').val(amount);
-    		if(num<=0){
-    		alert('더이상 줄일수 없습니다.');
-    		num =1;
-    		amount=price*1;
-    		$('#cost').val(amount);
-    		$('#costcnt').val(num);
-    		}
-    		$('#UpDown').text(num);
-    		});
-    		
-    		$('#plus').click(function(e){
-    		e.preventDefault();
-    		var stat = $('#UpDown').text();
-    		var num = parseInt(stat);
-    		num++;
-    		amount = (price*num);
-    		$('#cost').val(amount);
-    		
-    		$('#UpDown').text(num);
-    		$('#costcnt').val(num);
-    		});
-    		
-    		$('#cost').val(amount);
-    		});
-
-    	</script>
+  
    
 </head>
 <body>
@@ -80,83 +42,46 @@
               </tr> -->
             </thead>
             <tbody>
+            
+            <c:set var="tot" value="${0}"/>
+            <c:forEach items="${cart.itemSetList}" var="itemSet" varStatus="stat">
               <tr>
                 <td>
-                
                   <div class="media">
                     <div class="d-flex">
-                      <img src="${path}/assets/img/arrivel/arrivel_1.png" alt="" /><br>
+                    <img src="img/${itemSet.item.pictureUrl }" width="350px" height="450px" id="img"><br>
                     </div>
                     <div class="media-body">
-                      <h4>상품 명</h4>
-                      <h5>category</h5>
+                      <h4>${itemSet.item.item_name }</h4>
+ 
                     </div>
                   </div>
                 </td>
                 <td>
                 <div>
-                <h6>옵션명 옵션명 옵션명</h6>
+                <h6></h6>
                 </div>
                 </td>
                 <td>
-                  <h5>70,000원</h5> <!-- 가격 -->
+                  <h5>${itemSet.item.price }원</h5> <!-- 가격 -->
                 </td>
                 <td>
-                  <div class="product_count">
-                    <!-- <input type="text" value="1" min="0" max="10" title="Quantity:"
-                      class="input-text qty input-number" />
-                    <button
-                      class="increase input-number-increment items-count" type="button">
-                      <i class="ti-angle-up"></i>
-                    </button>
-                    <button
-                      class="reduced input-number-decrement items-count" type="button">
-                      <i class="ti-angle-down"></i>
-                    </button> -->
-                <span id="UpDown" >1</span>
-				<button id="plus" style="WIDTH: 20pt; HEIGHT: 20pt; background:black;" >+</button>
-				<button id="minus" style="WIDTH: 20pt; HEIGHT: 20pt"  >-</button>
+                 <div>
+           
+              <select name="quantity">
+								<c:forEach begin="1" end="10" var="i">
+									<option>${i }</option>
+								</c:forEach>
+							</select>
                     
                   </div>
                 </td>
                 
                 <td>
-                  <h5>70,000원</h5>
+                  <h5>${itemSet.quantity * itemSet.item.price }</h5>
                 </td>
               </tr>
-              <!--2번째 상품 나중에 db 추가하면 지우기 -->
-              <tr>
-                <td>
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="${path}/item/img/skirt.jpg" alt="" />
-                    </div>
-                    <div class="media-body">
-                      <p>상품 명 2</p>
-                    </div>
-                  </div>
-                </td>
-                       <td>
-                <div>
-                <h6>옵션명 옵션명 옵션명</h6>
-                </div>
-                </td>
-                <td>
-                  <h5>70,000원</h5>
-                </td>
-                <td>
-                  <div class="product_count">
-               <span id="UpDown" >1</span>
-				<button id="plus" style="WIDTH: 20pt; HEIGHT: 20pt; background:black;" >+</button>
-				<button id="minus" style="WIDTH: 20pt; HEIGHT: 20pt"  >-</button>
-                  </div>
-                </td>
-             
-                <td>
-                  <h5>70,000원</h5>
-                </td>
-              </tr>
-                  <!--2번째 상품 나중에 db 추가하면 지우기 end-->
+   </c:forEach>
               
               <tr>
                 <td></td>
@@ -172,7 +97,7 @@
             </tbody>
           </table>
           <div class="checkout_btn_inner float-right">
-            <a class="btn_1" href="#">쇼핑 하기</a>
+            <a class="btn_1" href="../item/list.shop">쇼핑 하기</a>
             <a class="btn_1 checkout_btn_1" href="../cart/checkout.shop">주문하기</a>
           </div>
         </div>

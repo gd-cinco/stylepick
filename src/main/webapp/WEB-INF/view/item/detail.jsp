@@ -27,7 +27,7 @@ function javascript1(){
 <body>
 
 <div>
-<form action="../cart/cart.shop">
+<form action="../cart/cartAdd.shop">
 <div class="pic" >
   <img src="img/${item.pictureUrl }" width="350px" height="450px" id="img">
 </div>
