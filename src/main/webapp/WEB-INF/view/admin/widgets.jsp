@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%-- /webapp/WEB-INF/view/admin/widgets.jsp  --%>
 <%@ include file="/WEB-INF/view/jspHeader.jsp" %>
+<%@ page import="java.util.*"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -120,18 +122,18 @@ $(function() {
         //제이슨 형식을 구글의 테이블 형식으로 바꿔주기 위해서 집어넣음
         //차트를 출력할 div
         //LineChart, ColumnChart, PieChart에 따라서 차트의 형식이 바뀐다.
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div_widgets3')); //선 그래프
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div_widgets3')); //선 그래프
        //차트 객체.draw(데이터 테이블, 옵션) //막대그래프
        //chart.draw(data, options);
        
       //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
         chart.draw(data, {
-            title : "우수입점스토어",
+            title : "우수입점스토어 (최근 4주 기준)",
             //width : 500,
             //height : 300
             chartArea: {width: '50%'},
             hAxis: {
-              title: '별점평균',
+              title: '별점 평균',
               minValue: 0
             },
             vAxis: {
@@ -181,8 +183,8 @@ function drawMultSeries() {
 				<li  id="admin_menu"><a href="../admin/widgets.shop" style="color:skyblue;">위젯</a></li><br>
 				<li  id="admin_menu"><a href="../admin/charts.shop">차트</a></li><br>
 				<li  id="admin_menu"><a href="../admin/list.shop">유저</a></li><br>
-				<li  id="admin_menu"><a href="#">매출 관리</a></li><br>
 				<li  id="admin_menu"><a href="#">스토어 관리</a></li><br>
+				<li  id="admin_menu"><a href="#">매출 관리</a></li><br>
 				<li  id="admin_menu"><a href="../board/notice.shop">고객센터</a></li>
 			</ul>
 	</div>
@@ -200,7 +202,7 @@ function drawMultSeries() {
 				<!-- Daily Sales Report Table -->
 				<table class="admin_table">
 					<tr class="admin_table">
-						<th class="admin_table">오더 번호</th><th class="admin_table">구매일</th><th class="admin_table">아이디</th><th class="admin_table">구매 금액</th>
+						<th class="admin_table_th">오더 번호</th><th class="admin_table_th">구매일</th><th class="admin_table_th">아이디</th><th class="admin_table_th">구매 금액</th>
 					</tr>
 					<c:forEach var="sales" items="${saleslist}">
 						<tr class="admin_table">
@@ -219,7 +221,7 @@ function drawMultSeries() {
 				<!-- Recently Joined Users Table -->
 				<table class="admin_table">
 					<tr class="admin_table">
-						<th class="admin_table">회원 번호</th><th class="admin_table">가입일</th><th class="admin_table">아이디</th><th class="admin_table">성별</th><th class="admin_table">나이</th>
+						<th class="admin_table_th">회원 번호</th><th class="admin_table_th">가입일</th><th class="admin_table_th">아이디</th><th class="admin_table_th">성별</th><th class="admin_table_th">나이</th>
 					</tr>
 					<c:forEach var="users" items="${userslist}">
 						<tr class="admin_table">
@@ -233,7 +235,12 @@ function drawMultSeries() {
 									<c:otherwise>-</c:otherwise>
 								</c:choose>
 							</td>
-							<td class="admin_table"><c:if test="${users.age eq '0'}">-</c:if></td>
+							<td class="admin_table">
+								<c:choose>
+									<c:when test="${users.age eq '0'}">-</c:when>
+									<c:when test="${users.age > 0}">${users.age}</c:when>
+								</c:choose>
+							</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -244,42 +251,53 @@ function drawMultSeries() {
 		<br><br>
 		
 		<!-- 2. 스픽 구매랭킹 -->
-		<p>스픽 구매 랭킹</p>
+		<div id="mint_square"></div>
+		<p style="font-weight: bold;">스타일픽 구매 RANK</p>
 		<div class="outer_frame">
 			<!-- 이번 달 스픽에서 가장 구매를 많이 한 회원 -->
+			<%
+			Date today = new Date();         
+			SimpleDateFormat date = new SimpleDateFormat("yyyy년MM월");
+			SimpleDateFormat date2 = new SimpleDateFormat("yyyy년");
+			String toDay = date.format(today);
+			String thisyear = date2.format(today);
+			 %>
 			<div class="double_frame" style="">
-				이번 달 스픽에서 가장 구매를 많이 한 회원
+				<%=toDay%> 스타일픽 최다 구매 회원 리스트 TOP 10
 				<div id="chart_div_widgets1"></div>
 			</div>
 			<!--올해 스픽에서 가장 구매를 많이 한 회원 -->
 			<div class="double_frame" style="">
-				올해 스픽에서 가장 구매를 많이 한 회원
+				<%=thisyear%> 스타일픽 최다 구매 회원 리스트 TOP 10
 				<div id="chart_div_widgets2"></div>
 			</div>
 			<br>
 		</div>
 		
 		<!-- 3. 우수 입점 스토어 -->
+		<div id="mint_square"></div>
+		<p style="font-weight: bold;">우수 입점 스토어 (별점 기준)</p>
 		<div class="outer_frame">
 			<!-- 별점 추이 차트 -->
 			<div class="double_frame" style="">
-				<p>우수 입점 스토어</p>
 				<div id="chart_div_widgets3"></div>
 			</div>
 			<!--우수 입점스토어 상위 3개 업체 -->
 			<!-- /stylepick/src/main/webapp/assets/img/pinkstore.png -->
 			<div class="double_frame" style="">
-				<c:forEach var="ev" items="${evaluation}">				
+				<c:forEach var="ev" items="${evaluation}" varStatus="status">				
 					<table>
 						<tr>
-							<td rowspan="2">
-								<input type="text" value="ev" class="input_round"/>
-								<img class="profile_image" src="../assets/img/pinkstore.png" style="width:50px; height: auto;">
+							<td rowspan="2" style="padding-right: 20px;">
+								<input type="text" value="${status.index+1}" class="input_round" style="float: left;"/>
 							</td>
-							<td class>${ev.com_name}</td>
+							<td rowspan="2" style="padding-right: 20px;">
+								<img class="profile_image" src="../assets/img/pinkstore.png" style="width:50px; height: auto; float: left;">
+							</td>
+							<td>  <b><i>' ${ev.com_name} '</i></b></td>
 						</tr>
 						<tr>
-							<td style="font-size: small;"><b>${ev.evaluation} 점</b></td>
+							<td style="font-size: small;">최근 4주 스토어 별점평균 <b>${ev.evaluation}</b> / 5.0점</td>
 						</tr>
 					</table>
 					<br>

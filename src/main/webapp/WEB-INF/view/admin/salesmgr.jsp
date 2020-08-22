@@ -38,9 +38,9 @@
 				<li  id="admin_menu"><a href="../admin/dashboard.shop">대시보드</a></li><br>
 				<li  id="admin_menu"><a href="../admin/widgets.shop">위젯</a></li><br>
 				<li  id="admin_menu"><a href="../admin/charts.shop">차트</a></li><br>
-				<li  id="admin_menu"><a href="../admin/list.shop" style="color:skyblue;">유저</a></li><br>
+				<li  id="admin_menu"><a href="../admin/list.shop">유저</a></li><br>
 				<li  id="admin_menu"><a href="../admin/storelist.shop">스토어 관리</a></li><br>
-				<li  id="admin_menu"><a href="../admin/salesmgr.shop">매출 관리</a></li><br>
+				<li  id="admin_menu"><a href="../admin/salesmgr.shop" style="color:skyblue;">매출 관리</a></li><br>
 				<li  id="admin_menu"><a href="../board/notice.shop">고객센터</a></li>
 			</ul>
 	</div>
@@ -48,7 +48,7 @@
 		<!-- <form action="mailForm.shop" method="post"> -->
 			<h3>Users</h3><br>
 		
-			<h4 style="text-align: center; margin-bottom: 50px;">스타일픽 전체 회원 리스트 (개인+스토어)</h4>
+			<h4 style="text-align: center; margin-bottom: 50px;">스타일픽 매출내역</h4>
 			<br>
 			
 			<!-- <table class="user_list_table"> -->
@@ -58,7 +58,7 @@
 						<!-- 검색바 -->
 						<form action="list.shop" method="post" name="searchform">
 							<select name="searchtype" style="width:100px;">
-											<option value="">검색 필터</option>
+											<option value="">검색필터</option>
 											<option value="userid">아이디</option>
 											<option value="nickname">닉네임</option>
 											<option value="email">이메일</option>

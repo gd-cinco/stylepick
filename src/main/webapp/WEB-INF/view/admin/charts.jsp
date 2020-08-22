@@ -32,7 +32,7 @@ google.charts.load('current', {'packages':['treemap']});
 google.setOnLoadCallback(drawChart1); //라이브러리를 불러오는 작업이 완료되었으면 drawChart작업을 실행하라는 뜻.
 google.setOnLoadCallback(drawChart2);
 google.setOnLoadCallback(drawChart3);
-//google.setOnLoadCallback(drawChart4);
+google.setOnLoadCallback(drawChart4);
 //google.setOnLoadCallback(drawChart5);
 google.setOnLoadCallback(drawChart6);
 google.setOnLoadCallback(drawChart7);
@@ -69,8 +69,8 @@ google.setOnLoadCallback(drawChart10);
 	            chart.draw(data, {
 	                title : "스타일픽 회원",
 	                //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
-	                width : 1200,
-	                height : 500
+	                width : 900,
+	                height : 300
 	            });
 	}
 
@@ -109,8 +109,8 @@ google.setOnLoadCallback(drawChart10);
                 chart.draw(data, {
                     title : "주간 매출(최근 7일)",
                     //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
-                    width : 1200,
-                    height : 500
+                    width : 900,
+                    height : 300
                 });
     }
 	//charts index 3 Yearly : 연 매출 현황 0818
@@ -143,11 +143,50 @@ google.setOnLoadCallback(drawChart10);
                 chart.draw(data, {
                     title : "연 매출(1년)",
                     //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
-                    width : 1200,
-                    height : 500
+                    width : 900,
+                    height : 300
                 });
     }
-    //charts index 4-1 지역별 매출 평균 >later drawChart4
+    //charts index 4-1 지역별 매출 평균 boxplot
+    function drawChart4() {
+        var jsonData = $.ajax({
+        	url : "${path}/ajax/boxplot.shop",
+        	//chart01에서는 json의 주소를 직접 적었지만 이 페이지에서는 컨트롤러로 이동해 맵핑해서 제이슨을 동적으로
+            //직접만들어 그 만든 json을 직접 보낸다.
+        	dataType : "json",
+        	async : false,
+        }).responseText; //제이슨파일을 text파일로 읽어들인다는 뜻
+        console.log(jsonData);        
+        
+        //데이터테이블 생성
+        var data = new google.visualization.DataTable(jsonData);
+        //제이슨 형식을 구글의 테이블 형식으로 바꿔주기 위해서 집어넣음
+        //차트를 출력할 div
+        //LineChart, ColumnChart, PieChart에 따라서 차트의 형식이 바뀐다.
+        
+        var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div4'));
+        //var chart = new google.visualization.PieChart(document.getElementByld('chart_div')); //원형 그래프
+        // var chart = new google.visualization.ScatterChart(document.getElementById('chart_div6')); //scatter plot
+        //var chart = new google.visualization.LineChart(document.getElementById('chart_div5')); //선 그래프
+        //var chart = new google.visualization.ColumnChart(document.getElementById('chart_div')); //막대그래프
+        //차트 객체.draw(데이터 테이블, 옵션)
+        //cuveType : "function" => 곡선처리
+                
+                //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
+                chart.draw(data, {
+                    title : "지역구 별 매출 boxplot",
+                    //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
+                    width : 900,
+                    height : 300,
+                    seriesType: 'candlesticks',
+                    //series: {1: {type: 'line'}}
+                    series: {0: {type: 'line'}}
+                    //hAxis: {title: '가입연월', minValue: 0}, // maxValue: 15
+                    //vAxis: {title: '구매 금액', minValue: 0},
+                    //legend: 'none',
+                });
+    }
+    
     //charts index 4-2 지역별 매출 평균 >later drawChart5
     
     //charts index 5 구매건 기준 매출 산점도
@@ -189,8 +228,8 @@ google.setOnLoadCallback(drawChart10);
                 chart.draw(data, {
                     title : "가입연월 대비 구매금액 scatter plot",
                     //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
-                    width : 1200,
-                    height : 500,
+                    width : 900,
+                    height : 300,
                     hAxis: {title: '가입연월', minValue: 0}, // maxValue: 15
                     vAxis: {title: '구매 금액', minValue: 0},
                     legend: 'none',
@@ -224,8 +263,8 @@ google.setOnLoadCallback(drawChart10);
        var options = {
           title: '이달의 구매 카테고리 비율',
           //is3D: true,
-          width:500,
-          height:500
+          width:300,
+          height:300
         };
        chart.draw(data, options);
 
@@ -265,8 +304,8 @@ google.setOnLoadCallback(drawChart10);
                 //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
        var options = {
           title: '월별 구매금액(카테고리 구분)',
-          width:500,
-          height:500,
+          width:300,
+          height:300,
           bar: { groupWidth: '75%' },
           isStacked: true
         };
@@ -371,8 +410,8 @@ google.setOnLoadCallback(drawChart10);
                 //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
        var options = {
           title: '상위 10개 스토어 (월 매출 기준)',
-          width:500,
-          height:500
+          width:300,
+          height:300
         };
        chart.draw(data, options);
     }
@@ -390,8 +429,8 @@ google.setOnLoadCallback(drawChart10);
 				<li  id="admin_menu"><a href="../admin/widgets.shop">위젯</a></li><br>
 				<li  id="admin_menu"><a href="../admin/charts.shop" style="color:skyblue;">차트</a></li><br>
 				<li  id="admin_menu"><a href="../admin/list.shop">유저</a></li><br>
-				<li  id="admin_menu"><a href="#">매출 관리</a></li><br>
-				<li  id="admin_menu"><a href="#">스토어 관리</a></li><br>
+				<li  id="admin_menu"><a href="../admin/storelist.shop">스토어 관리</a></li><br>
+				<li  id="admin_menu"><a href="../admin/salesmgr.shop">매출 관리</a></li><br>
 				<li  id="admin_menu"><a href="../board/notice.shop">고객센터</a></li>
 			</ul>
 	</div>

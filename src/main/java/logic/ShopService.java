@@ -126,10 +126,10 @@ public class ShopService {
 		return map;
 	}
 	
-	//[admin] 유저리스트 가져오기 0728
-	public List<User> list() {
+	//[admin] 유저리스트 가져오기 0822 0728
+	public List<User> list(String searchtype, String searchcontent) {
 		// TODO Auto-generated method stub
-		return userDao.list();
+		return userDao.list(searchtype, searchcontent);
 		}
 
 	//[admin] 그래프2 0728
@@ -407,12 +407,6 @@ public class ShopService {
 		adminDao.addtodolist();
 	}
 
-	// [admin] dashboard index 3-2 To-do list show 0817
-	public List<Line> selectTodolistByCode(Line line) {
-		// TODO Auto-generated method stub
-		return adminDao.selectTodolistByCode(line);
-	}
-
 	// [admin] widgets index 3-2 최근 4주 별점 평균 상위 3개 스토어 0818
 	public List<Line> getEvaluation() {
 		// TODO Auto-generated method stub
@@ -429,6 +423,11 @@ public class ShopService {
 	public List<Buy> yearlyrevenue() {
 		// TODO Auto-generated method stub
 		return adminDao.yearlyrevenue();
+	}
+	//[admin] charts index 4-1 지역별 매출 평균 boxplot 0822
+	public List<Buy> boxplot() {
+		// TODO Auto-generated method stub
+		return adminDao.boxplot();
 	}
 
 	// [admin] charts index 5 구매건 기준 매출 산점도 0819
@@ -447,7 +446,11 @@ public class ShopService {
 	public List<Buy> toptenstores() {
 		// TODO Auto-generated method stub
 		return adminDao.toptenstores();
-
+	}
+	//[admin] storelist 스토어 관리 0822
+	public List<User> storelist(String searchtype, String searchcontent) {
+		// TODO Auto-generated method stub
+		return userDao.storelist(searchtype, searchcontent);
 	}
 
 	/**
@@ -496,6 +499,7 @@ public class ShopService {
 	}
 
 	
+
 	
 	//Q&A 작성
 	public void qnaWrite(Qna qna, HttpServletRequest request) {
@@ -514,6 +518,7 @@ public class ShopService {
 	public List<Qna> qnalist(Integer pageNum, int limit, String searchtype, String searchcontent) {
 		return qnaDao.qnalist(pageNum,limit, searchtype, searchcontent);
 	}
+
 
 
 

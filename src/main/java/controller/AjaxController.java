@@ -412,7 +412,12 @@ public class AjaxController {
 		//System.out.println(json);
 		return json;
 	}	
-	//[admin] charts index 4-1 지역별 매출 평균 >later drawChart4 getChartData8
+	//[admin] charts index 4-1 지역별 매출 평균 boxplot
+	@RequestMapping("boxplot")
+	public JSONObject boxplot() {
+	JSONObject json = googleChart.getChartData8();
+	return json;
+}
 	//[admin] charts index 4-2 지역별 매출 평균 >later drawChart5 getChartData9
 	
 	//[admin] charts index 5 구매건 기준 매출 산점도 0819

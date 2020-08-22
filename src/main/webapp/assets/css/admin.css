@@ -86,6 +86,14 @@
 	margin: 0 10px 0 10px;
 	padding: 0 10px 0 10px;
 }
+.admin_table_th {
+	border: 1px solid gray;
+	border-collapse: collapse;
+	text-align: center;
+	margin: 0 10px 0 10px;
+	padding: 0 10px 0 10px;
+	background-color: #D4F4FA;
+}
 
 
 #mint_square{
