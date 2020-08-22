@@ -337,6 +337,17 @@ public class ShopService {
 		itemDao.delete(item_no);
 		
 	}
+	
+	//[item] 인기상품
+	public List<Item> getRankItems() {
+		return itemDao.rankItems();
+	}
+	
+	//[item] 최신상품
+	public List<Item> getNewItems() {
+		return itemDao.newItems();
+	}
+
 
 	//장바구니
 	public Item getItem(Integer item_no) {
@@ -539,6 +550,9 @@ public class ShopService {
 	public List<Qna> qnalist(Integer pageNum, int limit, String searchtype, String searchcontent) {
 		return qnaDao.qnalist(pageNum,limit, searchtype, searchcontent);
 	}
+
+
+
 
 
 

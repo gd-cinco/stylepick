@@ -59,5 +59,13 @@ public class ItemDao {
 		template.getMapper(ItemMapper.class).delete(item_no);
 	}
 
+	public List<Item> rankItems() {		
+		return template.getMapper(ItemMapper.class).selectRank();
+	}
+
+	public List<Item> newItems() {
+		return template.getMapper(ItemMapper.class).selectNew();
+	}
+
 	
 }

@@ -71,9 +71,13 @@ public class itemController {
 	
 		
 		@RequestMapping("store")	//item/list.shop
-		public String storeform(Model model) {
-			model.addAttribute(new Item());
-			return null;
+		public ModelAndView storemain() {
+			ModelAndView mav = new ModelAndView();
+			List<Item> rankItems = service.getRankItems();
+			List<Item> newItems = service.getNewItems();
+			mav.addObject("rankItems",rankItems);
+			mav.addObject("newItems",newItems);
+			return mav;
 		}
 		
 	

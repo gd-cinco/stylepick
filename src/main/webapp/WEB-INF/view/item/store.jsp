@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Store</title>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link rel="stylesheet" href="${path}/assets/css/store.css?ver=1.1">
+<link rel="stylesheet" href="${path}/assets/css/store.css?ver=1.2">
 <style>
 	#slider {
 		position:relative;
@@ -255,6 +255,13 @@
 </div>
 <div class="mainbox Keyword">
 	<div class="boxtitle">실시간 인기 키워드</div>
+	<div class="keywordRanking">
+			<button class="tab-list" onclick="javascript:getItems()">지갑</button>
+			<button class="tab-list" onclick="javascript:getItems()">지갑</button>
+			<button class="tab-list" onclick="javascript:getItems()">지갑</button>
+			<button class="tab-list" onclick="javascript:getItems()">지갑</button>
+			<button class="tab-list" onclick="javascript:getItems()">지갑</button>
+	</div>
 	<div class="boxitemlist">
 		<c:forEach begin="1" end="4">
 			<div class="boxitem">
