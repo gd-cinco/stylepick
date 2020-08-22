@@ -398,12 +398,6 @@ public class ShopService {
 		adminDao.addtodolist();
 	}
 
-	// [admin] dashboard index 3-2 To-do list show 0817
-	public List<Line> selectTodolistByCode(Line line) {
-		// TODO Auto-generated method stub
-		return adminDao.selectTodolistByCode(line);
-	}
-
 	// [admin] widgets index 3-2 최근 4주 별점 평균 상위 3개 스토어 0818
 	public List<Line> getEvaluation() {
 		// TODO Auto-generated method stub
@@ -420,6 +414,11 @@ public class ShopService {
 	public List<Buy> yearlyrevenue() {
 		// TODO Auto-generated method stub
 		return adminDao.yearlyrevenue();
+	}
+	//[admin] charts index 4-1 지역별 매출 평균 boxplot 0822
+	public List<Buy> boxplot() {
+		// TODO Auto-generated method stub
+		return adminDao.boxplot();
 	}
 
 	// [admin] charts index 5 구매건 기준 매출 산점도 0819
@@ -485,6 +484,8 @@ public class ShopService {
 		
 		return sale;
 	}
+
+
 
 
 

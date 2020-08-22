@@ -279,7 +279,7 @@ function getCommentList(){
 			
 			<!-- 주간매출 바그래프 -->
 			<div class="double_frame">
-				주간매출 바,꺾은선그래프
+				<h5>스타일픽 주 매출 집계(일기준)</h5>
 				<!--Table and divs that hold the pie charts-->
 			    <!-- <div id="numGraph1_div" style="border: 1px solid #ccc"></div> -->
 			    <div id="chart_div1"></div>
@@ -287,7 +287,7 @@ function getCommentList(){
 			
 			<!-- 최근 4주간 매출 추이 그래프 -->
 			<div class="double_frame">
-			최근 4주간 매출 추이 그래프
+			<h5>스타일픽 최근 4주 매출 (주기준)</h5>
 			<div id="chart_div2"></div>
 			<!-- <div id="numGraph2_div" style="border: 1px solid #ccc"></div> -->
 			</div>

@@ -45,6 +45,10 @@ public interface AdminMapper {
 			"ORDER BY weeks_ago DESC ")
 	List<Buy> monthlyrevenue();
 	
+	//dashboard index 3-1 To-do list
+	@Insert("INSERT INTO line (No, duedate, content, fin) VALUES (#{No}, #{duedate}, #{content}, #{fin})")
+	void addtodolist();
+	
 	//widgets index 1-1 daily sales report
 	@Select("SELECT order_no, orderdate, userid, amount FROM buy ORDER BY order_no DESC LIMIT 5")
 	List<Buy> getSales(Map<String, Object> param);
@@ -58,23 +62,15 @@ public interface AdminMapper {
 	List<Buy> monthlyheavyusers(Map<String, Object> param);
 	
 	//widgets index 2-2 올해 최다 구매 회원 랭킹
-	@Select("SELECT userid, SUM(amount) amount FROM buy WHERE orderdate > (NOW() - INTERVAL 12 MONTH) GROUP BY userid ORDER BY amount DESC LIMIT 10")
+	@Select("SELECT userid, SUM(amount) amount FROM buy WHERE DATE_FORMAT(orderdate,'%Y') = DATE_FORMAT(CURDATE(),'%Y') GROUP BY userid ORDER BY amount DESC LIMIT 10")
 	List<Buy> yearlyheavyusers(Map<String, Object> param);
 	
 	//widgets index 3-1 우수 입점 스토어 차트
-	@Select("SELECT com_name, IFNULL(FLOOR( DATEDIFF( CURRENT_DATE , line.regdate ) / 7 ),0) AS weeks_ago, AVG(evaluation) evaluation FROM user LEFT JOIN line ON user.userid = line.userid GROUP BY weeks_ago, com_name HAVING weeks_ago <=4 ORDER BY weeks_ago DESC;")
+	@Select("SELECT com_name, FLOOR( DATEDIFF( CURRENT_DATE , line.regdate ) / 7 ) AS weeks_ago, AVG(evaluation) evaluation FROM user JOIN line ON user.userid = line.userid GROUP BY weeks_ago, com_name HAVING weeks_ago <=4 AND user.com_name IS NOT NULL AND user.com_name !=\"\" and evaluation IS NOT NULL ORDER BY weeks_ago DESC;")
 	List<Line> topthreestores(Map<String, Object> param);
 	
-	//dashboard index 3-1 To-do list
-	@Insert("INSERT INTO line (No, duedate, content, fin) VALUES (#{No}, #{duedate}, #{content}, #{fin})")
-	void addtodolist();
-	
-	//widgets index 3-2 우수 입점 스토어 차트
-	@Select("SELECT * FROM todolist")
-	List<Line> selectTodolistByCodes();
-	
 	//widgets index 3-2 최근 4주 별점 평균 상위 3개 스토어
-	@Select("SELECT com_name, AVG(evaluation) evaluation FROM user LEFT JOIN line ON user.userid = line.userid WHERE FLOOR( DATEDIFF( CURRENT_DATE , line.regdate ) / 7 ) <=4 GROUP BY com_name ORDER BY evaluation DESC LIMIT 3")
+	@Select("SELECT com_name, AVG(evaluation) evaluation FROM user JOIN line ON user.userid = line.userid WHERE FLOOR( DATEDIFF( CURRENT_DATE , line.regdate ) / 7 ) <=4  AND com_name !='' GROUP BY com_name ORDER BY evaluation DESC LIMIT 3")
 	List<Line> getEvaluation(Map<String, Object> param);
 	
 	//charts index 1 스타일픽 회원 수
@@ -94,8 +90,12 @@ public interface AdminMapper {
 	List<Buy> salesbycategories(Map<String, Object> param);
 	
 	//charts index 7-2 상위 10개 스토어 (월 매출 기준)
-	@Select("SELECT IFNULL(user.com_name,'기본샵') com_name, SUM(buy.amount) amount FROM buy LEFT OUTER JOIN user ON buy.userid=user.userid WHERE DATE_FORMAT(buy.orderdate,'%Y-%m')=DATE_FORMAT(CURDATE(),'%Y-%m') GROUP BY user.com_name ORDER BY amount DESC LIMIT 10")
+	@Select("SELECT IFNULL(user.com_name,'기본샵') com_name, SUM(buy.amount) amount FROM buy JOIN user ON buy.userid=user.userid WHERE DATE_FORMAT(buy.orderdate,'%Y-%m')=DATE_FORMAT(CURDATE(),'%Y-%m') GROUP BY user.com_name HAVING user.com_name IS NOT NULL AND user.com_name !=\"\" ORDER BY amount DESC LIMIT 10")
 	List<Buy> toptenstores(Map<String, Object> param);
+	
+	// charts index 4-1 지역별 매출 평균 barplot
+	@Select("SELECT SUBSTRING_INDEX(address, '구', 1) address, amount FROM buy ORDER BY address ASC")
+	List<Buy> boxplot(Map<String, Object> param);
 	
 
 }

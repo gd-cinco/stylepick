@@ -42,7 +42,7 @@
 		<form action="mailForm.shop" method="post">
 			<h3>Users</h3><br>
 		
-			<h4 style="text-align: center; margin-bottom: 50px;">Stylepick Sales Report</h4>
+			<h4 style="text-align: center; margin-bottom: 50px;">스타일픽 개인 회원 리스트</h4>
 			<br>
 		
 			<table class="user_list_table">
@@ -60,8 +60,14 @@
 						<td class="user_list_table">${user.tel}</td>
 						<%-- <td><fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd"/></td> --%>
 						<td class="user_list_table">${user.age}</td>
-						<td class="user_list_table">${user.gender}</td>
-						<td class="user_list_table">${user.regdate}</td>
+						<td class="user_list_table">
+						<c:choose>
+								<c:when test="${user.gender eq '1'}">남자</c:when>
+								<c:when test="${user.gender eq '2'}">여자</c:when>
+								<c:otherwise>-</c:otherwise>
+							</c:choose>
+						</td>
+						<td class="user_list_table"><fmt:formatDate value="${user.regdate}" pattern="yyyy-MM-dd"/></td>
 						<td class="user_list_table">
 							<a href="../user/update.shop?id=${user.userid}">수정</a>
 							<a href="../user/delete.shop?id=${user.userid}">강제탈퇴</a>

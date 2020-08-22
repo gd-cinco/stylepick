@@ -126,6 +126,7 @@ public class itemController {
 			service.itemUpdate(item,request);
 			mav.setViewName("redirect:/item/detail.shop?item_no="+item.getItem_no());
 			return mav;
+		}
 		
 		@RequestMapping("imgupload")
 		//upload : ckeditor에서 전달해 주는 파일 정보의 이름

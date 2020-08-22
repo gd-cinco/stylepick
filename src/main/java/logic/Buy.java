@@ -22,6 +22,11 @@ public class Buy {
 	private String com_name;
 	
 	
+	public String getAddress_qu() {
+		int idx = this.address.indexOf("구");
+		String rtn = this.address.substring(0, idx);
+		return rtn;
+	}
 	public String getCom_name() {
 		return com_name;
 	}
@@ -30,8 +35,27 @@ public class Buy {
 	}
 	public String getCategoryinString() {
 		String rtn = "";
-		if(category==1) rtn="모자";
-		else rtn="바지";
+		switch (category) {
+			case 1 : rtn="모자";break;
+			case 2 : rtn="아우터";break;
+			case 3 : rtn="원피스";break;
+			case 4 : rtn="상의";break;
+			case 5 : rtn="하의";break;
+			case 6 : rtn="가방";break;
+			case 7 : rtn="신발";break;
+			default : rtn="시계";
+		}
+		/*
+		 *모자
+			아우터
+			원피스
+			상의
+			하의
+			가방
+			신발
+			시계 
+		 */
+		
 		return rtn;
 	}
 	public int getCategory() {
@@ -56,7 +80,8 @@ public class Buy {
 		this.month = month;
 	}
 	public String getWeeks_ago() {
-		return weeks_ago+"주전";
+		if (this.weeks_ago.equals("0")) return "이번주";
+		else return weeks_ago+"주전";
 	}
 	public void setWeeks_ago(String weeks_ago) {
 		this.weeks_ago = weeks_ago;
