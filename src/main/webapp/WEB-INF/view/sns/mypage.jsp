@@ -75,7 +75,7 @@
 				</c:if>
 			</c:if>
 			<c:if test="${user.userid==loginUser.userid}">
-				<button class="btn" onclick="location.href='../user/update.shop?userid=${user.userid}'" style="margin-left:15px;width:90px;padding:15px 8px;font-size:15px;">수정하기</button>
+				<button class="btn" onclick="location.href='../user/update.shop?id=${user.userid}'" style="margin-left:15px;width:90px;padding:15px 8px;font-size:15px;">수정하기</button>
 			</c:if>
 		</div>
 	</div>

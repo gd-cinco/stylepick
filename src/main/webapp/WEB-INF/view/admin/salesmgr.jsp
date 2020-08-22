@@ -38,9 +38,9 @@
 				<li  id="admin_menu"><a href="../admin/dashboard.shop">대시보드</a></li><br>
 				<li  id="admin_menu"><a href="../admin/widgets.shop">위젯</a></li><br>
 				<li  id="admin_menu"><a href="../admin/charts.shop">차트</a></li><br>
-				<li  id="admin_menu"><a href="../admin/list.shop" style="color:skyblue;">유저</a></li><br>
+				<li  id="admin_menu"><a href="../admin/list.shop">유저</a></li><br>
 				<li  id="admin_menu"><a href="../admin/storelist.shop">스토어 관리</a></li><br>
-				<li  id="admin_menu"><a href="../admin/salesmgr.shop">매출 관리</a></li><br>
+				<li  id="admin_menu"><a href="../admin/salesmgr.shop" style="color:skyblue;">매출 관리</a></li><br>
 				<li  id="admin_menu"><a href="../board/notice.shop">고객센터</a></li>
 			</ul>
 	</div>
@@ -48,7 +48,7 @@
 		<!-- <form action="mailForm.shop" method="post"> -->
 			<h3>Users</h3><br>
 		
-			<h4 style="text-align: center; margin-bottom: 50px;">스타일픽 전체 회원 리스트 (개인+스토어)</h4>
+			<h4 style="text-align: center; margin-bottom: 50px;">스타일픽 매출내역</h4>
 			<br>
 			
 			<!-- <table class="user_list_table"> -->
@@ -58,12 +58,9 @@
 						<!-- 검색바 -->
 						<form action="list.shop" method="post" name="searchform">
 							<select name="searchtype" style="width:100px;">
-											<option value="">검색 필터</option>
-											<option value="userid">아이디</option>
-											<option value="nickname">닉네임</option>
-											<option value="email">이메일</option>
-											<option value="age">나이</option>
-											<option value="gender">성별</option>
+											<option value="">검색필터</option>
+											<option value="order_no">오더번호</option>
+											<option value="com_name">스토어</option>
 							</select>
 							<script type="text/javascript">
 								searchform.searchtype.value="${param.searchtype}";
@@ -74,38 +71,26 @@
 					</td>
 				</tr>
 				<tr class="user_list_table">
-					<th class="user_list_th">아이디</th><th class="user_list_th">닉네임</th><th class="user_list_th">이메일</th><th class="user_list_th">전화</th><th class="user_list_th">나이</th><th class="user_list_th">성별</th><th class="user_list_th">가입날짜</th><th class="user_list_th">수정·회원페이지</th>
+					<th class="user_list_th">오더번호</th><th class="user_list_th">판매일</th><th class="user_list_th">스토어</th>
+					<th class="user_list_th">품명</th><th class="user_list_th">금액</th><th class="user_list_th">상태</th><th class="user_list_th">배송지</th><th class="user_list_th">주문상세</th>
 					<!-- 
 					<th><input type="checkbox" name="allchk" onchange="allchkbox(this)"></th>
 					 -->
 				</tr>
-				<c:forEach items="${list}" var="user">
+				
+				<!-- 스토어명 기준 : 2개 이상의 스토어에서 구매 시 -> 같은 오더번호가 2번 이상 나올 수 있도록 -->
+				<!-- 주문 상세 내역 클릭시 사용자의 주문내역 확인 페이지로 이동 -->
+				
+				<c:forEach items="${list}" var="list">
 					<tr class="user_list_table">
-						<td class="user_list_table">${user.userid}</td>
-						<td class="user_list_table">${user.nickname}</td>
-						<td class="user_list_table">${user.email}</td>
-						<td class="user_list_table">${user.tel}</td>
-						<%-- <td><fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd"/></td> --%>
-						<td class="user_list_table">${user.age}</td>
-						<td class="user_list_table">
-						<c:choose>
-								<c:when test="${user.gender eq '1'}">남자</c:when>
-								<c:when test="${user.gender eq '2'}">여자</c:when>
-								<c:otherwise>-</c:otherwise>
-							</c:choose>
-						</td>
-						<td class="user_list_table"><fmt:formatDate value="${user.regdate}" pattern="yyyy-MM-dd"/></td>
-						<td class="user_list_table">
-							<a href="../user/update.shop?id=${user.userid}">edit</a>
-							<!-- <a href="../user/delete.shop?id=${user.userid}">강제탈퇴</a>  -->
-							<a href="../sns/mypage.shop?userid=${user.userid}">sns</a>
-							<!-- http://localhost:8080/stylepick/sns/mypage.shop?userid=jieun -->
-						</td>
-						<!-- 
-						<td class="user_list_table">
-							<input type="checkbox" name="idchks" class="idchks" value="${user.userid}">
-						</td>
-						 -->
+						<td class="user_list_table">${list.order_no}</td>
+						<td class="user_list_table"><fmt:formatDate value="${list.orderdate}" pattern="yyyy-MM-dd"/></td>
+						<td class="user_list_table">${list.com_name}</td>
+						<td class="user_list_table">${list.item_name}</td>
+						<td class="user_list_table">${list.amount}</td>
+						<td class="user_list_table">${list.stat}</td>
+						<td class="user_list_table">${list.address}</td>
+						<td class="user_list_table"><a href="#">[이동]</a></td>
 					</tr>
 				</c:forEach>
 				<!-- 

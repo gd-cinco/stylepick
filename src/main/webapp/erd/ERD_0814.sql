@@ -152,7 +152,7 @@ CREATE TABLE item
    PRIMARY KEY (item_no)
 );
 
-CREATE TABLE item_qna
+/*CREATE TABLE item_qna
 (
 	qna_no int NOT NULL,
 	-- 상품번호
@@ -176,6 +176,22 @@ CREATE TABLE item_qna
 	-- 답변내용
 	reply varchar(500) COMMENT '답변내용',
 	replyregdate datetime,
+	PRIMARY KEY (qna_no)
+);
+*/
+CREATE TABLE item_qna
+(
+	qna_no int NOT NULL,
+	-- 상품번호
+	item_no int NOT NULL COMMENT '상품번호',
+	-- 문의종류
+	type int NOT NULL COMMENT '문의종류',
+	-- 회원아이디
+	userid varchar(50) NOT NULL COMMENT '회원아이디',
+	-- 문의내용
+	content varchar(500) NOT NULL COMMENT '문의내용',
+	-- 등록시간
+	regdate datetime COMMENT '등록시간',
 	PRIMARY KEY (qna_no)
 );
 

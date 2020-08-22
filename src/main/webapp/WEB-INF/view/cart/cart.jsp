@@ -4,64 +4,8 @@
 <html lang="zxx">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
-  <!-- CSS here -->
-      <link rel="stylesheet" href="${path}/assets/css/bootstrap.min.css">
-      <link rel="stylesheet" href="${path}/assets/css/owl.carousel.min.css">
-      <link rel="stylesheet" href="${path}/assets/css/flaticon.css">
-      <link rel="stylesheet" href="${path}/assets/css/slicknav.css">
-      <link rel="stylesheet" href="${path}/assets/css/animate.min.css">
-      <link rel="stylesheet" href="${path}/assets/css/magnific-popup.css">
-      <link rel="stylesheet" href="${path}/assets/css/fontawesome-all.min.css">
-      <link rel="stylesheet" href="${path}/assets/css/themify-icons.css">
-      <link rel="stylesheet" href="${path}/assets/css/slick.css">
-      <link rel="stylesheet" href="${path}/assets/css/nice-select.css">
-      <link rel="stylesheet" href="${path}/assets/css/style.css">
-      	<link rel="stylesheet" href="${path}/assets/css/final.css">
-   
-   <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script> 
-      <script type="text/javascript">
-      
-      $(function(){
-    		var price =$('#price').text();
-    		var amount=price;
-    		$('#minus').click(function(e){
-    		e.preventDefault();
-    		var stat = $('#UpDown').text();
-    		var num = parseInt(stat);
-    		num--;
-    		amount = (price*num);
-    		$('#cost').val(amount);
-    		if(num<=0){
-    		alert('더이상 줄일수 없습니다.');
-    		num =1;
-    		amount=price*1;
-    		$('#cost').val(amount);
-    		$('#costcnt').val(num);
-    		}
-    		$('#UpDown').text(num);
-    		});
-    		
-    		$('#plus').click(function(e){
-    		e.preventDefault();
-    		var stat = $('#UpDown').text();
-    		var num = parseInt(stat);
-    		num++;
-    		amount = (price*num);
-    		$('#cost').val(amount);
-    		
-    		$('#UpDown').text(num);
-    		$('#costcnt').val(num);
-    		});
-    		
-    		$('#cost').val(amount);
-    		});
-
-    	</script>
+  
    
 </head>
 <body>
@@ -80,83 +24,46 @@
               </tr> -->
             </thead>
             <tbody>
+            
+            <c:set var="tot" value="${0}"/>
+            <c:forEach items="${cart.itemSetList}" var="itemSet" varStatus="stat">
               <tr>
                 <td>
-                
                   <div class="media">
-                    <div class="d-flex">
-                      <img src="${path}/assets/img/arrivel/arrivel_1.png" alt="" /><br>
+                    <div class="d-flex" style="width=350px" height="250px"">
+                    <img src="img/${itemSet.item.pictureUrl }"  id="img"><br>
                     </div>
-                    <div class="media-body">
-                      <h4>상품 명</h4>
-                      <h5>category</h5>
+                      
+                    <div class="media-body" style="inline-block">
+                      <h4>${itemSet.item.item_name }</h4>
                     </div>
-                  </div>
-                </td>
-                <td>
-                <div>
-                <h6>옵션명 옵션명 옵션명</h6>
                 </div>
                 </td>
                 <td>
-                  <h5>70,000원</h5> <!-- 가격 -->
+                <div>
+                <h6>${itemSet.item.item_option}</h6> <!--옵션-->
+                </div>
                 </td>
                 <td>
-                  <div class="product_count">
-                    <!-- <input type="text" value="1" min="0" max="10" title="Quantity:"
-                      class="input-text qty input-number" />
-                    <button
-                      class="increase input-number-increment items-count" type="button">
-                      <i class="ti-angle-up"></i>
-                    </button>
-                    <button
-                      class="reduced input-number-decrement items-count" type="button">
-                      <i class="ti-angle-down"></i>
-                    </button> -->
-                <span id="UpDown" >1</span>
-				<button id="plus" style="WIDTH: 20pt; HEIGHT: 20pt; background:black;" >+</button>
-				<button id="minus" style="WIDTH: 20pt; HEIGHT: 20pt"  >-</button>
+                  <h5>${itemSet.item.price }원</h5> <!-- 가격 -->
+                </td>
+                <td>
+                 <div>
+           
+              <select name="quantity">
+								<c:forEach begin="1" end="10" var="i">
+									<option>${i}</option>
+								</c:forEach>
+							</select>
                     
                   </div>
                 </td>
                 
                 <td>
-                  <h5>70,000원</h5>
+                  <h5>${itemSet.quantity * itemSet.item.price }</h5>
                 </td>
               </tr>
-              <!--2번째 상품 나중에 db 추가하면 지우기 -->
-              <tr>
-                <td>
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="${path}/item/img/skirt.jpg" alt="" />
-                    </div>
-                    <div class="media-body">
-                      <p>상품 명 2</p>
-                    </div>
-                  </div>
-                </td>
-                       <td>
-                <div>
-                <h6>옵션명 옵션명 옵션명</h6>
-                </div>
-                </td>
-                <td>
-                  <h5>70,000원</h5>
-                </td>
-                <td>
-                  <div class="product_count">
-               <span id="UpDown" >1</span>
-				<button id="plus" style="WIDTH: 20pt; HEIGHT: 20pt; background:black;" >+</button>
-				<button id="minus" style="WIDTH: 20pt; HEIGHT: 20pt"  >-</button>
-                  </div>
-                </td>
-             
-                <td>
-                  <h5>70,000원</h5>
-                </td>
-              </tr>
-                  <!--2번째 상품 나중에 db 추가하면 지우기 end-->
+   </c:forEach>
               
               <tr>
                 <td></td>
@@ -172,7 +79,7 @@
             </tbody>
           </table>
           <div class="checkout_btn_inner float-right">
-            <a class="btn_1" href="#">쇼핑 하기</a>
+            <a class="btn_1" href="../item/list.shop">쇼핑 하기</a>
             <a class="btn_1 checkout_btn_1" href="../cart/checkout.shop">주문하기</a>
           </div>
         </div>
@@ -182,40 +89,7 @@
   <!--================End Cart Area =================-->
 <!-- JS here -->
 
-    <!-- All JS Custom Plugins Link Here here -->
-    <script src="${path}/assets/js/vendor/modernizr-3.5.0.min.js"></script>
-   
-    <!-- Jquery, Popper, Bootstrap -->
-    <script src="${path}/assets/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="${path}/assets/js/popper.min.js"></script>
-    <script src="${path}/assets/js/bootstrap.min.js"></script>
-    <!-- Jquery Mobile Menu -->
-    <script src="${path}/assets/js/jquery.slicknav.min.js"></script>
 
-    <!-- Jquery Slick , Owl-Carousel Plugins -->
-    <script src="${path}/assets/js/owl.carousel.min.js"></script>
-    <script src="${path}/assets/js/slick.min.js"></script>
-
-    <!-- One Page, Animated-HeadLin -->
-    <script src="${path}/assets/js/wow.min.js"></script>
-    <script src="${path}/assets/js/animated.headline.js"></script>
-    
-    <!-- Scrollup, nice-select, sticky -->
-    <script src="${path}/assets/js/jquery.scrollUp.min.js"></script>
-    <script src="${path}/assets/js/jquery.nice-select.min.js"></script>
-    <script src="${path}/assets/js/jquery.sticky.js"></script>
-    <script src="${path}/assets/js/jquery.magnific-popup.js"></script>
-
-    <!-- contact js -->
-    <script src="${path}/assets/js/contact.js"></script>
-    <script src="${path}/assets/js/jquery.form.js"></script>
-    <script src="${path}/assets/js/jquery.validate.min.js"></script>
-    <script src="${path}/assets/js/mail-script.js"></script>
-    <script src="${path}/assets/js/jquery.ajaxchimp.min.js"></script>
-    
-    <!-- Jquery Plugins, main Jquery -->	
-    <script src="${path}/assets/js/plugins.js"></script>
-    <script src="${path}/assets/js/main.js"></script>
 </body>
 
 </html>

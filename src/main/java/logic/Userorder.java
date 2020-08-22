@@ -7,7 +7,16 @@ public class Userorder {
 	private Date orderdate;
 	private int price;
 	private int stat;
+	private int evaluation;
 	
+	
+	
+	public int getEvaluation() {
+		return evaluation;
+	}
+	public void setEvaluation(int evaluation) {
+		this.evaluation = evaluation;
+	}
 	public String getItem_name() {
 		return item_name;
 	}
@@ -33,10 +42,10 @@ public class Userorder {
 	public void setStat(int stat) {
 		this.stat = stat;
 	}
+	
 	@Override
 	public String toString() {
 		return "Userorder [item_name=" + item_name + ", orderdate=" + orderdate + ", price=" + price + ", stat=" + stat
-				+ "]";
+				+ ", evaluation=" + evaluation + "]";
 	}
-	
 }

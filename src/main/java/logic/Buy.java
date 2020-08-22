@@ -9,7 +9,7 @@ public class Buy {
 	private String userid;
 	private String name;
 	private String address;
-	private int tel;
+	private long tel;
 	private Date orderdate;
 	private int stat;
 	private int amount;
@@ -20,8 +20,22 @@ public class Buy {
 	private Date regdate;
 	private int category;
 	private String com_name;
+	private String item_name;
+	
+	//오더번호, 판매일, 스토어, 대표 품명, 금액, 상태, 배송지
 	
 	
+	public String getItem_name() {
+		return item_name;
+	}
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
+	}
+	public String getAddress_qu() {
+		int idx = this.address.indexOf("구");
+		String rtn = this.address.substring(0, idx);
+		return rtn;
+	}
 	public String getCom_name() {
 		return com_name;
 	}
@@ -30,8 +44,27 @@ public class Buy {
 	}
 	public String getCategoryinString() {
 		String rtn = "";
-		if(category==1) rtn="모자";
-		else rtn="바지";
+		switch (category) {
+			case 1 : rtn="모자";break;
+			case 2 : rtn="아우터";break;
+			case 3 : rtn="원피스";break;
+			case 4 : rtn="상의";break;
+			case 5 : rtn="하의";break;
+			case 6 : rtn="가방";break;
+			case 7 : rtn="신발";break;
+			default : rtn="시계";
+		}
+		/*
+		 *모자
+			아우터
+			원피스
+			상의
+			하의
+			가방
+			신발
+			시계 
+		 */
+		
 		return rtn;
 	}
 	public int getCategory() {
@@ -56,7 +89,8 @@ public class Buy {
 		this.month = month;
 	}
 	public String getWeeks_ago() {
-		return weeks_ago+"주전";
+		if (this.weeks_ago.equals("0")) return "이번주";
+		else return weeks_ago+"주전";
 	}
 	public void setWeeks_ago(String weeks_ago) {
 		this.weeks_ago = weeks_ago;
@@ -85,10 +119,10 @@ public class Buy {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getTel() {
+	public long getTel() {
 		return tel;
 	}
-	public void setTel(int tel) {
+	public void setTel(long tel) {
 		this.tel = tel;
 	}
 	
@@ -125,15 +159,10 @@ public class Buy {
 		return "Buy [order_no=" + order_no + ", userid=" + userid + ", name=" + name + ", address=" + address + ", tel="
 				+ tel + ", orderdate=" + orderdate + ", stat=" + stat + ", amount=" + amount + ", memo=" + memo
 				+ ", weeks_ago=" + weeks_ago + ", month=" + month + ", regdate=" + regdate + ", category=" + category
-				+ ", com_name=" + com_name + "]";
+				+ ", com_name=" + com_name + ", item_name=" + item_name + "]";
 	}
 	
 
-
-	
-	
-	
-	
 	
 }
 

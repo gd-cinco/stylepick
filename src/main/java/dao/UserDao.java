@@ -61,6 +61,17 @@ public class UserDao {
 	public List<User> list() {
 		return template.getMapper(UserMapper.class).select(null);
 	}
+	
+	//[admin] user list 유저리스트
+	public List<User> list(String searchtype, String searchcontent) {
+		param.clear();
+		if (searchtype != null && searchcontent != null) {
+			//sql += " WHERE " + searchtype + " LIKE :searchcontent ";
+			param.put("searchtype", searchtype);
+			param.put("searchcontent", "%"+searchcontent+"%");
+		}
+		return template.getMapper(UserMapper.class).select(null);
+	}
 
 	public List<User> list(String[] idchks) {
 		param.clear();
@@ -76,12 +87,25 @@ public class UserDao {
 	public List<Userorder> userorder(String userid) {
 		return template.getMapper(UserMapper.class).getuserorder(userid);
 	}
-
 	
-
-
+	public List<Userorder> userline(String userid) {
+		return template.getMapper(UserMapper.class).getuserline(userid);
+	}
 	
+	public int getmyshipping(String userid) {
+		return template.getMapper(UserMapper.class).getmyshipping(userid);
+	}
+	
+	//[admin] storelist 스토어 관리 0822
+	public List<User> storelist(String searchtype, String searchcontent) {
+		// TODO Auto-generated method stub
+		param.clear();
+		if (searchtype != null && searchcontent != null) {
+			//sql += " WHERE " + searchtype + " LIKE :searchcontent ";
+			param.put("searchtype", searchtype);
+			param.put("searchcontent", "%"+searchcontent+"%");
+		}
+		return template.getMapper(UserMapper.class).storelist(null);
+	}
 
-	
-	
 }

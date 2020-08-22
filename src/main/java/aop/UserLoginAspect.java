@@ -35,10 +35,10 @@ public class UserLoginAspect {
 		String target = (String)joinPoint.getArgs()[0];
 		
 		if(loginUser==null) {
-			throw new LoginException("로그인 후 거래하세요.","login.shop");
+			throw new LoginException("로그인하세요.","login.shop");
 		}
 		if(!loginUser.getUserid().equals("admin") && !loginUser.getUserid().equals(id) ) {
-			throw new LoginException("본인만 거래가능합니다.","main.shop");
+			throw new LoginException("잘못된 접근입니다.","main.shop");
 		}
 		
 		return joinPoint.proceed();

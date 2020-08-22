@@ -19,6 +19,7 @@ import dao.BoardDao;
 import dao.CommentDao;
 import dao.ItemDao;
 import dao.LineDao;
+import dao.QnaDao;
 import dao.SaleDao;
 import dao.SaleItemDao;
 import dao.UserDao;
@@ -35,7 +36,8 @@ public class ShopService {
 	@Autowired
 	private ItemDao itemDao;
 	
-
+	@Autowired
+	private QnaDao qnaDao;
 
 	@Autowired
 	private SnsItemDao snsItemDao;
@@ -105,8 +107,17 @@ public class ShopService {
 	
 	//[user] 내 주문리스트 요약보기
 	public List<Userorder> getUserOrder(String userid) {
-		System.out.println("!1"+userid);
 		return userDao.userorder(userid);
+	}
+	
+	//[user] 내 한줄평 요약보기
+	public List<Userorder> getline(String userid) {
+		return userDao.userline(userid);
+	}
+	
+	//[user] 주문배송 - 배송중
+	public int getmyshipping(String userid) {
+		return userDao.getmyshipping(userid);
 	}
 	
 	//[admin] 메일 보낼 유저리스트 0728
@@ -124,10 +135,10 @@ public class ShopService {
 		return map;
 	}
 	
-	//[admin] 유저리스트 가져오기 0728
-	public List<User> list() {
+	//[admin] 유저리스트 가져오기 0822 0728
+	public List<User> list(String searchtype, String searchcontent) {
 		// TODO Auto-generated method stub
-		return userDao.list();
+		return userDao.list(searchtype, searchcontent);
 		}
 
 	//[admin] 그래프2 0728
@@ -310,6 +321,7 @@ public class ShopService {
 		lineDao.insert(line);
 	}
 	
+	
 	//[item] 상품 수정
 	public void itemUpdate(Item item, HttpServletRequest request) {
 		if (item.getImgurl() != null && !item.getImgurl().isEmpty()) {
@@ -320,6 +332,12 @@ public class ShopService {
 		itemDao.update(item);	
 	}
 
+	//장바구니
+	public Item getItem(Integer item_no) {
+		return itemDao.selectOne(item_no);
+	}
+	
+	
 	// [admin] dashboard index 1-1 이달 가입회원 0813
 	public int newusers() {
 		// TODO Auto-generated method stub
@@ -398,12 +416,6 @@ public class ShopService {
 		adminDao.addtodolist();
 	}
 
-	// [admin] dashboard index 3-2 To-do list show 0817
-	public List<Line> selectTodolistByCode(Line line) {
-		// TODO Auto-generated method stub
-		return adminDao.selectTodolistByCode(line);
-	}
-
 	// [admin] widgets index 3-2 최근 4주 별점 평균 상위 3개 스토어 0818
 	public List<Line> getEvaluation() {
 		// TODO Auto-generated method stub
@@ -420,6 +432,11 @@ public class ShopService {
 	public List<Buy> yearlyrevenue() {
 		// TODO Auto-generated method stub
 		return adminDao.yearlyrevenue();
+	}
+	//[admin] charts index 4-1 지역별 매출 평균 boxplot 0822
+	public List<Buy> boxplot() {
+		// TODO Auto-generated method stub
+		return adminDao.boxplot();
 	}
 
 	// [admin] charts index 5 구매건 기준 매출 산점도 0819
@@ -438,7 +455,17 @@ public class ShopService {
 	public List<Buy> toptenstores() {
 		// TODO Auto-generated method stub
 		return adminDao.toptenstores();
-
+	}
+	//[admin] storelist 스토어 관리 0822
+	public List<User> storelist(String searchtype, String searchcontent) {
+		// TODO Auto-generated method stub
+		return userDao.storelist(searchtype, searchcontent);
+	}
+	
+	//[admin] salesmgr 매출 관리 0822
+	public List<Buy> saleslist() {
+		// TODO Auto-generated method stub
+		return adminDao.saleslist();
 	}
 
 	/**
@@ -486,6 +513,26 @@ public class ShopService {
 		return sale;
 	}
 
+	
+
+	
+	//Q&A 작성
+	public void qnaWrite(Qna qna, HttpServletRequest request) {
+		int max= qnaDao.maxnum();
+		qna.setQna_no(++max);
+		qna.setGrp(max);
+		qnaDao.insert(qna);
+	}
+
+	//Q&A
+	public int qnacount(String searchtype, String searchcontent) {
+		return qnaDao.count(searchtype, searchcontent);
+	}
+
+	//Q&A 목록
+	public List<Qna> qnalist(Integer pageNum, int limit, String searchtype, String searchcontent) {
+		return qnaDao.qnalist(pageNum,limit, searchtype, searchcontent);
+	}
 
 
 }

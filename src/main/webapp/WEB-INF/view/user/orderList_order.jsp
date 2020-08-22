@@ -31,11 +31,11 @@
 			<table>
 				<tr>
 					<td>배송중</td>
-					<td>구매후기</td>
+					<td>쓰지않은 한줄평</td>
 					<td>최근 본 상품</td>
 				</tr>
 				<tr>
-					<td>5</td>
+					<td>${shipping}</td>
 					<td>10</td>
 					<td>11</td>
 				</tr>
@@ -47,8 +47,8 @@
 	<div style="height: 200px;">
 		<div class="order_leftdiv">
 			<ul>
-				<li><a class="a_leftdivbtn leftdivbtn_selected" href="orderList.shop">요약보기</a></li>
-				<li><a class="a_leftdivbtn" href="orderList_order.shop">주문내역</a></li>
+				<li><a class="a_leftdivbtn" href="orderList.shop">요약보기</a></li>
+				<li><a class="a_leftdivbtn leftdivbtn_selected" href="orderList_order.shop">주문내역</a></li>
 				<li><a class="a_leftdivbtn" href="orderList_review.shop">내 한줄평</a></li>
 			</ul>
 		</div>

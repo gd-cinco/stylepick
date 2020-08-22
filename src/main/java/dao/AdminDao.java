@@ -97,11 +97,6 @@ public class AdminDao {
 		// TODO Auto-generated method stub
 		template.getMapper(AdminMapper.class).addtodolist();
 	}
-	//dashboard index 3-2 To-do list show
-	public List<Line> selectTodolistByCode(Line line) {
-		// TODO Auto-generated method stub
-		return template.getMapper(AdminMapper.class).selectTodolistByCodes();
-	}
 	//widgets index 3-2 최근 4주 별점 평균 상위 3개 스토어
 	public List<Line> getEvaluation() {
 		// TODO Auto-generated method stub
@@ -137,6 +132,18 @@ public class AdminDao {
 		// TODO Auto-generated method stub
 		param.clear();
 		return template.getMapper(AdminMapper.class).toptenstores(param);
+	}
+	// charts index 4-1 지역별 매출 평균 boxplot
+	public List<Buy> boxplot() {
+		// TODO Auto-generated method stub
+		param.clear();
+		return template.getMapper(AdminMapper.class).boxplot(param);
+	}
+	//salesmgr 매출 관리 0822
+	public List<Buy> saleslist() {
+		// TODO Auto-generated method stub
+		param.clear();
+		return template.getMapper(AdminMapper.class).saleslist(param);
 	}
 
 	

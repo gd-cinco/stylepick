@@ -51,9 +51,14 @@ public class AdminController {
 	
 	//회원 목록
 	@RequestMapping("list")
-	public ModelAndView check_list(HttpSession session) {
+	public ModelAndView check_list(HttpSession session,String searchtype, String searchcontent) {
 		ModelAndView mav = new ModelAndView();
-		List<User> list = service.list();
+		
+		if(searchtype == null || searchcontent ==null || searchtype.trim().equals("") || searchcontent.trim().equals("")) {
+			searchtype = null;
+			searchcontent = null;
+		}
+		List<User> list = service.list(searchtype, searchcontent);
 		mav.addObject("list",list);
 		return mav;
 	}//check_list
@@ -90,11 +95,33 @@ public class AdminController {
 	}//check_widgets
 	
 	//차트
-		@RequestMapping("charts")
-		public ModelAndView check_charts(HttpSession session) {
+	@RequestMapping("charts")
+	public ModelAndView check_charts(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}//check_widgets
+		
+	//스토어 관리
+	@RequestMapping("storelist")
+	public ModelAndView check_storelist(HttpSession session, String searchtype, String searchcontent) {
+		ModelAndView mav = new ModelAndView();
+		if(searchtype == null || searchcontent ==null || searchtype.trim().equals("") || searchcontent.trim().equals("")) {
+			searchtype = null;
+			searchcontent = null;
+		}
+		List<User> list = service.storelist(searchtype, searchcontent);
+		mav.addObject("list",list);
+		return mav;
+	}//check_storelist
+	
+	//매출 관리
+		@RequestMapping("salesmgr")
+		public ModelAndView check_salesmgr(HttpSession session) {
 			ModelAndView mav = new ModelAndView();
+			List<Buy> list = service.saleslist();
+			mav.addObject("list",list);
 			return mav;
-		}//check_widgets
+		}//check_salesmgr
 			
 	//메일 폼 화면 열기 0710-2
 	@RequestMapping("mailForm")

@@ -14,6 +14,12 @@ function javascript(){
     window.open('line.shop?item_no=${param.item_no}','popName',
                 'width=800,height=500,top=200,left=400,');
 }
+
+function javascript1(){
+    window.open('qna.shop?item_no=${param.item_no}','popName',
+                'width=800,height=500,top=200,left=400,');
+}
+
 </script>
 
 
@@ -21,7 +27,7 @@ function javascript(){
 <body>
 
 <div>
-<form action="../cart/cart.shop">
+<form action="../cart/cartAdd.shop">
 <div class="pic" >
   <img src="img/${item.pictureUrl }" width="350px" height="450px" id="img">
 </div>
@@ -42,7 +48,7 @@ function javascript(){
 		<dl><dt><select name="option">
 				<option>옵션</option>
 				<c:forEach items="${item.item_option}" var="i">
-					<option><c:out value="${i }"/></option>
+					<option value=${i }><c:out value="${i }"/></option>
 				</c:forEach>
 		</select></dt>
 		<dd><select name="size" id="sel">
@@ -102,6 +108,27 @@ function javascript(){
 </div>
 <div id="target3">
 	 <div class="hr-sect"><h4>Q&A</h4></div>
+	  <div style="float:right;">
+	   <input type='button' class="genric-btn info-border circle arrow" style="width:101px;" onclick='javascript1()' value='작성하기'/></div>
+	<div>
+	<div>
+	<table>
+		<c:forEach items="${qnalist }" var="qna">
+		<tr><td><c:if test="${qna.type ==0 }">Q</c:if><c:if test="${qna.type ==1 }">A</c:if></td>
+		<td>${qna.userid }</td><td>
+	<fmt:formatDate var="rdate" value="${qna.regdate }" pattern="yyyyMMdd"/>
+				<c:if test="${today==rdate }">
+					<fmt:formatDate value="${qna.regdate}" pattern="HH:mm:ss"/>
+					</c:if>
+			<c:if test="${today !=rdate }">
+					<fmt:formatDate value="${qna.regdate}" pattern="yyyy-MM-dd HH:mm"/>
+					</c:if>
+					</td>
+					</tr>
+					<tr><td>${qna.content }</td></tr>
+		</c:forEach>
+	</table>
+	</div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
 <a href="update.shop?item_no=${item.item_no }">[수정]</a>

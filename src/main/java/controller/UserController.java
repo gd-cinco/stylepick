@@ -127,7 +127,7 @@ public class UserController {
 	}
 	
 	@GetMapping(value = {"update","delete","sellerEntry","sellerUpdate"})
-	public ModelAndView /*check*/view(String id,HttpSession session) {
+	public ModelAndView checkview(String id,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = service.getUser(id);
 		mav.addObject("user",user);
@@ -135,13 +135,19 @@ public class UserController {
 	}
 	
 	@GetMapping("orderList")
-	public ModelAndView checkorderList(HttpSession session) {
+	public ModelAndView checkorderList(String id, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = (User)session.getAttribute("loginUser");
 		mav.addObject("user",user);
 		
+		int shipping = service.getmyshipping(user.getUserid());
+		mav.addObject("shipping",shipping);
+		
 		List<Userorder> order = service.getUserOrder(user.getUserid());
 		mav.addObject("order",order);
+		
+		List<Userorder> line = service.getline(user.getUserid());
+		mav.addObject("line",line);
 		
 		return mav;
 	}
@@ -168,7 +174,9 @@ public class UserController {
 			if(loginUser.getUserid().equals(user.getUserid())) {
 				user = service.getUser(user.getUserid());
 				session.setAttribute("loginUser", user);
-			}
+			}else if(loginUser.getUserid().equals("admin"))
+				mav.setViewName("redirect:../admin/list.shop");
+			
 		}catch (Exception e) {
 			e.printStackTrace();
 			bresult.reject("error.user.update");

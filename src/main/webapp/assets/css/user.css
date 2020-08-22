@@ -5,7 +5,6 @@
 .order{
 	border: 3px solid #bcbcbc;
 	text-align: center;
-	padding: 8px;
 }
 .blacka{
 	color:black !important;
@@ -247,7 +246,7 @@ width:100%;
 	margin-top:10px;
 }
 .order_downview{
-	height: 200px;
+	height: 500px;
 	padding-top: 20px;
 }
 .order_leftdiv{
