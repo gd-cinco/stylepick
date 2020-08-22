@@ -452,6 +452,12 @@ public class ShopService {
 		// TODO Auto-generated method stub
 		return userDao.storelist(searchtype, searchcontent);
 	}
+	
+	//[admin] salesmgr 매출 관리 0822
+	public List<Buy> saleslist() {
+		// TODO Auto-generated method stub
+		return adminDao.saleslist();
+	}
 
 	/**
 	 * Board
@@ -518,6 +524,8 @@ public class ShopService {
 	public List<Qna> qnalist(Integer pageNum, int limit, String searchtype, String searchcontent) {
 		return qnaDao.qnalist(pageNum,limit, searchtype, searchcontent);
 	}
+
+	
 
 
 

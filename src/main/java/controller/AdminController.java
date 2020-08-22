@@ -118,6 +118,8 @@ public class AdminController {
 		@RequestMapping("salesmgr")
 		public ModelAndView check_salesmgr(HttpSession session) {
 			ModelAndView mav = new ModelAndView();
+			List<Buy> list = service.saleslist();
+			mav.addObject("list",list);
 			return mav;
 		}//check_salesmgr
 			

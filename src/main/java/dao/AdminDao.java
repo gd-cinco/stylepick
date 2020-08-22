@@ -139,6 +139,12 @@ public class AdminDao {
 		param.clear();
 		return template.getMapper(AdminMapper.class).boxplot(param);
 	}
+	//salesmgr 매출 관리 0822
+	public List<Buy> saleslist() {
+		// TODO Auto-generated method stub
+		param.clear();
+		return template.getMapper(AdminMapper.class).saleslist(param);
+	}
 
 	
 	

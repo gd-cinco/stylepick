@@ -9,7 +9,7 @@ public class Buy {
 	private String userid;
 	private String name;
 	private String address;
-	private int tel;
+	private long tel;
 	private Date orderdate;
 	private int stat;
 	private int amount;
@@ -20,8 +20,17 @@ public class Buy {
 	private Date regdate;
 	private int category;
 	private String com_name;
+	private String item_name;
+	
+	//오더번호, 판매일, 스토어, 대표 품명, 금액, 상태, 배송지
 	
 	
+	public String getItem_name() {
+		return item_name;
+	}
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
+	}
 	public String getAddress_qu() {
 		int idx = this.address.indexOf("구");
 		String rtn = this.address.substring(0, idx);
@@ -110,10 +119,10 @@ public class Buy {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getTel() {
+	public long getTel() {
 		return tel;
 	}
-	public void setTel(int tel) {
+	public void setTel(long tel) {
 		this.tel = tel;
 	}
 	
@@ -150,15 +159,10 @@ public class Buy {
 		return "Buy [order_no=" + order_no + ", userid=" + userid + ", name=" + name + ", address=" + address + ", tel="
 				+ tel + ", orderdate=" + orderdate + ", stat=" + stat + ", amount=" + amount + ", memo=" + memo
 				+ ", weeks_ago=" + weeks_ago + ", month=" + month + ", regdate=" + regdate + ", category=" + category
-				+ ", com_name=" + com_name + "]";
+				+ ", com_name=" + com_name + ", item_name=" + item_name + "]";
 	}
 	
 
-
-	
-	
-	
-	
 	
 }
 
