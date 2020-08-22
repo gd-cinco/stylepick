@@ -16,6 +16,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import dao.mapper.UserMapper;
+import logic.Buy;
 import logic.User;
 import logic.Userorder;
 
@@ -96,6 +97,10 @@ public class UserDao {
 		return template.getMapper(UserMapper.class).getmyshipping(userid);
 	}
 	
+	public List<Buy> getusersale(String userid) {
+		return template.getMapper(UserMapper.class).getusersale(userid);
+	}
+	
 	//[admin] storelist 스토어 관리 0822
 	public List<User> storelist(String searchtype, String searchcontent) {
 		// TODO Auto-generated method stub
@@ -107,5 +112,7 @@ public class UserDao {
 		}
 		return template.getMapper(UserMapper.class).storelist(null);
 	}
+
+
 
 }

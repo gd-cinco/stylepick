@@ -53,7 +53,44 @@
 			</ul>
 		</div>
 		<div class="order_main">
-				<h1>내용</h1>
+			<div class="order_main_block" style="padding-top: 20px;">
+				<div style="width: 100%;text-align: left;">
+				<a class="order_header">주문내역</a>
+				</div>
+				<!-- 주문별 반복 -->
+				<c:forEach items="${buylist}" var="buy" varStatus="stat">
+				<div class="order_buy">
+					<div>
+						<a class="order_18px">주문일 <fmt:formatDate value="${buy.orderdate}" pattern="yyyy/MM/dd" /></a>
+					</div>
+					<!-- 상품별 반복 -->
+					<c:forEach begin="0" end="1">
+					<div class="order_buyitem">
+						<div class="order_buyitem_left" style="background-color: lime;">
+							<%--상품 이미지 --%>
+						</div>
+						<div class="order_buyitem_center">
+							<div class="order_buyitem_center_text" style="font-size: 25px;">제목</div>
+							<div class="order_buyitem_center_text" style="font-size: 20px;">가격 / 갯수</div>
+						</div>
+						<div class="order_buyitem_right">
+							<div class="order_buyitem_right_text">배송상태</div>
+							<div class="order_buyitem_buttondiv">
+								<button class="order_buyitem_button">교환신청</button>
+							</div>
+							<div class="order_buyitem_buttondiv">
+								<button class="order_buyitem_button">반품신청</button>
+							</div>
+							<div class="order_buyitem_buttondiv">
+								<button class="order_buyitem_button2">한줄평 쓰기</button>
+							</div>
+						</div>
+					</div>
+					</c:forEach>
+				
+				</div>
+				</c:forEach>
+			</div>
 		</div>
 	</div>
 </div>

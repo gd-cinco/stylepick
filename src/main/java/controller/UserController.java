@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import exception.LoginException;
+import logic.Buy;
 import logic.ShopService;
 import logic.User;
 import logic.Userorder;
@@ -148,6 +149,22 @@ public class UserController {
 		
 		List<Userorder> line = service.getline(user.getUserid());
 		mav.addObject("line",line);
+		
+		return mav;
+	}
+	
+	@GetMapping("orderList_order")
+	public ModelAndView checkorderlist_order(String id, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		User user = (User)session.getAttribute("loginUser");
+		mav.addObject("user",user);
+		
+		int shipping = service.getmyshipping(user.getUserid());
+		mav.addObject("shipping",shipping);
+		
+		List<Buy> buylist = service.getusersale(user.getUserid());
+		
+		mav.addObject("buylist",buylist);
 		
 		return mav;
 	}

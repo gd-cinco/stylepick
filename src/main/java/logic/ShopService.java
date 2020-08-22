@@ -120,6 +120,11 @@ public class ShopService {
 		return userDao.getmyshipping(userid);
 	}
 	
+	//[user] 내 주문내역
+	public List<Buy> getusersale(String userid) {
+		return userDao.getusersale(userid);
+	}
+	
 	//[admin] 메일 보낼 유저리스트 0728
 	public List<User> userlist(String[] idchks) {
 		return userDao.list(idchks);
@@ -562,6 +567,8 @@ public class ShopService {
 	 	qnaDao.insert(qna);
 		
 	}
+
+
 
 
 
