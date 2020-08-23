@@ -309,7 +309,8 @@ color: #FE6500 !important;
 .order_buyitem_center_text{
 	width: 100%;
 	border: 1px solid black;
-	text-align: center;
+	text-align: left;
+	padding-left:20px;
 	margin-bottom: 10px;
 }
 .order_buyitem_right{

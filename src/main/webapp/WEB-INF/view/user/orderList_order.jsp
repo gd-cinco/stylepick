@@ -66,12 +66,12 @@
 					<!-- 상품별 반복 -->
 					<c:forEach items="${buy.itemList}" var="buylist">
 					<div class="order_buyitem">
-						<div class="order_buyitem_left" style="background-color: lime;">
+						<div class="order_buyitem_left">
 							<img src="../item/img/${buylist.item.pictureUrl}" style="width: 150px;height: 150px;" id="img">
 						</div>
 						<div class="order_buyitem_center">
 							<div class="order_buyitem_center_text" style="font-size: 25px;">${buylist.item.item_name}</div>
-							<div class="order_buyitem_center_text" style="font-size: 20px;">${buylist.item.price} / ${buylist.quantity}개</div>
+							<div class="order_buyitem_center_text" style="font-size: 20px;">${buylist.item.price}원 / ${buylist.quantity}개</div>
 						</div>
 						<div class="order_buyitem_right">
 							<div class="order_buyitem_right_text">
@@ -84,9 +84,12 @@
 							<div class="order_buyitem_buttondiv">
 								<button class="order_buyitem_button">반품신청</button>
 							</div>
+							<c:if test="${buylist.reviewed==0}">
 							<div class="order_buyitem_buttondiv">
-								<button class="order_buyitem_button2">한줄평 쓰기</button>
+								<button onclick="window.open('../item/line.shop?item_no=${buylist.item.item_no}','','width=800,height=600,top=200,left=400')"
+										 class="order_buyitem_button2">한줄평 쓰기</button>
 							</div>
+							</c:if>
 						</div>
 					</div>
 					</c:forEach>
