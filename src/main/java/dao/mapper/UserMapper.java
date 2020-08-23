@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import logic.Buy;
+import logic.Item;
 import logic.Sale;
 import logic.SaleItem;
 import logic.User;
@@ -81,8 +82,7 @@ public interface UserMapper {
 	@Select("SELECT * FROM buy WHERE userid=#{userid}")
 	List<Sale> getusersale(String userid);
 	
-	//@Select("select * from buy_detail where order_no=#{order_no}")
-	@Select("select order_no,seq,item_no itemid,quantity,item_option,size from buy_detail where order_no=#{order_no}")
+	@Select("select * from buy_detail where order_no=#{order_no}")
 	List<SaleItem> usersalelist(int order_no);
 
 	//[admin] storelist 스토어 관리 0822
@@ -96,5 +96,20 @@ public interface UserMapper {
 		"open='(' close=')'>#{id}</foreach></if>",
 		"</script>"})
 	List<User> storelist(Object object);
+
+	@Select("SELECT * FROM item WHERE userid = #{userid}")
+	List<Item> myitem(String userid);
+
+	@Select("select * from item_qna ")
+	int notmentionedQna(int item_no);
+
+	@Select("SELECT * FROM buy_detail WHERE item_no IN(SELECT item_no FROM item WHERE userid='admin')")
+	List<SaleItem> getmysalelist(String userid);
+
+	@Select("select userid from buy where order_no=#{order_no}")
+	String getbuyerid(int order_no);
+
+	@Select("select stat from buy where order_no=#{order_no}")
+	int getthisstat(int order_no);
 
 }

@@ -571,6 +571,26 @@ public class ShopService {
 		return userDao.getusersalelist(order_no);
 	}
 
+	public List<Item> getmyitem(String userid) {
+		return userDao.getmyitem(userid);
+	}
+
+	public int getNotmentionedQna(int item_no) {
+		return userDao.getNotmentionedQna(item_no);
+	}
+
+	public List<SaleItem> getmysalelist(String userid) {
+		return userDao.getmysalelist(userid);
+	}
+
+	public String getbuyerid(int order_no) {
+		return userDao.getbuyerid(order_no);
+	}
+
+	public int getthisstat(int order_no) {
+		return userDao.getthisstat(order_no);
+	}
+
 
 
 

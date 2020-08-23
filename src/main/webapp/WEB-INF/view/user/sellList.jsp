@@ -33,7 +33,7 @@
 					<td>문의 관리</td>
 				</tr>
 				<tr>
-					<td>5</td>
+					<td>200000</td>
 					<td>10</td>
 					<td>11</td>
 					<td>4</td>
@@ -47,12 +47,64 @@
 		<ul>
 			<li><a class="a_leftdivbtn leftdivbtn_selected2" href="sellList.shop">요약보기</a></li>
 			<li><a class="a_leftdivbtn" href="sellList_item.shop">등록상품</a></li>
-			<li><a class="a_leftdivbtn" href="sellList_list.shop">내 한줄평</a></li>
+			<li><a class="a_leftdivbtn" href="sellList_list.shop">판매내역</a></li>
 			<li><a class="a_leftdivbtn" href="sellList_qna.shop">문의관리</a></li>
 		</ul>
 		</div>
 		<div class="order_main">
-			<h1>내용</h1>
+			<div class="order_main">
+			<div class="order_main_block">
+				<div style="width: 50%; float: left; text-align: left;">
+				<a class="order_header">등록상품</a>
+				</div>
+				<div style="width: 50%;float: left; text-align: right;">
+				<a href="sellList_item.shop">더보기 >></a>
+				</div>
+				<table class="order_table">
+					<tr class="order">
+					<th class="order" style="width: 40%">품목</th>
+					<th class="order" style="width: 20%">가격</th>
+					<th class="order" style="width: 20%">조회수</th>
+					<th class="order" style="width: 20%">미답변문의</th>
+					</tr>
+					<c:forEach items="${sell}" var="item" end="4" varStatus="stat">
+						<tr class="order">
+							<td class="order">${item.item_name}</td>
+							<td class="order">${item.price}</td>
+							<td class="order">${item.readcnt}</td>
+							<td class="order">문의갯수</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+			<div class="order_main_block" style="padding-top: 20px;">
+				<div style="width: 50%; float: left; text-align: left;">
+				<a class="order_header">판매내역</a>
+				</div>
+				<div style="width: 50%;float: left; text-align: right;">
+				<a href="sellList_list.shop">더보기 >></a>
+				</div>
+				<table class="order_table">
+					<tr class="order">
+					<th class="order" style="width: 20%">거래번호</th>
+					<th class="order" style="width: 40%">품목</th>
+					<th class="order" style="width: 20%">구매자</th>
+					<th class="order" style="width: 20%">상태</th>
+					</tr>
+					<c:forEach items="${list}" var="item" end="4" varStatus="stat">
+						<tr class="order">
+							<td class="order">${item.order_no}</td>
+							<td class="order">${item.item.item_name}</td>
+							<td class="order">${item.userid}</td>
+							<td class="order">
+								<c:if test="${item.stat==0}">배송중</c:if>
+								<c:if test="${item.stat==1}">배송완료</c:if>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+		</div>
 		</div>
 	</div>
 </div>

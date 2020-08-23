@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import dao.mapper.UserMapper;
 import logic.Buy;
+import logic.Item;
 import logic.Sale;
 import logic.SaleItem;
 import logic.User;
@@ -117,6 +118,26 @@ public class UserDao {
 			param.put("searchcontent", "%"+searchcontent+"%");
 		}
 		return template.getMapper(UserMapper.class).storelist(null);
+	}
+
+	public List<Item> getmyitem(String userid) {
+		return template.getMapper(UserMapper.class).myitem(userid);
+	}
+
+	public int getNotmentionedQna(int item_no) {
+		return template.getMapper(UserMapper.class).notmentionedQna(item_no);
+	}
+
+	public List<SaleItem> getmysalelist(String userid) {
+		return template.getMapper(UserMapper.class).getmysalelist(userid);
+	}
+
+	public String getbuyerid(int order_no) {
+		return template.getMapper(UserMapper.class).getbuyerid(order_no);
+	}
+
+	public int getthisstat(int order_no) {
+		return template.getMapper(UserMapper.class).getthisstat(order_no);
 	}
 
 }

@@ -8,6 +8,10 @@ public class SaleItem {
 	private Item item;
 	private String item_option;
 	private String size;
+	
+	//변수저장용
+	private String userid;
+	private int stat;
 
 	public SaleItem() {}
 
@@ -75,6 +79,22 @@ public class SaleItem {
 
 	public void setSize(String size) {
 		this.size = size;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public int getStat() {
+		return stat;
+	}
+
+	public void setStat(int stat) {
+		this.stat = stat;
 	}
 
 	@Override

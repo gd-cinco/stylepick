@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import exception.LoginException;
 import logic.Buy;
+import logic.Item;
 import logic.Sale;
 import logic.SaleItem;
 import logic.ShopService;
@@ -168,11 +169,34 @@ public class UserController {
 		for (Sale sale : buylist) {
 			List<SaleItem> temp = service.getusersalelist(sale.getOrder_no());
 			for (SaleItem sale2 : temp) {
-				sale2.setItem(service.getItem(sale2.getItemid()));
+				sale2.setItem(service.getItem(sale2.getItem_no()));
 			}
 			sale.setItemList(temp);
 		}
 		mav.addObject("buylist",buylist);
+		
+		return mav;
+	}
+	
+	@GetMapping("sellList")
+	public ModelAndView checkselllist(String id,HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		User user = (User)session.getAttribute("loginUser");
+		
+		List<Item> sell = service.getmyitem(user.getUserid());
+		for (Item item : sell) {
+			//item.setQna(service.getNotmentionedQna(item.getItem_no()));
+		}
+		List<SaleItem> salelist = service.getmysalelist(user.getUserid());
+		for (SaleItem saleItem : salelist) {
+			saleItem.setUserid(service.getbuyerid(saleItem.getOrder_no()));
+			saleItem.setStat(service.getthisstat(saleItem.getOrder_no()));
+			saleItem.setItem(service.getItem(saleItem.getItem_no()));
+		}
+		
+		
+		mav.addObject("sell",sell);
+		mav.addObject("list",salelist);
 		
 		return mav;
 	}

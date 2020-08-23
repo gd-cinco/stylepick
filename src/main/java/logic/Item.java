@@ -26,10 +26,13 @@ public class Item {
 	//판매자명
 	private String name;
 	
+	//문의
+	private int qna;
 
 	public int getItem_no() {
 		return item_no;
 	}
+	
 	public void setItem_no(int item_no) {
 		this.item_no = item_no;
 	}
@@ -126,11 +129,20 @@ public class Item {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public int getQna() {
+		return qna;
+	}
+	public void setQna(int qna) {
+		this.qna = qna;
+	}
+
 	@Override
 	public String toString() {
 		return "Item [item_no=" + item_no + ", userid=" + userid + ", category=" + category + ", code=" + code
 				+ ", subject=" + subject + ", item_name=" + item_name + ", price=" + price + ", keyword=" + keyword
 				+ ", pictureUrl=" + pictureUrl + ", imgurl=" + imgurl + ", content=" + content + ", regdate=" + regdate
-				+ ", readcnt=" + readcnt + ", item_option=" + item_option + ", size=" + size + ", name=" + name + "]";
+				+ ", readcnt=" + readcnt + ", item_option=" + item_option + ", size=" + size + ", name=" + name
+				+ ", qna=" + qna + "]";
 	}
+
 }
