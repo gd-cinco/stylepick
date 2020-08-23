@@ -12,10 +12,11 @@ public class Sale {
 	private List<SaleItem> itemList = new ArrayList<SaleItem>();
 	private String name;
 	private String address;
-	private long tel;
+	private String tel;
 	private String memo;
+	private long amount;
 
-	public long getTotal() {
+	public long getAmount() {
 		long sum = 0;
 		for(SaleItem si : itemList) {
 			sum += si.getItem().getPrice() * si.getQuantity();
@@ -79,11 +80,11 @@ public class Sale {
 		this.address = address;
 	}
 
-	public long getTel() {
+	public String getTel() {
 		return tel;
 	}
 
-	public void setTel(long tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 
@@ -95,6 +96,12 @@ public class Sale {
 		this.memo = memo;
 	}
 
+	public String getAddress_qu() {
+		int idx = this.address.indexOf("구");
+		String rtn = this.address.substring(0, idx);
+		return rtn;
+	}
+	
 	@Override
 	public String toString() {
 		return "Sale [saleid=" + saleid + ", userid=" + userid + ", saledate=" + saledate + ", user=" + user

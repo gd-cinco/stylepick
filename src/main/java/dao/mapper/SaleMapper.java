@@ -10,15 +10,15 @@ import logic.Sale;
 
 public interface SaleMapper {
 
-	@Select("SELECT IFNULL(MAX(saleid),0) FROM sale")
+	@Select("SELECT IFNULL(MAX(order_no),0) FROM buy")
 	int maxid();
 
-	@Insert("INSERT INTO sale "
-			+ "(saleid, userid, saledate) "
-			+ "VALUES (#{saleid}, #{userid}, NOW()) ")
+	@Insert("INSERT INTO buy "
+			+ "(order_no, userid, orderdate, name, address, tel, stat, amount, memo) "
+			+ "VALUES (#{saleid}, #{userid}, NOW()), #{name}, #{address}, #{tel}, 'wait', #{amount}, #{memo} ")
 	void insert(Sale sale);
 
-	@Select("SELECT * FROM sale WHERE userid = #{userid}")
+	@Select("SELECT * FROM buy WHERE userid = #{userid}")
 	List<Sale> select(Map<String, Object> param);
 
 }

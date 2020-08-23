@@ -6,6 +6,8 @@ public class SaleItem {
 	private int itemid;
 	private int quantity;
 	private Item item;
+	private String item_option;
+	private String size;
 
 	public SaleItem() {}
 
@@ -15,6 +17,8 @@ public class SaleItem {
 		this.item = itemSet.getItem();
 		this.itemid = item.getItem_no();
 		this.quantity = itemSet.getQuantity();
+		this.item_option = itemSet.getItem_option();
+		this.size = itemSet.getSize();
 	}
 
 	public int getSaleid() {
@@ -55,6 +59,22 @@ public class SaleItem {
 
 	public void setItem(Item item) {
 		this.item = item;
+	}
+
+	public String getItem_option() {
+		return item_option;
+	}
+
+	public void setItem_option(String item_option) {
+		this.item_option = item_option;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
 	}
 
 	@Override
