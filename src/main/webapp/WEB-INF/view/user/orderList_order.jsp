@@ -36,7 +36,7 @@
 				</tr>
 				<tr>
 					<td>${shipping}</td>
-					<td>10</td>
+					<td>${notmentioned}</td>
 					<td>11</td>
 				</tr>
 			</table>
@@ -67,7 +67,7 @@
 					<c:forEach items="${buy.itemList}" var="buylist">
 					<div class="order_buyitem">
 						<div class="order_buyitem_left" style="background-color: lime;">
-							<%--상품 이미지 --%>
+							<img src="../item/img/${buylist.item.pictureUrl}" style="width: 150px;height: 150px;" id="img">
 						</div>
 						<div class="order_buyitem_center">
 							<div class="order_buyitem_center_text" style="font-size: 25px;">${buylist.item.item_name}</div>

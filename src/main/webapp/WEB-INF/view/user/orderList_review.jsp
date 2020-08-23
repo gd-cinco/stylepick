@@ -36,7 +36,7 @@
 				</tr>
 				<tr>
 					<td>${shipping}</td>
-					<td>10</td>
+					<td>${notmentioned}</td>
 					<td>11</td>
 				</tr>
 			</table>

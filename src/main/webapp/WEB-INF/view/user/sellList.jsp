@@ -52,7 +52,6 @@
 		</ul>
 		</div>
 		<div class="order_main">
-			<div class="order_main">
 			<div class="order_main_block">
 				<div style="width: 50%; float: left; text-align: left;">
 				<a class="order_header">등록상품</a>
@@ -72,7 +71,7 @@
 							<td class="order">${item.item_name}</td>
 							<td class="order">${item.price}</td>
 							<td class="order">${item.readcnt}</td>
-							<td class="order">문의갯수</td>
+							<td class="order"><%-- ${item.qna} --%>문의갯수</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -104,7 +103,6 @@
 					</c:forEach>
 				</table>
 			</div>
-		</div>
 		</div>
 	</div>
 </div>

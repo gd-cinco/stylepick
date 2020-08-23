@@ -339,6 +339,7 @@ color: #FE6500 !important;
 	color:#35C5F0;
 	font-weight:bold;
 	border-radius: 6px;
+	cursor: pointer;
 }
 .order_buyitem_button2{
 	width:80%;
@@ -347,4 +348,14 @@ color: #FE6500 !important;
 	color:white;
 	font-weight:bold;
 	border-radius: 6px;
+	cursor: pointer;
+}
+.order_buyitem_button3{
+	width:80%;
+	border: 2px solid white;
+	background-color:#FE6500;
+	color:white;
+	font-weight:bold;
+	border-radius: 6px;
+	cursor: pointer;
 }

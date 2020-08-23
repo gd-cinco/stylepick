@@ -24,6 +24,11 @@ public class LineDao { //한줄평
 	public int maxnum() {
 		return template.getMapper(LineMapper.class).maxnum();
 	}
+
+	//[user] 쓰지않은 한줄평 카운트 
+	public int getNotMentionedCount(String userid) {
+		return template.getMapper(LineMapper.class).notMentionedCount(userid);
+	}
 	
 	
 }

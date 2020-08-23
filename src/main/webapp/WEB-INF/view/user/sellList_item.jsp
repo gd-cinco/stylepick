@@ -7,6 +7,14 @@
 <meta charset="UTF-8">
 <title>주문내역조회</title>
 <link rel="stylesheet" href="../assets/css/user.css">
+<script type="text/javascript">
+	function enter(f){
+		f.style.backgroundColor='#f5f6f7';
+	}
+	function leave(f){
+		f.style.backgroundColor='white';
+	}
+</script>
 </head>
 <body>
 <div class="center" style="max-width: 900px;">
@@ -42,17 +50,41 @@
 		</div>
 	</div>
 	</div>
-	<div style="height: 200px;">
+	<div class="order_downview">
 		<div class="order_leftdiv">
 		<ul>
-			<li><a class="a_leftdivbtn leftdivbtn_selected2" href="sellList.shop">요약보기</a></li>
-			<li><a class="a_leftdivbtn" href="sellList_item.shop">등록상품</a></li>
-			<li><a class="a_leftdivbtn" href="sellList_list.shop">내 한줄평</a></li>
+			<li><a class="a_leftdivbtn" href="sellList.shop">요약보기</a></li>
+			<li><a class="a_leftdivbtn leftdivbtn_selected2" href="sellList_item.shop">등록상품</a></li>
+			<li><a class="a_leftdivbtn" href="sellList_list.shop">판매내역</a></li>
 			<li><a class="a_leftdivbtn" href="sellList_qna.shop">문의관리</a></li>
 		</ul>
 		</div>
 		<div class="order_main">
-			<h1>내용</h1>
+			<div class="order_main_block">
+				<div style="width: 100%;text-align: left;">
+				<a class="order_header">주문내역</a>
+				</div>
+					<c:forEach items="${sell}" var="item">
+					<div class="order_buyitem" onmouseenter="enter(this)" onmouseleave="leave(this)">
+						<div class="order_buyitem_left" style="cursor: pointer;" onclick="location.href='../item/detail.shop?item_no=${item.item_no}'">
+							<img src="../item/img/${item.pictureUrl}" style="width: 150px;height: 150px;" id="img">
+						</div>
+						<div class="order_buyitem_center" style="cursor: pointer;" onclick="location.href='../item/detail.shop?item_no=${item.item_no}'">
+							<div class="order_buyitem_center_text" style="font-size: 25px;">${item.item_name}</div>
+							<div class="order_buyitem_center_text" style="font-size: 20px;">${item.price}원</div>
+							<div class="order_buyitem_center_text" style="font-size: 15px;"><%-- ${item.qna} --%>문의</div>
+						</div>
+						<div class="order_buyitem_right">
+							<div class="order_buyitem_buttondiv">
+								<button class="order_buyitem_button3" onclick="location.href='../item/update.shop?item_no=${item.item_no}'">수정</button>
+							</div>
+							<div class="order_buyitem_buttondiv">
+								<button class="order_buyitem_button3" onclick="location.href='../item/delete.shop?item_no=${item.item_no}'">삭제</button>
+							</div>
+						</div>
+					</div>
+					</c:forEach>
+			</div>
 		</div>
 	</div>
 </div>

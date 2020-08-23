@@ -591,12 +591,8 @@ public class ShopService {
 		return userDao.getthisstat(order_no);
 	}
 
-
-
-
-
-
-
-
+	public int getNotMentionedCount(String userid) {
+		return lineDao.getNotMentionedCount(userid);
+	}
 
 }

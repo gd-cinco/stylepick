@@ -139,13 +139,15 @@ public class UserController {
 	}
 	
 	@GetMapping("orderList")
-	public ModelAndView checkorderList(String id, HttpSession session) {
+	public ModelAndView loginCheckorderList(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = (User)session.getAttribute("loginUser");
 		mav.addObject("user",user);
 		
 		int shipping = service.getmyshipping(user.getUserid());
 		mav.addObject("shipping",shipping);
+		int notMentioned = service.getNotMentionedCount(user.getUserid());
+		mav.addObject("notmentioned",notMentioned);
 		
 		List<Userorder> order = service.getUserOrder(user.getUserid());
 		mav.addObject("order",order);
@@ -157,14 +159,11 @@ public class UserController {
 	}
 	
 	@GetMapping("orderList_order")
-	public ModelAndView checkorderlist_order(String id, HttpSession session) {
+	public ModelAndView loginCheckorderlist_order(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = (User)session.getAttribute("loginUser");
-		mav.addObject("user",user);
-		
 		int shipping = service.getmyshipping(user.getUserid());
-		mav.addObject("shipping",shipping);
-		
+		int notMentioned = service.getNotMentionedCount(user.getUserid());
 		List<Sale> buylist = service.getusersale(user.getUserid());
 		for (Sale sale : buylist) {
 			List<SaleItem> temp = service.getusersalelist(sale.getOrder_no());
@@ -173,13 +172,30 @@ public class UserController {
 			}
 			sale.setItemList(temp);
 		}
+
+
+		mav.addObject("notmentioned",notMentioned);
+		mav.addObject("user",user);
+		mav.addObject("shipping",shipping);
 		mav.addObject("buylist",buylist);
+		return mav;
+	}
+	
+	@GetMapping("orderList_review")
+	public ModelAndView loginCheckOrderlistReview(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		User user = (User)session.getAttribute("loginUser");
+		int shipping = service.getmyshipping(user.getUserid());
+		mav.addObject("shipping",shipping);
+		int notMentioned = service.getNotMentionedCount(user.getUserid());
+		mav.addObject("notmentioned",notMentioned);
 		
+		mav.addObject("user",user);
 		return mav;
 	}
 	
 	@GetMapping("sellList")
-	public ModelAndView checkselllist(String id,HttpSession session) {
+	public ModelAndView loginCheckselllist(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = (User)session.getAttribute("loginUser");
 		
@@ -194,15 +210,26 @@ public class UserController {
 			saleItem.setItem(service.getItem(saleItem.getItem_no()));
 		}
 		
-		
+		mav.addObject("user",user);
 		mav.addObject("sell",sell);
 		mav.addObject("list",salelist);
 		
 		return mav;
 	}
+	@GetMapping("sellList_item")
+	public ModelAndView loginChecksell_order(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		User user = (User)session.getAttribute("loginUser");
+		mav.addObject("user",user);
+		
+		List<Item> sell = service.getmyitem(user.getUserid());
+		mav.addObject("sell",sell);
+		
+		return mav;
+	}
 	
 	@GetMapping(value = {"orderList*","sellList*"})
-	public ModelAndView checksessionview(HttpSession session){
+	public ModelAndView loginChecksessionview(HttpSession session){
 		ModelAndView mav = new ModelAndView();
 		User user = (User)session.getAttribute("loginUser");
 		mav.addObject("user",user);
