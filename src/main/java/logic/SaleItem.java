@@ -8,6 +8,7 @@ public class SaleItem {
 	private Item item;
 	private String item_option;
 	private String size;
+	private int reviewed;
 	
 	//변수저장용
 	private String userid;
@@ -96,11 +97,23 @@ public class SaleItem {
 	public void setStat(int stat) {
 		this.stat = stat;
 	}
+	
+
+	public int getReviewed() {
+		return reviewed;
+	}
+
+	public void setReviewed(int reviewed) {
+		this.reviewed = reviewed;
+	}
 
 	@Override
 	public String toString() {
 		return "SaleItem [order_no=" + order_no + ", seq=" + seq + ", item_no=" + item_no + ", quantity=" + quantity
-				+ ", item=" + item + ", item_option=" + item_option + ", size=" + size + "]";
+				+ ", item=" + item + ", item_option=" + item_option + ", size=" + size + ", reviewed=" + reviewed
+				+ ", userid=" + userid + ", stat=" + stat + "]";
 	}
+
+	
 	
 }

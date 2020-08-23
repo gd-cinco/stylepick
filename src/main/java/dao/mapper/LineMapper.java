@@ -13,9 +13,7 @@ public interface LineMapper {
 	@Select("select ifnull(max(line_no),0) from line")
 	int maxnum();
 
-	@Select("SELECT count(*) FROM buy_detail d LEFT JOIN line l ON d.order_no=l.order_no"
-			+ " AND d.seq=l.seq WHERE l.line_no IS NULL AND d.order_no"
-			+ " IN(SELECT order_no FROM buy WHERE userid=#{userid})")
+	@Select("SELECT count(*) from buy_detail where reviewed=0 and order_no in(select order_no from buy where userid=#{userid})")
 	int notMentionedCount(String userid);
 
 }

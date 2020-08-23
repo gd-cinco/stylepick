@@ -324,6 +324,7 @@ public class ShopService {
 		int max= lineDao.maxnum();
 		line.setLine_no(++max);
 		lineDao.insert(line);
+		saleItemDao.reviewed(line.getOrder_no(),line.getSeq());
 	}
 	
 	
