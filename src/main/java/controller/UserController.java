@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -190,6 +192,15 @@ public class UserController {
 		int notMentioned = service.getNotMentionedCount(user.getUserid());
 		mav.addObject("notmentioned",notMentioned);
 		
+		List<SaleItem> sale = service.getusersaleitem(user.getUserid());
+		List<Date> orderdate = new ArrayList<Date>();
+		for (SaleItem saleItem : sale) {
+			saleItem.setItem(service.getItem(saleItem.getItem_no()));
+			orderdate.add(service.getorderdate(saleItem.getOrder_no()));
+		}
+		
+		mav.addObject("orderdate",orderdate);
+		mav.addObject("sale",sale);
 		mav.addObject("user",user);
 		return mav;
 	}

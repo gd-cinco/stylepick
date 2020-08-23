@@ -6,6 +6,13 @@
 	border: 3px solid #bcbcbc;
 	text-align: center;
 }
+.order2{
+	border-top:2px solid black;
+	text-align: center;
+	font-weight: bold;
+	font-size: 16px;
+	height: 30px;
+}
 .blacka{
 	color:black !important;
 }
@@ -216,6 +223,7 @@
 	padding-right: 20px;
 	font-weight: bold;
 }
+
 .user-imgdiv{
 display: inline;
 float: left;
@@ -294,6 +302,8 @@ color: #FE6500 !important;
 	height: 170px;
 	background-color: white;
 	padding: 10px;
+	border-bottom: 1px solid gray;
+	border-top : 1px solid gray;
 }
 .order_buyitem_left{
 	width: 150px;
@@ -308,9 +318,9 @@ color: #FE6500 !important;
 }
 .order_buyitem_center_text{
 	width: 100%;
-	border: 1px solid black;
-	text-align: center;
-	margin-bottom: 10px;
+	text-align: left;
+	padding-left:20px;
+	margin-bottom: 3px;
 }
 .order_buyitem_right{
 	height: 150px;
