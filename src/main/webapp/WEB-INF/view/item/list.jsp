@@ -38,7 +38,7 @@
 		var category = ${param.category};
 	</c:if>
 	<c:if test="${empty param.category}">
-		var category = null;
+		var category = "";
 	</c:if>
 	
 	$(function(){
