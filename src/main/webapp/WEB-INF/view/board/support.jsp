@@ -52,7 +52,7 @@
       </div>
       <div align="center" style="margin-bottom: 30px">
         <button type="button" class="btn btn-secondary" onclick="location.href='${path}/user/login.shop'">회원</button>
-        <button type="button" class="btn btn-primary" onclick="location.href='${path}/board/addqna.shop'">비회원</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='${path}/board/add.shop?t=q'">비회원</button>
       </div>
     </div>
   </div>

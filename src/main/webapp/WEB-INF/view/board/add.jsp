@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FAQ 등록</title>
+<title>${title} 등록</title>
 </head>
 <body>
 	<div class="row">
 		<div class="col-lg-8 col-md-8">
-			<h3 class="mb-30">FAQ 등록</h3>
+			<h3 class="mb-30">${title} 등록</h3>
 			<form:form modelAttribute="board" action="write.shop" enctype="multipart/form-data" name="f">
 				<div class="mt-10">
 					<input type="text" name="title" placeholder="제목"
@@ -50,7 +50,7 @@
 				<input type="file">
 			</div>
 			<div class="single-element-widget mt-30">
-				<a onclick="#" class="genric-btn danger">등록하기</a>
+				<a href="#" onclick="document.getElementById('.f').submit()" class="genric-btn danger">등록하기</a>
 			</div>
 		</div>
 	</div>

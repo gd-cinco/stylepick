@@ -292,7 +292,9 @@
 	<script src="${path}/assets/js/jquery.sticky.js"></script>
         
 	<!-- contact js -->
+<c:if test="${!fn:contains(path2,'board')}" >
 	<script src="${path}/assets/js/contact.js"></script>
+</c:if>
 	<script src="${path}/assets/js/jquery.form.js"></script>
 	<script src="${path}/assets/js/jquery.validate.min.js"></script>
 	<script src="${path}/assets/js/mail-script.js"></script>

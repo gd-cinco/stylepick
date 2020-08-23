@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -10,25 +9,35 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 <body>
-	<div style="margin: 10px; width: 80%">
-	<h1>${board.title}</h1>
-	<b>작성자</b>&nbsp;&nbsp;:&nbsp;&nbsp;${board.author}
-	<br><b>등록일</b>&nbsp;&nbsp;:&nbsp;&nbsp;${board.regtime}
-	<br><b>내용</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;
-	${board.content}
-	<br><b>파일</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;
-	${board.file1}
-	</div>
-	<div style="margin: 10px; width: 80%">
-	<c:if test="${board.seq == 2}">
-			<br><h4>답글</h4>
-			<input type="text" name="first_name" placeholder="내용"
-				onfocus="this.placeholder = ''" onblur="this.placeholder = '내용'"
-				required class="single-input"> 
-				<a href="#" class="genric-btn danger">답글등록</a>
+	<div style="width: 86%; margin-left: 65px;">
+		<br><br>
+		<div class="blog_details">
+			<h2>[${type.title}] ${board.title}</h2>
+			<ul class="blog-info-link mt-3 mb-4">
+				<li><a href="#"><i class="fa fa-user"></i> ${board.author}</a></li>
+				<li> ${board.regtime}</li>
+			</ul>
+			<p class="excert">${board.content}</p>
+			<c:if test="${!empty board.file1}"><br><br>첨부파일 : <a>${board.file1}</a></c:if>
+			<br><br>
+			<a href="${path}/board/${type.uri}" class="genric-btn info radius">목록</a>
+			<a href="${path}/board/update${type.uri}?no=${param.no}" class="genric-btn info radius">수정</a>
+			<a href="${path}/board/delete?no=${param.no}" class="genric-btn info radius">삭제</a>
+		</div>
 		
+	<c:if test="${board.seq != 1}">
+		<div class="blog_details">
+			<h2>댓글</h2>
+			<br>
+			<c:forEach begin="1" end="3">
+			내용
+			<ul class="blog-info-link mb-4">
+				<li><a href="#"><i class="fa fa-user"></i> ${board.author}</a></li>
+				<li> ${board.regtime}</li>
+			</ul>
+			</c:forEach>
+		</div>
 	</c:if>
-	<br><br><a href="#" class="genric-btn danger">삭제하기</a>
 	</div>
 </body>
 </html>

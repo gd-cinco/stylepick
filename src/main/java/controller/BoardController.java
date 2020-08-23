@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,21 +25,42 @@ public class BoardController {
 	private ShopService service;
 	
 	@GetMapping("*")
-	public ModelAndView getBoard(Integer no, HttpServletRequest request) {
+	public ModelAndView getBoard(Integer no, String t, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		Board board = null;
 		
 		if (no == null) {
 			board = new Board();
+			String title = "";
+			if (t != null) {
+				switch (t) {
+				case "n": title = "공지사항"; break;
+				case "q": title = "QnA"; break;
+				case "f": title = "FAQ"; break;
+				default : System.out.println("unkown BoardType!!");
+				}
+				mav.addObject("title", title);
+			}
 		} else {
 			boolean readcntable = false;
 			if (request.getRequestURI().contains("detail.shop")) {
 				readcntable = true;
 			}
 			board = service.getBoard(no, readcntable);
-		}
-		mav.addObject("board", board);
+			
+			Map<String, String> map = new HashMap<String, String>();
+			switch (board.getSeq()) {
+			case 1: map.put("title", "공지사항"); map.put("uri", "notice.shop"); break;
+			case 2: map.put("title", "QnA"); map.put("uri", "qna.shop"); break;
+			case 3: map.put("title", "FAQ"); map.put("uri", "faq.shop"); break;
+			default: System.out.println("unkown BoardType!!");
+			}
 
+			mav.addObject("type", map);
+		}
+		
+		mav.addObject("board", board);
+		
 		return mav;
 	}
 
