@@ -1,6 +1,7 @@
 package logic;
 
 import java.io.File;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -594,6 +595,14 @@ public class ShopService {
 
 	public int getNotMentionedCount(String userid) {
 		return lineDao.getNotMentionedCount(userid);
+	}
+
+	public List<SaleItem> getusersaleitem(String userid) {
+		return userDao.getusersaleitem(userid);
+	}
+
+	public Date getorderdate(int order_no) {
+		return userDao.getorderdate(order_no);
 	}
 
 }

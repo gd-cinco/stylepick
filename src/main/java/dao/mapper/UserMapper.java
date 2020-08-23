@@ -1,5 +1,6 @@
 package dao.mapper;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -111,5 +112,11 @@ public interface UserMapper {
 
 	@Select("select stat from buy where order_no=#{order_no}")
 	int getthisstat(int order_no);
+	
+	@Select("select * from buy_detail where order_no in(select order_no from buy where userid=#{userid})")
+	List<SaleItem> getusersaleItem(String userid);
+
+	@Select("select orderdate from buy where order_no=#{order_no}")
+	Date getorderdate(int order_no);
 
 }

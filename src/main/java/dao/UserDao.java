@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -138,6 +139,14 @@ public class UserDao {
 
 	public int getthisstat(int order_no) {
 		return template.getMapper(UserMapper.class).getthisstat(order_no);
+	}
+
+	public List<SaleItem> getusersaleitem(String userid) {
+		return template.getMapper(UserMapper.class).getusersaleItem(userid);
+	}
+
+	public Date getorderdate(int order_no) {
+		return template.getMapper(UserMapper.class).getorderdate(order_no);
 	}
 
 }

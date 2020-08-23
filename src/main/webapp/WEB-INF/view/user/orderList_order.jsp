@@ -32,12 +32,12 @@
 				<tr>
 					<td>배송중</td>
 					<td>쓰지않은 한줄평</td>
-					<td>최근 본 상품</td>
+					<td style="color: red;">최근 본 상품</td>
 				</tr>
 				<tr>
 					<td>${shipping}</td>
 					<td>${notmentioned}</td>
-					<td>11</td>
+					<td style="color: red;">11</td>
 				</tr>
 			</table>
 		</div>
