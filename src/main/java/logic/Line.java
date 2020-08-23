@@ -11,6 +11,7 @@ public class Line {
 	private Date regdate;	//등록시간
 	
 	private int order_no;
+	private int seq;
 
 	public int getLine_no() {
 		return line_no;
@@ -67,18 +68,24 @@ public class Line {
 	public void setOrder_no(int order_no) {
 		this.order_no = order_no;
 	}
+	
+
+	public int getSeq() {
+		return seq;
+	}
+
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
 
 	@Override
 	public String toString() {
 		return "Line [line_no=" + line_no + ", item_no=" + item_no + ", userid=" + userid + ", content=" + content
-				+ ", evaluation=" + evaluation + ", regdate=" + regdate + ", order_no=" + order_no + "]";
+				+ ", evaluation=" + evaluation + ", regdate=" + regdate + ", order_no=" + order_no + ", seq=" + seq
+				+ "]";
 	}
-	
-	
-
 
 	
-
 
 
 	
