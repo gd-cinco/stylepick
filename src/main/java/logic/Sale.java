@@ -41,12 +41,12 @@ public class Sale {
 		this.userid = userid;
 	}
 
-	public Date getSaledate() {
+	public Date getOrderdate() {
 		return orderdate;
 	}
 
-	public void setSaledate(Date saledate) {
-		this.orderdate = saledate;
+	public void setOrderdate(Date orderdate) {
+		this.orderdate = orderdate;
 	}
 
 	public User getUser() {

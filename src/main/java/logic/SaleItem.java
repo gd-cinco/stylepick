@@ -11,8 +11,8 @@ public class SaleItem {
 
 	public SaleItem() {}
 
-	public SaleItem(int saleid, int seq, ItemSet itemSet) {
-		this.order_no = saleid;
+	public SaleItem(int order_no, int seq, ItemSet itemSet) {
+		this.order_no = order_no;
 		this.seq = seq;
 		this.item = itemSet.getItem();
 		this.item_no = item.getItem_no();
@@ -21,12 +21,20 @@ public class SaleItem {
 		this.size = itemSet.getSize();
 	}
 
-	public int getSaleid() {
+	public int getOrder_no() {
 		return order_no;
 	}
 
-	public void setSaleid(int saleid) {
-		this.order_no = saleid;
+	public void setOrder_no(int order_no) {
+		this.order_no = order_no;
+	}
+
+	public int getItem_no() {
+		return item_no;
+	}
+
+	public void setItem_no(int item_no) {
+		this.item_no = item_no;
 	}
 
 	public int getSeq() {
@@ -35,14 +43,6 @@ public class SaleItem {
 
 	public void setSeq(int seq) {
 		this.seq = seq;
-	}
-
-	public int getItemid() {
-		return item_no;
-	}
-
-	public void setItemid(int itemid) {
-		this.item_no = itemid;
 	}
 
 	public int getQuantity() {
