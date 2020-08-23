@@ -23,15 +23,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import exception.ItemEmptyException;
 import logic.Board;
 import logic.Comment;
 import logic.GoogleChartService;
 import logic.Item;
 import logic.Line;
+import logic.Qna;
 import logic.ShopService;
 import logic.Sns;
 import logic.Todolist;
@@ -543,6 +546,43 @@ public class AjaxController {
 		}
 	}
 	
-
+	@RequestMapping(value="qna", produces="text/plain; charset=UTF8")
+	public ModelAndView detail(Integer item_no,Integer qna_no,HttpServletRequest request,Integer pageNum,String searchtype, String searchcontent) {
+		ModelAndView mav =new ModelAndView();
 	
+		Qna qna=new Qna();
+		mav.addObject("qna",qna);
+	
+		
+		if(pageNum==null || pageNum.toString().equals("")){
+			pageNum=1;
+		}
+		if(searchtype == null || searchcontent == null ||searchtype.trim().equals("") || searchcontent.trim().equals("")) {
+			searchtype =null;
+			searchcontent =null;
+		}
+		int limit = 6;
+		int listcount = service.qnacount(searchtype,searchcontent);
+		List<Qna> qnalist = service.qnalist(pageNum, limit,searchtype,searchcontent,item_no);
+		int maxpage = (int) ((double) listcount / limit + 0.95);
+		int startpage = ((int) (pageNum / 10.0 + 0.9) - 1) * 10 + 1;// 시작페이지번호
+		int endpage = startpage + 9;// 종료페이지 번호
+
+		if (endpage > maxpage) endpage = maxpage;
+		int qnano = listcount - (pageNum - 1) * limit;
+	
+		
+		mav.addObject("listcount",listcount);
+		mav.addObject("qnalist",qnalist);
+		mav.addObject("pageNum",pageNum);
+		mav.addObject("qnano",qnano);
+		mav.addObject("startpage",startpage);
+		mav.addObject("maxpage",maxpage);
+		mav.addObject("endpage",endpage);
+		mav.addObject("today",new SimpleDateFormat("yyyyMMdd").format(new Date()));
+		
+		
+		
+		return mav;
+	}
 }

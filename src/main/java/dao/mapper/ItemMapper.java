@@ -21,8 +21,8 @@ public interface ItemMapper {
 	@Select({"<script>",
 		"select * from item",
 		"<if test='item_no != null'> where item_no=#{item_no} </if>",
-		"<if test='category != null'> where category=#{category} </if>",
-//		" limit #{startrow}, #{limit} ",
+		"<if test='category != null'> where category=#{category} and limit #{startrow}, #{limit} </if>",
+
 		"</script>"})
 	List<Item> select(Map<String, Object> param);
 

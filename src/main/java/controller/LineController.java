@@ -2,6 +2,8 @@ package controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -35,7 +37,16 @@ public class LineController {
 		}
 		try {
 			service.lineWrite(line,request);  //팝업창  없애고 새로고침
-			mav.setViewName("redirect:/item/list.shop");
+			Map<Integer, String> ratingOptions = new HashMap<Integer, String>();
+		
+			ratingOptions.put(0, "☆☆☆☆☆");
+			ratingOptions.put(1, "★☆☆☆☆");
+			ratingOptions.put(2, "★★☆☆☆");
+			ratingOptions.put(3, "★★★☆☆");
+			ratingOptions.put(4, "★★★★☆");
+			ratingOptions.put(5, "★★★★★");
+			mav.addObject("ratingOptions", ratingOptions);
+			mav.setViewName("redirect:/item/line.shop");
 		}catch(Exception e) {
 			e.printStackTrace();
 			throw new LineException("게시물 등록에 실패!","line.shop"); //

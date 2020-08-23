@@ -10,8 +10,8 @@ public class Line {
 	private long evaluation;	//평점
 	private Date regdate;	//등록시간
 	
-	private int order_no;
-	private int seq;
+	private int order_no;  //sale
+	private int seq;		//saleitem
 
 	public int getLine_no() {
 		return line_no;
