@@ -11,7 +11,6 @@ public class ItemSet {
 		this.quantity=quantity;
 		this.item_option=item_option;
 		this.size=size;
-		
 	}
 	public Item getItem() {
 		return item;

@@ -15,7 +15,7 @@ public interface SaleMapper {
 
 	@Insert("INSERT INTO buy "
 			+ "(order_no, userid, orderdate, name, address, tel, stat, amount, memo) "
-			+ "VALUES (#{saleid}, #{userid}, NOW()), #{name}, #{address}, #{tel}, 'wait', #{amount}, #{memo} ")
+			+ "VALUES (#{order_no}, #{userid}, NOW()), #{name}, #{address}, #{tel}, 'wait', #{amount}, #{memo} ")
 	void insert(Sale sale);
 
 	@Select("SELECT * FROM buy WHERE userid = #{userid}")

@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Sale {
-	private int saleid;
+	private int order_no;
 	private String userid;
 	private Date saledate;
 	private User user;
@@ -15,6 +15,7 @@ public class Sale {
 	private String tel;
 	private String memo;
 	private long amount;
+	private String stat;
 
 	public long getAmount() {
 		long sum = 0;
@@ -24,12 +25,12 @@ public class Sale {
 		return sum;
 	}
 
-	public int getSaleid() {
-		return saleid;
+	public int getOrder_no() {
+		return order_no;
 	}
 
-	public void setSaleid(int saleid) {
-		this.saleid = saleid;
+	public void setOrder_no(int order_no) {
+		this.order_no = order_no;
 	}
 
 	public String getUserid() {
@@ -96,6 +97,14 @@ public class Sale {
 		this.memo = memo;
 	}
 
+	public String getStat() {
+		return stat;
+	}
+
+	public void setStat(String stat) {
+		this.stat = stat;
+	}
+
 	public String getAddress_qu() {
 		int idx = this.address.indexOf("구");
 		String rtn = this.address.substring(0, idx);
@@ -104,7 +113,7 @@ public class Sale {
 	
 	@Override
 	public String toString() {
-		return "Sale [saleid=" + saleid + ", userid=" + userid + ", saledate=" + saledate + ", user=" + user
+		return "Sale [order_no=" + order_no + ", userid=" + userid + ", saledate=" + saledate + ", user=" + user
 				+ ", itemList=" + itemList + ", name=" + name + ", address=" + address + ", tel=" + tel + ", memo="
 				+ memo + "]";
 	}

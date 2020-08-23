@@ -516,7 +516,7 @@ public class ShopService {
 
 	public Sale checkend(Sale sale, Cart cart, User loginUser) {
 		int maxno = saleDao.getMaxSaleid();
-		sale.setSaleid(++maxno);
+		sale.setOrder_no(++maxno);
 		sale.setUser(loginUser);
 		sale.setUserid(loginUser.getUserid());
 		
@@ -526,7 +526,7 @@ public class ShopService {
 		int seq = 0;
 		for(ItemSet itemSet : itemList) {
 			++seq;
-			SaleItem saleItem = new SaleItem(sale.getSaleid(), seq, itemSet);
+			SaleItem saleItem = new SaleItem(sale.getOrder_no(), seq, itemSet);
 			sale.getItemList().add(saleItem);
 			saleItemDao.insert(saleItem);
 		}
