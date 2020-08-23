@@ -7,7 +7,7 @@ import java.util.List;
 public class Sale {
 	private int order_no;
 	private String userid;
-	private Date saledate;
+	private Date orderdate;
 	private User user;
 	private List<SaleItem> itemList = new ArrayList<SaleItem>();
 	private String name;
@@ -42,11 +42,11 @@ public class Sale {
 	}
 
 	public Date getSaledate() {
-		return saledate;
+		return orderdate;
 	}
 
 	public void setSaledate(Date saledate) {
-		this.saledate = saledate;
+		this.orderdate = saledate;
 	}
 
 	public User getUser() {
@@ -110,12 +110,12 @@ public class Sale {
 		String rtn = this.address.substring(0, idx);
 		return rtn;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Sale [order_no=" + order_no + ", userid=" + userid + ", saledate=" + saledate + ", user=" + user
+		return "Sale [order_no=" + order_no + ", userid=" + userid + ", orderdate=" + orderdate + ", user=" + user
 				+ ", itemList=" + itemList + ", name=" + name + ", address=" + address + ", tel=" + tel + ", memo="
-				+ memo + "]";
+				+ memo + ", amount=" + getAmount() + ", stat=" + stat + "]";
 	}
-	
+
 }

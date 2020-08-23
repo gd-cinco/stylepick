@@ -1,9 +1,9 @@
 package logic;
 
 public class SaleItem {
-	private int saleid;
+	private int order_no;
 	private int seq;
-	private int itemid;
+	private int item_no;
 	private int quantity;
 	private Item item;
 	private String item_option;
@@ -12,21 +12,21 @@ public class SaleItem {
 	public SaleItem() {}
 
 	public SaleItem(int saleid, int seq, ItemSet itemSet) {
-		this.saleid = saleid;
+		this.order_no = saleid;
 		this.seq = seq;
 		this.item = itemSet.getItem();
-		this.itemid = item.getItem_no();
+		this.item_no = item.getItem_no();
 		this.quantity = itemSet.getQuantity();
 		this.item_option = itemSet.getItem_option();
 		this.size = itemSet.getSize();
 	}
 
 	public int getSaleid() {
-		return saleid;
+		return order_no;
 	}
 
 	public void setSaleid(int saleid) {
-		this.saleid = saleid;
+		this.order_no = saleid;
 	}
 
 	public int getSeq() {
@@ -38,11 +38,11 @@ public class SaleItem {
 	}
 
 	public int getItemid() {
-		return itemid;
+		return item_no;
 	}
 
 	public void setItemid(int itemid) {
-		this.itemid = itemid;
+		this.item_no = itemid;
 	}
 
 	public int getQuantity() {
@@ -79,9 +79,8 @@ public class SaleItem {
 
 	@Override
 	public String toString() {
-		return "SaleItem [saleid=" + saleid + ", seq=" + seq + ", itemid=" + itemid + ", quantity=" + quantity
-				+ ", item=" + item + "]";
+		return "SaleItem [order_no=" + order_no + ", seq=" + seq + ", item_no=" + item_no + ", quantity=" + quantity
+				+ ", item=" + item + ", item_option=" + item_option + ", size=" + size + "]";
 	}
-	
 	
 }
