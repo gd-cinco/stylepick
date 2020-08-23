@@ -121,7 +121,7 @@ public class ShopService {
 	}
 	
 	//[user] 내 주문내역
-	public List<Buy> getusersale(String userid) {
+	public List<Sale> getusersale(String userid) {
 		return userDao.getusersale(userid);
 	}
 	
@@ -565,6 +565,10 @@ public class ShopService {
 		qna.setGrpstep(qna.getGrpstep() +1);
 	 	qnaDao.insert(qna);
 		
+	}
+
+	public List<SaleItem> getusersalelist(int order_no) {
+		return userDao.getusersalelist(order_no);
 	}
 
 

@@ -21,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import exception.LoginException;
 import logic.Buy;
+import logic.Sale;
+import logic.SaleItem;
 import logic.ShopService;
 import logic.User;
 import logic.Userorder;
@@ -162,8 +164,14 @@ public class UserController {
 		int shipping = service.getmyshipping(user.getUserid());
 		mav.addObject("shipping",shipping);
 		
-		List<Buy> buylist = service.getusersale(user.getUserid());
-		
+		List<Sale> buylist = service.getusersale(user.getUserid());
+		for (Sale sale : buylist) {
+			List<SaleItem> temp = service.getusersalelist(sale.getOrder_no());
+			for (SaleItem sale2 : temp) {
+				sale2.setItem(service.getItem(sale2.getItemid()));
+			}
+			sale.setItemList(temp);
+		}
 		mav.addObject("buylist",buylist);
 		
 		return mav;

@@ -17,6 +17,8 @@ import org.springframework.stereotype.Repository;
 
 import dao.mapper.UserMapper;
 import logic.Buy;
+import logic.Sale;
+import logic.SaleItem;
 import logic.User;
 import logic.Userorder;
 
@@ -97,8 +99,12 @@ public class UserDao {
 		return template.getMapper(UserMapper.class).getmyshipping(userid);
 	}
 	
-	public List<Buy> getusersale(String userid) {
+	public List<Sale> getusersale(String userid) {
 		return template.getMapper(UserMapper.class).getusersale(userid);
+	}
+	
+	public List<SaleItem> getusersalelist(int order_no) {
+		return template.getMapper(UserMapper.class).usersalelist(order_no);
 	}
 	
 	//[admin] storelist 스토어 관리 0822
@@ -112,7 +118,5 @@ public class UserDao {
 		}
 		return template.getMapper(UserMapper.class).storelist(null);
 	}
-
-
 
 }

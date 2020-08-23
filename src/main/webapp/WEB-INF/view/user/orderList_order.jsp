@@ -44,7 +44,7 @@
 	</div>
 	</div>
 	
-	<div style="height: 200px;">
+	<div class="order_downview">
 		<div class="order_leftdiv">
 			<ul>
 				<li><a class="a_leftdivbtn" href="orderList.shop">요약보기</a></li>
@@ -64,17 +64,20 @@
 						<a class="order_18px">주문일 <fmt:formatDate value="${buy.orderdate}" pattern="yyyy/MM/dd" /></a>
 					</div>
 					<!-- 상품별 반복 -->
-					<c:forEach begin="0" end="1">
+					<c:forEach items="${buy.itemList}" var="buylist">
 					<div class="order_buyitem">
 						<div class="order_buyitem_left" style="background-color: lime;">
 							<%--상품 이미지 --%>
 						</div>
 						<div class="order_buyitem_center">
-							<div class="order_buyitem_center_text" style="font-size: 25px;">제목</div>
-							<div class="order_buyitem_center_text" style="font-size: 20px;">가격 / 갯수</div>
+							<div class="order_buyitem_center_text" style="font-size: 25px;">${buylist.item.item_name}</div>
+							<div class="order_buyitem_center_text" style="font-size: 20px;">${buylist.item.price} / ${buylist.quantity}개</div>
 						</div>
 						<div class="order_buyitem_right">
-							<div class="order_buyitem_right_text">배송상태</div>
+							<div class="order_buyitem_right_text">
+							<c:if test="${buy.stat==0}">배송중</c:if>
+							<c:if test="${buy.stat==1}">배송완료</c:if>
+							</div>
 							<div class="order_buyitem_buttondiv">
 								<button class="order_buyitem_button">교환신청</button>
 							</div>
