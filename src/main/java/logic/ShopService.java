@@ -287,11 +287,19 @@ public class ShopService {
 
 	
 	// [아이템]상품 리스트 정보
-	public List<Item> getItemList(Integer listAmount, int limit, String searchtype, String searchcontent,Integer category) {
-		return itemDao.list(category,listAmount,limit);
+	public List<Item> getItemList(Integer listAmount, int limit,String keyword,Integer category) {
+		return itemDao.list(category,listAmount,keyword,limit);
 	}
+	
+	public List<Item> getItemList2(Integer pageNum, int limit,String keyword,Integer category) {
+		return itemDao.list2(category,pageNum,keyword,limit);
+	}
+	
 	public int getItemCount(String searchtype, String searchcontent) {
 		return itemDao.count(searchtype, searchcontent);
+	}
+	public int getItemCount2(String keyword) {
+		return itemDao.count2(keyword);
 	}
 	//[아이템]상품 상세보기
 	public Item getItem(Integer item_no, boolean able) {

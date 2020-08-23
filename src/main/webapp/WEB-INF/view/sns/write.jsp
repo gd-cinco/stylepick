@@ -184,14 +184,24 @@
 				</tr>
 				<tr id="info">
 					<td><select name="category">
+							<option value="hat">Hat</option>
 							<option value="outer">Outer</option>
-							<option value="top" selected>Top</option>
-							<option value="bottom">Bottom</option>
 							<option value="dress">Dress</option>
+							<option value="top">Top</option>
+							<option value="bottom">Bottom</option>
+							<option value="dress">Bag</option>
 							<option value="shoes">Shoes</option>
+							<option value="watch">Watch</option>
 						</select></td>
 					<td><input type="text" name="detail" placeholder="직접 입력" style="width: 270px;">
-						<button class="btn_3" style="padding: 3px 10px; margin-left: 7px;">상품 찾기</button></td>
+						<button type="button" class="btn_3" style="padding: 3px 10px; margin-left: 7px;" onclick="javascript:search_item()">상품 찾기</button>
+						<script type="text/javascript">
+							function search_item() {
+								var op = "width=500,height=400,left=50,top=150";
+								open("searchForm.shop","",op);
+							}
+						</script>
+						</td>
 					<td><button onclick="delete_row(this)" id="imglabel">삭제하기</button></td>
 				</tr>
 			</table>

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import exception.SnsException;
 import logic.Comment;
+import logic.Item;
 import logic.ShopService;
 import logic.Sns;
 import logic.SnsItem;
@@ -185,6 +186,37 @@ public class SnsController {
 		service.Follow(loginUser.getUserid(),fuser);
 		mav.setViewName("redirect:/sns/mypage.shop?userid="+fuser);
 		return mav;	
+	}
+	
+	@GetMapping("searchForm")
+	public String form(Model model) {
+		return null;
+	}
+	
+	@PostMapping("search")
+	public ModelAndView search(Integer pageNum,int category,String keyword) {
+		ModelAndView mav = new ModelAndView();
+		if(pageNum==null || pageNum.toString().equals("")){
+			pageNum=1;
+		}
+		if(keyword == null ||keyword.trim().equals("")) {
+			keyword =null;
+		}
+		int limit = 5;
+		int listcount=service.getItemCount2(keyword);
+		List<Item> itemlist = service.getItemList2(pageNum,limit,keyword,category);
+		int maxpage = (int)((double)listcount/limit + 0.95);
+		int startpage = (int)((pageNum/10.0 + 0.9)-1)*10+1;
+		int endpage = startpage + 9;
+		if(endpage > maxpage) {
+			endpage = maxpage;
+		}
+		mav.addObject("pageNum",pageNum);
+		mav.addObject("maxpage",maxpage);
+		mav.addObject("startpage",startpage);
+		mav.addObject("endpage",endpage);
+		mav.addObject("itemlist",itemlist);
+		return mav;
 	}
 	
 

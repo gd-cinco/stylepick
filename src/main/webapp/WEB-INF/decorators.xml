@@ -10,5 +10,6 @@
 		<pattern>/item/line*</pattern>
 		<pattern>/item/qna*</pattern>
 		<pattern>/item/rep*</pattern>
+		<pattern>/sns/search*</pattern>
 	</excludes>
 </decorators>

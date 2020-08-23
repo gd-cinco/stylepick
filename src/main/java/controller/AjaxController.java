@@ -502,14 +502,13 @@ public class AjaxController {
 	
 	//[item] 상품 목록 불러오기
 	@RequestMapping(value="list", produces="text/plain; charset=UTF8")
-	public String list(Integer category,int listAmount,int status,String searchtype, String searchcontent) {
+	public String list(Integer category,int listAmount,int status,String searchcontent) {
 		StringBuilder html = new StringBuilder();
-		if(searchtype == null || searchcontent == null ||searchtype.trim().equals("") || searchcontent.trim().equals("")) {
-			searchtype =null;
+		if(searchcontent == null || searchcontent.trim().equals("")) {
 			searchcontent =null;
 		}
 		int limit = 16;
-		List<Item> itemss = service.getItemList(listAmount, limit,searchtype,searchcontent,category);
+		List<Item> itemss = service.getItemList(listAmount, limit,searchcontent,category);
 		if(itemss.isEmpty()) {
 			return null;
 		} else {
