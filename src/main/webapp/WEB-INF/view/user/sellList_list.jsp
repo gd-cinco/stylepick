@@ -7,6 +7,32 @@
 <meta charset="UTF-8">
 <title>주문내역조회</title>
 <link rel="stylesheet" href="../assets/css/user.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	function updatestat(order_no,seq,stat){
+		var question='';
+		if(stat==0)
+			question='배송중으로 바꾸시겠습니까?';
+		if(stat==1)
+			question='배송완료로 바꾸시겠습니까?';
+		var answer = confirm(question);
+		if(answer){
+			$.ajax({
+				url : "updatestat.shop",
+				data : {order_no:order_no,seq:seq,stat:++stat},
+				success : function(result){
+					if(result ==1){
+						alert('업데이트 되었습니다!');
+						location.reload();
+					}else{
+						alert('업데이트에 실패했습니다.');
+						location.reload();
+					}
+				}
+			})
+		}
+	}
+</script>
 </head>
 <body>
 <div class="center" style="max-width: 900px;">
@@ -70,7 +96,7 @@
 							<td class="order">${item.item.item_name}</td>
 							<td class="order">${item.userid}</td>
 							<td class="order">${item.quantity}</td>
-							<td class="order" onclick="updatestat">
+							<td class="order" onclick="javascript:updatestat('${item.order_no}','${item.seq}','${item.stat}')">
 								<c:if test="${item.stat==0}">배송전</c:if>
 								<c:if test="${item.stat==1}">배송중</c:if>
 								<c:if test="${item.stat==2}">배송완료</c:if>

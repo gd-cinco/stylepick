@@ -625,4 +625,8 @@ public class ShopService {
 		return lineDao.getreviewcontent(order_no,seq);
 	}
 
+	public int updatestat(int order_no, int seq, int stat) {
+		return saleItemDao.updatestat(order_no,seq,stat);
+	}
+
 }
