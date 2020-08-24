@@ -76,14 +76,14 @@ function javascript2(){
 		<dd><select name="size" id="sel">
 			<option>사이즈</option>
 								<c:forEach items="${item.size}" var="i"  varStatus="n">
-									<option>${i} </option>
+									<option>${i}</option>
 								</c:forEach>
 		</select></dd>
 	
 	
 		<dt><select name="quantity">
 								<c:forEach begin="1" end="10" var="i">
-									<option>${i }</option>
+									<option>${i}</option>
 								</c:forEach>
 		</select></dt></dl>
 	</ul>
