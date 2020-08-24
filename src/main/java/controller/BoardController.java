@@ -40,6 +40,8 @@ public class BoardController {
 				default : System.out.println("unkown BoardType!!");
 				}
 				mav.addObject("title", title);
+				List<String> list = service.getCategoryList();
+				mav.addObject("category", list);
 			}
 		} else {
 			boolean readcntable = false;

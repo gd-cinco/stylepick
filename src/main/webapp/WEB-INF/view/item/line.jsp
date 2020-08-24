@@ -66,9 +66,16 @@ top:75%;
 left:0%;
 }
 </style>
+<script type="text/javascript">
+function refresh(){
+opener.document.location.reload();
+	self.close();
+}
+</script>
+
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
 </head>
-<body>
+<body onunload="refresh()">
    <h1>한줄평</h1>
 <form:form modelAttribute="item" action="write.shop"  name="f">
  <form:hidden path="item_no" value="${sessionScope.item_no}"/>
@@ -84,7 +91,7 @@ left:0%;
 	<div>
 <textarea id="con" name="content" cols="99" rows="12" ></textarea>
 </div>
-<input id="con1"  type="submit" class="genric-btn success medium" value="작성">
+<input id="con1"  type="submit" class="genric-btn success medium" value="작성" >
 </form:form>
 
 </body>

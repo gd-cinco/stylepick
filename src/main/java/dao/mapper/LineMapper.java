@@ -1,5 +1,8 @@
 package dao.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
@@ -15,5 +18,7 @@ public interface LineMapper {
 
 	@Select("SELECT count(*) from buy_detail where reviewed=0 and order_no in(select order_no from buy where userid=#{userid})")
 	int notMentionedCount(String userid);
+
+
 
 }

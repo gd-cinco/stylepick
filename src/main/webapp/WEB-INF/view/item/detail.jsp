@@ -11,6 +11,7 @@
 <script >
 //버튼클릭시 javascript 호출합니다.
 function javascript(){
+	window.name="par1"
     window.open('line.shop?item_no=${param.item_no}','popName',
                 'width=800,height=500,top=200,left=400,');
 }
@@ -25,6 +26,9 @@ function javascript2(){
     window.open('reply.shop?qna_no=${param.qna_no }','popName',
                 'width=800,height=500,top=200,left=400,');
 }
+
+
+
 </script>
 
 <style>
@@ -111,6 +115,7 @@ function javascript2(){
 	 <div style="float:right;">
 	   <input type='button' class="genric-btn info-border circle arrow" style="width:101px;" onclick='javascript()' value='한줄평'/></div>
 	<div>
+	<br>
 	<!--별점 평균 사진 놓을 곳  -->
 	<table>
 	<tr><td>별</td><td>내용</td><td>등록일</td><td>사용자</td></tr>

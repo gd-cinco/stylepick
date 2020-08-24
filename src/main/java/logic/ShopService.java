@@ -333,7 +333,7 @@ public class ShopService {
 		int max= lineDao.maxnum();
 		line.setLine_no(++max);
 		lineDao.insert(line);
-		saleItemDao.reviewed(line.getOrder_no(),line.getSeq());
+//		saleItemDao.reviewed(line.getOrder_no(),line.getSeq());
 	}
 	
 	
@@ -517,7 +517,15 @@ public class ShopService {
 		}
 		return boardDao.selectOne(no);
 	}
-
+	
+	public List<String> getCategoryList() {
+		return boardDao.categoryList();
+	}
+	
+	public List<Board> getQnaList(String stat) {
+		return boardDao.qnalist(stat);
+	}
+	/** Board End **/
 	public void boardWrite(Board board, HttpServletRequest request) {
 		int max = boardDao.maxno();
 		board.setNo(++max);

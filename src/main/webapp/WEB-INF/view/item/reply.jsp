@@ -8,11 +8,11 @@
 <title>Q&A답변</title>
 </head>
 <body>
-<form:form modelAttribute="item" action="reply.shop" method="post" name="f">
+<form:form modelAttribute="qna" action="reply.shop" method="post" name="f">
 	<form:hidden path="qna_no" />
 	<form:hidden path="grp" />
-	<form:hidden path="grplevel" />
-	<form:hidden path="grpstep" />
+	<form:hidden path="grplevel"/>
+	<form:hidden path="grpstep"/>
 	<table>
 		<caption>Spring 게시판 답글 등록</caption>
 		<tr>

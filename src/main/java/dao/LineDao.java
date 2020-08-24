@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -29,6 +30,6 @@ public class LineDao { //한줄평
 	public int getNotMentionedCount(String userid) {
 		return template.getMapper(LineMapper.class).notMentionedCount(userid);
 	}
-	
+
 	
 }

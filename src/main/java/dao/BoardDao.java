@@ -26,6 +26,21 @@ public class BoardDao {
 		return list;
 	}
 
+	public List<Board> qnalist(String stat) {
+		param.put("stat", stat);
+		List<Board> list = template.getMapper(BoardMapper.class).qnalist(param);
+		int i = 1;
+		for (Board b : list) {
+			b.setCount(i++);
+			if (b.getStat().equals("complete")) {
+				b.setStat("답변완료");
+			} else {
+				b.setStat("처리중");
+			}
+		}
+		return list;
+	}
+	
 	public List<Board> faqlist(String category) {
 		param.put("category", category);
 		List<Board> list = template.getMapper(BoardMapper.class).faqlist(param);
@@ -53,4 +68,9 @@ public class BoardDao {
 	public void insert(Board board) {
 		template.getMapper(BoardMapper.class).insert(board);
 	}
+
+	public List<String> categoryList() {
+		return template.getMapper(BoardMapper.class).clist();
+	}
+
 }
