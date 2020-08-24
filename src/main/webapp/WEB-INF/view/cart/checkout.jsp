@@ -90,9 +90,9 @@ th, td {
 					<c:forEach items="${sessionScope.CART.itemSetList}" var="c">
 						<tr>
 							<td>${c.item.item_name}</td>
-							<td>${itemSet.quantity}</td>
-							<td>${itemSet.item.price}</td>
-							<c:set var="total" value="${total + itemSet.item.price}"/>
+							<td>${c.quantity}</td>
+							<td>${c.item.price}</td>
+							<c:set var="total" value="${total + c.item.price * c.quantity}"/>
 						</tr>
 					</c:forEach>
 				</tbody>

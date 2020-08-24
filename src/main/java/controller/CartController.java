@@ -27,7 +27,7 @@ public class CartController {
 	private ShopService service;
 
 	@RequestMapping("cartAdd")
-	public ModelAndView add(Integer item_no,Integer quantity ,String item_option, String size,HttpSession session) {
+	public ModelAndView add(Integer item_no,Integer quantity ,int item_option, String size,HttpSession session) {
 		ModelAndView mav=new ModelAndView("cart/cart");
 		Item item=service.getItem(item_no);
 		Cart cart =(Cart)session.getAttribute("CART");
@@ -102,5 +102,10 @@ public class CartController {
 		mav.addObject("outMap", outMap);
 		mav.setViewName("redirect:pay.shop");
 		return mav;
+	}
+	
+	@RequestMapping("*")
+	void all() {
+		
 	}
 }

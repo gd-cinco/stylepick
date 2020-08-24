@@ -3,10 +3,10 @@ package logic;
 public class ItemSet {
 	private Item item;
 	private Integer quantity;
-	private String item_option;
+	private int item_option;
 	private String size;
 
-	public ItemSet(Item item, Integer quantity, String item_option, String size) {
+	public ItemSet(Item item, Integer quantity, int item_option, String size) {
 		this.item=item;
 		this.quantity=quantity;
 		this.item_option=item_option;
@@ -25,10 +25,10 @@ public class ItemSet {
 		this.quantity = quantity;
 	}
 
-	public String getItem_option() {
+	public int getItem_option() {
 		return item_option;
 	}
-	public void setItem_option(String item_option) {
+	public void setItem_option(int item_option) {
 		this.item_option = item_option;
 	}
 	public String getSize() {
