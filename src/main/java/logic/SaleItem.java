@@ -6,16 +6,17 @@ public class SaleItem {
 	private int item_no;
 	private int quantity;
 	private Item item;
-	private int item_option;
+	private String item_option;
 	private String size;
 	private int reviewed;
 	private int stat;
-	
-	//변수저장용
+
+	// 변수저장용
 	private String userid;
 	private String content;
 
-	public SaleItem() {}
+	public SaleItem() {
+	}
 
 	public SaleItem(int order_no, int seq, ItemSet itemSet) {
 		this.order_no = order_no;
@@ -67,11 +68,11 @@ public class SaleItem {
 		this.item = item;
 	}
 
-	public int getItem_option() {
+	public String getItem_option() {
 		return item_option;
 	}
 
-	public void setItem_option(int item_option) {
+	public void setItem_option(String item_option) {
 		this.item_option = item_option;
 	}
 
@@ -98,7 +99,6 @@ public class SaleItem {
 	public void setStat(int stat) {
 		this.stat = stat;
 	}
-	
 
 	public int getReviewed() {
 		return reviewed;
@@ -107,7 +107,6 @@ public class SaleItem {
 	public void setReviewed(int reviewed) {
 		this.reviewed = reviewed;
 	}
-	
 
 	public String getContent() {
 		return content;
@@ -121,9 +120,7 @@ public class SaleItem {
 	public String toString() {
 		return "SaleItem [order_no=" + order_no + ", seq=" + seq + ", item_no=" + item_no + ", quantity=" + quantity
 				+ ", item=" + item + ", item_option=" + item_option + ", size=" + size + ", reviewed=" + reviewed
-				+ ", userid=" + userid + ", stat=" + stat + "]";
+				+ ", stat=" + stat + ", userid=" + userid + ", content=" + content + "]";
 	}
 
-	
-	
 }
