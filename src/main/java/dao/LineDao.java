@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import dao.mapper.LineMapper;
+import dao.mapper.QnaMapper;
 import logic.Line;
 
 @Repository
@@ -29,6 +30,20 @@ public class LineDao { //한줄평
 	//[user] 쓰지않은 한줄평 카운트 
 	public int getNotMentionedCount(String userid) {
 		return template.getMapper(LineMapper.class).notMentionedCount(userid);
+	}
+
+	public int count() {
+		param.clear();
+		return template.getMapper(LineMapper.class).count(param);
+	}
+
+	public List<Line> linelist(Integer pageNum1, int limit1, Integer item_no,Integer line_no) {
+		param.clear();
+		param.put("startrow", (pageNum1-1) * limit1);
+		param.put("limit",limit1);
+		param.put("item_no", item_no);
+		param.put("line_no",line_no);
+		return template.getMapper(LineMapper.class).select(param);
 	}
 
 	

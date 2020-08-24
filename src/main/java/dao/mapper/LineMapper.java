@@ -19,6 +19,19 @@ public interface LineMapper {
 	@Select("SELECT count(*) from buy_detail where reviewed=0 and order_no in(select order_no from buy where userid=#{userid})")
 	int notMentionedCount(String userid);
 
+	@Select("select count(*) from item_qna")
+	int count(Map<String, Object> param);
+
+	
+	@Select({"<script>",
+		"select * from line ",
+		"<if test='item_no != null'> where item_no=#{item_no} </if>",
+		"<if test='limit != null'>order by line_no desc limit #{startrow}, #{limit}</if>",
+		"</script>"
+		
+	})
+	List<Line> select(Map<String, Object> param);
+
 
 
 }
