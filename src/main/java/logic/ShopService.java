@@ -569,8 +569,8 @@ public class ShopService {
 	}
 
 	//Q&A 목록
-	public List<Qna> qnalist(Integer pageNum, int limit, String searchtype, String searchcontent, Integer item_no) {
-		return qnaDao.qnalist(pageNum,limit, searchtype, searchcontent,item_no);
+	public List<Qna> qnalist(Integer pageNum, int limit, String searchtype, String searchcontent) {
+		return qnaDao.qnalist(pageNum,limit, searchtype, searchcontent);
 	}
 
 

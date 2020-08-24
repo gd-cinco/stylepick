@@ -39,13 +39,12 @@ public class QnaDao {
 		return template.getMapper(QnaMapper.class).count(param);
 	}
 
-	public List<Qna> qnalist(Integer pageNum, int limit, String searchtype, String searchcontent, Integer item_no) {
+	public List<Qna> qnalist(Integer pageNum, int limit, String searchtype, String searchcontent) {
 		param.clear();
 		param.put("searchtype", searchtype );
 		param.put("searchcontent", searchcontent );
 		param.put("startrow", (pageNum-1) * limit);
 		param.put("limit",limit);
-		param.put("item_no", item_no);
 		return template.getMapper(QnaMapper.class).select(param);
 	}
 
