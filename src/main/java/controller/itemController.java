@@ -97,14 +97,15 @@ public class itemController {
 		
 		@PostMapping("qna")
 		public ModelAndView add(@Valid Qna qna,BindingResult bresult,HttpServletRequest request) {
-			ModelAndView mav = new ModelAndView("item/qna");
+			ModelAndView mav = new ModelAndView("/alert1");
+			Item item=new Item();
 			if(bresult.hasErrors()) {
 				mav.getModel().putAll(bresult.getModel());
 				return mav;
 			}
 			try {
 				service.qnaWrite(qna,request);
-				mav.setViewName("redirect:list.shop");
+			mav.addObject("url","detail.shop=?"+item.getItem_no());
 			}catch (DataIntegrityViolationException e) {
 				e.printStackTrace();
 				throw new QnaException("게시물 등록에 실패!","write.shop");
