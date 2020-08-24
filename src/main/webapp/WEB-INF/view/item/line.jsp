@@ -10,8 +10,8 @@
 <style>
 	.con{
 position:absolute;
-top:21%;
-left:13%;
+top:30%;
+left:20%;
 transform:translate(-50%,-50%) rotateY(180deg);
 display:flex;
 	}
@@ -57,12 +57,12 @@ opacity: 1;
 
 #con{
 position:absolute;
-top:25%;
+top:35%;
 left:0%;
 }
 #con1{
 position:absolute;
-top:57%;
+top:75%;
 left:0%;
 }
 </style>
