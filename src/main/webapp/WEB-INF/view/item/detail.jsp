@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="/header/main.jsp" %>
+<%@ include file="/WEB-INF/view/jspHeader.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,7 @@ function javascript1(){
 
 
 function javascript2(){
-    window.open('reply.shop?qna_no=${param.qna_no }','popName',
+    window.open('reply.shop?item_no=${param.item_no }','popName',
                 'width=800,height=500,top=200,left=400,');
 }
 
@@ -120,7 +121,7 @@ function javascript2(){
 	<!--별점 평균 사진 놓을 곳  -->
 	<table>
 		<c:forEach items="${linelist }" var="line">
-		<tr><td>ghdhdhdh</td>
+		<tr><td><c:forEach var="star" begin="1" end="${line.evaluation }">★</c:forEach></td>
 		<td>${line.content } &nbsp;&nbsp;&nbsp;</td>
 		<td>
 	<fmt:formatDate var="rdate" value="${line.regdate }" pattern="yyyyMMdd"/>
@@ -175,7 +176,7 @@ function javascript2(){
 				<br>
 					${qna.content }</td>
 					<td>
-					 <input type='button' style="width:101px;" onclick='javascript2()' value='답글'/>		
+					 <input type='button' style="width:101px;" onclick='javascript2()' value='답글'/>	</td>
 		</c:forEach>
 <tr><td colspan="3">
 				<c:if test="${pageNum >1 }">
