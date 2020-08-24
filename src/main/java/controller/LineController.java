@@ -23,20 +23,12 @@ import logic.ShopService;
 
 
 @Controller		
-@RequestMapping("item")
+@RequestMapping("000")
 public class LineController {
 	
 	
 	@Autowired
 	private ShopService service;
 	
-	@RequestMapping("write")
-	public ModelAndView write(@Valid Line line,Item item,HttpServletRequest request) {
-		ModelAndView mav =new ModelAndView("item/line");
-		
-		service.lineWrite(line,request);  
-	
-		return mav;
-	}
-	
+
 }

@@ -6,11 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Q&A작성하기</title>
+<script type="text/javascript">
+function refresh(){
+	opener.document.location.reload();
+		self.close();
+	}
+</script>
 </head>
-<body>
+<body onunload="refresh()">
 <form:form modelAttribute="qna" action="qna.shop"  name="f">
- <form:hidden path="item_no" value="${sessionScope.item_no}"/>
-  <form:hidden path="userid" value="${sessionScope.loginUser.userid}"/>
+ <input type="hidden" name="item_no" value="${param.item_no}"/>
+  <input type="hidden" name="userid" value="${sessionScope.loginUser.userid}"/>
   <input type="hidden" name="type" value="0"/>
 	<h2>Q&A작성하기</h2>
 	<hr>

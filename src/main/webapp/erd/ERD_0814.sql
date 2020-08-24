@@ -192,6 +192,10 @@ CREATE TABLE item_qna
 	content varchar(500) NOT NULL COMMENT '문의내용',
 	-- 등록시간
 	regdate datetime COMMENT '등록시간',
+	 grp int(10),
+	 grplevel int(10),
+	 grpstep int(10),
+	
 	PRIMARY KEY (qna_no)
 );
 
