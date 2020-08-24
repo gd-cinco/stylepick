@@ -197,6 +197,7 @@ public class UserController {
 		for (SaleItem saleItem : sale) {
 			saleItem.setItem(service.getItem(saleItem.getItem_no()));
 			orderdate.add(service.getorderdate(saleItem.getOrder_no()));
+			saleItem.setContent(service.getreviewcontent(saleItem.getOrder_no(),saleItem.getSeq()));
 		}
 		
 		mav.addObject("orderdate",orderdate);
@@ -217,7 +218,7 @@ public class UserController {
 		List<SaleItem> salelist = service.getmysalelist(user.getUserid());
 		for (SaleItem saleItem : salelist) {
 			saleItem.setUserid(service.getbuyerid(saleItem.getOrder_no()));
-			saleItem.setStat(service.getthisstat(saleItem.getOrder_no()));
+			saleItem.setStat(service.getthisstat(saleItem.getOrder_no(),saleItem.getSeq()));
 			saleItem.setItem(service.getItem(saleItem.getItem_no()));
 		}
 		
@@ -250,7 +251,7 @@ public class UserController {
 		List<SaleItem> salelist = service.getmysalelist(user.getUserid());
 		for (SaleItem saleItem : salelist) {
 			saleItem.setUserid(service.getbuyerid(saleItem.getOrder_no()));
-			saleItem.setStat(service.getthisstat(saleItem.getOrder_no()));
+			saleItem.setStat(service.getthisstat(saleItem.getOrder_no(),saleItem.getSeq()));
 			saleItem.setItem(service.getItem(saleItem.getItem_no()));
 		}
 		mav.addObject("list",salelist);

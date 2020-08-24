@@ -31,5 +31,9 @@ public class LineDao { //한줄평
 		return template.getMapper(LineMapper.class).notMentionedCount(userid);
 	}
 
+	public String getreviewcontent(int order_no, int seq) {
+		return template.getMapper(LineMapper.class).getreviewcontent(order_no,seq);
+	}
+
 	
 }

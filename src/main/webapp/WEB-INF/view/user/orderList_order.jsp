@@ -83,8 +83,9 @@
 						</div>
 						<div class="order_buyitem_right">
 							<div class="order_buyitem_right_text">
-							<c:if test="${buy.stat==0}">배송중</c:if>
-							<c:if test="${buy.stat==1}">배송완료</c:if>
+							<c:if test="${buylist.stat==0}">배송전</c:if>
+							<c:if test="${buylist.stat==1}">배송중</c:if>
+							<c:if test="${buylist.stat==2}">배송완료</c:if>
 							</div>
 							<div class="order_buyitem_buttondiv">
 								<button class="order_buyitem_button">교환신청</button>

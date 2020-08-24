@@ -73,8 +73,9 @@
 							<td class="order"><fmt:formatDate value="${item.orderdate}" pattern="yyyy-MM-dd"/></td>
 							<td class="order">${item.price}</td>
 							<td class="order">
-								<c:if test="${item.stat==0}">배송중</c:if>
-								<c:if test="${item.stat==1}">배송완료</c:if> 
+								<c:if test="${item.stat==0}">배송전</c:if>
+								<c:if test="${item.stat==1}">배송중</c:if>
+								<c:if test="${item.stat==2}">배송완료</c:if> 
 							</td>
 						</tr>
 					</c:forEach>

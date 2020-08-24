@@ -605,8 +605,8 @@ public class ShopService {
 		return userDao.getbuyerid(order_no);
 	}
 
-	public int getthisstat(int order_no) {
-		return userDao.getthisstat(order_no);
+	public int getthisstat(int order_no,int seq) {
+		return userDao.getthisstat(order_no,seq);
 	}
 
 	public int getNotMentionedCount(String userid) {
@@ -619,6 +619,10 @@ public class ShopService {
 
 	public Date getorderdate(int order_no) {
 		return userDao.getorderdate(order_no);
+	}
+
+	public String getreviewcontent(int order_no, int seq) {
+		return lineDao.getreviewcontent(order_no,seq);
 	}
 
 }

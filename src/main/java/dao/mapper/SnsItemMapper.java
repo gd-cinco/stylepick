@@ -11,7 +11,7 @@ import logic.SnsItem;
 
 public interface SnsItemMapper {
 	
-	@Insert("insert into snsitem (sns_no,seq,category,detail,reviewed) values (#{sns_no},#{seq},#{category},#{detail},0)")
+	@Insert("insert into snsitem (sns_no,seq,category,detail,stat,reviewed) values (#{sns_no},#{seq},#{category},#{detail},0,0)")
 	void insert(SnsItem snsItem);
 	
 	@Select("select sns_no,seq,category,detail from snsitem where sns_no=#{sns_no}")
