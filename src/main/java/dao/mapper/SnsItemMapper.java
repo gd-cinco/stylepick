@@ -7,11 +7,11 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
-import logic.Item;
 import logic.SnsItem;
 
 public interface SnsItemMapper {
 	
+
 	@Insert("insert into snsitem (sns_no,seq,category,detail,isshopitem) values (#{sns_no},#{seq},#{category},#{detail},#{isshopitem})")
 	void insert(SnsItem snsItem);
 	

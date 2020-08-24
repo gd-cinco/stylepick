@@ -67,7 +67,7 @@ public interface UserMapper {
 	void delete(Map<String, Object> param);
 
 	@Select("select i.item_name, b.orderdate, d.quantity*i.price price, "
-			+ " b.stat FROM item i,buy b,buy_detail d WHERE "
+			+ " d.stat FROM item i,buy b,buy_detail d WHERE "
 			+ " i.item_no=d.item_no AND b.order_no=d.order_no "
 			+ " AND b.userid=#{userid} order by orderdate")
 	List<Userorder> getuserorder(String userid);
@@ -110,8 +110,8 @@ public interface UserMapper {
 	@Select("select userid from buy where order_no=#{order_no}")
 	String getbuyerid(int order_no);
 
-	@Select("select stat from buy where order_no=#{order_no}")
-	int getthisstat(int order_no);
+	@Select("select stat from buy_detail where order_no=#{order_no} and seq=#{seq}")
+	int getthisstat(@Param("order_no")int order_no,@Param("seq")int seq);
 	
 	@Select("select * from buy_detail where order_no in(select order_no from buy where userid=#{userid})")
 	List<SaleItem> getusersaleItem(String userid);

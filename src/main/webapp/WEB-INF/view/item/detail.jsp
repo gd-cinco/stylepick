@@ -42,6 +42,7 @@ function javascript2(){
     padding: 10px;
   }
 </style>
+
 </head>
 <body>
 
@@ -67,14 +68,14 @@ function javascript2(){
 	<ul>
 		<dl><dt><select name="item_option">
 				<option>옵션</option>
-				<c:forEach items="${item.item_option}" var="i">
-					<option ><c:out value="${i }"/></option>
+				<c:forEach items="${item.item_option}" var="i" varStatus="n">
+					<option><c:out value="${i}"/></option>
 				</c:forEach>
 		</select></dt>
 		<dd><select name="size" id="sel">
 			<option>사이즈</option>
-								<c:forEach items="${item.size}" var="i" >
-									<option>${i } </option>
+								<c:forEach items="${item.size}" var="i"  varStatus="n">
+									<option>${i} </option>
 								</c:forEach>
 		</select></dd>
 	
@@ -118,7 +119,32 @@ function javascript2(){
 	<br>
 	<!--별점 평균 사진 놓을 곳  -->
 	<table>
-	<tr><td>별</td><td>내용</td><td>등록일</td><td>사용자</td></tr>
+		<c:forEach items="${linelist }" var="line">
+		<tr><td>ghdhdhdh</td>
+		<td>${line.content } &nbsp;&nbsp;&nbsp;</td>
+		<td>
+	<fmt:formatDate var="rdate" value="${line.regdate }" pattern="yyyyMMdd"/>
+				<c:if test="${today1==rdate }">
+					<fmt:formatDate value="${line.regdate}" pattern="HH:mm:ss"/>
+					</c:if>
+			<c:if test="${today !=rdate }">
+					<fmt:formatDate value="${line.regdate}" pattern="yyyy-MM-dd "/>
+					</c:if>
+				</td>
+				<td>${line.userid }</td>
+					</tr>
+		</c:forEach>
+<tr><td colspan="4">
+				<c:if test="${pageNum1 >1 }">
+					<a href="detail.shop?pageNum1=${pageNum1 -1 }&item_no=${param.item_no}">[이전]</a></c:if>
+					<c:if test="${pageNum1 <=1 }">[이전]</c:if>
+				<c:forEach var="b" begin="${startpage1 }" end="${endpage1 }">
+					<c:if test="${b==pageNum1 }">[${b }]</c:if>
+					<c:if test="${b !=pageNum1 }"><a href="detail.shop?pageNum1=${b}&item_no=${param.item_no}">[${b}]</a></c:if>
+					</c:forEach>
+				<c:if test="${pageNum1 < maxpage}">
+				<a href="detail.shop?pageNum1=${pageNum1 +1 }&item_no=${param.item_no}">[다음]</a></c:if>
+				<c:if test="${pageNum1 >= maxpage }">[다음]</c:if></td></tr>
 	
 	</table>
 	</div>
@@ -149,15 +175,22 @@ function javascript2(){
 				<br>
 					${qna.content }</td>
 					<td>
-					 <input type='button' style="width:101px;" onclick='javascript2()' value='답글'/>
-				
-					
+					 <input type='button' style="width:101px;" onclick='javascript2()' value='답글'/>		
 		</c:forEach>
-
+<tr><td colspan="3">
+				<c:if test="${pageNum >1 }">
+					<a href="detail.shop?pageNum=${pageNum -1 }&item_no=${param.item_no}">[이전]</a></c:if>
+					<c:if test="${pageNum <=1 }">[이전]</c:if>
+				<c:forEach var="a" begin="${startpage }" end="${endpage }">
+					<c:if test="${a==pageNum }">[${a }]</c:if>
+					<c:if test="${a !=pageNum }"><a href="detail.shop?pageNum=${a}&item_no=${param.item_no}">[${a}]</a></c:if>
+					</c:forEach>
+				<c:if test="${pageNum < maxpage}">
+				<a href="detail.shop?pageNum=${pageNum +1 }&item_no=${param.item_no}">[다음]</a></c:if>
+				<c:if test="${pageNum >= maxpage }">[다음]</c:if></td></tr>
 	
 	</table>
 	</div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
 <a href="update.shop?item_no=${item.item_no }">[수정]</a>
 <a href="delete.shop?item_no=${item.item_no }">[삭제]</a>

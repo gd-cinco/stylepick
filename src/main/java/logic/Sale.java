@@ -15,7 +15,6 @@ public class Sale {
 	private String tel;
 	private String memo;
 	private long amount;
-	private String stat;
 
 	public long getAmount() {
 		long sum = 0;
@@ -97,14 +96,6 @@ public class Sale {
 		this.memo = memo;
 	}
 
-	public String getStat() {
-		return stat;
-	}
-
-	public void setStat(String stat) {
-		this.stat = stat;
-	}
-
 	public String getAddress_qu() {
 		int idx = this.address.indexOf("구");
 		String rtn = this.address.substring(0, idx);
@@ -115,7 +106,7 @@ public class Sale {
 	public String toString() {
 		return "Sale [order_no=" + order_no + ", userid=" + userid + ", orderdate=" + orderdate + ", user=" + user
 				+ ", itemList=" + itemList + ", name=" + name + ", address=" + address + ", tel=" + tel + ", memo="
-				+ memo + ", amount=" + getAmount() + ", stat=" + stat + "]";
+				+ memo + ", amount=" + getAmount() + "]";
 	}
 
 }

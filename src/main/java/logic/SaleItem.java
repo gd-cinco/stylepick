@@ -9,12 +9,14 @@ public class SaleItem {
 	private String item_option;
 	private String size;
 	private int reviewed;
-	
-	//변수저장용
-	private String userid;
 	private int stat;
 
-	public SaleItem() {}
+	// 변수저장용
+	private String userid;
+	private String content;
+
+	public SaleItem() {
+	}
 
 	public SaleItem(int order_no, int seq, ItemSet itemSet) {
 		this.order_no = order_no;
@@ -97,7 +99,6 @@ public class SaleItem {
 	public void setStat(int stat) {
 		this.stat = stat;
 	}
-	
 
 	public int getReviewed() {
 		return reviewed;
@@ -107,13 +108,19 @@ public class SaleItem {
 		this.reviewed = reviewed;
 	}
 
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
 	@Override
 	public String toString() {
 		return "SaleItem [order_no=" + order_no + ", seq=" + seq + ", item_no=" + item_no + ", quantity=" + quantity
 				+ ", item=" + item + ", item_option=" + item_option + ", size=" + size + ", reviewed=" + reviewed
-				+ ", userid=" + userid + ", stat=" + stat + "]";
+				+ ", stat=" + stat + ", userid=" + userid + ", content=" + content + "]";
 	}
 
-	
-	
 }

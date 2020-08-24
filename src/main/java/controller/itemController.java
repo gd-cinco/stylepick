@@ -107,9 +107,9 @@ public class itemController {
 		
 	
 		
-		@RequestMapping("qna")
+		@RequestMapping("plus")
 		public ModelAndView add( Qna qna,HttpServletRequest request) {
-			ModelAndView mav = new ModelAndView("item/qna");
+			ModelAndView mav = new ModelAndView();
 				service.qnaWrite(qna,request);
 		
 			return mav;
@@ -147,10 +147,12 @@ public class itemController {
 		}
 		
 		@RequestMapping("*") // /item/*.shop
-		public ModelAndView detail(Integer item_no,Integer qna_no,HttpServletRequest request,Integer pageNum,String searchtype, String searchcontent) {
+		public ModelAndView detail(Integer item_no,Integer qna_no,Integer line_no, HttpServletRequest request,Integer pageNum,Integer pageNum1 ) {
 			ModelAndView mav =new ModelAndView();
 			Item item=null;
-		
+			Qna qna=new Qna();
+			Line line=new Line();
+			
 			try {
 				if(item_no == null) {
 					item =new Item();
@@ -171,10 +173,73 @@ public class itemController {
 		}catch(IndexOutOfBoundsException e) {
 			throw new ItemEmptyException("존재하지 않는 상품입니다.","list.shop");
 		}
+		//line 페이징
+			int limit1 = 6;
+			if (pageNum1 == null || pageNum1.toString().equals("") || pageNum1 == 0) {
+				pageNum1 = 1;
+			}
+
+			List<Line> linelist = service.linelist(pageNum1, limit1, item_no,line_no);
+			
+			int linecount = service.linecount();
+			int lineno = linecount - (pageNum1 - 1) * limit1;
+			int maxpage1 = (int)((double)linecount/limit1 + 0.95);
+			int startpage1 = (int)((pageNum1/10.0 + 0.9) - 1) * 10 + 1;
+			int endpage1 = startpage1 + 9;
+			
+			if (endpage1 > maxpage1) {
+				endpage1 = maxpage1;
+			}
+			
+			mav.addObject("pageNum1", pageNum1);
+			mav.addObject("linelist", linelist);
+			mav.addObject("linecount", linecount);
+			mav.addObject("lineno", lineno);
+			mav.addObject("maxpage1", maxpage1);
+			mav.addObject("startpage1", startpage1);
+			mav.addObject("endpage1", endpage1);
+			mav.addObject("today1", new SimpleDateFormat("yyyyMMdd").format(new Date()));
+			
+		//qna 페이징	
+			int limit = 6;
+			if (pageNum == null || pageNum.toString().equals("") || pageNum == 0) {
+				pageNum = 1;
+			}
+			
+			String searchtype = request.getParameter("searchtype");
+			String searchcontent = request.getParameter("searchcontent");
+			
+			if (searchtype == null || searchcontent == null || searchtype.trim().equals("") || searchcontent.trim().equals("")) {
+				searchtype = null;
+				searchcontent = null;
+			}
+
+			List<Qna> qnalist = service.qnalist(pageNum, limit, searchtype, searchcontent,item_no);
+			
+			int listcount = service.qnacount(searchtype, searchcontent);
+			int qnano = listcount - (pageNum - 1) * limit;
+			int maxpage = (int)((double)listcount/limit + 0.95);
+			int startpage = (int)((pageNum/10.0 + 0.9) - 1) * 10 + 1;
+			int endpage = startpage + 9;
+			
+			if (endpage > maxpage) {
+				endpage = maxpage;
+			}
+			
+			mav.addObject("pageNum", pageNum);
+			mav.addObject("qnalist", qnalist);
+			mav.addObject("listcount", listcount);
+			mav.addObject("qnano", qnano);
+			mav.addObject("maxpage", maxpage);
+			mav.addObject("startpage", startpage);
+			mav.addObject("endpage", endpage);
+			mav.addObject("today", new SimpleDateFormat("yyyyMMdd").format(new Date()));
 			
 			
+				
 			return mav;
 		}
+		
 		
 		@GetMapping("update")
 		public ModelAndView getItem(Integer item_no,HttpServletRequest request) {

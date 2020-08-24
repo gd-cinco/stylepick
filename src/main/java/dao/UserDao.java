@@ -137,8 +137,8 @@ public class UserDao {
 		return template.getMapper(UserMapper.class).getbuyerid(order_no);
 	}
 
-	public int getthisstat(int order_no) {
-		return template.getMapper(UserMapper.class).getthisstat(order_no);
+	public int getthisstat(int order_no,int seq) {
+		return template.getMapper(UserMapper.class).getthisstat(order_no,seq);
 	}
 
 	public List<SaleItem> getusersaleitem(String userid) {
