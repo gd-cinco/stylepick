@@ -198,7 +198,7 @@
 							<option value="watch">Watch</option>
 						</select></td>
 					<td><input type="text" name="detail" placeholder="직접 입력" style="width: 270px;">
-						<input type="hidden" name="item_no">
+						<input type="hidden" name="item_no" value="0">
 						<button type="button" class="btn_3" style="padding: 3px 10px; margin-left: 7px;" onclick="javascript:search_item(parentNode.parentNode.rowIndex)">상품 찾기</button>
 						<script type="text/javascript">
 							function search_item(index) {
@@ -213,8 +213,29 @@
 			<button type="button" onclick="javascript:add_row()" id="imglabel" style="margin-left:45%;">추가하기</button>
 			<script>
 				function add_row(){
-					var text = document.getElementById("info").innerHTML
-					$("#Table2").append("<tr>"+text+"</tr>");	
+					$("#Table2").append("				<tr>\r\n" + 
+							"					<td><select name=\"category\" style=\"margin-left:10px\">\r\n" + 
+							"							<option value=\"hat\">Hat</option>\r\n" + 
+							"							<option value=\"outer\">Outer</option>\r\n" + 
+							"							<option value=\"dress\">Dress</option>\r\n" + 
+							"							<option value=\"top\">Top</option>\r\n" + 
+							"							<option value=\"bottom\">Bottom</option>\r\n" + 
+							"							<option value=\"dress\">Bag</option>\r\n" + 
+							"							<option value=\"shoes\">Shoes</option>\r\n" + 
+							"							<option value=\"watch\">Watch</option>\r\n" + 
+							"						</select></td>\r\n" + 
+							"					<td><input type=\"text\" name=\"detail\" placeholder=\"직접 입력\" style=\"width: 270px;\">\r\n" + 
+							"						<input type=\"hidden\" name=\"item_no\" value=\"0\">\r\n" + 
+							"						<button type=\"button\" class=\"btn_3\" style=\"padding: 3px 10px; margin-left: 7px;\" onclick=\"javascript:search_item(parentNode.parentNode.rowIndex)\">상품 찾기</button>\r\n" + 
+							"						<script type=\"text/javascript\">\r\n" + 
+							"							function search_item(index) {\r\n" + 
+							"								var op = \"width=500,height=600,left=50,top=150\";\r\n" + 
+							"								open(\"searchForm.shop?index=\"+index,\"\",op);\r\n" + 
+							"							}\r\n" + 
+							"						<\/script>\r\n" + 
+							"						</td>\r\n" + 
+							"					<td><button onclick=\"delete_row(this)\" id=\"imglabel\">삭제하기</button></td>\r\n" + 
+							"				</tr>");	
 				}
 
 				function delete_row(obj){
@@ -229,8 +250,8 @@
 		</div>
 		<div class="style userinfo">
 			<h4>추가정보</h4>
-			키&nbsp;&nbsp;:&nbsp;&nbsp;<form:input type="text" path="height"/>&nbsp;&nbsp;kg&nbsp;&nbsp;&nbsp;&nbsp;
-			몸무게&nbsp;&nbsp;:&nbsp;&nbsp;<form:input type="text" path="weight"/>&nbsp;&nbsp;cm
+			키&nbsp;&nbsp;:&nbsp;&nbsp;<form:input type="text" path="height"/>&nbsp;&nbsp;cm&nbsp;&nbsp;&nbsp;&nbsp;
+			몸무게&nbsp;&nbsp;:&nbsp;&nbsp;<form:input type="text" path="weight"/>&nbsp;&nbsp;kg
 		</div>
 		<div class="centerbutton">
 			<button type="submit" class="btn">올리기</button>

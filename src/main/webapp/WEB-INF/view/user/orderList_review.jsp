@@ -131,6 +131,7 @@
 							<fmt:formatDate value="${orderdate[stat.index]}" pattern="yyyy/MM/dd E"/> 
 							</div>
 							<div class="order_buyitem_center_text" style="font-size: 15px;">${sale.item.price}원 / ${sale.quantity}개</div>
+							<div class="order_buyitem_center_text" style="font-size:15px; font-weight: bold;">${sale.content}</div>
 						</div>
 						<div class="order_buyitem_right">
 							<div class="order_buyitem_buttondiv">
