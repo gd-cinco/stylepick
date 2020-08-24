@@ -45,6 +45,7 @@ public class LineDao { //한줄평
 		param.put("item_no", item_no);
 		param.put("line_no",line_no);
 		return template.getMapper(LineMapper.class).select(param);
+	}
 
 	public String getreviewcontent(int order_no, int seq) {
 		return template.getMapper(LineMapper.class).getreviewcontent(order_no,seq);
