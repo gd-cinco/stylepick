@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import dao.SnsDao;
 import dao.SnsItemDao;
 import dao.AdminDao;
@@ -569,8 +570,8 @@ public class ShopService {
 	}
 
 	//Q&A 목록
-	public List<Qna> qnalist(Integer pageNum, int limit, String searchtype, String searchcontent) {
-		return qnaDao.qnalist(pageNum,limit, searchtype, searchcontent);
+	public List<Qna> qnalist(Integer pageNum, int limit, String searchtype, String searchcontent,Integer item_no) {
+		return qnaDao.qnalist(pageNum,limit, searchtype, searchcontent,item_no);
 	}
 
 
@@ -620,6 +621,18 @@ public class ShopService {
 	public Date getorderdate(int order_no) {
 		return userDao.getorderdate(order_no);
 	}
+
+
+	public int linecount() {
+		return lineDao.count();
+	}
+
+	public List<Line> linelist(Integer pageNum1, int limit1, Integer item_no, Integer line_no) {
+		return lineDao.linelist(pageNum1,limit1,item_no,line_no);
+	}
+
+
+
 
 	public String getreviewcontent(int order_no, int seq) {
 		return lineDao.getreviewcontent(order_no,seq);
