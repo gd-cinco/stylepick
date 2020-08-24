@@ -103,4 +103,9 @@ public class CartController {
 		mav.setViewName("redirect:pay.shop");
 		return mav;
 	}
+	
+	@RequestMapping("*")
+	void all() {
+		
+	}
 }

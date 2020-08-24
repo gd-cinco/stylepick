@@ -68,14 +68,14 @@ function javascript2(){
 	<ul>
 		<dl><dt><select name="item_option">
 				<option>옵션</option>
-				<c:forEach items="${item.item_option}" var="i">
-					<option ><c:out value="${i }"/></option>
+				<c:forEach items="${item.item_option}" var="i" varStatus="n">
+					<option><c:out value="${i}"/></option>
 				</c:forEach>
 		</select></dt>
 		<dd><select name="size" id="sel">
 			<option>사이즈</option>
-								<c:forEach items="${item.size}" var="i" >
-									<option>${i } </option>
+								<c:forEach items="${item.size}" var="i"  varStatus="n">
+									<option>${i} </option>
 								</c:forEach>
 		</select></dd>
 	

@@ -286,6 +286,11 @@ public class ShopService {
 	public int getFollowerCount(String userid) {
 		return snsDao.FollowerCount(userid);
 	}
+	
+	//[sns] 쇼핑몰 아이템
+	public List<SnsItem> getshopItem(int sns_no) {
+		return snsItemDao.list2(sns_no);
+	}
 
 	
 	// [아이템]상품 리스트 정보
@@ -623,6 +628,7 @@ public class ShopService {
 	}
 
 
+
 	public int linecount() {
 		return lineDao.count();
 	}
@@ -641,5 +647,6 @@ public class ShopService {
 	public int updatestat(int order_no, int seq, int stat) {
 		return saleItemDao.updatestat(order_no,seq,stat);
 	}
+
 
 }
