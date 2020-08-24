@@ -89,12 +89,14 @@
 				</div>
 				<table class="order_table">
 					<tr class="order">
-					<th class="order" style="width: 60%">상품 제목</th>
-					<th class="order" style="width: 40%">평점</th>
+					<th class="order" style="width: 40%">상품 제목</th>
+					<th class="order" style="width: 50%">한줄평</th>
+					<th class="order" style="width: 10%">평점</th>
 					</tr>
 					<c:forEach items="${line}" var="item" end="4" varStatus="stat">
 						<tr class="order">
 							<td class="order">${item.item_name}</td>
+							<td class="order">${item.content}</td>
 							<td class="order">${item.evaluation}</td>
 						</tr>
 					</c:forEach>

@@ -52,7 +52,33 @@
 		</ul>
 		</div>
 		<div class="order_main">
-			<h1>내용</h1>
+			<div class="order_main_block">
+				<div style="width: 100%;text-align: left;">
+				<a class="order_header">판매내역</a>
+				</div>
+				<table class="order_table">
+					<tr class="order">
+					<th class="order" style="width: 10%">거래번호</th>
+					<th class="order" style="width: 40%">품목</th>
+					<th class="order" style="width: 20%">구매자</th>
+					<th class="order" style="Width: 10%">갯수</th>
+					<th class="order" style="width: 20%">상태</th>
+					</tr>
+					<c:forEach items="${list}" var="item" varStatus="stat">
+						<tr class="order">
+							<td class="order">${item.order_no}</td>
+							<td class="order">${item.item.item_name}</td>
+							<td class="order">${item.userid}</td>
+							<td class="order">${item.quantity}</td>
+							<td class="order">
+								<c:if test="${item.stat==0}">배송전</c:if>
+								<c:if test="${item.stat==1}">배송중</c:if>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+			
+			</div>
 		</div>
 	</div>
 </div>

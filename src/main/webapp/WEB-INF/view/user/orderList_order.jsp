@@ -7,6 +7,14 @@
 <meta charset="UTF-8">
 <title>주문내역조회</title>
 <link rel="stylesheet" href="../assets/css/user.css">
+<script type="text/javascript">
+	function enter(f){
+		f.style.backgroundColor='#f5f6f7';
+	}
+	function leave(f){
+		f.style.backgroundColor='white';
+	}
+</script>
 </head>
 <body>
 <div class="center" style="max-width: 900px;">
@@ -65,11 +73,11 @@
 					</div>
 					<!-- 상품별 반복 -->
 					<c:forEach items="${buy.itemList}" var="buylist">
-					<div class="order_buyitem">
-						<div class="order_buyitem_left">
+					<div class="order_buyitem" onmouseenter="enter(this)" onmouseleave="leave(this)">
+						<div class="order_buyitem_left" style="cursor: pointer;" onclick="location.href='../item/detail.shop?item_no=${butlist.item.item_no}'">
 							<img src="../item/img/${buylist.item.pictureUrl}" style="width: 150px;height: 150px;" id="img">
 						</div>
-						<div class="order_buyitem_center">
+						<div class="order_buyitem_center" style="cursor: pointer;" onclick="location.href='../item/detail.shop?item_no=${buylist.item.item_no}'">
 							<div class="order_buyitem_center_text" style="font-size: 25px;">${buylist.item.item_name}</div>
 							<div class="order_buyitem_center_text" style="font-size: 20px;">${buylist.item.price}원 / ${buylist.quantity}개</div>
 						</div>

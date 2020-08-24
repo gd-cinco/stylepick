@@ -8,9 +8,14 @@ public class Userorder {
 	private int price;
 	private int stat;
 	private int evaluation;
-	
-	
-	
+	private String content;
+
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public int getEvaluation() {
 		return evaluation;
 	}
@@ -46,6 +51,6 @@ public class Userorder {
 	@Override
 	public String toString() {
 		return "Userorder [item_name=" + item_name + ", orderdate=" + orderdate + ", price=" + price + ", stat=" + stat
-				+ ", evaluation=" + evaluation + "]";
+				+ ", evaluation=" + evaluation + ", content=" + content + "]";
 	}
 }

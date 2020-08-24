@@ -236,6 +236,25 @@ public class UserController {
 		List<Item> sell = service.getmyitem(user.getUserid());
 		mav.addObject("sell",sell);
 		
+		
+		
+		return mav;
+	}
+	
+	@GetMapping("sellList_list")
+	public ModelAndView loginChecksell_list(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		User user= (User)session.getAttribute("loginUser");
+		mav.addObject("user",user);
+		
+		List<SaleItem> salelist = service.getmysalelist(user.getUserid());
+		for (SaleItem saleItem : salelist) {
+			saleItem.setUserid(service.getbuyerid(saleItem.getOrder_no()));
+			saleItem.setStat(service.getthisstat(saleItem.getOrder_no()));
+			saleItem.setItem(service.getItem(saleItem.getItem_no()));
+		}
+		mav.addObject("list",salelist);
+		
 		return mav;
 	}
 	

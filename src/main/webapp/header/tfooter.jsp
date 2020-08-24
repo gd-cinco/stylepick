@@ -9,7 +9,7 @@
 
 <c:if test="${fn:contains(path2,'board/faq')}">
 	<script>
-		var url = "http://192.168.0.155:8080/stylepick/ajax/fd.shop?c=${param.c}"
+		var url = "${path}/ajax/fd.shop?c=${param.c}"
 		var col = [
 			{"data" : "count"}, 
 			{"data" : "title"}, 
@@ -19,7 +19,7 @@
 </c:if>
 <c:if test="${fn:contains(path2,'board/notice')}">
 	<script>
-		var url = "http://192.168.0.155:8080/stylepick/ajax/nd.shop"
+		var url = "${path}/ajax/nd.shop"
 		var col = [
 			{"data" : "count" }, 
 			{"data" : "title"}, 
@@ -29,7 +29,7 @@
 </c:if>
 <c:if test="${fn:contains(path2,'board/qna')}">
 	<script>
-		var url = "http://192.168.0.155:8080/stylepick/ajax/qd.shop?s=${param.s}"
+		var url = "${path}/ajax/qd.shop?s=${param.s}"
 		var col = [
 			{"data" : "count"},
 			{"data" : "title"}, 
