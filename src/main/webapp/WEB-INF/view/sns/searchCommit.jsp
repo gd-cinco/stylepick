@@ -6,6 +6,6 @@
 	var tr = tbl.getElementsByTagName("tr")[${index}]
 	var td = tr.getElementsByTagName("td")[1]
 	var detail = td.getElementsByTagName("input")[0].value = '${detail}'
-	var itemno = td.getElementsByTagName("input")[0].value = ${item_no}
+	var itemno = td.getElementsByTagName("input")[1].value = ${item_no}
 	self.close();
 </script>

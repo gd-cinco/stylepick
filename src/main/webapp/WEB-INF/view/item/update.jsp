@@ -93,24 +93,25 @@
 
 </style>
 <script type="text/javascript">
-var oTbl;
-//Row 추가
-function insRow() {
-oTbl = document.getElementById("addTable");
-var oRow = oTbl.insertRow();
-oRow.onmouseover=function(){oTbl.clickedRowIndex=this.rowIndex}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
-var oCell = oRow.insertCell();
+	var oTbl;
+	//Row 추가
+	function insRow() {
+		oTbl = document.getElementById("addTable");
+		var oRow = oTbl.insertRow();
+		oRow.onmouseover=function(){oTbl.clickedRowIndex=this.rowIndex}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
+		var oCell = oRow.insertCell();
 
-//삽입될 Form Tag
+		//삽입될 Form Tag
 
-var frmTag = "<input type=text name=item_option style=width:380px; height:20px;> ";
-frmTag += "<input type=button value='삭제' onClick='removeRow()' style='cursor:hand; width:380px; margin-bottom:10px;'>";
-oCell.innerHTML = frmTag;
-}
-//Row 삭제
-function removeRow() {
-oTbl.deleteRow(oTbl.clickedRowIndex);
-}
+		var frmTag = "<input type=text name=item_option style=width:380px; height:20px;> ";
+		frmTag += "<input type=button value='삭제' onClick='removeRow()' style='cursor:hand; width:380px; margin-bottom:10px;'>";
+		oCell.innerHTML = frmTag;
+	}
+	//Row 삭제
+	function removeRow() {
+		console.log(oTbl.clickedRowIndex);
+		oTbl.deleteRow(oTbl.clickedRowIndex);
+	}
 
 //function frmCheck()
 //{
@@ -129,23 +130,23 @@ oTbl.deleteRow(oTbl.clickedRowIndex);
 //}
 </script>
 <script>
-var oTbl1;
-//Row 추가
-function insRow1() {
-oTbl1 = document.getElementById("addTable1");
-var oRow1 = oTbl1.insertRow();
-oRow1.onmouseover=function(){oTbl1.clickedRowIndex=this.rowIndex}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
-var oCell = oRow1.insertCell();
+	var oTbl1;
+	//Row 추가
+	function insRow1() {
+		oTbl1 = document.getElementById("addTable1");
+		var oRow1 = oTbl1.insertRow();
+		oRow1.onmouseover=function(){oTbl1.clickedRowIndex=this.rowIndex}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
+		var oCell = oRow1.insertCell();
 
-//삽입될 Form Tag
-var frmTag = "<input type=text name=size style=width:380px; height:20px;> ";
-frmTag += "<input type=button value='삭제' onClick='removeRow1()' style='cursor:hand; width:380px; margin-bottom:10px;'>";
-oCell.innerHTML = frmTag;
-}
-//Row 삭제
-function removeRow1() {
-oTbl1.deleteRow(oTbl1.clickedRowIndex);
-}
+		//삽입될 Form Tag
+		var frmTag = "<input type=text name=size style=width:380px; height:20px;> ";
+		frmTag += "<input type=button value='삭제' onClick='removeRow1()' style='cursor:hand; width:380px; margin-bottom:10px;'>";
+		oCell.innerHTML = frmTag;
+	}
+	//Row 삭제
+	function removeRow1() {
+		oTbl1.deleteRow(oTbl1.clickedRowIndex);
+	}
 </script>
 </head>
 <body>
