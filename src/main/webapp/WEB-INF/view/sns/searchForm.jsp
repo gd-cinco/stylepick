@@ -7,6 +7,12 @@
 <meta charset="UTF-8">
 <title>상품 찾기</title>
 <link rel="stylesheet" href="../assets/css/sns.css?ver=1.1">
+<script type="text/javascript">
+	function searchbtn(item_no,index) {
+			location.href="searchCommit.shop?item_no="+item_no+"&index="+index;
+	}
+</script>
+
 </head>
 <body style="margin:0;">
 <div class="searchform">
@@ -39,8 +45,7 @@
 			</tr>
 			<tr>
 				<td>${i.getItem_name()}</td>
-				<td><button class="selectbtn2" style="padding: 0 10px;" >선택</button>
-
+				<td><button class="selectbtn2" style="padding: 0 10px;" onclick="javascript:searchbtn(${i.getItem_no()},${index})">선택</button>
 				</td>
 			</tr>
 			<tr>

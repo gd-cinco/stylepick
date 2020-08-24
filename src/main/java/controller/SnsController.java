@@ -225,17 +225,17 @@ public class SnsController {
 		mav.addObject("startpage",startpage);
 		mav.addObject("endpage",endpage);
 		mav.addObject("itemlist",itemlist);
-		mav.setViewName("redirect:/sns/searchForm.shop");
 		return mav;
 	}
 	
 	@RequestMapping("searchCommit")
 	public ModelAndView commit(int item_no,int index) {
-		ModelAndView mav = new ModelAndView("sns/searchForm");
+		ModelAndView mav = new ModelAndView();
 		Item item = service.getItem(item_no);
 		mav.addObject("detail",item.getSubject());
 		mav.addObject("item_no",item_no);
-		mav.setViewName("redirect:/sns/write.shop");
+		mav.addObject("index",index);
+//		mav.setViewName("redirect:/sns/searchCommit.shop");
 		return mav;
 	}
 	
