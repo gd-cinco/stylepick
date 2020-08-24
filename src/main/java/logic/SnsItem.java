@@ -5,12 +5,15 @@ public class SnsItem {
 	private int seq;
 	private String category;
 	private String detail;
+	private int isshopitem;
 	public SnsItem() {}
-	public SnsItem(int sns_no,int seq,String category,String detail) {
+	public SnsItem(int sns_no,int seq,String category,String detail,int item_no) {
 		this.sns_no = sns_no;
 		this.seq = seq;
 		this.category = category;
 		this.detail = detail;
+		this.isshopitem = item_no;
+		
 	}
 	public int getSns_no() {
 		return sns_no;
@@ -36,9 +39,17 @@ public class SnsItem {
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
+	public int getIsshopitem() {
+		return isshopitem;
+	}
+	public void setIsshopitem(int isshopitem) {
+		this.isshopitem = isshopitem;
+	}
 	@Override
 	public String toString() {
-		return "SnsItem [sns_no=" + sns_no + ", seq=" + seq + ", category=" + category + ", detail=" + detail + "]";
+		return "SnsItem [sns_no=" + sns_no + ", seq=" + seq + ", category=" + category + ", detail=" + detail
+				+ ", isshopitem=" + isshopitem + "]";
 	}
+	
 	
 }

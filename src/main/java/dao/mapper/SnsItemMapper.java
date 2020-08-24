@@ -7,14 +7,15 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
+import logic.Item;
 import logic.SnsItem;
 
 public interface SnsItemMapper {
 	
-	@Insert("insert into snsitem (sns_no,seq,category,detail) values (#{sns_no},#{seq},#{category},#{detail})")
+	@Insert("insert into snsitem (sns_no,seq,category,detail,isshopitem) values (#{sns_no},#{seq},#{category},#{detail},#{isshopitem})")
 	void insert(SnsItem snsItem);
 	
-	@Select("select sns_no,seq,category,detail from snsitem where sns_no=#{sns_no}")
+	@Select("select sns_no,seq,category,detail,isshopitem from snsitem where sns_no=#{sns_no}")
 	List<SnsItem> select(Map<String,Object> param);
 
 	@Delete("delete from snsitem where sns_no=#{sns_no}")
@@ -22,4 +23,7 @@ public interface SnsItemMapper {
 
 	@Delete("delete from snsitem where sns_no=#{sns_no}")
 	void delete2(Map<String, Object> param);
+
+	@Select("select sns_no,seq,category,detail,isshopitem from snsitem where sns_no=#{sns_no} and isshopitem != 0")
+	List<SnsItem> select2(Map<String, Object> param);
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import dao.mapper.SnsItemMapper;
+import logic.Item;
 import logic.SnsItem;
 
 @Repository
@@ -36,6 +37,12 @@ public class SnsItemDao {
 		param.clear();
 		param.put("sns_no",sns_no);
 		template.getMapper(SnsItemMapper.class).delete2(param);
+	}
+
+	public List<SnsItem> list2(int sns_no) {
+		param.clear();
+		param.put("sns_no",sns_no);
+		return template.getMapper(SnsItemMapper.class).select2(param); 
 	}
 
 }
