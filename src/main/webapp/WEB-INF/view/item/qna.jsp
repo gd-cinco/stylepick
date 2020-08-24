@@ -14,7 +14,7 @@ function refresh(){
 </script>
 </head>
 <body onunload="refresh()">
-<form:form modelAttribute="qna" action="qna.shop"  name="f">
+<form:form modelAttribute="qna" action="plus.shop"  name="f">
  <input type="hidden" name="item_no" value="${param.item_no}"/>
   <input type="hidden" name="userid" value="${sessionScope.loginUser.userid}"/>
   <input type="hidden" name="type" value="0"/>

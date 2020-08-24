@@ -64,7 +64,7 @@
 		<input type="hidden" name="sns_no" value="${sns.sns_no}"/>
 	<div class="pictures-wrapper">
 		<div class="pictures op-carousel">
-			<img src="img/${sns.img1url}" width="600px" height="600px">
+			<img src="file/${sns.img1url}" width="600px" height="600px">
 		</div>
 		<div class="style-button">
 			<c:if test="${sessionScope.loginUser.userid==sns.userid}">
