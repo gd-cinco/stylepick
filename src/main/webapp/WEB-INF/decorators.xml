@@ -11,5 +11,6 @@
 		<pattern>/item/qna*</pattern>
 		<pattern>/item/rep*</pattern>
 		<pattern>/sns/search*</pattern>
+		<pattern>/user/sellerInfo*</pattern>
 	</excludes>
 </decorators>
