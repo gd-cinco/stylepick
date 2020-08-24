@@ -153,6 +153,7 @@ oTbl1.deleteRow(oTbl1.clickedRowIndex);
 	<h5>상품 올리기 관련 문의가 필요하시 다면 &nbsp;&nbsp; <a href="#" style="color:#35c5f0; font-size:15px">문의하러 가기</a></h5>
 	<br>
 <form:form modelAttribute="item" action="update.shop" enctype="multipart/form-data" name="f">
+<form:hidden path="item_no" value="${param.item_no}"/>
 <form:hidden path="userid" value="${sessionScope.loginUser.userid}"/>
 	<div>
 	<div>

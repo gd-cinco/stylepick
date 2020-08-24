@@ -122,6 +122,10 @@
 	 	 width: 100%; 
 	 	 height: 100%; 
 	 }
+	 .nice-select {
+	 	width:101.13px;
+	 	margin-left:10px;
+	 }
 
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -183,7 +187,7 @@
 					<td></td>
 				</tr>
 				<tr id="info">
-					<td><select name="category">
+					<td><select name="category" style="margin-left:10px">
 							<option value="hat">Hat</option>
 							<option value="outer">Outer</option>
 							<option value="dress">Dress</option>
@@ -194,11 +198,12 @@
 							<option value="watch">Watch</option>
 						</select></td>
 					<td><input type="text" name="detail" placeholder="직접 입력" style="width: 270px;">
-						<button type="button" class="btn_3" style="padding: 3px 10px; margin-left: 7px;" onclick="javascript:search_item()">상품 찾기</button>
+						<input type="hidden" name="item_no">
+						<button type="button" class="btn_3" style="padding: 3px 10px; margin-left: 7px;" onclick="javascript:search_item(parentNode.parentNode.rowIndex)">상품 찾기</button>
 						<script type="text/javascript">
-							function search_item() {
-								var op = "width=500,height=400,left=50,top=150";
-								open("searchForm.shop","",op);
+							function search_item(index) {
+								var op = "width=500,height=600,left=50,top=150";
+								open("searchForm.shop?index="+index,"",op);
 							}
 						</script>
 						</td>

@@ -24,7 +24,7 @@ public class ItemDao {
 	public List<Item> list(Integer category,Integer listAmount,String keyword, int limit) {
 		param.clear();
 		param.put("category", category);
-		param.put("startrow",(listAmount-1)*16);
+		param.put("startrow",(listAmount-1)*12);
 		param.put("limit", limit);
 		param.put("keyword",keyword);
 		return template.getMapper(ItemMapper.class).select(param);
@@ -33,7 +33,7 @@ public class ItemDao {
 	public List<Item> list2(Integer category,Integer pageNum,String keyword, int limit) {
 		param.clear();
 		param.put("category", category);
-		param.put("startrow",(pageNum-1)*5);
+		param.put("startrow",(pageNum-1)*4);
 		param.put("limit", limit);
 		param.put("keyword",keyword);
 		return template.getMapper(ItemMapper.class).select(param);
@@ -54,9 +54,10 @@ public class ItemDao {
 		return template.getMapper(ItemMapper.class).count(param);
 	}
 	
-	public int count2(String keyword) {
+	public int count2(String keyword,Integer category) {
 		param.clear();
 		param.put("keyword",keyword);
+		param.put("category",category);
 		return template.getMapper(ItemMapper.class).count2(param);
 	}
 

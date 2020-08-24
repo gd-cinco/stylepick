@@ -6,15 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 찾기</title>
-<link rel="stylesheet" href="../assets/css/sns.css?ver=1">
+<link rel="stylesheet" href="../assets/css/sns.css?ver=1.1">
 </head>
 <body style="margin:0;">
 <div class="searchform">
 <div class="title_area">
-	상품찾기
+	스타일픽 상품찾기
 </div>
 <div class="search_area">
 	<form name="f" action="search.shop" method="post">
+		<input type="hidden" name="index" value="${param.index}">
 		<select name="category" style="width: 80px; height: 40px; float: left; margin-right: 10px;">
 			<option value="1">Hat</option>
 			<option value="2">Outer</option>
@@ -33,11 +34,17 @@
 	<table>
 		<c:forEach var="i" items="${itemlist}">
 			<tr>
-				<td rowspan="2"><img src="item/img/${i.getPictureUrl()}"></td>
-				<td>${i.getSubject()}</td>
+				<td rowspan="3" style="width: 80px;padding-right: 10px;"><img src="item/img/${i.getPictureUrl()}" width="80px" height="80px"></td>
+				<td style="font-weight:bold;width: 60%;padding-top: 10px;font-size: 17px;">${i.getSubject()}</td>
 			</tr>
 			<tr>
-				<td>${i.getName()}</td>
+				<td>${i.getItem_name()}</td>
+				<td><button class="selectbtn2" style="padding: 0 10px;" >선택</button>
+
+				</td>
+			</tr>
+			<tr>
+				<td style="padding-bottom: 20px;font-size: 14px;">${i.getName()}</td>
 			</tr>
 		</c:forEach>
 	</table>	

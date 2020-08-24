@@ -190,7 +190,7 @@ body, h1, h2, h3, h4, h5 {
 }
 
 .search_area {
-	margin: 15px 89px;
+	margin: 20px 24px;
     float: left;
 }
 
@@ -198,6 +198,33 @@ body, h1, h2, h3, h4, h5 {
 	
 }
 
+.table_area table {
+	margin : 3% 10%;
+	width : 80%
+}
+
 .page_area {
-	
+	text-align: center;
+}
+
+.selectbtn {
+	padding: 3px 12px;
+    color: #fff;
+    background-color: #ff003c;
+    border: none;
+    border-radius: 6px;
+}
+
+.selectbtn2 {
+	display: inline-block;
+    padding: .5em .75em;
+    color: #999;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
 }

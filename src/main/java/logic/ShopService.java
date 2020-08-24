@@ -299,8 +299,8 @@ public class ShopService {
 	public int getItemCount(String searchtype, String searchcontent) {
 		return itemDao.count(searchtype, searchcontent);
 	}
-	public int getItemCount2(String keyword) {
-		return itemDao.count2(keyword);
+	public int getItemCount2(String keyword,Integer category) {
+		return itemDao.count2(keyword,category);
 	}
 	//[아이템]상품 상세보기
 	public Item getItem(Integer item_no, boolean able) {

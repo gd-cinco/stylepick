@@ -40,6 +40,7 @@ import logic.Sns;
 import logic.Todolist;
 import logic.User;
 
+
 //view를통하지 않고 바로 클라이언트로 전달(just data) : @Controller + @ResponseBody
 @RestController
 @RequestMapping("ajax")
@@ -183,12 +184,10 @@ public class AjaxController {
 		}
 		StringBuilder html = new StringBuilder();
 		int limit = 16;
-		System.out.println(listAmount+","+limit);
 		List<Sns> itemss = service.getSnsList(ksb,type,listAmount,limit);
 		if(itemss.isEmpty()) {
 			return null;
 		} else {
-			System.out.println(itemss);
 			//html.append("<table style=\"margin:2% 6%;\">");
 			int i = 1;
 			for(Sns s : itemss) {
@@ -219,7 +218,6 @@ public class AjaxController {
 				i++;
 			}
 			//html.append("</table>");
-			System.out.println(html);
 			return html.toString();
 		}
 	}
@@ -507,8 +505,12 @@ public class AjaxController {
 		if(searchcontent == null || searchcontent.trim().equals("")) {
 			searchcontent =null;
 		}
-		int limit = 16;
-		List<Item> itemss = service.getItemList(listAmount, limit,searchcontent,category);
+		System.out.println("category:"+category);
+		if(category == null || category.toString().trim().equals("")) {
+			category = null;
+		}
+		int limit = 12;
+		List<Item> itemss = service.getItemList(listAmount,limit,searchcontent,category);
 		if(itemss.isEmpty()) {
 			return null;
 		} else {
@@ -521,7 +523,7 @@ public class AjaxController {
 				}
 				User seller = service.getUser(it.getUserid());
 				it.setName(seller.getName());
-				html.append("<div class=\"col-xl-4 col-lg-4 col-md-6\"  style=\"max-width: 60.333333%;\">");
+				html.append("<div class=\"col-xl-4 col-lg-4 col-md-6\"  style=\"max-width: 25%;\">");
 				html.append("<div class=\"single_product_item\">");
 				html.append("<div class=\"item_detail\" onClick=\"location.href='detail.shop?item_no="+it.getItem_no()+"'\">");
 				html.append("<div><img src=\"img/"+it.getPictureUrl()+"\" width=\"226px\" height=\"270px\"></div>");

@@ -189,33 +189,53 @@ public class SnsController {
 	}
 	
 	@GetMapping("searchForm")
-	public String form(Model model) {
-		return null;
+	public ModelAndView form(int index) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("index",index+1);
+		return mav;
 	}
 	
 	@PostMapping("search")
-	public ModelAndView search(Integer pageNum,int category,String keyword) {
-		ModelAndView mav = new ModelAndView();
+	public ModelAndView search(Integer pageNum,Integer category,String keyword,int index) {
+		System.out.println("category:"+category+", keyword:"+keyword);
+		ModelAndView mav = new ModelAndView("sns/searchForm");
 		if(pageNum==null || pageNum.toString().equals("")){
 			pageNum=1;
 		}
 		if(keyword == null ||keyword.trim().equals("")) {
 			keyword =null;
 		}
-		int limit = 5;
-		int listcount=service.getItemCount2(keyword);
+		int limit = 4;
+		int listcount=service.getItemCount2(keyword,category);
 		List<Item> itemlist = service.getItemList2(pageNum,limit,keyword,category);
+		for(Item i : itemlist) {
+			User user = service.getUser(i.getUserid());
+			i.setName(user.getCom_name());
+		}
 		int maxpage = (int)((double)listcount/limit + 0.95);
 		int startpage = (int)((pageNum/10.0 + 0.9)-1)*10+1;
 		int endpage = startpage + 9;
 		if(endpage > maxpage) {
 			endpage = maxpage;
 		}
+		System.out.println(itemlist);
+		mav.addObject("index",index);
 		mav.addObject("pageNum",pageNum);
 		mav.addObject("maxpage",maxpage);
 		mav.addObject("startpage",startpage);
 		mav.addObject("endpage",endpage);
 		mav.addObject("itemlist",itemlist);
+		mav.setViewName("redirect:/sns/searchForm.shop");
+		return mav;
+	}
+	
+	@RequestMapping("searchCommit")
+	public ModelAndView commit(int item_no,int index) {
+		ModelAndView mav = new ModelAndView("sns/searchForm");
+		Item item = service.getItem(item_no);
+		mav.addObject("detail",item.getSubject());
+		mav.addObject("item_no",item_no);
+		mav.setViewName("redirect:/sns/write.shop");
 		return mav;
 	}
 	
