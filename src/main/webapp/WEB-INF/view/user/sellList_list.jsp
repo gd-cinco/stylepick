@@ -9,12 +9,25 @@
 <link rel="stylesheet" href="../assets/css/user.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
+	function sellerInfo(order_no,seq) {
+		var op = "width=500,height=600,left=50,top=150";
+		open("sellerInfo.shop?order_no="+order_no+"&seq="+seq,"",op);
+	}
+	function enter(f){
+		f.style.backgroundColor='#f5f6f7';
+	}
+	function leave(f){
+		f.style.backgroundColor='white';
+	}
 	function updatestat(order_no,seq,stat){
 		var question='';
 		if(stat==0)
 			question='배송중으로 바꾸시겠습니까?';
 		if(stat==1)
 			question='배송완료로 바꾸시겠습니까?';
+		if(stat==2){
+			return;
+		}
 		var answer = confirm(question);
 		if(answer){
 			$.ajax({
@@ -85,18 +98,23 @@
 				<table class="order_table">
 					<tr class="order">
 					<th class="order" style="width: 10%">거래번호</th>
-					<th class="order" style="width: 40%">품목</th>
+					<th class="order" style="width: 30%">품목</th>
 					<th class="order" style="width: 20%">구매자</th>
 					<th class="order" style="Width: 10%">갯수</th>
-					<th class="order" style="width: 20%">상태</th>
+					<th class="order" style="width: 20%">가격</th>
+					<th class="order" style="width: 10%">상태</th>
 					</tr>
 					<c:forEach items="${list}" var="item" varStatus="stat">
 						<tr class="order">
 							<td class="order">${item.order_no}</td>
-							<td class="order">${item.item.item_name}</td>
-							<td class="order">${item.userid}</td>
-							<td class="order">${item.quantity}</td>
-							<td class="order" onclick="javascript:updatestat('${item.order_no}','${item.seq}','${item.stat}')">
+							<td class="order"onmouseenter="enter(this)" onmouseleave="leave(this)" style="cursor: pointer;"
+								onclick="location.href='../item/detail.shop?item_no=${item.item_no}'">${item.item.item_name}</td>
+							<td class="order"onmouseenter="enter(this)" onmouseleave="leave(this)" style="cursor: pointer;"
+								onclick="javascript:sellerInfo('${iten.order_no}','${item.seq}')">${item.userid}</td>
+							<td class="order">${item.quantity}개</td>
+							<td class="order">${item.quantity*item.item.price}원</td>
+							<td class="order"onmouseenter="enter(this)" onmouseleave="leave(this)" style="cursor: pointer;"
+							onclick="javascript:updatestat('${item.order_no}','${item.seq}','${item.stat}')">
 								<c:if test="${item.stat==0}">배송전</c:if>
 								<c:if test="${item.stat==1}">배송중</c:if>
 								<c:if test="${item.stat==2}">배송완료</c:if>
