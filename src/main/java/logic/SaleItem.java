@@ -9,10 +9,11 @@ public class SaleItem {
 	private String item_option;
 	private String size;
 	private int reviewed;
+	private int stat;
 	
 	//변수저장용
 	private String userid;
-	private int stat;
+	private String content;
 
 	public SaleItem() {}
 
@@ -105,6 +106,15 @@ public class SaleItem {
 
 	public void setReviewed(int reviewed) {
 		this.reviewed = reviewed;
+	}
+	
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	@Override
