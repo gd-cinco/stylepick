@@ -3,8 +3,9 @@
 <%@ include file="/WEB-INF/view/jspHeader.jsp" %>
 <script type="text/javascript">
 	var tbl = opener.document.getElementById("Table2");
-	var tr = tbl.getElementsByTagName("tr")[${param.index}]
+	var tr = tbl.getElementsByTagName("tr")[${index}]
 	var td = tr.getElementsByTagName("td")[1]
 	var detail = td.getElementsByTagName("input")[0].value = '${detail}'
+	var itemno = td.getElementsByTagName("input")[0].value = ${item_no}
 	self.close();
 </script>

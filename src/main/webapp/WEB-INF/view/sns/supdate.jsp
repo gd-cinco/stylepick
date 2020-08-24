@@ -134,6 +134,7 @@
 		<div class="style imgs">
 			<h4>스타일 이미지</h4>
 			<div class="img preview-image" id="imgs">
+				<div class="upload-display"><div class="upload-thumb-wrap"><img src="file/${sns.img1url}" class="upload-thumb"></div></div>
 				<label for="input-file" id="imglabel">업로드</label> 
 				<form:input type="file" id="input-file" class="upload-hidden" path="img1"/>
 				<script>

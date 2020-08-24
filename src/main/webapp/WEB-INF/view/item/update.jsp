@@ -180,6 +180,7 @@ oTbl1.deleteRow(oTbl1.clickedRowIndex);
 	<div style="margin-bottom:15px;">
 	<ul>대표 이미지</ul>
 				<div class="img preview-image" id="imgs">
+				<div class="upload-display"><div class="upload-thumb-wrap"><img src="img/${item.pictureUrl}" class="upload-thumb"></div></div>
 				<label for="input-file" id="imglabel">업로드</label> 
 				<input type="file" id="input-file" class="upload-hidden" name="imgurl">
 				<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
