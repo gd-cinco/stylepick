@@ -12,6 +12,7 @@ public class Qna {
 	private int grp;
 	private int grplevel;
 	private int grpstep;
+	
 	public int getQna_no() {
 		return qna_no;
 	}

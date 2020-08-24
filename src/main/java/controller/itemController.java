@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import exception.ItemEmptyException;
 import exception.QnaException;
 import logic.Item;
+import logic.Line;
 import logic.Qna;
 import logic.ShopService;
 import logic.Sns;
@@ -95,26 +96,27 @@ public class itemController {
 			return "item/add";
 		}
 		
-		@PostMapping("qna")
-		public ModelAndView add(@Valid Qna qna,BindingResult bresult,HttpServletRequest request) {
-			ModelAndView mav = new ModelAndView("/alert1");
-			Item item=new Item();
-			if(bresult.hasErrors()) {
-				mav.getModel().putAll(bresult.getModel());
-				return mav;
-			}
-			try {
+		@PostMapping("write")
+		public ModelAndView write(Line line,HttpServletRequest request) {
+			ModelAndView mav =new ModelAndView();
+			
+			service.lineWrite(line,request);  
+		
+			return mav;
+		}
+		
+	
+		
+		@RequestMapping("qna")
+		public ModelAndView add( Qna qna,HttpServletRequest request) {
+			ModelAndView mav = new ModelAndView("item/qna");
 				service.qnaWrite(qna,request);
-			mav.addObject("url","detail.shop=?"+item.getItem_no());
-			}catch (DataIntegrityViolationException e) {
-				e.printStackTrace();
-				throw new QnaException("게시물 등록에 실패!","write.shop");
-			}
+		
 			return mav;
 			
 		}
 	
-		@PostMapping("reply")
+		@RequestMapping("reply")
 		public ModelAndView reply(@Valid Qna qna) {
 			ModelAndView mav = new ModelAndView("item/reply");
 			service.qnaReply(qna);
