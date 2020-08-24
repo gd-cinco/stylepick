@@ -108,7 +108,7 @@ public class itemController {
 	
 		
 		@RequestMapping("plus")
-		public ModelAndView add( Qna qna,HttpServletRequest request) {
+		public ModelAndView add(Qna qna,HttpServletRequest request) {
 			ModelAndView mav = new ModelAndView();
 				service.qnaWrite(qna,request);
 		
@@ -117,12 +117,10 @@ public class itemController {
 		}
 	
 		@RequestMapping("reply")
-		public ModelAndView reply(@Valid Qna qna) {
-			ModelAndView mav = new ModelAndView("item/reply");
+		public ModelAndView reply(Qna qna,HttpServletRequest request) {
+			ModelAndView mav = new ModelAndView();
 			service.qnaReply(qna);
-			mav.setViewName("redirect:list.shop");
-				
-
+			
 			return mav;
 		}
 		

@@ -36,7 +36,7 @@ public interface QnaMapper {
 	})
 	List<Qna> select(Map<String, Object> param);
 
-	@Update("update qna set grpstep = grpstep +1 where grp =#{grp} and grpstep >#{grpstep}")
+	@Update("update item_qna set grpstep = grpstep +1 where grp =#{grp} and grpstep >#{grpstep}")
 	void grpStep(Map<String, Object> param);
 
 }
