@@ -62,7 +62,7 @@
 		<div class="order_main">
 			<div class="order_main_block">
 				<div style="width: 100%;text-align: left;">
-				<a class="order_header">주문내역</a>
+				<a class="order_header">등록상품</a>
 				</div>
 					<c:forEach items="${sell}" var="item">
 					<div class="order_buyitem" onmouseenter="enter(this)" onmouseleave="leave(this)">

@@ -72,7 +72,7 @@ public interface UserMapper {
 			+ " AND b.userid=#{userid} order by orderdate")
 	List<Userorder> getuserorder(String userid);
 	
-	@Select("select i.item_name, l.evaluation from line l,item i where "
+	@Select("select i.item_name, l.evaluation,l.content from line l,item i where "
 			+ "i.item_no=l.item_no and l.userid=#{userid}")
 	List<Userorder> getuserline(String userid);
 	

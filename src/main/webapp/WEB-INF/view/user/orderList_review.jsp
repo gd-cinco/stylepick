@@ -32,6 +32,12 @@
 	function list_disp(id){
 		$("#"+id).toggle();
 	}
+	function enter(f){
+		f.style.backgroundColor='#f5f6f7';
+	}
+	function leave(f){
+		f.style.backgroundColor='white';
+	}
 </script>
 </head>
 <body>
@@ -81,21 +87,21 @@
 		<div class="order_main">
 			<table class="order_table">
 				<tr class="order2">
-					<td id="tab1" class="tab order2" style="background-color: #53C5F0;">
-						<a class="blacka" href="javascript:disp_div('minfo','tab1')">작성가능 구매후기</a></td>
+					<td id="tab1" class="tab order2" style="cursor:pointer; background-color: #53C5F0;" onclick="javascript:disp_div('minfo','tab1')">
+						<a class="blacka">작성가능 구매후기</a></td>
 					<c:if test="${param.id !='admin'}">
-					<td id="tab2" class="tab order2">
-						<a class="blacka" href="javascript:disp_div('oinfo','tab2')">작성한 구매후기</a></td>
+					<td id="tab2" class="tab order2" style="cursor: pointer;" onclick="javascript:disp_div('oinfo','tab2')">
+						<a class="blacka">작성한 구매후기</a></td>
 					</c:if></tr>
 			</table>
 			<div id="minfo" class="info">
 				<c:forEach items="${sale}" var="sale" varStatus="stat">
 					<c:if test="${sale.reviewed==0}">
-					<div class="order_buyitem">
-						<div class="order_buyitem_left">
+					<div class="order_buyitem" onmouseenter="enter(this)" onmouseleave="leave(this)">
+						<div class="order_buyitem_left" style="cursor: pointer;" onclick="location.href='../item/detail.shop?item_no=${sale.item.item_no}'">
 							<img src="../item/img/${sale.item.pictureUrl}" style="width: 150px;height: 150px;" id="img">
 						</div>
-						<div class="order_buyitem_center">
+						<div class="order_buyitem_center" style="cursor: pointer;" onclick="location.href='../item/detail.shop?item_no=${sale.item.item_no}'">
 							<div class="order_buyitem_center_text" style="font-size: 25px;">${sale.item.item_name}</div>
 							<div class="order_buyitem_center_text" style="font-size: 15px;">
 							<fmt:formatDate value="${orderdate[stat.index]}" pattern="yyyy/MM/dd E"/> 
@@ -104,7 +110,7 @@
 						</div>
 						<div class="order_buyitem_right">
 							<div class="order_buyitem_buttondiv">
-								<button onclick="window.open('../item/line.shop?item_no=${buylist.item.item_no}','','width=800,height=600,top=200,left=400')"
+								<button onclick="window.open('../item/line.shop?item_no=${sale.item.item_no}&order_no=${sale.order_no}&seq=${sale.seq}','','width=800,height=600,top=200,left=400')"
 										 class="order_buyitem_button2">한줄평 쓰기</button>
 							</div>
 						</div>
@@ -115,11 +121,11 @@
 			<div id="oinfo" class="info" style="display: none;width: 100%; background-color: yellow; ">
 				<c:forEach items="${sale}" var="sale" varStatus="stat">
 					<c:if test="${sale.reviewed==1}">
-					<div class="order_buyitem">
-						<div class="order_buyitem_left">
+					<div class="order_buyitem" onmouseenter="enter(this)" onmouseleave="leave(this)">
+						<div class="order_buyitem_left" style="cursor: pointer;" onclick="location.href='../item/detail.shop?item_no=${sale.item.item_no}'">
 							<img src="../item/img/${sale.item.pictureUrl}" style="width: 150px;height: 150px;" id="img">
 						</div>
-						<div class="order_buyitem_center">
+						<div class="order_buyitem_center" style="cursor: pointer;" onclick="location.href='../item/detail.shop?item_no=${sale.item.item_no}'">
 							<div class="order_buyitem_center_text" style="font-size: 25px;">${sale.item.item_name}</div>
 							<div class="order_buyitem_center_text" style="font-size: 15px;">
 							<fmt:formatDate value="${orderdate[stat.index]}" pattern="yyyy/MM/dd E"/> 
