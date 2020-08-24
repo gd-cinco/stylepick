@@ -21,11 +21,12 @@
 			<c:if test="${!empty board.file1}"><br><br>첨부파일 : <a>${board.file1}</a></c:if>
 			<br><br>
 			<a href="${path}/board/${type.uri}" class="genric-btn info radius">목록</a>
+			<c:if test="${board.seq != 2}">
 			<a href="${path}/board/update${type.uri}?no=${param.no}" class="genric-btn info radius">수정</a>
+			</c:if>
 			<a href="${path}/board/delete?no=${param.no}" class="genric-btn info radius">삭제</a>
 		</div>
 		
-	<c:if test="${board.seq != 1}">
 		<div class="blog_details">
 			<h2>댓글</h2>
 			<br>
@@ -37,7 +38,6 @@
 			</ul>
 			</c:forEach>
 		</div>
-	</c:if>
 	</div>
 </body>
 </html>

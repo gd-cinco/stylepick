@@ -465,8 +465,12 @@ public class AjaxController {
 	}
 	
 	@RequestMapping(value="qd", produces="text/plain; charset=UTF8")
-	public String qnaData() { 
-		List<Board> list = service.getBoardList(2);
+	public String qnaData(HttpServletRequest request) { 
+		String stat = request.getParameter("s");
+		if (stat.equals("")) {
+			stat = null;
+		}
+		List<Board> list = service.getQnaList(stat);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		String json = null;

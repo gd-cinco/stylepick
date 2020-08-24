@@ -8,7 +8,7 @@
 <title>Q&A작성하기</title>
 </head>
 <body>
-<form:form modelAttribute="item" action="qna.shop"  name="f">
+<form:form modelAttribute="qna" action="qna.shop"  name="f">
  <form:hidden path="item_no" value="${sessionScope.item_no}"/>
   <form:hidden path="userid" value="${sessionScope.loginUser.userid}"/>
   <input type="hidden" name="type" value="0"/>

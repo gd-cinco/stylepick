@@ -14,6 +14,14 @@ public interface BoardMapper {
 	List<Board> list(int seq);
 	
 	@Select({"<script>",
+		"select * from board where seq=2",
+		"<if test='stat != null'> and stat=#{stat}</if>",
+		" order by no desc",
+		"</script>"
+	})
+	List<Board> qnalist(Map<String, Object> param);
+	
+	@Select({"<script>",
 		"select * from board where seq=3",
 		"<if test='category != null'> and substring_index(category,',',1)=#{category}</if>",
 		" order by category desc",
@@ -34,4 +42,8 @@ public interface BoardMapper {
 			+ " (no, title, author, seq, category, stat, regtime, readcnt, content, file1) "
 			+ " VALUES (#{no}, #{title}, #{author}, #{seq}, #{category}, #{stat}, NOW(), 0, #{content}, #{file1}) ")
 	void insert(Board board);
+
+	@Select("SELECT SUBSTRING_INDEX(category,',',1) FROM board GROUP BY 1")
+	List<String> clist();
+
 }

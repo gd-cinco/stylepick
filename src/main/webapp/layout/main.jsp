@@ -111,7 +111,7 @@
 							<ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
 								<li class="d-none d-xl-block">
 									<div class="form-box f-right ">
-										<input type="text" name="Search" placeholder="Input003">
+										<input type="text" name="Search" placeholder="검색">
 										<div class="search-icon">
 											<i class="fas fa-search special-tag"></i>
 										</div>

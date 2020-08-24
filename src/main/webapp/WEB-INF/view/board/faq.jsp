@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/header/main.jsp"%>
 <div class="wrap">
 	<h1>FAQ</h1>
 	<table id="board" class="display" style="width: 100%;">
@@ -14,6 +15,7 @@
 <br>
 <div align="center">
 <a href="${pageContext.request.contextPath}/board/add.shop?t=f" class="genric-btn info radius">추가하기</a>
+
 </div>
 </body>
 </html>
