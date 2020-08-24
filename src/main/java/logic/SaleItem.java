@@ -6,7 +6,7 @@ public class SaleItem {
 	private int item_no;
 	private int quantity;
 	private Item item;
-	private String item_option;
+	private int item_option;
 	private String size;
 	private int reviewed;
 	
@@ -66,11 +66,11 @@ public class SaleItem {
 		this.item = item;
 	}
 
-	public String getItem_option() {
+	public int getItem_option() {
 		return item_option;
 	}
 
-	public void setItem_option(String item_option) {
+	public void setItem_option(int item_option) {
 		this.item_option = item_option;
 	}
 
