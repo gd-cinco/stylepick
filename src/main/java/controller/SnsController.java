@@ -48,23 +48,35 @@ public class SnsController {
 	}
 	
 	@PostMapping("write")
-	public ModelAndView create(Sns sns,String category,String detail,HttpServletRequest request) {
+	public ModelAndView create(Sns sns,String category,String detail,String item_no,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		List<SnsItem> list = new ArrayList<SnsItem>();
 		sns.setSns_no(service.snsNum());
-		if(category == null && detail == null) {
+		if(category == null && detail == null && item_no == null) {
+			item_no = "";
 			category = "";
 			detail = "";
 		} else {
+			String[] in = item_no.split(",");
+			List<Integer> list2 = new ArrayList<Integer>();
+			for(int i=0;i<in.length;i++) {
+				if(Integer.parseInt(in[i])!=0) {
+					sns.setHasshopitem(true); break;
+				}
+			}
+			for(int i=0;i<in.length;i++) {
+				list2.add(Integer.parseInt(in[i]));
+			}
 			String[] cg = category.split(",");
 			String[] dt = detail.split(",");
 			for(int i=0;i<cg.length;i++) {
-				SnsItem item = new SnsItem(sns.getSns_no(),i+1,cg[i],dt[i]);
+				SnsItem item = new SnsItem(sns.getSns_no(),i+1,cg[i],dt[i],list2.get(i));
 				list.add(item);
 			}
 			sns.setItemList(list);
 		}
 		sns.setItemList(list);
+		System.out.println("게시글 등록:"+sns);
 		service.snsWrite(sns,request);
 		if(sns.getType()==1) {
 			mav.setViewName("redirect:main.shop?ksb=new&type=1");
@@ -129,10 +141,21 @@ public class SnsController {
 				sns = service.getSns(sns_no);
 				User user = service.getUser(sns.getUserid());
 				List<SnsItem> snsitems = service.getSnsItem(sns.getSns_no());
+				List<Item> shopitems = new ArrayList<Item>(); 
 				sns.setItemList(snsitems);
+				List<SnsItem> shopitem = service.getshopItem(sns.getSns_no());
+				for(SnsItem si : shopitem) {
+					Item item = service.getItem(si.getIsshopitem());
+					User seller = service.getUser(item.getUserid());
+					item.setName(seller.getCom_name());
+					shopitems.add(item);
+				}
+				System.out.println(sns);
+				System.out.println(shopitems);
 				sns.setCommentnum(service.getcommentnum(sns_no));
 				sns.setLikenum(service.getlikenum(sns_no));
 				mav.addObject("snsitems",snsitems);
+				mav.addObject("shopitems",shopitems);
 				mav.addObject("sns",sns);
 				mav.addObject("user",user);
 			} catch(Exception e) {
@@ -144,17 +167,23 @@ public class SnsController {
 	}
 	
 	@PostMapping("update")
-	public ModelAndView update(Sns sns,String category,String detail,HttpServletRequest request) {
+	public ModelAndView update(Sns sns,String category,String detail,String item_no,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("sns/supdate");
 		List<SnsItem> list = new ArrayList<SnsItem>();
-		if(category == null && detail == null) {
+		if(category == null && detail == null && item_no == null) {
+			item_no = "";
 			category = "";
 			detail = "";
 		} else {
+			String[] in = item_no.split(",");
+			List<Integer> list2 = new ArrayList<Integer>();
+			for(int i=0;i<in.length;i++) {
+				list2.add(Integer.parseInt(in[i]));
+			}
 			String[] cg = category.split(",");
 			String[] dt = detail.split(",");
 			for(int i=0;i<cg.length;i++) {
-				SnsItem item = new SnsItem(sns.getSns_no(),i+1,cg[i],dt[i]);
+				SnsItem item = new SnsItem(sns.getSns_no(),i+1,cg[i],dt[i],list2.get(i));
 				list.add(item);
 			}
 			sns.setItemList(list);

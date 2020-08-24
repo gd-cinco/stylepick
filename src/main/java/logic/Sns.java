@@ -19,6 +19,7 @@ public class Sns {
 	private int height;
 	private int likenum;
 	private int commentnum;
+	private boolean hasshopitem = false;
 	public int getSns_no() {
 		return sns_no;
 	}
@@ -91,12 +92,18 @@ public class Sns {
 	public void setCommentnum(int commentnum) {
 		this.commentnum = commentnum;
 	}
+	public boolean isHasshopitem() {
+		return hasshopitem;
+	}
+	public void setHasshopitem(boolean hasshopitem) {
+		this.hasshopitem = hasshopitem;
+	}
 	@Override
 	public String toString() {
 		return "Sns [sns_no=" + sns_no + ", type=" + type + ", userid=" + userid + ", img1url=" + img1url + ", img1="
 				+ img1 + ", description=" + description + ", regdate=" + regdate + ", itemList=" + itemList
 				+ ", weight=" + weight + ", height=" + height + ", likenum=" + likenum + ", commentnum=" + commentnum
-				+ "]";
+				+ ", hasshopitem=" + hasshopitem + "]";
 	}
 	
 	

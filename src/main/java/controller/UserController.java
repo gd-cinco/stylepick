@@ -62,6 +62,17 @@ public class UserController {
 			return "false";
 	}
 	
+	@RequestMapping("/updatestat")
+	@ResponseBody
+	public int updatestat(int order_no,int seq,int stat) {
+		int result = service.updatestat(order_no,seq,stat);
+		if(result>0)
+			return 1;
+		else
+			return 0;
+		
+	}
+	
 	
 	@PostMapping("userEntry")
 	public ModelAndView add(@Valid User user,BindingResult bresult,HttpServletRequest request) {

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="/header/main.jsp" %>
+<%@ include file="/WEB-INF/view/jspHeader.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,14 +69,14 @@ function javascript2(){
 	<ul>
 		<dl><dt><select name="item_option">
 				<option>옵션</option>
-				<c:forEach items="${item.item_option}" var="i">
-					<option ><c:out value="${i }"/></option>
+				<c:forEach items="${item.item_option}" var="i" varStatus="n">
+					<option><c:out value="${i}"/></option>
 				</c:forEach>
 		</select></dt>
 		<dd><select name="size" id="sel">
 			<option>사이즈</option>
-								<c:forEach items="${item.size}" var="i" >
-									<option>${i } </option>
+								<c:forEach items="${item.size}" var="i"  varStatus="n">
+									<option>${i} </option>
 								</c:forEach>
 		</select></dd>
 	

@@ -368,3 +368,12 @@ color: #FE6500 !important;
 	border-radius: 6px;
 	cursor: pointer;
 }
+.title_area {
+	background-color: #2577fd;
+    color: #fff;
+    height: 55px;
+    line-height: 55px;
+    font-size: large;
+    font-weight: bold;
+    padding: 0 20px;
+}

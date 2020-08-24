@@ -79,6 +79,22 @@
 		</div>
 	</div>
 	<div class="side-position">
+		<c:if test="${sns.type==1 && !empty shopitems}">
+				<div class="side style-info">
+				<p style="font-weight:bold;">스타일픽에서 구매 가능한 상품</p>
+					<table>
+						<c:forEach var="si" items="${shopitems}">
+							<tr>
+								<td rowspan="2" class="categoryimg"><img src="item/img/${si.pictureUrl}" width="82px" height="80px"></td>
+								<td class="category" style="padding:10px 0 1px 10px;"><a href="../item/detail.shop?item_no=${si.item_no}">${si.subject}</a></td>
+							</tr>
+							<tr>
+								<td style="padding:0 10px 5px 10px;">${si.name}</td>
+							</tr>
+						</c:forEach>		
+					</table>
+				</div>
+		</c:if>
 		<c:if test="${sns.type==1 && !empty snsitems}">
 		<div class="side style-info">
 			<table>

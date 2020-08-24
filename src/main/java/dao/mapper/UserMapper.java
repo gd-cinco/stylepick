@@ -104,7 +104,7 @@ public interface UserMapper {
 	@Select("select * from item_qna ")
 	int notmentionedQna(int item_no);
 
-	@Select("SELECT * FROM buy_detail WHERE item_no IN(SELECT item_no FROM item WHERE userid='admin')")
+	@Select("SELECT * FROM buy_detail WHERE item_no IN(SELECT item_no FROM item WHERE userid=#{userid})  ORDER BY order_no DESC ,seq asc")
 	List<SaleItem> getmysalelist(String userid);
 
 	@Select("select userid from buy where order_no=#{order_no}")
