@@ -3,6 +3,7 @@ package controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +76,7 @@ public class CartController {
 	void checkout() {}
 	
 	@RequestMapping("end")
-	public ModelAndView checkend(Sale sale, HttpSession session) {
+	public ModelAndView checkend(Sale sale, HttpSession session, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		Cart cart = (Cart)session.getAttribute("CART");
 		User loginUser = (User)session.getAttribute("loginUser");
@@ -100,7 +101,7 @@ public class CartController {
 		//mav.addObject("total", total);
 		
 		mav.addObject("outMap", outMap);
-		mav.setViewName("redirect:pay.shop");
+		mav.setViewName("redirect:pay.shop?name="+outMap.get("name")+"&total="+outMap.get("total"));
 		return mav;
 	}
 	

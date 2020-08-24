@@ -10,12 +10,12 @@
     data-mode="production"
     data-merchant-user-key="123"
     data-merchant-pay-key="123"
-    data-product-name="${outMap.name}"
-    data-total-pay-amount="${outMap.total}"
-    data-tax-scope-amount="${outMap.total}"
+    data-product-name="${param.name}"
+    data-total-pay-amount="${param.total}"
+    data-tax-scope-amount="${param.total}"
     data-tax-ex-scope-amount="0"
-    data-return-url="http://localhost:8080/stylepick/cart/payresult.shop?">
+    data-return-url="http://localhost:8080/stylepick/cart/payresult.shop">
 </script>
-
+${outMap.name} ${outMap.total} 
 </body>
 </html>
