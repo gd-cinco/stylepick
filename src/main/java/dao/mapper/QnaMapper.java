@@ -30,6 +30,7 @@ public interface QnaMapper {
 		"select * from item_qna ",
 		"<if test='searchcontent != null'>where ${searchtype} like '%${searchcontent}%'</if>",
 		"<if test='item_no != null'> where item_no=#{item_no} </if>",
+		"<if test='qna_no != null'> where qna_no=#{qna_no} </if>",
 		"<if test='limit != null'>order by grp desc, grpstep limit #{startrow}, #{limit}</if>",
 		"</script>"
 		

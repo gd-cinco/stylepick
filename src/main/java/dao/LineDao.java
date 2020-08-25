@@ -51,5 +51,25 @@ public class LineDao { //한줄평
 		return template.getMapper(LineMapper.class).getreviewcontent(order_no,seq);
 	}
 
+	public void update(Line line) {
+		template.getMapper(LineMapper.class).update(line);
+		
+	}
+
+	public Line selectOne(Integer line_no) {
+		param.clear();
+
+		param.put("line_no", line_no);
+		return template.getMapper(LineMapper.class).select(param).get(0);
+	}
+
+	public void delete(int line_no) {
+		param.clear();
+		param.put("line_no", line_no);
+		template.getMapper(LineMapper.class).delete(param);
+		
+	}
+
+	
 	
 }

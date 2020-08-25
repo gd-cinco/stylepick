@@ -2,11 +2,14 @@ package logic;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Qna {
 	private int qna_no;
 	private int item_no;
 	private int type;
 	private String userid;
+	@NotEmpty(message="내용을 입력하세요")
 	private String content;
 	private Date regdate;
 	private int grp;

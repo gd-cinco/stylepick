@@ -28,8 +28,9 @@ public class QnaDao {
 	}
 
 	public Qna selectOne(Integer qna_no) {
-	
-		return null;
+		param.clear();
+		param.put("qna_no", qna_no);
+		return template.getMapper(QnaMapper.class).select(param).get(0);
 	}
 
 	public int count(String searchtype, String searchcontent) {
@@ -49,10 +50,9 @@ public class QnaDao {
 		return template.getMapper(QnaMapper.class).select(param);
 	}
 
-	public void updateGrpStrp(Qna qna) {
+	public void updateGrpStep(Qna qna) {
 		param.clear();
 		param.put("grp",qna.getGrp());
-
 		param.put("grpstep",qna.getGrpstep());
 		template.getMapper(QnaMapper.class).grpStep(param);
 		}
