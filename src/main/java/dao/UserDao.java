@@ -19,6 +19,7 @@ import org.springframework.stereotype.Repository;
 import dao.mapper.UserMapper;
 import logic.Buy;
 import logic.Item;
+import logic.Line;
 import logic.Sale;
 import logic.SaleItem;
 import logic.User;
