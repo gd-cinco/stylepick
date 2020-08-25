@@ -29,6 +29,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import exception.ItemEmptyException;
+import exception.SnsException;
 import logic.Board;
 import logic.Comment;
 import logic.GoogleChartService;
@@ -296,12 +297,15 @@ public class AjaxController {
 	
 	//[sns] 좋아요
 	@RequestMapping(value="like",produces="text/plain; charset=UTF8")
-	public String likeSns(int sns_no,String userid) {
-		System.out.println(sns_no+userid);
+	public String loginChecklikeSns(int sns_no,String userid) {
+		if(userid.trim().equals("")) {
+//			throw new SnsException("로그인 후 거래하세요","detail.shop?sns_no="+sns_no);
+			return "detail.shop?sns_no="+sns_no;
+		}
 		StringBuilder html = new StringBuilder();
 		service.addlike(sns_no,userid);
 		int likenum = service.getlikenum(sns_no);
-		html.append("<img src=\"../assets/img/test7.PNG\" width=\"30px\" height=\"30px\" style=\"margin-right:5px;\">"+likenum);
+		html.append("<button><img src=\"../assets/img/heart1.PNG\" width=\"25px\" height=\"25px\"></button>"+likenum);
 		return html.toString();
 	}
 	
