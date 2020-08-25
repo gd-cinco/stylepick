@@ -73,7 +73,11 @@ public class ShopService {
 	}
 	
 	//[user] 일반회원가입
-	public void userInsert(User user) {
+	public void userInsert(User user,HttpServletRequest request) {
+		if(user.getImg() != null && !user.getImg().isEmpty()) {
+			uploadFileCreate(user.getImg(),request,"user/file/");
+			user.setImgurl(user.getImg().getOriginalFilename());
+		}
 		userDao.insert(user);
 	}
 	

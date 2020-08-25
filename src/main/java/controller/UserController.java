@@ -85,7 +85,7 @@ public class UserController {
 		try {
 			int maxno = service.getmaxno();
 			user.setNo(++maxno);
-			service.userInsert(user);
+			service.userInsert(user,request);
 			mav.setViewName("redirect:welcome.shop");
 		}catch (DataIntegrityViolationException e) {
 			e.printStackTrace();

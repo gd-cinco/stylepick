@@ -152,7 +152,7 @@ function javascript2(){
 	 <br><br>
 </div>
 <div id="target2">
-	 <div class="hr-sect"><h4>상품 후기</h4></div>
+	 <div class="hr-sect"><h4>#OOTD</h4></div>
 	 <div class="reviewList">
 	 	<div><button id="reviewbtn" onclick="javascript:preReview()"><<</button></div>
 	 	<div class="reviewSnss">
