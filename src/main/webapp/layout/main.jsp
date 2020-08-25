@@ -111,9 +111,14 @@
 							<ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
 								<li class="d-none d-xl-block">
 									<div class="form-box f-right ">
-										<input type="text" name="Search" placeholder="검색">
+										<input type="text" name="keyword" placeholder="검색">
 										<div class="search-icon">
-											<i class="fas fa-search special-tag"></i>
+											<c:if test="${fn:contains(path2,'sns')}" >
+												<i class="fas fa-search special-tag" onclick="location.href='${path}/sns/searchResult.shop'"></i>
+											</c:if>
+											<c:if test="${fn:contains(path2,'item')}" >
+												<i class="fas fa-search special-tag" onclick="location.href='${path}/item/searchResult.shop'"></i>
+											</c:if>
 										</div>
 								    </div>
 								</li>

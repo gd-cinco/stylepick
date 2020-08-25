@@ -117,4 +117,12 @@ public class SnsDao {
 		return template.getMapper(SnsMapper.class).followernum(param);
 	}
 
+	public List<Sns> searchList(int listAmount, int limit, String keyword) {
+		param.clear();
+		param.put("startrow",(listAmount-1)*16);
+		param.put("limit",limit);
+		param.put("keyword",keyword);
+		return template.getMapper(SnsMapper.class).select1(param);
+	}
+
 }

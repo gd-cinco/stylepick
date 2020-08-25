@@ -359,5 +359,12 @@ public class itemController {
 			
 			return mav;
 		}
+		
+		@GetMapping("searchResult")
+		public ModelAndView searchform(String keyword) {
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("keyword",keyword);
+			return mav;
+		}
 	
 }

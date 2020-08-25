@@ -28,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import exception.AjaxException;
 import exception.ItemEmptyException;
 import exception.SnsException;
 import logic.Board;
@@ -298,14 +299,14 @@ public class AjaxController {
 	//[sns] 좋아요
 	@RequestMapping(value="like",produces="text/plain; charset=UTF8")
 	public String loginChecklikeSns(int sns_no,String userid) {
-		if(userid.trim().equals("")) {
-//			throw new SnsException("로그인 후 거래하세요","detail.shop?sns_no="+sns_no);
-			return "detail.shop?sns_no="+sns_no;
-		}
 		StringBuilder html = new StringBuilder();
-		service.addlike(sns_no,userid);
-		int likenum = service.getlikenum(sns_no);
-		html.append("<button><img src=\"../assets/img/heart1.PNG\" width=\"25px\" height=\"25px\"></button>"+likenum);
+		if(userid.trim().equals("")) {
+			html.append("로그인 후 이용하세요.");
+		} else {
+			service.addlike(sns_no,userid);
+			int likenum = service.getlikenum(sns_no);
+			html.append("<button style=\"border:none;background:#fff; cursor:pointer;\"><img src=\"../assets/img/heart2.PNG\" width=\"23px\" height=\"21px\"></button>&nbsp;|&nbsp;"+likenum);
+		}
 		return html.toString();
 	}
 	
@@ -508,17 +509,18 @@ public class AjaxController {
 	
 	//[item] 상품 목록 불러오기
 	@RequestMapping(value="list", produces="text/plain; charset=UTF8")
-	public String list(Integer category,int listAmount,int status,String searchcontent) {
+	public String list(Integer category,int listAmount,int status,String keyword) {
 		StringBuilder html = new StringBuilder();
-		if(searchcontent == null || searchcontent.trim().equals("")) {
-			searchcontent =null;
+		System.out.println("keyword:"+keyword);
+		if(keyword == null || keyword.trim().equals("")) {
+			keyword =null;
 		}
 		System.out.println("category:"+category);
 		if(category == null || category.toString().trim().equals("")) {
 			category = null;
 		}
 		int limit = 12;
-		List<Item> itemss = service.getItemList(listAmount,limit,searchcontent,category);
+		List<Item> itemss = service.getItemList(listAmount,limit,keyword,category);
 		if(itemss.isEmpty()) {
 			return null;
 		} else {
@@ -613,4 +615,47 @@ public class AjaxController {
 		}
 		return html.toString();
 	}
+	
+	@RequestMapping(value="searchSns", produces="text/plain; charset=UTF8")
+	public String searchSns(int listAmount,int status,String keyword) {
+		StringBuilder html = new StringBuilder();
+		int limit = 16;
+		List<Sns> itemss = service.getSnsSearch(listAmount,limit,keyword);
+		if(itemss.isEmpty()) {
+			return null;
+		} else {
+			//html.append("<table style=\"margin:2% 6%;\">");
+			int i = 1;
+			for(Sns s : itemss) {
+				if(i%4==1) {
+					html.append("<tr>");
+				}
+				s.setLikenum(service.getlikenum(s.getSns_no()));
+				s.setCommentnum(service.getcommentnum(s.getSns_no()));
+				User user = service.getUser(s.getUserid());
+				String regdate = new SimpleDateFormat("yy.MM.dd").format(s.getRegdate());
+				html.append("<td><div class=\"style-card\" onClick=\"location.href ='../sns/detail.shop?sns_no="+s.getSns_no()+"'\">");
+				html.append("<div class=\"style-img\"><img id=\"thumb\" src=\"file/"+s.getImg1url()+"\" width=\"228px\" height=\"270px\"></div>");
+				html.append("<div class=\"style-content\">");
+				html.append("<div class=\"style-profile\"><img src=\"../assets/img/test6.PNG\" width=\"30px\" height=\"30px\"></div>");
+				html.append("<div class=\"style-info\">");
+				html.append("<div class=\"style-info-first\">");
+				html.append("<a>"+user.getNickname()+"</a>");
+				html.append("<a style=\"float: right;\">"+regdate+"</a></div>");
+				html.append("<div class=\"style-info-second\" >");
+				html.append("<div class=\"txt_box\">"+s.getDescription()+"</div>...&nbsp;&nbsp;<a href=\"#\" style=\"color: #6d6d6d; font-size: 15px;\">더보기</a></div>");
+				html.append("<div class=\"style-info-third\">");
+				html.append("<img src=\"../assets/img/test7.PNG\" width=\"15px\" height=\"15px\">&nbsp;"+s.getLikenum());
+				html.append("&nbsp;&nbsp;<img src=\"../assets/img/test8.PNG\" width=\"15px\" height=\"15px\">&nbsp;"+s.getCommentnum());
+				html.append("</div></div></div></div></td>");
+				if(i%4==0) {
+					html.append("</tr>");
+				}
+				i++;
+			}
+			//html.append("</table>");
+			return html.toString();
+		}
+	}
+	
 }

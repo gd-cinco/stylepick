@@ -12,7 +12,7 @@
 		<pattern>/item/rep*</pattern>
 		<pattern>/item/change*</pattern>
 		<pattern>/item/remove*</pattern>
-		<pattern>/sns/search*</pattern>
+		<pattern>/sns/searchFrom</pattern>
 		<pattern>/user/sellerInfo*</pattern>
 	</excludes>
 </decorators>

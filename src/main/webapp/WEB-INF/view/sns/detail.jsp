@@ -100,7 +100,7 @@
 				<c:forEach var="s" items="${snsitems}">
 				<tr>
 					<td rowspan="2" class="categoryimg"><img src="../assets/img/${s.category}.svg" width="50px" height="50px" style="margin:5px 15px;"></td>
-					<td class="category" style="padding:10px 0 1px 10px;">${s.category}</td>
+					<td class="category" style="padding:10px 0 1px 10px;font-weight:bold;">${s.category}</td>
 				</tr>
 				<tr>
 					<td style="padding:0 10px 5px 10px;">${s.detail}</td>
@@ -112,18 +112,22 @@
 		<div class="side style-content">
 			<div class="style-profile"><img src="../assets/img/test6.PNG" width="30px" height="30px" style="margin-right: 10px;"><a href="mypage.shop?userid=${user.userid}">${user.nickname}</a></div>
 			<div class="style-description">${sns.description}</div>
+			<c:if test="${sns.height!=0 && sns.weight!=0}">
+			<hr>
+			<div class="style-option">size&nbsp;&nbsp;|&nbsp;&nbsp;${sns.height}cmㆍ${sns.weight}kg</div>
+			</c:if>
 		</div>
 		<div class="style-action">
-			<button class="likebtn" onclick="likeSns(${sns.sns_no},'${sessionScope.loginUser.userid}')"><img src="../assets/img/heart1.PNG" width="25px" height="25px"></button>
-			${sns.likenum}
+			<button class="likebtn" onclick="likeSns(${sns.sns_no},'${sessionScope.loginUser.userid}')"><img src="../assets/img/heart1.PNG" width="23px" height="21px"></button>
+			|&nbsp;&nbsp;${sns.likenum}
 		</div>
 		<div class="style-comment">
 			<img src="../assets/img/test8.PNG" width="30px" height="30px" style="margin-right: 10px;">Comment (${sns.commentnum})
 			<form class="comment-feed__form" name="f" action="comment.shop" method="post" onsubmit="return logincheck(this)">
 				<input type="hidden" name="sns_no" value="${param.sns_no}"/>
 				<input type="hidden" name="userid" value="${sessionScope.loginUser.userid}"/>
-				<textarea name="content" placeholder="댓글을 입력하세요" style="width:300px; height:50px; margin-top:10px;"></textarea>
-				<button type="submit" style="height: 50px;float: right; margin-top:10px;">입력</button>
+				<textarea name="content" placeholder="댓글을 입력하세요" style="width:300px; height:50px; margin-top:10px;margin-left:5px;"></textarea>
+				<button type="submit" style="height: 50px;float: right; margin-top:10px;border:none;background:#007bff;">입력</button>
 			</form>
 			<table class="reply_list"> 
 			</table>
@@ -146,9 +150,9 @@ function likeSns(sns_no,userid){
 		success : function(data) {
 			console.log(data)
 			if(data.startsWith("<button"))
-			     $(".style-action").html(data);
+				$(".style-action").html(data);
 			else
-				location.href=data;
+				alert(data);
 			
 		},
 		error : function(e) {

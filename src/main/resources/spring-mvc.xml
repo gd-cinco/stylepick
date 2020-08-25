@@ -39,7 +39,8 @@ http://www.springframework.org/schema/websocket/spring-websocket-4.1.xsd">
 	<bean id="exceptionHandler" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
 			<value>exception.LoginException=exception
-					exception.SnsException=exception</value>
+					exception.SnsException=exception
+					exception.AjaxException=exception</value>
 		</property>
 	</bean>
 </beans>

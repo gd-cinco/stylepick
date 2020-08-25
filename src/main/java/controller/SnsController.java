@@ -29,10 +29,18 @@ public class SnsController {
 	@Autowired
 	private ShopService service;
 	
+	@GetMapping("searchResult")
+	public ModelAndView searchform(String keyword) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("keyword",keyword);
+		return mav;
+	}
+	
 	@GetMapping("main")
 	public String test(Model model) {
 		return null;
 	}
+	
 	/*
 	@GetMapping("*")
 	public String entry(Model model) {
@@ -264,7 +272,6 @@ public class SnsController {
 		mav.addObject("detail",item.getSubject());
 		mav.addObject("item_no",item_no);
 		mav.addObject("index",index);
-//		mav.setViewName("redirect:/sns/searchCommit.shop");
 		return mav;
 	}
 	

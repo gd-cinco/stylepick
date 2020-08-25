@@ -298,6 +298,12 @@ public class ShopService {
 	public List<SnsItem> getshopItem(int sns_no) {
 		return snsItemDao.list2(sns_no);
 	}
+	
+	//[sns] ootd 검색
+	public List<Sns> getSnsSearch(int listAmount,int limit,String keyword) {
+		return snsDao.searchList(listAmount,limit,keyword);
+	}
+
 
 	
 	// [아이템]상품 리스트 정보
@@ -698,6 +704,7 @@ public class ShopService {
 	public int updatestat(int order_no, int seq, int stat) {
 		return saleItemDao.updatestat(order_no,seq,stat);
 	}
+
 
 	
 
