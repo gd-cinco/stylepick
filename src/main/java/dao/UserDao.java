@@ -19,6 +19,7 @@ import org.springframework.stereotype.Repository;
 import dao.mapper.UserMapper;
 import logic.Buy;
 import logic.Item;
+import logic.Line;
 import logic.Sale;
 import logic.SaleItem;
 import logic.User;
@@ -133,20 +134,20 @@ public class UserDao {
 		return template.getMapper(UserMapper.class).getmysalelist(userid);
 	}
 
-	public String getbuyerid(int order_no) {
-		return template.getMapper(UserMapper.class).getbuyerid(order_no);
-	}
-
-	public int getthisstat(int order_no,int seq) {
-		return template.getMapper(UserMapper.class).getthisstat(order_no,seq);
-	}
-
 	public List<SaleItem> getusersaleitem(String userid) {
 		return template.getMapper(UserMapper.class).getusersaleItem(userid);
 	}
 
 	public Date getorderdate(int order_no) {
 		return template.getMapper(UserMapper.class).getorderdate(order_no);
+	}
+
+	public SaleItem getsaleItem(int order_no, int seq) {
+		return template.getMapper(UserMapper.class).getsaleItem(order_no,seq);
+	}
+
+	public Sale getsale(int order_no) {
+		return template.getMapper(UserMapper.class).getsale(order_no);
 	}
 
 }

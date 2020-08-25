@@ -29,6 +29,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import exception.ItemEmptyException;
+import exception.SnsException;
 import logic.Board;
 import logic.Comment;
 import logic.GoogleChartService;
@@ -296,12 +297,15 @@ public class AjaxController {
 	
 	//[sns] 좋아요
 	@RequestMapping(value="like",produces="text/plain; charset=UTF8")
-	public String likeSns(int sns_no,String userid) {
-		System.out.println(sns_no+userid);
+	public String loginChecklikeSns(int sns_no,String userid) {
+		if(userid.trim().equals("")) {
+//			throw new SnsException("로그인 후 거래하세요","detail.shop?sns_no="+sns_no);
+			return "detail.shop?sns_no="+sns_no;
+		}
 		StringBuilder html = new StringBuilder();
 		service.addlike(sns_no,userid);
 		int likenum = service.getlikenum(sns_no);
-		html.append("<img src=\"../assets/img/test7.PNG\" width=\"30px\" height=\"30px\" style=\"margin-right:5px;\">"+likenum);
+		html.append("<button><img src=\"../assets/img/heart1.PNG\" width=\"25px\" height=\"25px\"></button>"+likenum);
 		return html.toString();
 	}
 	
@@ -590,5 +594,23 @@ public class AjaxController {
 		
 		
 		return mav;
+	}
+	
+	@RequestMapping(value="reviewSns", produces="text/plain; charset=UTF8")
+	public String getreviewSns(int item_no,int pageNum) {
+		StringBuilder html = new StringBuilder();
+		int limit = 4;
+		List<Sns> reviewsns = service.getReviewSns(item_no, pageNum, limit);
+		for(Sns s : reviewsns) {
+			User writer = service.getUser(s.getUserid());
+			String ds = s.getDescription().substring(0,s.getDescription().length());
+			
+			html.append("<div class=\"reviewSns\" style=\"margin: 30px 0; width: 235px;float: left;padding: 0 5px;\">" + 
+					"	 	<img src=\"../sns/file/"+s.getImg1url()+"\" width=\"225px\" height=\"250px\" onclick=\"location.href='../sns/detail.shop?sns_no="+s.getSns_no()+"'\">\r\n" +
+					"		<div><img src=\"../user/file/"+writer.getImgurl()+"\" style=\"float:left;margin:10px 5px 0 0\" width=\"35px\" height=\"35px\">"+
+					"		"+"<p style=\"margin-bottom:0;float: left;margin-right: 130px;line-height: 16px;font-size: 14px;margin-top: 10px;font-weight: 600;\">"+writer.getNickname()+"</p>"+ds+"</div>"+
+					"	 </div>");
+		}
+		return html.toString();
 	}
 }

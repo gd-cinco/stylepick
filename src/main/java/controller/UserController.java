@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import exception.LoginException;
 import logic.Buy;
 import logic.Item;
+import logic.Line;
 import logic.Sale;
 import logic.SaleItem;
 import logic.ShopService;
@@ -77,6 +78,7 @@ public class UserController {
 	@PostMapping("userEntry")
 	public ModelAndView add(@Valid User user,BindingResult bresult,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("user/userEntry");
+		System.out.println("img0 : "+user.getImg());
 		if(bresult.hasErrors()) {
 			bresult.reject("error.input.user");
 			mav.getModel().putAll(bresult.getModel());
@@ -85,7 +87,8 @@ public class UserController {
 		try {
 			int maxno = service.getmaxno();
 			user.setNo(++maxno);
-			service.userInsert(user);
+			System.out.println("img : "+user.getImg());
+			service.userInsert(user,request);
 			mav.setViewName("redirect:welcome.shop");
 		}catch (DataIntegrityViolationException e) {
 			e.printStackTrace();
@@ -228,8 +231,8 @@ public class UserController {
 		}
 		List<SaleItem> salelist = service.getmysalelist(user.getUserid());
 		for (SaleItem saleItem : salelist) {
-			saleItem.setUserid(service.getbuyerid(saleItem.getOrder_no()));
-			saleItem.setStat(service.getthisstat(saleItem.getOrder_no(),saleItem.getSeq()));
+			saleItem.setUserid(service.getsale(saleItem.getOrder_no()).getUserid());
+			saleItem.setStat(service.getsaleItem(saleItem.getOrder_no(),saleItem.getSeq()).getStat());
 			saleItem.setItem(service.getItem(saleItem.getItem_no()));
 		}
 		
@@ -261,13 +264,27 @@ public class UserController {
 		
 		List<SaleItem> salelist = service.getmysalelist(user.getUserid());
 		for (SaleItem saleItem : salelist) {
-			saleItem.setUserid(service.getbuyerid(saleItem.getOrder_no()));
-			saleItem.setStat(service.getthisstat(saleItem.getOrder_no(),saleItem.getSeq()));
+			saleItem.setUserid(service.getsale(saleItem.getOrder_no()).getUserid());
+			saleItem.setStat(service.getsaleItem(saleItem.getOrder_no(),saleItem.getSeq()).getStat());
 			saleItem.setItem(service.getItem(saleItem.getItem_no()));
 		}
 		mav.addObject("list",salelist);
 		
 		return mav;
+	}
+	
+	@GetMapping("sellerInfo")
+	public ModelAndView loginChecksellerInfo(int order_no,int seq,HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		SaleItem saleItem = service.getsaleItem(order_no,seq);
+		Sale sale = service.getsale(order_no);
+		Item item = service.getItem(saleItem.getItem_no());
+		
+		mav.addObject("saleItem",saleItem);
+		mav.addObject("sale",sale);
+		mav.addObject("item",item);
+		return mav;
+		
 	}
 	
 	@GetMapping(value = {"orderList*","sellList*"})

@@ -37,7 +37,6 @@ public class BoardController {
 				case "n": title = "공지사항"; break;
 				case "q": title = "QnA"; break;
 				case "f": title = "FAQ"; break;
-				default : System.out.println("unkown BoardType!!");
 				}
 				mav.addObject("title", title);
 				List<String> list = service.getCategoryList();
@@ -55,7 +54,6 @@ public class BoardController {
 			case 1: map.put("title", "공지사항"); map.put("uri", "notice.shop"); break;
 			case 2: map.put("title", "QnA"); map.put("uri", "qna.shop"); break;
 			case 3: map.put("title", "FAQ"); map.put("uri", "faq.shop"); break;
-			default: System.out.println("unkown BoardType!!");
 			}
 
 			mav.addObject("type", map);

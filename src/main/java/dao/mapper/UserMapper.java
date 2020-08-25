@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Update;
 
 import logic.Buy;
 import logic.Item;
+import logic.Line;
 import logic.Sale;
 import logic.SaleItem;
 import logic.User;
@@ -69,18 +70,18 @@ public interface UserMapper {
 	@Select("select i.item_name, b.orderdate, d.quantity*i.price price, "
 			+ " d.stat FROM item i,buy b,buy_detail d WHERE "
 			+ " i.item_no=d.item_no AND b.order_no=d.order_no "
-			+ " AND b.userid=#{userid} order by orderdate")
+			+ " AND b.userid=#{userid} order by orderdate desc")
 	List<Userorder> getuserorder(String userid);
 	
 	@Select("select i.item_name, l.evaluation,l.content from line l,item i where "
-			+ "i.item_no=l.item_no and l.userid=#{userid}")
+			+ "i.item_no=l.item_no and i.userid=#{userid} order by l.line_no desc")
 	List<Userorder> getuserline(String userid);
 	
 	@Select("SELECT COUNT(*) FROM buy_detail, buy "
 			+ "WHERE buy.order_no=buy_detail.order_no AND buy.userid=#{userid}")
 	int getmyshipping(String userid);
 	
-	@Select("SELECT * FROM buy WHERE userid=#{userid}")
+	@Select("SELECT * FROM buy WHERE userid=#{userid} ORDER BY order_no DESC")
 	List<Sale> getusersale(String userid);
 	
 	@Select("select * from buy_detail where order_no=#{order_no}")
@@ -104,19 +105,19 @@ public interface UserMapper {
 	@Select("select * from item_qna ")
 	int notmentionedQna(int item_no);
 
-	@Select("SELECT * FROM buy_detail WHERE item_no IN(SELECT item_no FROM item WHERE userid=#{userid})  ORDER BY order_no DESC ,seq asc")
+	@Select("SELECT * FROM buy_detail WHERE item_no IN(SELECT item_no FROM item WHERE userid=#{userid}) ORDER BY order_no DESC ,seq asc")
 	List<SaleItem> getmysalelist(String userid);
 
-	@Select("select userid from buy where order_no=#{order_no}")
-	String getbuyerid(int order_no);
+	@Select("select * from buy where order_no=#{order_no}")
+	Sale getsale(int order_no);
 
-	@Select("select stat from buy_detail where order_no=#{order_no} and seq=#{seq}")
-	int getthisstat(@Param("order_no")int order_no,@Param("seq")int seq);
-	
-	@Select("select * from buy_detail where order_no in(select order_no from buy where userid=#{userid})")
+	@Select("select * from buy_detail where order_no in(select order_no from buy where userid=#{userid}) order by order_no desc,seq asc")
 	List<SaleItem> getusersaleItem(String userid);
 
 	@Select("select orderdate from buy where order_no=#{order_no}")
 	Date getorderdate(int order_no);
+
+	@Select("select * from buy_detail where order_no=#{order_no} and seq=#{seq}")
+	SaleItem getsaleItem(@Param("order_no")int order_no,@Param("seq")int seq);
 
 }

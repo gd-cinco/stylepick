@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>SNS 상세보기</title>
-<link rel="stylesheet" href="../assets/css/sns.css?ver=1.2">
-<link rel="stylesheet" href="../assets/css/icons.css?ver=1.1">
+<link rel="stylesheet" href="../assets/css/sns.css?ver=1.3">
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <style>
 	.form {
@@ -115,7 +114,7 @@
 			<div class="style-description">${sns.description}</div>
 		</div>
 		<div class="style-action">
-			<button class="icobutton icobutton--heart" onclick="likeSns(${sns.sns_no},'${sessionScope.loginUser.userid}')"><span class="fa fa-heart"></span></button>
+			<button class="likebtn" onclick="likeSns(${sns.sns_no},'${sessionScope.loginUser.userid}')"><img src="../assets/img/heart1.PNG" width="25px" height="25px"></button>
 			${sns.likenum}
 		</div>
 		<div class="style-comment">
@@ -134,7 +133,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 
-$(function( ){
+$(function(){
 	loadComment('${param.sns_no}');
 })
 
@@ -146,10 +145,14 @@ function likeSns(sns_no,userid){
 		url : "${path}/ajax/like.shop",
 		success : function(data) {
 			console.log(data)
-			$(".style-action").html(data);
+			if(data.startsWith("<button"))
+			     $(".style-action").html(data);
+			else
+				location.href=data;
+			
 		},
 		error : function(e) {
-			alert("좋아요 실패:"+e.status);
+			alert("이미 좋아요를 누르셨습니다.:"+e.status);
 		}
 	})
 }

@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="/header/main.jsp" %>
+<%@ include file="/header/main.jsp" %>
 <%@ include file="/WEB-INF/view/jspHeader.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>상품 상세보기</title>
-<link rel="stylesheet" href="${path}/assets/css/detail.css?ver=1">
+<link rel="stylesheet" href="${path}/assets/css/detail.css?ver=1.2">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script >
 //버튼클릭시 javascript 호출합니다.
@@ -155,11 +155,16 @@ function javascript2(){ //qna 답글
 	
 	</table>
 	</div>
-	 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	 <br><br>
 </div>
 <div id="target2">
-	 <div class="hr-sect"><h4>상품 후기</h4></div>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	 <div class="hr-sect"><h4>#OOTD</h4></div>
+	 <div class="reviewList">
+	 	<div><button id="reviewbtn" onclick="javascript:preReview()"><<</button></div>
+	 	<div class="reviewSnss">
+	 	</div>
+	 	<div style="margin-left:967px;"><button id="reviewbtn2" onclick="javascript:nextReview()">>></button></div>
+	 </div>
 </div>
 <div id="target3">
 	 <div class="hr-sect"><h4>Q&A</h4></div>
@@ -199,8 +204,69 @@ function javascript2(){ //qna 답글
 	</table>
 	</div>
 </div>
-<a href="update.shop?item_no=${item.item_no }">[수정]</a>
-<a href="delete.shop?item_no=${item.item_no }">[삭제]</a>
+<a href="update.shop?item_no=${item.item_no}">[수정]</a>
+<a href="delete.shop?item_no=${item.item_no}">[삭제]</a>
 </div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+
+var pageNum = 1;
+var item_no = '${param.item_no}'
+
+$(function(){
+	loadReview('${param.item_no}',1);
+})
+
+
+function loadReview(item_no,pageNum){
+	var params = "item_no=" + item_no + "&pageNum=" + pageNum;
+	console.log(params)
+	$.ajax({
+		data : params,
+		url : "${path}/ajax/reviewSns.shop",
+		success : function(data) {
+			console.log(data)
+			$(".reviewSnss").html(data);
+		},
+		error : function(e) {
+			alert("리뷰 조회시 서버 오류:"+e.status);
+		}
+	})
+}
+
+function nextReview(){
+	pageNum++;
+	var params = "item_no=" + item_no + "&pageNum=" + pageNum;
+	console.log(params)
+	$.ajax({
+		data : params,
+		url : "${path}/ajax/reviewSns.shop",
+		success : function(data) {
+			console.log(data)
+			$(".reviewSnss").html(data);
+		},
+		error : function(e) {
+			alert("리뷰 조회시 서버 오류:"+e.status);
+		}
+	})
+}
+
+function preReview(){
+	pageNum--;
+	var params = "item_no=" + item_no + "&pageNum=" + pageNum;
+	console.log(params)
+	$.ajax({
+		data : params,
+		url : "${path}/ajax/reviewSns.shop",
+		success : function(data) {
+			console.log(data)
+			$(".reviewSnss").html(data);
+		},
+		error : function(e) {
+			alert("리뷰 조회시 서버 오류:"+e.status);
+		}
+	})
+}
+</script>
 </body>
 </html>

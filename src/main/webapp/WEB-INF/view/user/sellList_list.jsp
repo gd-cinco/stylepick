@@ -10,7 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 	function sellerInfo(order_no,seq) {
-		var op = "width=500,height=600,left=50,top=150";
+		var op = "width=500,height=500,left=50,top=150";
 		open("sellerInfo.shop?order_no="+order_no+"&seq="+seq,"",op);
 	}
 	function enter(f){
@@ -53,7 +53,7 @@
 		<li class="userli" style="width: auto;"><a class="a_blockbutton"
 		href="orderList.shop">구매자</a></li>
 		<li class="userli" style="width: auto;"><a class="a_blockbutton blockbutton_selected2"
-		href="orderList_s.shop">판매자</a></li>
+		href="sellList.shop">판매자</a></li>
 	</ul>
 	<hr style="margin-top: 0px;">
 	<div class="user-info" >
@@ -110,7 +110,7 @@
 							<td class="order"onmouseenter="enter(this)" onmouseleave="leave(this)" style="cursor: pointer;"
 								onclick="location.href='../item/detail.shop?item_no=${item.item_no}'">${item.item.item_name}</td>
 							<td class="order"onmouseenter="enter(this)" onmouseleave="leave(this)" style="cursor: pointer;"
-								onclick="javascript:sellerInfo('${iten.order_no}','${item.seq}')">${item.userid}</td>
+								onclick="javascript:sellerInfo('${item.order_no}','${item.seq}')">${item.userid}</td>
 							<td class="order">${item.quantity}개</td>
 							<td class="order">${item.quantity*item.item.price}원</td>
 							<td class="order"onmouseenter="enter(this)" onmouseleave="leave(this)" style="cursor: pointer;"

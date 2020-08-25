@@ -155,7 +155,7 @@ public class itemController {
 		}
 		
 		@RequestMapping("*") // /item/*.shop
-		public ModelAndView detail(Integer item_no,Integer qna_no,Integer line_no, HttpServletRequest request,Integer pageNum,Integer pageNum1 ) {
+		public ModelAndView detail(Integer item_no,Integer qna_no,Integer line_no, HttpServletRequest request,Integer pageNum,Integer pageNum1,Integer pageNum2) {
 			ModelAndView mav =new ModelAndView();
 			Item item=null;
 			Qna qna=new Qna();
@@ -180,11 +180,17 @@ public class itemController {
 				}
 		
 			mav.addObject("item",item);
+
+			}catch(IndexOutOfBoundsException e) {
+				throw new ItemEmptyException("존재하지 않는 상품입니다.","list.shop");
+			}
 			
-		}catch(IndexOutOfBoundsException e) {
-			throw new ItemEmptyException("존재하지 않는 상품입니다.","list.shop");
-		}
-		//line 페이징
+			//상품 후기
+			
+			
+			
+			//line 페이징
+
 			int limit1 = 6;
 			if (pageNum1 == null || pageNum1.toString().equals("") || pageNum1 == 0) {
 				pageNum1 = 1;

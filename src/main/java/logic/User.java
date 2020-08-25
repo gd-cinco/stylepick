@@ -8,6 +8,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 public class User {
 	private int no;
@@ -23,6 +24,7 @@ public class User {
 	private String email;
 	private String tel;
 	private int age;
+	private MultipartFile img;
 	private String imgurl;
 	private int gender; //1:남 2:여
 	private String comment;
@@ -206,14 +208,23 @@ public class User {
 	public void setOrder_tel(String order_tel) {
 		this.order_tel = order_tel;
 	}
+	public MultipartFile getImg() {
+		return img;
+	}
+	public void setImg(MultipartFile img) {
+		this.img = img;
+	}
 
 	@Override
 	public String toString() {
 		return "User [no=" + no + ", userid=" + userid + ", password=" + password + ", password2=" + password2
-				+ ", nickname=" + nickname + ", email=" + email + ", tel=" + tel + ", age=" + age + ", imgurl=" + imgurl
-				+ ", gender=" + gender + ", comment=" + comment + ", sns_type=" + sns_type + ", sns_id=" + sns_id
-				+ ", seller=" + seller + ", name=" + name + ", com_name=" + com_name + ", com_regist=" + com_regist
-				+ ", com_img=" + com_img + ", com_tel=" + com_tel + ", regdate=" + regdate + ", address=" + address
-				+ ", order_memo=" + order_memo + ", order_tel=" + order_tel + ", num=" + num + "]";
+				+ ", nickname=" + nickname + ", email=" + email + ", tel=" + tel + ", age=" + age + ", img=" + img
+				+ ", imgurl=" + imgurl + ", gender=" + gender + ", comment=" + comment + ", sns_type=" + sns_type
+				+ ", sns_id=" + sns_id + ", seller=" + seller + ", name=" + name + ", com_name=" + com_name
+				+ ", com_regist=" + com_regist + ", com_img=" + com_img + ", com_tel=" + com_tel + ", regdate="
+				+ regdate + ", address=" + address + ", order_memo=" + order_memo + ", order_tel=" + order_tel
+				+ ", num=" + num + "]";
 	}
+	
+	
 }

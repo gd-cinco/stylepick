@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>사용자 등록</title>
-<link rel="stylesheet" href="../assets/css/user.css">
+<link rel="stylesheet" href="../assets/css/user.css?ver=1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 	var idchecked=false;
@@ -25,10 +25,6 @@
 	             passchecked=false;
 	          }
 	       }
-	}
-	function win_upload(){
-		var op = "width=500,height=500,left=50,top=150";
-		open("pictureForm.shop","",op);
 	}
 	
 	function allchkbox(allchk){
@@ -215,10 +211,41 @@
     			<a>프로필 사진</a>
     		</div>
     		<div class="img_box" >
-  				<img src="" id="imgurl" width="150px" height="150px" <c:if test="${empty m.pic}">style="visibility: hidden;"</c:if>>
-  				<a class="img_del usera" href="javascript:win_upload()">등록</a>
+  				<!-- <img src="" id="imgurl" width="150px" height="150px" <c:if test="${empty m.pic}">style="visibility: hidden;"</c:if>> -->
+  				<div class="img preview-image" id="imgs">
+				<label for="input-file" id="imglabel">업로드</label> 
+				<input type="file" id="input-file" class="upload-hidden" name="img">
+				<script>
+					   var imgTarget = $('.preview-image .upload-hidden');
+
+					   imgTarget.on('change', function(){
+					       var parent = $(this).parent();
+					       parent.children('.upload-display').remove();
+
+					       if(window.FileReader){
+					           //image 파일만
+					           if (!$(this)[0].files[0].type.match(/image\//)) return;
+					            
+					           var reader = new FileReader();
+					           reader.onload = function(e){
+					               var src = e.target.result;
+					               parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div></div>');
+					           }
+					           reader.readAsDataURL($(this)[0].files[0]);
+					       } else {
+					           $(this)[0].select();
+					           $(this)[0].blur();
+					           var imgSrc = document.selection.createRange().text;
+					           parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img class="upload-thumb"></div></div>');
+
+					           var img = $(this).siblings('.upload-display').find('img');
+					           img[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\""+imgSrc+"\")";        
+					       }
+					   });
+				</script>
+			</div>
   			</div>
-  			<hr style="margin-top: 180px;margin-bottom: 20px;">
+  			<hr style="margin-top: 210px;margin-bottom: 20px;">
   			<%--TODO css구성 --%>
   			<div style="width:70%; margin-left:15%; height:175px; border: 2px solid black;">
   			<input type="checkbox" name="allchk" onchange="allchkbox(this)">전체 약관에 동의합니다.<br>

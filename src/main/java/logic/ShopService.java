@@ -73,7 +73,14 @@ public class ShopService {
 	}
 	
 	//[user] 일반회원가입
-	public void userInsert(User user) {
+	public void userInsert(User user,HttpServletRequest request) {
+		if(user.getImg() != null && !user.getImg().isEmpty()) {
+			System.out.println("스타트");
+			uploadFileCreate(user.getImg(),request,"user/file/");
+			System.out.println("완료");
+			user.setImgurl(user.getImg().getOriginalFilename());
+			System.out.println(user.getImg().getOriginalFilename());
+		}
 		userDao.insert(user);
 	}
 	
@@ -388,6 +395,11 @@ public class ShopService {
 	public List<Item> getNewItems() {
 		return itemDao.newItems();
 	}
+	
+	//[item] sns 리뷰
+	public List<Sns> getReviewSns(Integer item_no,Integer pageNum,int limit) {
+		return itemDao.reviewSns(item_no,pageNum,limit);
+	}
 
 
 	//장바구니
@@ -609,45 +621,59 @@ public class ShopService {
 	 	qnaDao.insert(qna);
 		
 	}
-
+	
+	//[user] 내가 주문한 buy_item 목록 (order_no)
 	public List<SaleItem> getusersalelist(int order_no) {
 		return userDao.getusersalelist(order_no);
 	}
 
+	//[user] 내가 판매중인 item 목록
 	public List<Item> getmyitem(String userid) {
 		return userDao.getmyitem(userid);
 	}
 
+	//[user] qna가 답변되지 않은 내 상품의 문의  **미구현
 	public int getNotmentionedQna(int item_no) {
 		return userDao.getNotmentionedQna(item_no);
 	}
 
+	//[user] 내 판매 내역
 	public List<SaleItem> getmysalelist(String userid) {
 		return userDao.getmysalelist(userid);
 	}
-
-	public String getbuyerid(int order_no) {
-		return userDao.getbuyerid(order_no);
+	
+	//
+	public Sale getsale(int order_no) {
+		return userDao.getsale(order_no);
 	}
 
-	public int getthisstat(int order_no,int seq) {
-		return userDao.getthisstat(order_no,seq);
+	//[user] 판매물품 조회
+	public SaleItem getsaleItem(int order_no, int seq) {
+		return userDao.getsaleItem(order_no,seq);
 	}
 
+	//[user] 한줄평 작성하지않은 갯수
 	public int getNotMentionedCount(String userid) {
 		return lineDao.getNotMentionedCount(userid);
 	}
 
+	//[user] 내 구매내역
 	public List<SaleItem> getusersaleitem(String userid) {
 		return userDao.getusersaleitem(userid);
 	}
 
+	//[user] 주문날짜
 	public Date getorderdate(int order_no) {
 		return userDao.getorderdate(order_no);
 	}
 
+
 	public String getreviewcontent(int order_no, int seq) {
 		return lineDao.getreviewcontent(order_no,seq);
+
+	public int linecount() {
+		return lineDao.count();
+
 	}
 
 	public int updatestat(int order_no, int seq, int stat) {
@@ -655,16 +681,25 @@ public class ShopService {
 	}
 
 
+
 	
 
 	public Qna getQna(int qna_no) {
 		return qnaDao.selectOne(qna_no);
+
+	public String getreviewcontent(int order_no, int seq) {
+		return lineDao.getreviewcontent(order_no,seq);
+
 	}
 
 	public void lineDelete(Line line) {
 		lineDao.delete(line.getLine_no());
 		
 	}
+
+	
+
+
 
 
 
