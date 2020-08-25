@@ -349,10 +349,7 @@ public class ShopService {
 //		saleItemDao.reviewed(line.getOrder_no(),line.getSeq());
 	}
 	
-	//[아이템]한줄평 카운터
-	public int linecount() {
-		return lineDao.count();
-	}
+
 
 	//[아이템]한줄평 리스트
 	public List<Line> linelist(Integer pageNum1, int limit1, Integer item_no, Integer line_no) {
@@ -670,6 +667,7 @@ public class ShopService {
 
 	public String getreviewcontent(int order_no, int seq) {
 		return lineDao.getreviewcontent(order_no,seq);
+	}
 
 	public int linecount() {
 		return lineDao.count();
@@ -687,11 +685,7 @@ public class ShopService {
 	public Qna getQna(int qna_no) {
 		return qnaDao.selectOne(qna_no);
 
-	public String getreviewcontent(int order_no, int seq) {
-		return lineDao.getreviewcontent(order_no,seq);
-
 	}
-
 	public void lineDelete(Line line) {
 		lineDao.delete(line.getLine_no());
 		
