@@ -595,44 +595,51 @@ public class ShopService {
 	 	qnaDao.insert(qna);
 		
 	}
-
+	
+	//[user] 내가 주문한 buy_item 목록 (order_no)
 	public List<SaleItem> getusersalelist(int order_no) {
 		return userDao.getusersalelist(order_no);
 	}
 
+	//[user] 내가 판매중인 item 목록
 	public List<Item> getmyitem(String userid) {
 		return userDao.getmyitem(userid);
 	}
 
+	//[user] qna가 답변되지 않은 내 상품의 문의  **미구현
 	public int getNotmentionedQna(int item_no) {
 		return userDao.getNotmentionedQna(item_no);
 	}
 
+	//[user] 내 판매 내역
 	public List<SaleItem> getmysalelist(String userid) {
 		return userDao.getmysalelist(userid);
 	}
-
-	public String getbuyerid(int order_no) {
-		return userDao.getbuyerid(order_no);
+	
+	//
+	public Sale getsale(int order_no) {
+		return userDao.getsale(order_no);
 	}
 
-	public int getthisstat(int order_no,int seq) {
-		return userDao.getthisstat(order_no,seq);
+	//[user] 판매물품 조회
+	public SaleItem getsaleItem(int order_no, int seq) {
+		return userDao.getsaleItem(order_no,seq);
 	}
 
+	//[user] 한줄평 작성하지않은 갯수
 	public int getNotMentionedCount(String userid) {
 		return lineDao.getNotMentionedCount(userid);
 	}
 
+	//[user] 내 구매내역
 	public List<SaleItem> getusersaleitem(String userid) {
 		return userDao.getusersaleitem(userid);
 	}
 
+	//[user] 주문날짜
 	public Date getorderdate(int order_no) {
 		return userDao.getorderdate(order_no);
 	}
-
-
 
 	public int linecount() {
 		return lineDao.count();
@@ -642,9 +649,6 @@ public class ShopService {
 		return lineDao.linelist(pageNum1,limit1,item_no,line_no);
 	}
 
-
-
-
 	public String getreviewcontent(int order_no, int seq) {
 		return lineDao.getreviewcontent(order_no,seq);
 	}
@@ -652,6 +656,8 @@ public class ShopService {
 	public int updatestat(int order_no, int seq, int stat) {
 		return saleItemDao.updatestat(order_no,seq,stat);
 	}
+
+	
 
 
 

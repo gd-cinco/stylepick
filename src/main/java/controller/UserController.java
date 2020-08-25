@@ -228,8 +228,8 @@ public class UserController {
 		}
 		List<SaleItem> salelist = service.getmysalelist(user.getUserid());
 		for (SaleItem saleItem : salelist) {
-			saleItem.setUserid(service.getbuyerid(saleItem.getOrder_no()));
-			saleItem.setStat(service.getthisstat(saleItem.getOrder_no(),saleItem.getSeq()));
+			saleItem.setUserid(service.getsale(saleItem.getOrder_no()).getUserid());
+			saleItem.setStat(service.getsaleItem(saleItem.getOrder_no(),saleItem.getSeq()).getStat());
 			saleItem.setItem(service.getItem(saleItem.getItem_no()));
 		}
 		
@@ -261,13 +261,27 @@ public class UserController {
 		
 		List<SaleItem> salelist = service.getmysalelist(user.getUserid());
 		for (SaleItem saleItem : salelist) {
-			saleItem.setUserid(service.getbuyerid(saleItem.getOrder_no()));
-			saleItem.setStat(service.getthisstat(saleItem.getOrder_no(),saleItem.getSeq()));
+			saleItem.setUserid(service.getsale(saleItem.getOrder_no()).getUserid());
+			saleItem.setStat(service.getsaleItem(saleItem.getOrder_no(),saleItem.getSeq()).getStat());
 			saleItem.setItem(service.getItem(saleItem.getItem_no()));
 		}
 		mav.addObject("list",salelist);
 		
 		return mav;
+	}
+	
+	@GetMapping("sellerInfo")
+	public ModelAndView loginChecksellerInfo(int order_no,int seq,HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		SaleItem saleItem = service.getsaleItem(order_no,seq);
+		Sale sale = service.getsale(order_no);
+		Item item = service.getItem(saleItem.getItem_no());
+		
+		mav.addObject("saleItem",saleItem);
+		mav.addObject("sale",sale);
+		mav.addObject("item",item);
+		return mav;
+		
 	}
 	
 	@GetMapping(value = {"orderList*","sellList*"})

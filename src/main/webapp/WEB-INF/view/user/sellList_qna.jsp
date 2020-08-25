@@ -14,7 +14,7 @@
 		<li class="userli" style="width: auto;"><a class="a_blockbutton"
 		href="orderList.shop">구매자</a></li>
 		<li class="userli" style="width: auto;"><a class="a_blockbutton blockbutton_selected2"
-		href="orderList_s.shop">판매자</a></li>
+		href="sellList.shop">판매자</a></li>
 	</ul>
 	<hr style="margin-top: 0px;">
 	<div class="user-info" >
