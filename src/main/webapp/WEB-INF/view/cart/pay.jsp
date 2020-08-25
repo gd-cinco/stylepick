@@ -14,8 +14,8 @@
     data-total-pay-amount="${param.total}"
     data-tax-scope-amount="${param.total}"
     data-tax-ex-scope-amount="0"
-    data-return-url="http://localhost:8080/stylepick/cart/payresult.shop">
+    data-return-url="${pageContext.request.contextPath}/cart/payresult.shop">
 </script>
-${outMap.name} ${outMap.total} 
+${outMap.name} : ${outMap.total} 
 </body>
 </html>
