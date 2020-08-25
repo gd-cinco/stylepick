@@ -366,6 +366,12 @@ public class ShopService {
 		
 			return lineDao.selectOne(line_no);
 		}
+		
+		//[아이템]한줄평 삭제
+		public void lineDelete(Line line) {
+			lineDao.delete(line.getLine_no());
+			
+		}
 	
 	//[item] 상품 수정
 	public void itemUpdate(Item item, HttpServletRequest request) {
@@ -619,6 +625,21 @@ public class ShopService {
 		
 	}
 	
+	//qna 수정값 가져오기
+	public Qna getQna(int qna_no) {
+		return qnaDao.selectOne(qna_no);
+	}
+
+	//qna 수정
+	public void qnaupdate(Qna qna, HttpServletRequest request) {
+		qnaDao.update(qna);
+	}
+	//qna 삭제
+	public void qnaDelete(Qna qna) {
+		qnaDao.delete(qna.getQna_no());
+		
+	}
+	
 	//[user] 내가 주문한 buy_item 목록 (order_no)
 	public List<SaleItem> getusersalelist(int order_no) {
 		return userDao.getusersalelist(order_no);
@@ -678,19 +699,10 @@ public class ShopService {
 		return saleItemDao.updatestat(order_no,seq,stat);
 	}
 
+	
 
 
 	
-
-	public Qna getQna(int qna_no) {
-		return qnaDao.selectOne(qna_no);
-
-	}
-	public void lineDelete(Line line) {
-		lineDao.delete(line.getLine_no());
-		
-	}
-
 	
 
 

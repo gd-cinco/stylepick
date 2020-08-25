@@ -3,6 +3,7 @@ package dao.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -39,5 +40,11 @@ public interface QnaMapper {
 
 	@Update("update item_qna set grpstep = grpstep +1 where grp =#{grp} and grpstep >#{grpstep}")
 	void grpStep(Map<String, Object> param);
+
+	@Update("update item_qna set content=#{content} where qna_no=#{qna_no}")
+	void update(Qna qna);
+
+	@Delete("delete from qna where qna_no=#{qna_no}")
+	void delete(int qna_no);
 
 }

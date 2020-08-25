@@ -296,6 +296,22 @@ public class itemController {
 			return mav;
 		}
 		
+		@GetMapping(value = {"change1"})
+		public ModelAndView check1(Integer qna_no,HttpSession session) {
+			ModelAndView mav = new ModelAndView();
+			Qna qna = service.getQna(qna_no);
+			mav.addObject("qna",qna);
+			return mav;
+		}
+		
+		@PostMapping("change1")
+		public ModelAndView update1(Qna qna ,HttpServletRequest request) {
+			ModelAndView mav =new ModelAndView("item/change1");
+			service.qnaupdate(qna,request);
+			
+			return mav;
+		}
+		
 		@RequestMapping("imgupload")
 		//upload : ckeditor에서 전달해 주는 파일 정보의 이름
 		// 			<input type="file" name="upload">
@@ -331,6 +347,15 @@ public class itemController {
 			ModelAndView mav = new ModelAndView();
 		
 				service.lineDelete(line);	
+			
+			return mav;
+		}
+		
+		@PostMapping("remove1")
+		public ModelAndView delete(Qna qna) {
+			ModelAndView mav = new ModelAndView();
+		
+				service.qnaDelete(qna);	
 			
 			return mav;
 		}

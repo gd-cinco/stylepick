@@ -146,7 +146,7 @@ function javascript2(){ //qna 답글
 					<a href="detail.shop?pageNum1=${pageNum1 -1 }&item_no=${param.item_no}">[이전]</a></c:if>
 					<c:if test="${pageNum1 <=1 }">[이전]</c:if>
 				<c:forEach var="b" begin="${startpage1 }" end="${endpage1 }">
-					<c:if test="${b==pageNum1 }">[${b }]</c:if>
+					<c:if test="${b==pageNum1 }">[${b}]</c:if>
 					<c:if test="${b !=pageNum1 }"><a href="detail.shop?pageNum1=${b}&item_no=${param.item_no}">[${b}]</a></c:if>
 					</c:forEach>
 				<c:if test="${pageNum1 < maxpage}">
@@ -188,6 +188,10 @@ function javascript2(){ //qna 답글
 					${qna.content }</td>
 					<td>
 					 <input type='button' style="width:101px;" onclick='javascript2()' value='답글'/>	</td>
+					 <td>
+				<a href="change1.shop?qna_no=${qna.qna_no}" onclick="window.open(this.href,'change1','width=800,height=500,top=200,left=400');return false;">[수정]</a>
+				<a href="remove1.shop?qna_no=${qna.qna_no }" onclick="window.open(this.href,'change1','width=800,height=500,top=200,left=400');return false;">[삭제]</a>
+					 </td>
 		</c:forEach>
 <tr><td colspan="3">
 				<c:if test="${pageNum >1 }">

@@ -8,6 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import dao.mapper.ItemMapper;
+import dao.mapper.LineMapper;
 import dao.mapper.QnaMapper;
 import logic.Qna;
 
@@ -56,6 +58,16 @@ public class QnaDao {
 		param.put("grpstep",qna.getGrpstep());
 		template.getMapper(QnaMapper.class).grpStep(param);
 		}
+
+	public void update(Qna qna) {
+		template.getMapper(QnaMapper.class).update(qna);
+		
+	}
+
+	public void delete(int qna_no) {
+		template.getMapper(QnaMapper.class).delete(qna_no);
+		
+	}
 
 
 
