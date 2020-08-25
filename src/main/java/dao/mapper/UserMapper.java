@@ -107,16 +107,16 @@ public interface UserMapper {
 	@Select("SELECT * FROM buy_detail WHERE item_no IN(SELECT item_no FROM item WHERE userid=#{userid})  ORDER BY order_no DESC ,seq asc")
 	List<SaleItem> getmysalelist(String userid);
 
-	@Select("select userid from buy where order_no=#{order_no}")
-	String getbuyerid(int order_no);
+	@Select("select * from buy where order_no=#{order_no}")
+	Sale getsale(int order_no);
 
-	@Select("select stat from buy_detail where order_no=#{order_no} and seq=#{seq}")
-	int getthisstat(@Param("order_no")int order_no,@Param("seq")int seq);
-	
 	@Select("select * from buy_detail where order_no in(select order_no from buy where userid=#{userid})")
 	List<SaleItem> getusersaleItem(String userid);
 
 	@Select("select orderdate from buy where order_no=#{order_no}")
 	Date getorderdate(int order_no);
+
+	@Select("select * from buy_detail where order_no=#{order_no} and seq=#{seq}")
+	SaleItem getsaleItem(@Param("order_no")int order_no,@Param("seq")int seq);
 
 }
