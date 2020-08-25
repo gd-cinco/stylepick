@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import exception.ItemEmptyException;
+import exception.LineException;
 import exception.QnaException;
 import logic.Item;
 import logic.Line;
@@ -106,6 +107,7 @@ public class itemController {
 		}
 		
 	
+			
 		
 		@RequestMapping("plus")
 		public ModelAndView add(Qna qna,HttpServletRequest request) {
@@ -116,11 +118,19 @@ public class itemController {
 			
 		}
 	
-		@RequestMapping("reply")
-		public ModelAndView reply(Qna qna,HttpServletRequest request) {
+		@PostMapping("reply")
+		public ModelAndView reply(@Valid Qna qna,HttpServletRequest request,BindingResult bresult) {
 			ModelAndView mav = new ModelAndView();
-			service.qnaReply(qna);
-			
+			if(bresult.hasErrors()) {
+				Qna dbQna = service.getQna(qna.getQna_no());
+				Map<String, Object> map = bresult.getModel();
+				Qna q = (Qna)map.get("qna");
+				q.setContent(dbQna.getContent());
+				return mav;
+			}
+		
+			mav.addObject("qna",qna);
+			service.qnaReply(qna, request);
 			return mav;
 		}
 		
@@ -150,7 +160,7 @@ public class itemController {
 			Item item=null;
 			Qna qna=new Qna();
 			Line line=new Line();
-			
+		
 			try {
 				if(item_no == null) {
 					item =new Item();
@@ -160,6 +170,7 @@ public class itemController {
 						readcntable=true;
 					}
 					item=service.getItem(item_no,readcntable);
+			
 					if(request.getRequestURI().contains("update.shop")) {
 						String[] option = item.getItem_option().split(",");
 						String[] size = item.getSize().split(",");
@@ -167,7 +178,9 @@ public class itemController {
 						mav.addObject("size",size);
 					}
 				}
+		
 			mav.addObject("item",item);
+			
 		}catch(IndexOutOfBoundsException e) {
 			throw new ItemEmptyException("존재하지 않는 상품입니다.","list.shop");
 		}
@@ -260,6 +273,23 @@ public class itemController {
 			return mav;
 		}
 		
+
+		@GetMapping(value = {"change"})
+		public ModelAndView check(Integer line_no,HttpSession session) {
+			ModelAndView mav = new ModelAndView();
+			Line line = service.getlineno(line_no);
+			mav.addObject("line",line);
+			return mav;
+		}
+		
+		@PostMapping("change")
+		public ModelAndView update(Line line ,HttpServletRequest request) {
+			ModelAndView mav =new ModelAndView("item/change");
+			service.lineupdate(line,request);
+			
+			return mav;
+		}
+		
 		@RequestMapping("imgupload")
 		//upload : ckeditor에서 전달해 주는 파일 정보의 이름
 		// 			<input type="file" name="upload">
@@ -287,6 +317,15 @@ public class itemController {
 			ModelAndView mav = new ModelAndView("item/update");
 			service.itemDelete(item_no);
 			mav.setViewName("redirect:/sns/main.shop");
+			return mav;
+		}
+		
+		@PostMapping("remove")
+		public ModelAndView delete(Line line) {
+			ModelAndView mav = new ModelAndView();
+		
+				service.lineDelete(line);	
+			
 			return mav;
 		}
 	

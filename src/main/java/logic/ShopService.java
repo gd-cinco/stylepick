@@ -342,6 +342,26 @@ public class ShopService {
 //		saleItemDao.reviewed(line.getOrder_no(),line.getSeq());
 	}
 	
+	//[아이템]한줄평 카운터
+	public int linecount() {
+		return lineDao.count();
+	}
+
+	//[아이템]한줄평 리스트
+	public List<Line> linelist(Integer pageNum1, int limit1, Integer item_no, Integer line_no) {
+		return lineDao.linelist(pageNum1,limit1,item_no,line_no);
+	}
+	
+	//[아이템]한줄평 수정
+		public void lineupdate(Line line, HttpServletRequest request) {
+			// TODO Auto-generated method stub
+			lineDao.update(line);
+		}
+
+		public Line getlineno(Integer line_no) {
+		
+			return lineDao.selectOne(line_no);
+		}
 	
 	//[item] 상품 수정
 	public void itemUpdate(Item item, HttpServletRequest request) {
@@ -559,7 +579,6 @@ public class ShopService {
 	}
 
 	
-
 	
 	//Q&A 작성
 	public void qnaWrite(Qna qna, HttpServletRequest request) {
@@ -580,9 +599,9 @@ public class ShopService {
 	}
 
 
-
-	public void qnaReply(Qna qna) {
-		qnaDao.updateGrpStrp(qna);
+	//Q&A 답글
+	public void qnaReply(Qna qna, HttpServletRequest request) {
+		qnaDao.updateGrpStep(qna);
 		int max=qnaDao.maxnum();
 		qna.setQna_no(++max);
 		qna.setGrplevel(qna.getGrplevel() + 1);
@@ -627,19 +646,6 @@ public class ShopService {
 		return userDao.getorderdate(order_no);
 	}
 
-
-
-	public int linecount() {
-		return lineDao.count();
-	}
-
-	public List<Line> linelist(Integer pageNum1, int limit1, Integer item_no, Integer line_no) {
-		return lineDao.linelist(pageNum1,limit1,item_no,line_no);
-	}
-
-
-
-
 	public String getreviewcontent(int order_no, int seq) {
 		return lineDao.getreviewcontent(order_no,seq);
 	}
@@ -647,6 +653,20 @@ public class ShopService {
 	public int updatestat(int order_no, int seq, int stat) {
 		return saleItemDao.updatestat(order_no,seq,stat);
 	}
+
+
+	
+
+	public Qna getQna(int qna_no) {
+		return qnaDao.selectOne(qna_no);
+	}
+
+	public void lineDelete(Line line) {
+		lineDao.delete(line.getLine_no());
+		
+	}
+
+
 
 
 }

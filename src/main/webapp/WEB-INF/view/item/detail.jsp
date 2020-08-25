@@ -11,19 +11,21 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script >
 //버튼클릭시 javascript 호출합니다.
-function javascript(){
-	window.name="par1"
+function javascript(){  //한줄평
+
     window.open('line.shop?item_no=${param.item_no}','popName',
                 'width=800,height=500,top=200,left=400,');
 }
 
-function javascript1(){
+
+
+function javascript1(){ //qna 작성
     window.open('qna.shop?item_no=${param.item_no}','popName',
                 'width=800,height=500,top=200,left=400,');
 }
 
 
-function javascript2(){
+function javascript2(){ //qna 답글
     window.open('reply.shop?item_no=${param.item_no }','popName',
                 'width=800,height=500,top=200,left=400,');
 }
@@ -133,6 +135,10 @@ function javascript2(){
 					</c:if>
 				</td>
 				<td>${line.userid }</td>
+				<td>
+				<a href="change.shop?line_no=${line.line_no}" onclick="window.open(this.href,'change','width=800,height=500,top=200,left=400');return false;">[수정]</a>
+				<a href="remove.shop?line_no=${line.line_no }" onclick="window.open(this.href,'change','width=800,height=500,top=200,left=400');return false;">[삭제]</a>
+				</td>
 					</tr>
 		</c:forEach>
 <tr><td colspan="4">
