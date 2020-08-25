@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import exception.LoginException;
 import logic.Buy;
 import logic.Item;
+import logic.Line;
 import logic.Sale;
 import logic.SaleItem;
 import logic.ShopService;
