@@ -591,4 +591,22 @@ public class AjaxController {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="reviewSns", produces="text/plain; charset=UTF8")
+	public String getreviewSns(int item_no,int pageNum) {
+		StringBuilder html = new StringBuilder();
+		int limit = 4;
+		List<Sns> reviewsns = service.getReviewSns(item_no, pageNum, limit);
+		for(Sns s : reviewsns) {
+			User writer = service.getUser(s.getUserid());
+			String ds = s.getDescription().substring(0,s.getDescription().length());
+			
+			html.append("<div class=\"reviewSns\" style=\"margin: 30px 0; width: 235px;float: left;padding: 0 5px;\">" + 
+					"	 	<img src=\"../sns/file/"+s.getImg1url()+"\" width=\"225px\" height=\"250px\" onclick=\"location.href='../sns/detail.shop?sns_no="+s.getSns_no()+"'\">\r\n" +
+					"		<div><img src=\"../user/file/"+writer.getImgurl()+"\" style=\"float:left;margin:10px 5px 0 0\" width=\"35px\" height=\"35px\">"+
+					"		"+"<p style=\"margin-bottom:0;float: left;margin-right: 130px;line-height: 16px;font-size: 14px;margin-top: 10px;font-weight: 600;\">"+writer.getNickname()+"</p>"+ds+"</div>"+
+					"	 </div>");
+		}
+		return html.toString();
+	}
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import dao.mapper.ItemMapper;
 import logic.Item;
+import logic.Sns;
 
 @Repository
 public class ItemDao {
@@ -84,6 +85,14 @@ public class ItemDao {
 
 	public List<Item> newItems() {
 		return template.getMapper(ItemMapper.class).selectNew();
+	}
+
+	public List<Sns> reviewSns(Integer item_no,Integer pageNum,int limit) {
+		param.clear();
+		param.put("item_no",item_no);
+		param.put("startrow",(pageNum-1)*4);
+		param.put("limit", limit);
+		return template.getMapper(ItemMapper.class).selectSns(param);
 	}
 
 

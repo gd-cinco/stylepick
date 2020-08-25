@@ -368,6 +368,11 @@ public class ShopService {
 	public List<Item> getNewItems() {
 		return itemDao.newItems();
 	}
+	
+	//[item] sns 리뷰
+	public List<Sns> getReviewSns(Integer item_no,Integer pageNum,int limit) {
+		return itemDao.reviewSns(item_no,pageNum,limit);
+	}
 
 
 	//장바구니
@@ -647,6 +652,8 @@ public class ShopService {
 	public int updatestat(int order_no, int seq, int stat) {
 		return saleItemDao.updatestat(order_no,seq,stat);
 	}
+
+
 
 
 }

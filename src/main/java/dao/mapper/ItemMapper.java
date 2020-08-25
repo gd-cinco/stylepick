@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import logic.Item;
+import logic.Sns;
 
 public interface ItemMapper {
 	@Select("select ifnull(max(item_no),0) from item")
@@ -52,6 +53,9 @@ public interface ItemMapper {
 	
 	@Select("select * from item order by regdate desc limit 0,4")
 	List<Item> selectNew();
+
+	@Select("select sns_no,type,userid,img1 img1url,description,regdate from sns where sns_no in (select sns_no from snsitem where isshopitem = #{item_no}) limit #{startrow}, #{limit}")
+	List<Sns> selectSns(Map<String, Object> param);
 
 	
 
