@@ -78,6 +78,7 @@ public class UserController {
 	@PostMapping("userEntry")
 	public ModelAndView add(@Valid User user,BindingResult bresult,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("user/userEntry");
+		System.out.println("img0 : "+user.getImg());
 		if(bresult.hasErrors()) {
 			bresult.reject("error.input.user");
 			mav.getModel().putAll(bresult.getModel());
@@ -86,6 +87,7 @@ public class UserController {
 		try {
 			int maxno = service.getmaxno();
 			user.setNo(++maxno);
+			System.out.println("img : "+user.getImg());
 			service.userInsert(user,request);
 			mav.setViewName("redirect:welcome.shop");
 		}catch (DataIntegrityViolationException e) {

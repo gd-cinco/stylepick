@@ -26,10 +26,6 @@
 	          }
 	       }
 	}
-	function win_upload(){
-		var op = "width=500,height=500,left=50,top=150";
-		open("pictureForm.shop","",op);
-	}
 	
 	function allchkbox(allchk){
 		//document.getElementById('chkbox').checked=allchk.checked;
