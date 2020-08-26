@@ -75,11 +75,8 @@ public class ShopService {
 	//[user] 일반회원가입
 	public void userInsert(User user,HttpServletRequest request) {
 		if(user.getImg() != null && !user.getImg().isEmpty()) {
-			System.out.println("스타트");
 			uploadFileCreate(user.getImg(),request,"user/file/");
-			System.out.println("완료");
 			user.setImgurl(user.getImg().getOriginalFilename());
-			System.out.println(user.getImg().getOriginalFilename());
 		}
 		userDao.insert(user);
 	}
@@ -95,7 +92,11 @@ public class ShopService {
 	}
 	
 	//[user] 일반회원 정보 수정
-	public void userUpdate(User user) {
+	public void userUpdate(User user,HttpServletRequest request) {
+		if(user.getImg() != null && !user.getImg().isEmpty()) {
+			uploadFileCreate(user.getImg(),request,"user/file/");
+			user.setImgurl(user.getImg().getOriginalFilename());
+		}
 		userDao.update(user);
 	}
 	

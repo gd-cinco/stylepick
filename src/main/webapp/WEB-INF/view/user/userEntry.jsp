@@ -133,7 +133,7 @@
     		</div>
     	</div>
     	<hr>
-	<form:form modelAttribute="user" method="post" action="userEntry.shop" onsubmit="return chkboxcheck(this)">
+	<form:form modelAttribute="user" method="post" enctype="multipart/form-data" action="userEntry.shop" onsubmit="return chkboxcheck(this)">
 		<div style="width: 100%; display:inline;text-align: center; height: 100px;">
 			<spring:hasBindErrors name="user">
 				<font class="userfont" color="red">
@@ -211,9 +211,7 @@
     			<a>프로필 사진</a>
     		</div>
     		<div class="img_box" >
-  				<!-- <img src="" id="imgurl" width="150px" height="150px" <c:if test="${empty m.pic}">style="visibility: hidden;"</c:if>> -->
   				<div class="img preview-image" id="imgs">
-				<label for="input-file" id="imglabel">업로드</label> 
 				<input type="file" id="input-file" class="upload-hidden" name="img">
 				<script>
 					   var imgTarget = $('.preview-image .upload-hidden');
@@ -245,6 +243,7 @@
 				</script>
 			</div>
   			</div>
+				<label for="input-file" style="margin-top: 10px; margin-left: -68px;" id="imglabel">업로드</label> 
   			<hr style="margin-top: 210px;margin-bottom: 20px;">
   			<%--TODO css구성 --%>
   			<div style="width:70%; margin-left:15%; height:175px; border: 2px solid black;">

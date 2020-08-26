@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 	var nickchecked=false;
 	function alreadyNicknamechk(){
@@ -28,6 +29,11 @@
 	}
 	function submitcheck(f){
 		var result = true;
+		if($("#age").val()=""){
+			f.age.value = "0"
+			
+			console.log($("#age").val())
+		}
 		if(!nickchecked){
 			alert("닉네임을 확인하세요.")
 			result=false;
@@ -40,7 +46,7 @@
 <link rel="stylesheet" href="../assets/css/user.css">
 </head>
 <body>
-<form:form modelAttribute="user" method="post" action="update.shop" onsubmit="return submitcheck(this)">
+<form:form modelAttribute="user" method="post" enctype="multipart/form-data" action="update.shop" onsubmit="return submitcheck(this)">
 	<input type="hidden" name="password" id="password" value="123123">
 	<div class="default_center" style="height:auto; margin-top: 15px;">
 	<h2>회원 정보 수정</h2>
@@ -101,9 +107,7 @@
     		</div>
     		<div class="update_input">
     			<div class="input_box" id="ageinputbox" >
-					<input type="text" id="age" name="age"
-					<c:if test="${user.age==0}"></c:if>
-					<c:if test="${user.age!=0}">value='${user.age}'</c:if>
+					<input type="text" id="age" name="age" value='${user.age}'
 					placeholder="나이" class="input_input" autocomplete="off"
 					 onfocus="document.getElementById('ageinputbox').style.border='2px solid #35C5F0'"
 					 onblur="document.getElementById('ageinputbox').style.border='1px solid #dadada'">
@@ -157,10 +161,41 @@
     		<div class="update_text">
     			<a>프로필 사진</a>
     		</div>
-    		<div class="img_box" style="margin-left: 0px;" >
-  				<img src="" id="imgurl" width="150px" height="150px" <c:if test="${empty m.pic}">style="visibility: hidden;"</c:if>>
-  				<a class="img_del usera" href="javascript:win_upload()">등록</a>
+    		<div class="img_box" >
+  				<div class="img preview-image" id="imgs">
+  				<div class="upload-display"><div class="upload-thumb-wrap"><img src="file/${user.imgurl}" class="upload-thumb"></div></div>
+				<input type="file" id="input-file" class="upload-hidden" name="img">
+				<script>
+					   var imgTarget = $('.preview-image .upload-hidden');
+
+					   imgTarget.on('change', function(){
+					       var parent = $(this).parent();
+					       parent.children('.upload-display').remove();
+
+					       if(window.FileReader){
+					           //image 파일만
+					           if (!$(this)[0].files[0].type.match(/image\//)) return;
+					            
+					           var reader = new FileReader();
+					           reader.onload = function(e){
+					               var src = e.target.result;
+					               parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div></div>');
+					           }
+					           reader.readAsDataURL($(this)[0].files[0]);
+					       } else {
+					           $(this)[0].select();
+					           $(this)[0].blur();
+					           var imgSrc = document.selection.createRange().text;
+					           parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img class="upload-thumb"></div></div>');
+
+					           var img = $(this).siblings('.upload-display').find('img');
+					           img[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\""+imgSrc+"\")";        
+					       }
+					   });
+				</script>
+			</div>
   			</div>
+				<label for="input-file" style="margin-top: 10px; margin-left: -68px;" id="imglabel">업로드</label> 
   			</div>
   			</div>
   			<input class="input_submit" style="font-size:36px; width:300px; margin: 0 auto; margin-top:50px;" type="submit" value="수정하기">

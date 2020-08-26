@@ -57,7 +57,7 @@ public interface UserMapper {
 	 */
 
 	@Update("update user set nickname=#{nickname},age=#{age},"
-			+ "gender=#{gender},tel=#{tel},comment=#{comment} where userid=#{userid}")
+			+ "gender=#{gender},tel=#{tel},comment=#{comment},imgurl=#{imgurl} where userid=#{userid}")
 	void update(User user);
 	
 	@Update("update user set com_name=#{com_name}, com_regist=#{com_regist}, "

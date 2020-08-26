@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import exception.LoginException;
@@ -78,7 +79,6 @@ public class UserController {
 	@PostMapping("userEntry")
 	public ModelAndView add(@Valid User user,BindingResult bresult,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("user/userEntry");
-		System.out.println("img0 : "+user.getImg());
 		if(bresult.hasErrors()) {
 			bresult.reject("error.input.user");
 			mav.getModel().putAll(bresult.getModel());
@@ -87,7 +87,6 @@ public class UserController {
 		try {
 			int maxno = service.getmaxno();
 			user.setNo(++maxno);
-			System.out.println("img : "+user.getImg());
 			service.userInsert(user,request);
 			mav.setViewName("redirect:welcome.shop");
 		}catch (DataIntegrityViolationException e) {
@@ -296,7 +295,7 @@ public class UserController {
 	}
 	
 	@PostMapping("update")
-	public ModelAndView checkupdate(@Valid User user,BindingResult bresult,HttpSession session) {
+	public ModelAndView checkupdate(@Valid User user,BindingResult bresult,HttpSession session,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		if(bresult.hasErrors()) {
 			bresult.reject("error.input.user");
@@ -304,7 +303,7 @@ public class UserController {
 		}
 		User loginUser = (User)session.getAttribute("loginUser");
 		try {
-			service.userUpdate(user);
+			service.userUpdate(user,request);
 			mav.setViewName("redirect:../sns/mypage.shop?userid="+user.getUserid());
 			if(loginUser.getUserid().equals(user.getUserid())) {
 				user = service.getUser(user.getUserid());
