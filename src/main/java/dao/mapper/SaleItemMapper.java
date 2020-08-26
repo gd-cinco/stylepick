@@ -26,4 +26,10 @@ public interface SaleItemMapper {
 	@Update("update buy_detail set stat=#{stat} where order_no=#{order_no} and seq=#{seq}")
 	int updatestat(@Param("order_no")int order_no,@Param("seq")int seq,@Param("stat")int stat);
 
+	@Select("select count(*) from buy_detail where item_no in(select item_no from item where userid=#{userid}) and stat=2")
+	int soldcount(String userid);
+
+	@Select("SELECT sum(d.quantity*i.price) FROM buy_detail d LEFT JOIN item i ON d.item_no = i.item_no WHERE i.userid=#{userid}")
+	int mybalance(String userid);
+
 }

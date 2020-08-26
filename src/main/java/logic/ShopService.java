@@ -685,6 +685,11 @@ public class ShopService {
 	public List<Item> getmyitem(String userid) {
 		return userDao.getmyitem(userid);
 	}
+	
+	//[user] 내 판매중인 item count
+	public int getmysellcount(String userid) {
+		return userDao.getmysellcount(userid);
+	}
 
 	//[user] qna가 답변되지 않은 내 상품의 문의  **미구현
 	public int getNotmentionedQna(int item_no) {
@@ -732,4 +737,11 @@ public class ShopService {
 		return saleItemDao.updatestat(order_no,seq,stat);
 	}
 
+	public int getmysoldcount(String userid) {
+		return saleItemDao.mysoldcount(userid);
+	}
+
+	public int getmybalance(String userid) {
+		return saleItemDao.mybalance(userid);
+	}
 }

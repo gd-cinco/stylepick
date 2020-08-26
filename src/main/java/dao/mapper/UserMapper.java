@@ -101,6 +101,9 @@ public interface UserMapper {
 
 	@Select("SELECT * FROM item WHERE userid = #{userid}")
 	List<Item> myitem(String userid);
+	
+	@Select("select count(*) from item where userid = #{userid}")
+	int sellcount(String userid);
 
 	@Select("select * from item_qna ")
 	int notmentionedQna(int item_no);

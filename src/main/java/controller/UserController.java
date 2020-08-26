@@ -230,6 +230,14 @@ public class UserController {
 		User user = (User)session.getAttribute("loginUser");
 		
 		List<Item> sell = service.getmyitem(user.getUserid());
+		
+		int balance = service.getmybalance(user.getUserid());
+		mav.addObject("balance",balance);
+		int sellcount = service.getmysellcount(user.getUserid());
+		mav.addObject("sellcount",sellcount);
+		int sold = service.getmysoldcount(user.getUserid());
+		mav.addObject("sold",sold);
+		
 		for (Item item : sell) {
 			//item.setQna(service.getNotmentionedQna(item.getItem_no()));
 		}
@@ -239,6 +247,7 @@ public class UserController {
 			saleItem.setStat(service.getsaleItem(saleItem.getOrder_no(),saleItem.getSeq()).getStat());
 			saleItem.setItem(service.getItem(saleItem.getItem_no()));
 		}
+		
 		
 		mav.addObject("user",user);
 		mav.addObject("sell",sell);
@@ -255,7 +264,12 @@ public class UserController {
 		List<Item> sell = service.getmyitem(user.getUserid());
 		mav.addObject("sell",sell);
 		
-		
+		int balance = service.getmybalance(user.getUserid());
+		mav.addObject("balance",balance);
+		int sellcount = service.getmysellcount(user.getUserid());
+		mav.addObject("sellcount",sellcount);
+		int sold = service.getmysoldcount(user.getUserid());
+		mav.addObject("sold",sold);
 		
 		return mav;
 	}
@@ -265,6 +279,13 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 		User user= (User)session.getAttribute("loginUser");
 		mav.addObject("user",user);
+		
+		int balance = service.getmybalance(user.getUserid());
+		mav.addObject("balance",balance);
+		int sellcount = service.getmysellcount(user.getUserid());
+		mav.addObject("sellcount",sellcount);
+		int sold = service.getmysoldcount(user.getUserid());
+		mav.addObject("sold",sold);
 		
 		List<SaleItem> salelist = service.getmysalelist(user.getUserid());
 		for (SaleItem saleItem : salelist) {
@@ -291,11 +312,19 @@ public class UserController {
 		
 	}
 	
-	@GetMapping(value = {"orderList*","sellList*"})
+	@GetMapping("sellList_qna")
 	public ModelAndView loginChecksessionview(HttpSession session){
 		ModelAndView mav = new ModelAndView();
 		User user = (User)session.getAttribute("loginUser");
 		mav.addObject("user",user);
+		
+		int balance = service.getmybalance(user.getUserid());
+		mav.addObject("balance",balance);
+		int sellcount = service.getmysellcount(user.getUserid());
+		mav.addObject("sellcount",sellcount);
+		int sold = service.getmysoldcount(user.getUserid());
+		mav.addObject("sold",sold);
+		
 		return mav;
 	}
 	

@@ -37,4 +37,12 @@ public class SaleItemDao {
 	public int updatestat(int order_no, int seq, int stat) {
 		return template.getMapper(SaleItemMapper.class).updatestat(order_no,seq,stat);
 	}
+
+	public int mysoldcount(String userid) {
+		return template.getMapper(SaleItemMapper.class).soldcount(userid);
+	}
+
+	public int mybalance(String userid) {
+		return template.getMapper(SaleItemMapper.class).mybalance(userid);
+	}
 }
