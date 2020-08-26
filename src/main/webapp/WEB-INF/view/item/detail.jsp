@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>상품 상세보기</title>
 <link rel="stylesheet" href="${path}/assets/css/detail.css?ver=1.2">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="star-rating.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script >
 //버튼클릭시 javascript 호출합니다.
@@ -44,6 +46,17 @@ function javascript2(){ //qna 답글
     border-bottom: 1px solid #444444;
     padding: 10px;
   }
+  .lineno{
+     text-align:right;
+     }
+  .fa-star{
+	font-size:30px;
+	color:#1f9cff;
+	}
+	
+	#qnacss{
+	color:#999;
+	}
 </style>
 
 </head>
@@ -118,13 +131,14 @@ function javascript2(){ //qna 답글
 	 <div class="hr-sect"><h4>한줄평</h4></div>
 	 <div style="float:right;">
 	   <input type='button' class="genric-btn info-border circle arrow" style="width:101px;" onclick='javascript()' value='한줄평'/></div>
+	   <br>
 	<div>
 	<br>
 	<!--별점 평균 사진 놓을 곳  -->
 	<c:if test="${linecount >0 }">
 	<table>
 		<c:forEach items="${linelist }" var="line">
-		<tr><td><c:forEach var="star" begin="1" end="${line.evaluation }">★</c:forEach></td>
+		<tr><td><c:forEach var="star" begin="1" end="${line.evaluation }"><i class="fa fa-star" aria-hidden="true" id="s1"></i></c:forEach></td>
 		<td>${line.content } &nbsp;&nbsp;&nbsp;</td>
 		<td>
 	<fmt:formatDate var="rdate" value="${line.regdate }" pattern="yyyyMMdd"/>
@@ -135,24 +149,24 @@ function javascript2(){ //qna 답글
 					<fmt:formatDate value="${line.regdate}" pattern="yyyy-MM-dd "/>
 					</c:if>
 				</td>
-				<td>${line.userid }</td>
-				<td>
+				<td class="lineno">${line.userid }</td>
+				<td class="lineno">
 				<a href="change.shop?line_no=${line.line_no}" onclick="window.open(this.href,'change','width=800,height=500,top=200,left=400');return false;">[수정]</a>
 				<a href="remove.shop?line_no=${line.line_no }" onclick="window.open(this.href,'change','width=800,height=500,top=200,left=400');return false;">[삭제]</a>
 				</td>
 					</tr>
 		</c:forEach>
-<tr><td colspan="4">
+<tr><td colspan="5"><center>
 				<c:if test="${pageNum1 >1 }">
-					<a href="detail.shop?pageNum1=${pageNum1 -1 }&item_no=${param.item_no}">[이전]</a></c:if>
-					<c:if test="${pageNum1 <=1 }">[이전]</c:if>
+					<a href="detail.shop?pageNum1=${pageNum1 -1 }&item_no=${param.item_no}">&lt;이전</a></c:if>
+					<c:if test="${pageNum1 <=1 }">&lt;이전</c:if>
 				<c:forEach var="b" begin="${startpage1 }" end="${endpage1 }">
-					<c:if test="${b==pageNum1 }">[${b}]</c:if>
-					<c:if test="${b !=pageNum1 }"><a href="detail.shop?pageNum1=${b}&item_no=${param.item_no}">[${b}]</a></c:if>
+					<c:if test="${b==pageNum1 }">&nbsp;&nbsp;${b}&nbsp;&nbsp;</c:if>
+					<c:if test="${b !=pageNum1 }"><a href="detail.shop?pageNum1=${b}&item_no=${param.item_no}"> &nbsp;&nbsp;${b}&nbsp;&nbsp; </a></c:if>
 					</c:forEach>
 				<c:if test="${pageNum1 < maxpage1}">
-				<a href="detail.shop?pageNum1=${pageNum1 +1 }&item_no=${param.item_no}">[다음]</a></c:if>
-				<c:if test="${pageNum1 >= maxpage1 }">[다음]</c:if></td></tr>
+				<a href="detail.shop?pageNum1=${pageNum1 +1 }&item_no=${param.item_no}">다음&gt;</a></c:if>
+				<c:if test="${pageNum1 >= maxpage1 }">다음&gt;</c:if></td></tr></center>
 	
 	</table>
 	</c:if>
@@ -166,10 +180,10 @@ function javascript2(){ //qna 답글
 <div id="target2">
 	 <div class="hr-sect"><h4>#OOTD</h4></div>
 	 <div class="reviewList">
-	 	<div><button id="reviewbtn" onclick="javascript:preReview()"></button></div>
+	 	<div><button id="reviewbtn" onclick="javascript:preReview()">&lt;&lt;</button></div>
 	 	<div class="reviewSnss">
 	 	</div>
-	 	<div style="margin-left:967px;"><button id="reviewbtn2" onclick="javascript:nextReview()">>></button></div>
+	 	<div style="margin-left:967px;"><button id="reviewbtn2" onclick="javascript:nextReview()">&gt;&gt;</button></div>
 	 </div>
 	 <br><br><br><br><br><br><br>
 </div>
@@ -177,14 +191,14 @@ function javascript2(){ //qna 답글
 	 <div class="hr-sect"><h4>Q&A</h4></div>
 	  <div style="float:right;">
 	   <input type='button' class="genric-btn info-border circle arrow" style="width:101px;" onclick='javascript1()' value='작성하기'/></div>
-	<br><br><br>
+	<br><br>
 	<div>
 	<div>
 		<c:if test="${listcount >0 }">
 	<table>
 		<c:forEach items="${qnalist }" var="qna">
 		<tr><td style="font-size:20px; color:#4ebafc"><c:if test="${qna.type ==0 }">Q</c:if><c:if test="${qna.type ==1 }">A</c:if></td>
-		<td>${qna.userid } &nbsp;&nbsp;&nbsp;
+		<td ><span id="qnacss">${qna.userid } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<fmt:formatDate var="rdate" value="${qna.regdate }" pattern="yyyyMMdd"/>
 				<c:if test="${today==rdate }">
 					<fmt:formatDate value="${qna.regdate}" pattern="HH:mm:ss"/>
@@ -192,36 +206,39 @@ function javascript2(){ //qna 답글
 			<c:if test="${today !=rdate }">
 					<fmt:formatDate value="${qna.regdate}" pattern="yyyy-MM-dd "/>
 					</c:if>
+					</span>
 				<br>
 					${qna.content }</td>
 					<td>
-					 <input type='button' style="width:101px;" onclick='javascript2()' value='답글'/>	</td>
-					 <td>
+					 <input type='button' style="width:101px;" onclick='javascript2()' value='답글'/>	
 				<a href="change1.shop?qna_no=${qna.qna_no}" onclick="window.open(this.href,'change1','width=800,height=500,top=200,left=400');return false;">[수정]</a>
 				<a href="remove1.shop?qna_no=${qna.qna_no }" onclick="window.open(this.href,'change1','width=800,height=500,top=200,left=400');return false;">[삭제]</a>
 					 </td>
 		</c:forEach>
 <tr><td colspan="3">
+<center>
 				<c:if test="${pageNum >1 }">
-					<a href="detail.shop?pageNum=${pageNum -1 }&item_no=${param.item_no}">[이전]</a></c:if>
-					<c:if test="${pageNum <=1 }">[이전]</c:if>
+					<a href="detail.shop?pageNum=${pageNum -1 }&item_no=${param.item_no}">&lt;이전</a></c:if>
+					<c:if test="${pageNum <=1 }">&lt;이전</c:if>
 				<c:forEach var="a" begin="${startpage }" end="${endpage }">
-					<c:if test="${a==pageNum }">[${a }]</c:if>
-					<c:if test="${a !=pageNum }"><a href="detail.shop?pageNum=${a}&item_no=${param.item_no}">[${a}]</a></c:if>
+					<c:if test="${a==pageNum }">&nbsp;&nbsp;${a }&nbsp;&nbsp;</c:if>
+					<c:if test="${a !=pageNum }"><a href="detail.shop?pageNum=${a}&item_no=${param.item_no}"> &nbsp;&nbsp;${a}&nbsp;&nbsp; </a></c:if>
 					</c:forEach>
 				<c:if test="${pageNum < maxpage}">
-				<a href="detail.shop?pageNum=${pageNum +1 }&item_no=${param.item_no}">[다음]</a></c:if>
-				<c:if test="${pageNum >= maxpage }">[다음]</c:if></td></tr>
+				<a href="detail.shop?pageNum=${pageNum +1 }&item_no=${param.item_no}">다음&gt;</a></c:if>
+				<c:if test="${pageNum >= maxpage }">다음&gt;</c:if></td></tr></center>
 	
 	</table>
 	</c:if>
 	<c:if test="${listcount==0 }">
 	</c:if>
 	</div>
-	<br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br>
 </div>
-<a href="update.shop?item_no=${item.item_no}">[수정]</a>
-<a href="delete.shop?item_no=${item.item_no}">[삭제]</a>
+<center>
+<a href="update.shop?item_no=${item.item_no}" class="genric-btn primary small">수정</a>
+<a href="delete.shop?item_no=${item.item_no}" class="genric-btn primary small">삭제</a>
+</center>
 </div>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
