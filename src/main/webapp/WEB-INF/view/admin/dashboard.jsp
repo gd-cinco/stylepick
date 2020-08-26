@@ -29,6 +29,16 @@ google.load('visualization','1',{
 //로딩이 완료되면 drawChart 함수를 호출
 google.setOnLoadCallback(drawChart); //라이브러리를 불러오는 작업이 완료되었으면 drawChart작업을 실행하라는 뜻.
 google.setOnLoadCallback(drawChart2); //2nd chart
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
     function drawChart() {
         var jsonData = $.ajax({
         	url : "${path}/ajax/weeklyrevenue.shop",
@@ -53,19 +63,23 @@ google.setOnLoadCallback(drawChart2); //2nd chart
                 //document.getElementByld('chart_div')); //원형 그래프
         
         var chart = new google.visualization.LineChart(document.getElementById('chart_div1')); //선 그래프
-        //var chart
-        //  = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        //var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
                 //차트 객체.draw(데이터 테이블, 옵션) //막대그래프
                 
                 //cuveType : "function" => 곡선처리
                 
                 //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
-                chart.draw(data, {
-                    title : "주간 매출",
-                    curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
-                    width : 500,
-                    height : 300
-                });
+		        var options = {
+		        		title : "주간 매출",
+	                    //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
+	                    width : 500,
+	                    height : 300
+		              };
+		            options.series={};
+		            for(var i = 0;i < data.getNumberOfRows();i++){
+		                options.series[i]={color:getRandomColor()}
+		            }
+		             chart.draw(data, options);
     }
     function drawChart2() {
         var jsonData = $.ajax({
@@ -93,12 +107,17 @@ google.setOnLoadCallback(drawChart2); //2nd chart
                 //cuveType : "function" => 곡선처리
                 
                 //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
-                chart.draw(data, {
-                    title : "최근 4주 매출",
-                    //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
-                    width : 500,
-                    height : 300
-                });
+                var options = {
+                		title : "최근 4주 매출",
+                        //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
+                        width : 500,
+                        height : 300
+		              };
+		            options.series={};
+		            for(var i = 0;i < data.getNumberOfRows();i++){
+		                options.series[i]={color:getRandomColor()}
+		            }
+		             chart.draw(data, options);
     }
 
 });
@@ -294,81 +313,10 @@ function getCommentList(){
 			<!-- 최근 4주간 매출 추이 그래프의 끝 -->
 			<br>
 		</div> <!-- outer_frame -->
-			<!-- To Do List -->
-			<div class="todolist_frame">
-				<h3>To Do List</h3>
-				
-			</div>
+
 	<!-- right_div -->
 <br><br><br><br><br><br><br><br><br><br><br><br>
-		<script>
-		$(function() {
-			
-			//todolist 등록
-			function add_todolist(code){
-				console.log($("#commentForm").serialize());
-			    $.ajax({
-			        type:'POST',
-			        url : "<c:url value='/ajax/addTodolist.shop'/>",
-			        data:$("#commentForm").serialize(),
-			        success : function(data){
-			            if(data=="success")
-			            {
-			                getCommentList();
-			                $("#comment").val("");
-			            }
-			        },
-			        error:function(request,status,error){
-			            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			       }
-			        
-			    });
-			}
-			
-		//todolist 불러오기
-		function getCommentList(){
-		    $.ajax({
-		        type:'GET',
-		        url : "<c:url value='/amax/todoList.shop'/>",
-		        dataType : "json",
-		        data:$("#commentForm").serialize(),
-		        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-		        success : function(data){
-		            
-		            var html = "";
-		            var cCnt = data.length;
-		            
-		            if(data.length > 0){
-		                
-		                for(i=0; i<data.length; i++){
-		                    html += "<div>";
-		                    html += "<div><table class='table'><h6><strong>"+data[i].writer+"</strong></h6>";
-		                    html += data[i].comment + "<tr><td></td></tr>";
-		                    html += "</table></div>";
-		                    html += "</div>";
-		                }
-		                
-		            } else {
-		                
-		                html += "<div>";
-		                html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
-		                html += "</table></div>";
-		                html += "</div>";
-		                
-		            }
-		            
-		            $("#cCnt").html(cCnt);
-		            $("#commentList").html(html);
-		            
-		        },
-		        error:function(request,status,error){
-		       }
-		    }); //ajax
-		}//getTodolist
-	}//onload function
-
-	</script>
-
+		
 </body>
 </html>
 

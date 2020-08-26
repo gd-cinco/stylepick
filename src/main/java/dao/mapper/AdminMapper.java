@@ -45,12 +45,8 @@ public interface AdminMapper {
 			"ORDER BY weeks_ago DESC ")
 	List<Buy> monthlyrevenue();
 	
-	//dashboard index 3-1 To-do list
-	@Insert("INSERT INTO line (No, duedate, content, fin) VALUES (#{No}, #{duedate}, #{content}, #{fin})")
-	void addtodolist();
-	
 	//widgets index 1-1 daily sales report
-	@Select("SELECT order_no, orderdate, userid, amount FROM buy ORDER BY order_no DESC LIMIT 5")
+	@Select("SELECT order_no, orderdate, userid, amount FROM buy WHERE amount !=0 ORDER BY order_no DESC LIMIT 5")
 	List<Buy> getSales(Map<String, Object> param);
 	
 	//widgets index 1-2 recently joined users
@@ -94,7 +90,8 @@ public interface AdminMapper {
 	List<Buy> toptenstores(Map<String, Object> param);
 	
 	// charts index 4-1 지역별 매출 평균 barplot
-	@Select("SELECT SUBSTRING_INDEX(address, '구', 1) address, amount FROM buy ORDER BY address ASC")
+	//@Select("SELECT SUBSTRING_INDEX(address, '구', 1) address, amount FROM buy ORDER BY address ASC")
+	@Select("SELECT SUBSTRING(address, 7, 6) address, amount FROM buy WHERE amount !=0 ORDER BY address ASC")
 	List<Buy> boxplot(Map<String, Object> param);
 	
 	//salesmgr 매출 관리 0822

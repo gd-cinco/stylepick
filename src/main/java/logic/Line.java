@@ -10,11 +10,22 @@ public class Line {
 	private long evaluation;	//평점
 	private Date regdate;	//등록시간
 	
+	private String com_name;
+	
 //	private int order_no;  //sale
 	//private int seq;		//saleitem
 
+	
 	public int getLine_no() {
 		return line_no;
+	}
+
+	public String getCom_name() {
+		return com_name;
+	}
+
+	public void setCom_name(String com_name) {
+		this.com_name = com_name;
 	}
 
 	public void setLine_no(int line_no) {
