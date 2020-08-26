@@ -22,10 +22,10 @@
 	</div>
 	<br><br><br>
 	<div class="button-group-area">
-		<a href="${path}/board/faq.shop?c=buy" class="genric-btn danger">구매</a>
-		<a href="${path}/board/faq.shop?c=sell" class="genric-btn danger">판매</a>
-		<a href="${path}/board/faq.shop?c=ootd" class="genric-btn danger">OOTD</a>
-		<a href="${path}/board/faq.shop?c=etc" class="genric-btn danger">기타</a>
+		<a href="${path}/board/faq.shop?c=구매" class="genric-btn danger">구매</a>
+		<a href="${path}/board/faq.shop?c=판매" class="genric-btn danger">판매</a>
+		<a href="${path}/board/faq.shop?c=OOTD" class="genric-btn danger">OOTD</a>
+		<a href="${path}/board/faq.shop?c=기타" class="genric-btn danger">기타</a>
 	</div>
 </div>
 <br><br><br>

@@ -25,6 +25,9 @@
 		<c:if test="${board.seq != 2}">
 			<a href="${path}/board/update${type.uri}?no=${param.no}" class="genric-btn info radius">수정</a>
 		</c:if>
+		<c:if test="${board.seq == 2}">
+			<a href="${path}/board/answer?no=${param.no}" class="genric-btn info radius">답변</a>
+		</c:if>
 			<a href="${path}/board/delete?no=${param.no}" class="genric-btn info radius">삭제</a>
 		</c:if>
 		</div>

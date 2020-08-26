@@ -13,9 +13,10 @@
 	</table>
 </div>
 <br>
+<c:if test="${sessionScope.loginUser.userid == 'admin'}">
 <div align="center">
 <a href="${pageContext.request.contextPath}/board/add.shop?t=f" class="genric-btn info radius">추가하기</a>
-
 </div>
+</c:if>
 </body>
 </html>

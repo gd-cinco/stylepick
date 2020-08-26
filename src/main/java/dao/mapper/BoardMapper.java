@@ -14,7 +14,7 @@ public interface BoardMapper {
 	List<Board> list(int seq);
 	
 	@Select({"<script>",
-		"select * from board where seq=2",
+		"select no, title, category, if(author = 'admin', '관리자', if(author = '비회원', author, REPLACE(author, SUBSTR(author,-2,2),'**'))) author, seq, regtime, stat from board where seq=2",
 		"<if test='stat != null'> and stat=#{stat}</if>",
 		" order by no",
 		"</script>"

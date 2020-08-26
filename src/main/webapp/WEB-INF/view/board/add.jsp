@@ -31,7 +31,7 @@ function reg() {
 	<div align="center">
 		<form:form modelAttribute="board" action="add.shop" enctype="multipart/form-data" name="f" id="f">
 		<c:if test="${empty sessionScope.loginUser}">
-			<input type="hidden" name="author" value="nonMembers">
+			<input type="hidden" name="author" value="비회원">
 		</c:if>
 		<c:if test="${!empty sessionScope.loginUser}">
 			<input type="hidden" name="author" value="${sessionScope.loginUser.userid}">
@@ -106,7 +106,7 @@ function reg() {
 					</div>
 				</div>
 				</c:if>
-				<div class="mt-10" id="div-email">
+				<div class="mt-10" id="div-email" style="display: none;">
 					<input type="text" name="email" id="email" placeholder="이메일" onfocus="this.placeholder = ''"
 						onblur="this.placeholder = '이메일'" class="single-input">
 					<br>
