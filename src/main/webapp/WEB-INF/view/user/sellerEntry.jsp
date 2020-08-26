@@ -86,7 +86,7 @@
     		<img src="../assets/img/splogo.PNG" width="620px"
     		 onclick="javascript:location.href='../sns/main.shop'" style="margin-bottom:20px; cursor: pointer;">
     		 
-	<form:form modelAttribute="user" method="post" action="sellerEntry.shop" onsubmit="return chkboxcheck(this)">
+	<form:form modelAttribute="user" method="post" enctype="multipart/form-data" action="sellerEntry.shop" onsubmit="return chkboxcheck(this)">
 		<input type="hidden" name="userid" value="${loginUser.userid}">
 		<div style="width: 100%; display:inline;text-align: center; height: 100px;">
 			<spring:hasBindErrors name="user">
@@ -167,9 +167,40 @@
     			<a>회사 대표 사진</a>
     		</div>
     		<div class="img_box" >
-  				<img src="" id="com_img" width="150px" height="150px" <c:if test="${empty m.pic}">style="visibility: hidden;"</c:if>>
-  				<a class="img_del usera" style="background-color:#FE6500 " href="javascript:win_upload()">등록</a>
+  				<div class="img preview-image" id="imgs">
+				<input type="file" id="input-file" class="upload-hidden" name="com_imgM">
+				<script>
+					   var imgTarget = $('.preview-image .upload-hidden');
+
+					   imgTarget.on('change', function(){
+					       var parent = $(this).parent();
+					       parent.children('.upload-display').remove();
+
+					       if(window.FileReader){
+					           //image 파일만
+					           if (!$(this)[0].files[0].type.match(/image\//)) return;
+					            
+					           var reader = new FileReader();
+					           reader.onload = function(e){
+					               var src = e.target.result;
+					               console.log(src);
+					               parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div></div>');
+					           }
+					           reader.readAsDataURL($(this)[0].files[0]);
+					       } else {
+					           $(this)[0].select();
+					           $(this)[0].blur();
+					           var imgSrc = document.selection.createRange().text;
+					           parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img class="upload-thumb"></div></div>');
+
+					           var img = $(this).siblings('.upload-display').find('img');
+					           img[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\""+imgSrc+"\")";        
+					       }
+					   });
+				</script>
+			</div>
   			</div>
+			<label for="input-file" style="margin-top: 10px; margin-left: -68px;" id="imglabel">업로드</label>
   			<hr style="margin-top: 180px;margin-bottom: 20px; width: 90%">
   			<%--TODO css구성 --%>
   			<div style="width:70%; margin-left:15%; height:175px; border: 2px solid black;">

@@ -110,7 +110,14 @@
 		</div>
 		</c:if>
 		<div class="side style-content">
-			<div class="style-profile"><img src="../assets/img/test6.PNG" width="30px" height="30px" style="margin-right: 10px;"><a href="mypage.shop?userid=${user.userid}">${user.nickname}</a></div>
+			<div class="style-profile">
+			<c:if test="${empty user.imgurl}">
+				<img src="../assets/img/user.svg" width="30px" height="30px" style="margin-right: 10px;">
+			</c:if>
+			<c:if test="${!empty user.imgurl}">
+				<img src="../user/file/${user.imgurl}" width="30px" height="30px" style="border-radius:70%; margin-right: 10px;">
+			</c:if>
+			<a href="mypage.shop?userid=${user.userid}">${user.nickname}</a></div>
 			<div class="style-description">${sns.description}</div>
 			<c:if test="${sns.height!=0 && sns.weight!=0}">
 			<hr>

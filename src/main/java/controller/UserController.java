@@ -99,14 +99,14 @@ public class UserController {
 	}
 	
 	@PostMapping("sellerEntry")
-	public ModelAndView checksellerEntry(User user,BindingResult bresult,HttpSession session) {
+	public ModelAndView checksellerEntry(User user,BindingResult bresult,HttpSession session,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		if(bresult.hasErrors()) {
 			bresult.reject("error.input.user");
 			return mav;
 		}
 		try {
-			service.sellerEntry(user);
+			service.sellerEntry(user,request);
 			mav.setViewName("redirect:../user/sellerwelcome.shop"); 
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -319,7 +319,7 @@ public class UserController {
 	}
 	
 	@PostMapping("sellerUpdate")
-	public ModelAndView checksellerupdate(User user,BindingResult bresult,HttpSession session) {
+	public ModelAndView checksellerupdate(User user,BindingResult bresult,HttpSession session,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		if(bresult.hasErrors()) {
 			bresult.reject("error.input.user");
@@ -327,7 +327,7 @@ public class UserController {
 		}
 		User loginUser = (User)session.getAttribute("loginUser");
 		try {
-			service.sellerUpdate(user);
+			service.sellerUpdate(user,request);
 			mav.setViewName("redirect:../sns/mypage.shop"); //판매자페이지
 			if(loginUser.getUserid().equals(user.getUserid())) {
 				user = service.getUser(user.getUserid());

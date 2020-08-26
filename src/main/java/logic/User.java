@@ -34,6 +34,7 @@ public class User {
 	private String name;
 	private String com_name;
 	private String com_regist;
+	private MultipartFile com_imgM;
 	private String com_img;
 	private String com_tel;
 	private Date regdate;
@@ -214,6 +215,12 @@ public class User {
 	public void setImg(MultipartFile img) {
 		this.img = img;
 	}
+	public MultipartFile getCom_imgM() {
+		return com_imgM;
+	}
+	public void setCom_imgM(MultipartFile com_imgM) {
+		this.com_imgM = com_imgM;
+	}
 
 	@Override
 	public String toString() {
@@ -221,10 +228,9 @@ public class User {
 				+ ", nickname=" + nickname + ", email=" + email + ", tel=" + tel + ", age=" + age + ", img=" + img
 				+ ", imgurl=" + imgurl + ", gender=" + gender + ", comment=" + comment + ", sns_type=" + sns_type
 				+ ", sns_id=" + sns_id + ", seller=" + seller + ", name=" + name + ", com_name=" + com_name
-				+ ", com_regist=" + com_regist + ", com_img=" + com_img + ", com_tel=" + com_tel + ", regdate="
-				+ regdate + ", address=" + address + ", order_memo=" + order_memo + ", order_tel=" + order_tel
-				+ ", num=" + num + "]";
+				+ ", com_regist=" + com_regist + ", com_imgM=" + com_imgM + ", com_img=" + com_img + ", com_tel="
+				+ com_tel + ", regdate=" + regdate + ", address=" + address + ", order_memo=" + order_memo
+				+ ", order_tel=" + order_tel + ", num=" + num + "]";
 	}
-	
-	
+
 }

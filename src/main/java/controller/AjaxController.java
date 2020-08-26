@@ -203,7 +203,12 @@ public class AjaxController {
 				html.append("<td><div class=\"style-card\" onClick=\"location.href ='../sns/detail.shop?sns_no="+s.getSns_no()+"'\">");
 				html.append("<div class=\"style-img\"><img id=\"thumb\" src=\"file/"+s.getImg1url()+"\" width=\"228px\" height=\"270px\"></div>");
 				html.append("<div class=\"style-content\">");
-				html.append("<div class=\"style-profile\"><img src=\"../assets/img/test6.PNG\" width=\"30px\" height=\"30px\"></div>");
+				html.append("<div class=\"style-profile\"><img src=");
+				if(user.getImgurl()!=null && !user.getImgurl().equals(""))
+					html.append("\"../user/file/"+user.getImgurl()+"\"");
+				else
+					html.append("../assets/img/user.svg");
+				html.append(" width=\"30px\" height=\"30px\" style=\"border-radius:70%\" ></div>");
 				html.append("<div class=\"style-info\">");
 				html.append("<div class=\"style-info-first\">");
 				html.append("<a>"+user.getNickname()+"</a>");
@@ -250,9 +255,16 @@ public class AjaxController {
 							"					<c:if test=\"${!empty s.img1url}\">\r\n" + 
 							"						<div class=\"style-img\"><img id=\"thumb\" src=\"file/"+s.getImg1url()+"\" width=\"228px\" height=\"270px\"></div>\r\n" + 
 							"					</c:if>\r\n" + 
-							"					<div class=\"style-content\">\r\n" + 
-							"						<div class=\"style-profile\"><img src=\"../assets/img/test6.PNG\" width=\"30px\" height=\"30px\"></div>\r\n" + 
-							"						<div class=\"style-info\">\r\n" + 
+							"					<div class=\"style-content\">\r\n"); 
+							
+					html.append("<div class=\"style-profile\"><img src=");
+					if(user.getImgurl()!=null && !user.getImgurl().equals(""))
+						html.append("\"../user/file/"+user.getImgurl()+"\"");
+					else
+						html.append("../assets/img/user.svg");
+					html.append(" width=\"30px\" height=\"30px\" style=\"border-radius:70%\" ></div>");	
+					
+					html.append("						<div class=\"style-info\">\r\n" + 
 							"							<div class=\"style-info-first\">\r\n" + 
 							"								<a>"+user.getNickname()+"</a>\r\n" + 
 							"								<a style=\"float: right;\">"+regdate+"</a>		\r\n" + 
@@ -287,7 +299,12 @@ public class AjaxController {
 		List<Comment> list = service.getCommentList(sns_no);
 		for(Comment c : list) {
 			User user = service.getUser(c.getUserid());
-			html.append("<tr style=\"border-bottom:1px solid #babbbb;\"><td style=\"width:10%; padding:10px 0;\"><img src=\""+user.getImgurl()+"\" width=\"30px\" height=\"30px\"></td>");
+			html.append("<tr style=\"border-bottom:1px solid #babbbb;\"><td style=\"width:10%; padding:10px 0;\"><img src=");
+			if(user.getImgurl()!=null && !user.getImgurl().equals(""))
+				html.append("\"../user/file/"+user.getImgurl()+"\"");
+			else
+				html.append("../assets/img/user.svg");
+			html.append(" width=\"30px\" height=\"30px\" style=\"border-radius:70%\" ></td>");
 			html.append("<td style=\"width:20%;\">"+user.getUserid()+"</td>");
 			html.append("<td>"+c.getContent()+"</td>");
 			String regdate = new SimpleDateFormat("yy.MM.dd").format(c.getRegdate());
@@ -637,7 +654,12 @@ public class AjaxController {
 				html.append("<td><div class=\"style-card\" onClick=\"location.href ='../sns/detail.shop?sns_no="+s.getSns_no()+"'\">");
 				html.append("<div class=\"style-img\"><img id=\"thumb\" src=\"file/"+s.getImg1url()+"\" width=\"228px\" height=\"270px\"></div>");
 				html.append("<div class=\"style-content\">");
-				html.append("<div class=\"style-profile\"><img src=\"../assets/img/test6.PNG\" width=\"30px\" height=\"30px\"></div>");
+				html.append("<div class=\"style-profile\"><img src=");
+				if(user.getImgurl()!=null && !user.getImgurl().equals(""))
+					html.append("\"../user/file/"+user.getImgurl()+"\"");
+				else
+					html.append("../assets/img/user.svg");
+				html.append(" width=\"30px\" height=\"30px\" style=\"border-radius:70%\" ></div>");
 				html.append("<div class=\"style-info\">");
 				html.append("<div class=\"style-info-first\">");
 				html.append("<a>"+user.getNickname()+"</a>");

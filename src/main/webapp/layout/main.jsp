@@ -140,7 +140,12 @@
 												    <ul id="navigation">
 													    <li>
 													    	<div class="login_circle" style="background: none;">
-														   		<img class="profile_image" src="../assets/img/client.png">
+													    		<c:if test="${!empty sessionScope.loginUser.imgurl}">
+														   			<img class="profile_image" src="../user/file/${sessionScope.loginUser.imgurl}">
+														   		</c:if>
+														   		<c:if test="${empty sessionScope.loginUser.imgurl}">
+														   			<img class="profile_image" src="../assets/img/user.svg">
+														   		</c:if>
 														   	</div>
 															<ul class="submenu">
 																<c:if test="${loginUser.userid.equals('admin')}"><li><a href="${path}/admin/dashboard.shop">관리자 페이지</a></li></c:if>

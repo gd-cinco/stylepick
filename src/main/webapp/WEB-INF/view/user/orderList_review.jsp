@@ -54,7 +54,13 @@
 	<div class="user-info" >
 	<div class="user-info dummycolor"></div>
 	<div style="display: inline; float: left;height: 180px;width: 180px; margin: 0px;text-align: center; padding-top: 26px;margin-top: -113px;">
-		<img src="../assets/img/user.svg" width="125px" height="125px"></div>
+	<c:if test="${!empty user.imgurl}">
+		<img src="../user/file/${user.imgurl}" width="125px" height="125px" style=" border-radius:70%;">
+	</c:if>
+	<c:if test="${empty user.imgurl}">
+		<img src="../assets/img/user.svg" width="125px" height="125px">
+	</c:if>
+	</div>
 	<div style="display: inline; float: left; width: 75%;margin-top:-64px;">
 		<div class="user-profile">
 			${user.nickname}
