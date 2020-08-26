@@ -16,7 +16,7 @@ public interface BoardMapper {
 	@Select({"<script>",
 		"select * from board where seq=2",
 		"<if test='stat != null'> and stat=#{stat}</if>",
-		" order by no desc",
+		" order by no",
 		"</script>"
 	})
 	List<Board> qnalist(Map<String, Object> param);
@@ -39,8 +39,8 @@ public interface BoardMapper {
 	int maxno();
 
 	@Insert("INSERT INTO board " 
-			+ " (no, title, author, seq, category, stat, regtime, readcnt, content, file1) "
-			+ " VALUES (#{no}, #{title}, #{author}, #{seq}, #{category}, #{stat}, NOW(), 0, #{content}, #{file1}) ")
+			+ " (no, title, author, seq, category, stat, regtime, readcnt, content, file1, openstatus, mail, email) "
+			+ " VALUES (#{no}, #{title}, #{author}, #{seq}, #{category}, #{stat}, NOW(), 0, #{content}, #{fileurl}, 1, 1, #{email}) ")
 	void insert(Board board);
 
 	@Select("SELECT SUBSTRING_INDEX(category,',',1) FROM board GROUP BY 1")

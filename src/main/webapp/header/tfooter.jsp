@@ -9,6 +9,7 @@
 
 <c:if test="${fn:contains(path2,'board/faq')}">
 	<script>
+		document.title = "FAQ"
 		var url = "${path}/ajax/fd.shop?c=${param.c}"
 		var col = [
 			{"data" : "count"}, 
@@ -19,6 +20,7 @@
 </c:if>
 <c:if test="${fn:contains(path2,'board/notice')}">
 	<script>
+		document.title = "공지사항"
 		var url = "${path}/ajax/nd.shop"
 		var col = [
 			{"data" : "count" }, 
@@ -29,6 +31,7 @@
 </c:if>
 <c:if test="${fn:contains(path2,'board/qna')}">
 	<script>
+		document.title = "Q&A"
 		var url = "${path}/ajax/qd.shop?s=${param.s}"
 		var col = [
 			{"data" : "count"},

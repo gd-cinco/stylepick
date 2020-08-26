@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/header/main.jsp"%>
 <div class="wrap">
-	<h1>QnA</h1>
+	<h1>Q&A</h1>
 	<table id="board" class="display" style="width: 100%;">
 		<thead>
 			<tr>
@@ -47,6 +47,7 @@
 	</c:if>
 	
 	<c:if test="${!empty sessionScope.loginUser}">
+	<a href="${path}/board/qna.shop?search=myq" class="genric-btn info radius">내가 쓴 질문 보기</a>
 	<a href="${path}/board/add.shop?t=q" class="genric-btn info radius" >
 		문의하기
 	</a>

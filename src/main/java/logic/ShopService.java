@@ -587,12 +587,27 @@ public class ShopService {
 	public List<Board> getQnaList(String stat) {
 		return boardDao.qnalist(stat);
 	}
-	/** Board End **/
+	
 	public void boardWrite(Board board, HttpServletRequest request) {
+		
+//		if(board.getFile1() != null && !board.getFile1().isEmpty()) {
+//			uploadFileCreate(board.getFile1(), request, "board/file/");
+//			board.setFileurl(board.getFile1().getOriginalFilename());
+//		}
+		
 		int max = boardDao.maxno();
 		board.setNo(++max);
 		boardDao.insert(board);
 	}
+
+	public void boardUpdate(Board board, HttpServletRequest request) {
+		
+	}
+
+	public void boardDelete(Board board) {
+		
+	}
+	/** Board End **/
 
 	public Sale checkend(Sale sale, Cart cart, User loginUser) {
 		int maxno = saleDao.getMaxSaleid();
@@ -716,17 +731,5 @@ public class ShopService {
 	public int updatestat(int order_no, int seq, int stat) {
 		return saleItemDao.updatestat(order_no,seq,stat);
 	}
-
-
-	
-
-
-	
-	
-
-
-
-
-
 
 }
