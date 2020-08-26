@@ -27,10 +27,10 @@ function javascript1(){ //qna 작성
 }
 
 
-function javascript2(){ //qna 답글
-    window.open('reply.shop?item_no=${param.item_no }','popName',
-                'width=800,height=500,top=200,left=400,');
-}
+//function javascript2(){ //qna 답글
+//    window.open('replyform.shop?item_no=${param.item_no }','popName',
+ //               'width=800,height=500,top=200,left=400,');
+//}
 
 
 
@@ -50,13 +50,15 @@ function javascript2(){ //qna 답글
      text-align:right;
      }
   .fa-star{
-	font-size:30px;
+	font-size:25px;
 	color:#1f9cff;
 	}
 	
 	#qnacss{
 	color:#999;
 	}
+	#st{
+	text-align:center;}
 </style>
 
 </head>
@@ -138,7 +140,7 @@ function javascript2(){ //qna 답글
 	<c:if test="${linecount >0 }">
 	<table>
 		<c:forEach items="${linelist }" var="line">
-		<tr><td><c:forEach var="star" begin="1" end="${line.evaluation }"><i class="fa fa-star" aria-hidden="true" id="s1"></i></c:forEach></td>
+		<tr><td id="st"><i class="fa fa-star" aria-hidden="true" id="s5"><c:forEach var="star" begin="1" end="${line.evaluation }"><i class="fa fa-star" aria-hidden="true" id="s1"></i></c:forEach></td>
 		<td>${line.content } &nbsp;&nbsp;&nbsp;</td>
 		<td>
 	<fmt:formatDate var="rdate" value="${line.regdate }" pattern="yyyyMMdd"/>
@@ -150,13 +152,13 @@ function javascript2(){ //qna 답글
 					</c:if>
 				</td>
 				<td class="lineno">${line.userid }</td>
-				<td class="lineno">
+			<!-- 	<td class="lineno">
 				<a href="change.shop?line_no=${line.line_no}" onclick="window.open(this.href,'change','width=800,height=500,top=200,left=400');return false;">[수정]</a>
-				<a href="remove.shop?line_no=${line.line_no }" onclick="window.open(this.href,'change','width=800,height=500,top=200,left=400');return false;">[삭제]</a>
-				</td>
+				<a href="remove.shop?line_no=${line.line_no }" onclick="window.open(this.href,'change','width=800,height=500,top=200,left=400');return false;">[삭제]</a> 
+				</td>-->
 					</tr>
 		</c:forEach>
-<tr><td colspan="5"><center>
+<tr><td colspan="4"><center>
 				<c:if test="${pageNum1 >1 }">
 					<a href="detail.shop?pageNum1=${pageNum1 -1 }&item_no=${param.item_no}">&lt;이전</a></c:if>
 					<c:if test="${pageNum1 <=1 }">&lt;이전</c:if>
@@ -209,10 +211,10 @@ function javascript2(){ //qna 답글
 					</span>
 				<br>
 					${qna.content }</td>
-					<td>
-					 <input type='button' style="width:101px;" onclick='javascript2()' value='답글'/>	
-				<a href="change1.shop?qna_no=${qna.qna_no}" onclick="window.open(this.href,'change1','width=800,height=500,top=200,left=400');return false;">[수정]</a>
-				<a href="remove1.shop?qna_no=${qna.qna_no }" onclick="window.open(this.href,'change1','width=800,height=500,top=200,left=400');return false;">[삭제]</a>
+					<td class="lineno">
+				<a href="reply.shop?qna_no=${qna.qna_no}" onclick="window.open(this.href,'change1','width=800,height=500,top=200,left=400');return false;">[답글]</a>
+			 	<a href="change1.shop?qna_no=${qna.qna_no}" onclick="window.open(this.href,'change1','width=800,height=500,top=200,left=400');return false;">[수정]</a>
+				<a href="remove1.shop?qna_no=${qna.qna_no }" onclick="window.open(this.href,'change1','width=800,height=500,top=200,left=400');return false;">[삭제]</a> 
 					 </td>
 		</c:forEach>
 <tr><td colspan="3">

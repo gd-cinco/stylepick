@@ -66,11 +66,22 @@ top:75%;
 left:0%;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script> 
 <script type="text/javascript">
 function refresh(){
 opener.document.location.reload();
 	self.close();
 }
+
+$(function(){
+	$('.review').on('keyup', function() {
+		if($(this).val().length > 50) {
+	alert("글자수는 50자로 이내로 제한됩니다.");
+			$(this).val($(this).val().substring(0, 50));
+		}
+
+	});
+});
 </script>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
@@ -89,7 +100,7 @@ opener.document.location.reload();
 	<input type="radio" name="evaluation" id="star1" value="1"><label for="star1"></label>
 	</div>
 	<div>
-<textarea id="con" name="content" cols="99" rows="12" >${line.content }</textarea>
+<textarea id="con" class="review" name="content" cols="99" rows="12" >${line.content }</textarea>
 </div>
 <input id="con1"  type="submit" class="genric-btn success medium" value="작성" >
 </form:form>

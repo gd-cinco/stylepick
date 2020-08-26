@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -97,42 +98,40 @@ public class itemController {
 			return "item/add";
 		}
 		
+	
+		
 		@PostMapping("write")
 		public ModelAndView write(Line line,HttpServletRequest request) {
 			ModelAndView mav =new ModelAndView();
-			
 			service.lineWrite(line,request);  
-		
 			return mav;
 		}
-		
-	
-			
+
 		
 		@RequestMapping("plus")
 		public ModelAndView add(Qna qna,HttpServletRequest request) {
 			ModelAndView mav = new ModelAndView();
-				service.qnaWrite(qna,request);
-		
+			service.qnaWrite(qna,request);
 			return mav;
-			
 		}
-	
-		@PostMapping("reply")
-		public ModelAndView reply(@Valid Qna qna,HttpServletRequest request,BindingResult bresult) {
+
+		@GetMapping("reply")
+		public ModelAndView replyform(Integer qna_no,HttpServletRequest request) {
 			ModelAndView mav = new ModelAndView();
-			if(bresult.hasErrors()) {
-				Qna dbQna = service.getQna(qna.getQna_no());
-				Map<String, Object> map = bresult.getModel();
-				Qna q = (Qna)map.get("qna");
-				q.setContent(dbQna.getContent());
-				return mav;
-			}
-		
+			Qna qna = service.getQna(qna_no);
 			mav.addObject("qna",qna);
+			
+			return mav;
+		}
+		
+		@PostMapping("replyadd")
+		public ModelAndView reply(@Valid Qna qna,HttpServletRequest request) {
+			ModelAndView mav = new ModelAndView();
 			service.qnaReply(qna, request);
 			return mav;
 		}
+		
+	
 		
 		@RequestMapping("register")
 		public ModelAndView add(@Valid Item item, BindingResult bresult, HttpServletRequest request) {
