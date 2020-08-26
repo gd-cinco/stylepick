@@ -105,9 +105,14 @@ public class UserController {
 			bresult.reject("error.input.user");
 			return mav;
 		}
+		User loginUser = (User)session.getAttribute("loginUser");
 		try {
 			service.sellerEntry(user,request);
-			mav.setViewName("redirect:../user/sellerwelcome.shop"); 
+			mav.setViewName("redirect:../user/sellerwelcome.shop");
+			if(loginUser.getUserid().equals(user.getUserid())) {
+				user = service.getUser(user.getUserid());
+				session.setAttribute("loginUser", user);
+			}
 		}catch (Exception e) {
 			e.printStackTrace();
 			bresult.reject("error.user.sellerEntry");
