@@ -44,7 +44,10 @@ public interface QnaMapper {
 	@Update("update item_qna set content=#{content} where qna_no=#{qna_no}")
 	void update(Qna qna);
 
-	@Delete("delete from qna where qna_no=#{qna_no}")
-	void delete(int qna_no);
+	
+	@Delete("delete from item_qna where qna_no=#{qna_no}")
+	void delete(Map<String, Object> param);
+
+	
 
 }

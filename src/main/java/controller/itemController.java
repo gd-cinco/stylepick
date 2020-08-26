@@ -196,9 +196,17 @@ public class itemController {
 				pageNum1 = 1;
 			}
 
+			String searchtype1 = request.getParameter("searchtype1");
+			String searchcontent1 = request.getParameter("searchcontent1");
+			
+			if (searchtype1 == null || searchcontent1 == null || searchtype1.trim().equals("") || searchcontent1.trim().equals("")) {
+				searchtype1 = null;
+				searchcontent1 = null;
+			}
+			
 			List<Line> linelist = service.linelist(pageNum1, limit1, item_no,line_no);
 			
-			int linecount = service.linecount();
+			int linecount = service.linecount(searchtype1, searchcontent1);
 			int lineno = linecount - (pageNum1 - 1) * limit1;
 			int maxpage1 = (int)((double)linecount/limit1 + 0.95);
 			int startpage1 = (int)((pageNum1/10.0 + 0.9) - 1) * 10 + 1;
@@ -345,18 +353,14 @@ public class itemController {
 		@PostMapping("remove")
 		public ModelAndView delete(Line line) {
 			ModelAndView mav = new ModelAndView();
-		
-				service.lineDelete(line);	
-			
+			service.lineDelete(line);	
 			return mav;
 		}
 		
 		@PostMapping("remove1")
 		public ModelAndView delete(Qna qna) {
 			ModelAndView mav = new ModelAndView();
-		
-				service.qnaDelete(qna);	
-			
+			service.qnaDelete(qna);	
 			return mav;
 		}
 		

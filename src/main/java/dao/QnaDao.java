@@ -65,7 +65,9 @@ public class QnaDao {
 	}
 
 	public void delete(int qna_no) {
-		template.getMapper(QnaMapper.class).delete(qna_no);
+		param.clear();
+		param.put("qna_no", qna_no);
+		template.getMapper(QnaMapper.class).delete(param);
 		
 	}
 

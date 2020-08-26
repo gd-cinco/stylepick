@@ -33,8 +33,10 @@ public class LineDao { //한줄평
 	}
 
 
-	public int count() {
+	public int count(String searchtype1, String searchcontent1) {
 		param.clear();
+		param.put("searchtype1",searchtype1);
+		param.put("searchcontent1",searchcontent1);
 		return template.getMapper(LineMapper.class).count(param);
 	}
 

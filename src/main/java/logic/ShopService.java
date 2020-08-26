@@ -389,6 +389,12 @@ public class ShopService {
 		itemDao.update(item);	
 	}
 	
+	//[아이템]한줄평
+	public int linecount(String searchtype1, String searchcontent1) {
+		return lineDao.count(searchtype1, searchcontent1);
+
+	}
+	
 	//[item] 상품 삭제
 	public void itemDelete(int item_no) {
 		itemDao.delete(item_no);
@@ -696,10 +702,7 @@ public class ShopService {
 		return lineDao.getreviewcontent(order_no,seq);
 	}
 
-	public int linecount() {
-		return lineDao.count();
-
-	}
+	
 
 	public int updatestat(int order_no, int seq, int stat) {
 		return saleItemDao.updatestat(order_no,seq,stat);

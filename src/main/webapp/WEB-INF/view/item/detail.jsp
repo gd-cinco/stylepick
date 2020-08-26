@@ -121,6 +121,7 @@ function javascript2(){ //qna 답글
 	<div>
 	<br>
 	<!--별점 평균 사진 놓을 곳  -->
+	<c:if test="${linecount >0 }">
 	<table>
 		<c:forEach items="${linelist }" var="line">
 		<tr><td><c:forEach var="star" begin="1" end="${line.evaluation }">★</c:forEach></td>
@@ -149,22 +150,28 @@ function javascript2(){ //qna 답글
 					<c:if test="${b==pageNum1 }">[${b}]</c:if>
 					<c:if test="${b !=pageNum1 }"><a href="detail.shop?pageNum1=${b}&item_no=${param.item_no}">[${b}]</a></c:if>
 					</c:forEach>
-				<c:if test="${pageNum1 < maxpage}">
+				<c:if test="${pageNum1 < maxpage1}">
 				<a href="detail.shop?pageNum1=${pageNum1 +1 }&item_no=${param.item_no}">[다음]</a></c:if>
-				<c:if test="${pageNum1 >= maxpage }">[다음]</c:if></td></tr>
+				<c:if test="${pageNum1 >= maxpage1 }">[다음]</c:if></td></tr>
 	
 	</table>
+	</c:if>
+	<c:if test="${linecount==0 }">
+		
+	</c:if>
+	<br><br><br><br><br><br><br><br>
 	</div>
 	 <br><br>
 </div>
 <div id="target2">
 	 <div class="hr-sect"><h4>#OOTD</h4></div>
 	 <div class="reviewList">
-	 	<div><button id="reviewbtn" onclick="javascript:preReview()"><<</button></div>
+	 	<div><button id="reviewbtn" onclick="javascript:preReview()"></button></div>
 	 	<div class="reviewSnss">
 	 	</div>
 	 	<div style="margin-left:967px;"><button id="reviewbtn2" onclick="javascript:nextReview()">>></button></div>
 	 </div>
+	 <br><br><br><br><br><br><br>
 </div>
 <div id="target3">
 	 <div class="hr-sect"><h4>Q&A</h4></div>
@@ -173,6 +180,7 @@ function javascript2(){ //qna 답글
 	<br><br><br>
 	<div>
 	<div>
+		<c:if test="${listcount >0 }">
 	<table>
 		<c:forEach items="${qnalist }" var="qna">
 		<tr><td style="font-size:20px; color:#4ebafc"><c:if test="${qna.type ==0 }">Q</c:if><c:if test="${qna.type ==1 }">A</c:if></td>
@@ -206,7 +214,11 @@ function javascript2(){ //qna 답글
 				<c:if test="${pageNum >= maxpage }">[다음]</c:if></td></tr>
 	
 	</table>
+	</c:if>
+	<c:if test="${listcount==0 }">
+	</c:if>
 	</div>
+	<br><br><br><br><br><br><br><br><br><br>
 </div>
 <a href="update.shop?item_no=${item.item_no}">[수정]</a>
 <a href="delete.shop?item_no=${item.item_no}">[삭제]</a>

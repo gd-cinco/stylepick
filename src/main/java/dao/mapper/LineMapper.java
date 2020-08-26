@@ -23,7 +23,11 @@ public interface LineMapper {
 	int notMentionedCount(String userid);
 
 
-	@Select("select count(*) from item_qna")
+	@Select({"<script>",
+		"select count(*) from line ",
+		"<if test='searchcontent1 != null'>where ${searchtype1} like '%${searchcontent1}%'</if>",
+		"</script>"
+	})
 	int count(Map<String, Object> param);
 
 	
