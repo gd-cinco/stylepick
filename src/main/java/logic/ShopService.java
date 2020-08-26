@@ -82,7 +82,11 @@ public class ShopService {
 	}
 	
 	//[user] 판매자 회원 가입
-	public void sellerEntry(User user) {
+	public void sellerEntry(User user,HttpServletRequest request) {
+		if(user.getCom_imgM()!=null&&!user.getCom_imgM().isEmpty()) {
+			uploadFileCreate(user.getCom_imgM(),request,"user/file/");
+			user.setCom_img(user.getCom_imgM().getOriginalFilename());
+		}
 		userDao.sellerinsert(user);
 	}
 	
@@ -101,7 +105,11 @@ public class ShopService {
 	}
 	
 	//[user] 판매자 정보 수정
-	public void sellerUpdate(User user) {
+	public void sellerUpdate(User user,HttpServletRequest request) {
+		if(user.getCom_imgM()!=null&&!user.getCom_imgM().isEmpty()) {
+			uploadFileCreate(user.getCom_imgM(),request,"user/file/");
+			user.setCom_img(user.getCom_imgM().getOriginalFilename());
+		}
 		userDao.sellerupdate(user);
 	}
 
