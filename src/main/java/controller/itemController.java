@@ -206,7 +206,7 @@ public class itemController {
 			
 			List<Line> linelist = service.linelist(pageNum1, limit1, item_no,line_no);
 			
-			int linecount = service.linecount(searchtype1, searchcontent1);
+			int linecount = service.linecount(searchtype1, searchcontent1,item_no);
 			int lineno = linecount - (pageNum1 - 1) * limit1;
 			int maxpage1 = (int)((double)linecount/limit1 + 0.95);
 			int startpage1 = (int)((pageNum1/10.0 + 0.9) - 1) * 10 + 1;
@@ -241,7 +241,7 @@ public class itemController {
 
 			List<Qna> qnalist = service.qnalist(pageNum, limit, searchtype, searchcontent,item_no);
 			
-			int listcount = service.qnacount(searchtype, searchcontent);
+			int listcount = service.qnacount(searchtype, searchcontent,item_no);
 			int qnano = listcount - (pageNum - 1) * limit;
 			int maxpage = (int)((double)listcount/limit + 0.95);
 			int startpage = (int)((pageNum/10.0 + 0.9) - 1) * 10 + 1;

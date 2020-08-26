@@ -23,6 +23,7 @@ public interface QnaMapper {
 	@Select({"<script>",
 		"select count(*) from item_qna ",
 		"<if test='searchcontent != null'>where ${searchtype} like '%${searchcontent}%'</if>",
+		"<if test='item_no != null'> where item_no=#{item_no} </if>",
 		"</script>"
 	})
 	int count(Map<String, Object> param);

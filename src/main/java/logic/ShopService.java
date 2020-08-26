@@ -390,8 +390,8 @@ public class ShopService {
 	}
 	
 	//[아이템]한줄평
-	public int linecount(String searchtype1, String searchcontent1) {
-		return lineDao.count(searchtype1, searchcontent1);
+	public int linecount(String searchtype1, String searchcontent1, Integer item_no) {
+		return lineDao.count(searchtype1, searchcontent1,item_no);
 
 	}
 	
@@ -616,8 +616,8 @@ public class ShopService {
 	}
 
 	//Q&A
-	public int qnacount(String searchtype, String searchcontent) {
-		return qnaDao.count(searchtype, searchcontent);
+	public int qnacount(String searchtype, String searchcontent, Integer item_no) {
+		return qnaDao.count(searchtype, searchcontent,item_no);
 	}
 
 	//Q&A 목록

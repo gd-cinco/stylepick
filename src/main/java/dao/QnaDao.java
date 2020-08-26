@@ -35,10 +35,11 @@ public class QnaDao {
 		return template.getMapper(QnaMapper.class).select(param).get(0);
 	}
 
-	public int count(String searchtype, String searchcontent) {
+	public int count(String searchtype, String searchcontent, Integer item_no) {
 		param.clear();
 		param.put("searchtype", searchtype );
 		param.put("searchcontent", searchcontent );
+		param.put("item_no", item_no);
 		return template.getMapper(QnaMapper.class).count(param);
 	}
 

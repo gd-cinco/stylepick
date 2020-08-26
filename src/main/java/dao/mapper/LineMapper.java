@@ -26,6 +26,7 @@ public interface LineMapper {
 	@Select({"<script>",
 		"select count(*) from line ",
 		"<if test='searchcontent1 != null'>where ${searchtype1} like '%${searchcontent1}%'</if>",
+		"<if test='item_no != null'> where item_no=#{item_no} </if>",
 		"</script>"
 	})
 	int count(Map<String, Object> param);
