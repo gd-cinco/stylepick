@@ -541,15 +541,13 @@ public class ShopService {
 		return adminDao.toptenstores();
 	}
 	//[admin] storelist 스토어 관리 0822
-	public List<User> storelist(String searchtype, String searchcontent) {
-		// TODO Auto-generated method stub
-		return userDao.storelist(searchtype, searchcontent);
+	public List<User> storelist(String searchtype, String searchcontent,int pageNum,int limit) {
+		return adminDao.storelist(searchtype, searchcontent,pageNum,limit);
 	}
 	
 	//[admin] salesmgr 매출 관리 0822
-	public List<Buy> saleslist() {
-		// TODO Auto-generated method stub
-		return adminDao.saleslist();
+	public List<Buy> saleslist(String searchtype, String searchcontent,int pageNum,int limit) {
+		return adminDao.saleslist(searchtype, searchcontent,pageNum,limit);
 	}
 
 	//[admin] user 유저리스트 페이지 카운트(1p,2p..) 0827
@@ -740,5 +738,13 @@ public class ShopService {
 	public int getmybalance(String userid) {
 		return saleItemDao.mybalance(userid);
 	}
-	
+
+	public int storecount(String searchtype, String searchcontent) {
+		return adminDao.storecount(searchtype,searchcontent);
+	}
+
+	public int salecount(String searchtype, String searchcontent) {
+		return adminDao.salecount(searchtype,searchcontent);
+	}
+
 }

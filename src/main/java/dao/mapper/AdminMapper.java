@@ -95,8 +95,20 @@ public interface AdminMapper {
 	List<Buy> boxplot(Map<String, Object> param);
 	
 	//salesmgr 매출 관리 0822
-	@Select("select * from buy order by order_no DESC")
+	@Select({"<script>",
+		"select * from buy",
+		"<if test='searchtype!=null and searchcontent!=null'> WHERE ${searchtype} LIKE #{searchcontent}</if>",
+		" order by order_no DESC limit ${startrow},${limit} ",
+		"</script>"})
 	List<Buy> saleslist(Map<String, Object> param);
+	
+	//storelist 스토어 관리
+	@Select({"<script>",
+		"select * from user where seller=1",
+		"<if test='searchtype!=null and searchcontent!=null'> and ${searchtype} LIKE #{searchcontent}</if>",
+		" limit ${startrow},${limit}",
+		"</script>"})
+	List<User> storelist(Map<String, Object> param);
 	
 	//유저리스트 가져오기
 	@Select({"<script>",
@@ -105,6 +117,20 @@ public interface AdminMapper {
 		" limit ${startrow},${limit}",
 		"</script>"})
 	List<User> select(Map<String, Object> param);
+	
+	@Select({"<script>",
+		"select count(*) from user where seller=1 ",
+		"<if test='searchtype!=null and searchcontent!=null'> and ${searchtype} LIKE #{searchcontent}</if>",
+		"</script>"})
+	int storecount(Map<String, Object> param);
+	
+	@Select({"<script>",
+		"select count(*) from buy ",
+		"<if test='searchtype!=null and searchcontent!=null'> where ${searchtype} LIKE #{searchcontent}</if>",
+		"</script>"})
+	int salecount(Map<String, Object> param);
+	
+	
 	
 
 }

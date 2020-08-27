@@ -29,7 +29,7 @@ public class SnsController {
 	@Autowired
 	private ShopService service;
 	
-	@GetMapping("searchResult")
+	@RequestMapping("searchResult")
 	public ModelAndView searchform(String keyword) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("keyword",keyword);

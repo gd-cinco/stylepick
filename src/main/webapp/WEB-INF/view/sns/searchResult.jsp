@@ -14,6 +14,7 @@
 	.keyword {
 		color: #047acc;
     	font-weight: bold;
+    	font-size : x-large;
 	}
 	
 	.style-card {
@@ -59,7 +60,7 @@
 <body>
 <div>
 	<p class="search-keyword" style="margin: 0 6% 2% 6%;">
-		<span class="keyword">${param.keyword}</span>의 검색 결과
+		<span class="keyword">${param.keyword}</span>&nbsp;의 검색 결과
 	</p>
 </div>
 <hr>

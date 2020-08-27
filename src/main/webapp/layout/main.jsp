@@ -111,17 +111,23 @@
 							<ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
 								<li class="d-none d-xl-block">
 									<div class="form-box f-right ">
-									<form>
+									<form name="searchform">
 										<input type="text" name="keyword" placeholder="검색">
 										<div class="search-icon">
 											<c:if test="${fn:contains(path2,'sns')}" >
-												<i class="fas fa-search special-tag" onclick="location.href='${path}/sns/searchResult.shop'"></i>
+												<i class="fas fa-search special-tag" onclick="javascript:listpage('sns')"></i>
 											</c:if>
 											<c:if test="${fn:contains(path2,'item')}" >
-												<i class="fas fa-search special-tag" onclick="location.href='${path}/item/searchResult.shop'"></i>
+												<i class="fas fa-search special-tag" onclick="javascript:listpage('item')"></i>
 											</c:if>
 										</div>
 									</form>
+									<script type="text/javascript">
+										function listpage(page) {
+											var keyword = document.searchform.keyword.value;
+											location.href="../"+page+"/searchResult.shop?keyword="+keyword;
+										}
+									</script>
 								    </div>
 								</li>
 								<li>

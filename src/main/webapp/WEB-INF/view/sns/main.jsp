@@ -108,7 +108,6 @@
 			if(status == 0 && type == 1){
 				listAmount++;
 				var params = "ksb=" + ksb + "&type=" + type + "&listAmount=" + listAmount + "&status=" + status;
-			 	console.log("work"+params);
 				status = 1;
 				$.ajax({
 					data: params,
@@ -127,7 +126,6 @@
 				})
 			} else if(status == 0 && type == 2) {
 				var params = "type=" + type + "&listAmount=" + listAmount + "&status=" + status;
-			 	console.log("work"+param);
 				status = 1;
 				$.ajax({
 					data: params,
