@@ -123,8 +123,8 @@
 								    </div>
 								</li>
 								<li>
-									<div class="shopping-card">
-										<a href="#"><i class="fas fa-shopping-cart"></i></a>
+									<div class="shopping-ard" style="font-size:30px;">
+										<a href="${path }/cart/cartView.shop"><i class="fas fa-shopping-cart"></i></a>
 									</div>
 								</li>
 									<!-- ~0812 <li class="d-none d-lg-block"> <a href="../user/login.shop" class="btn header-btn">로그인</a></li> -->

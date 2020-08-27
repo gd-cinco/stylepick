@@ -40,7 +40,11 @@ http://www.springframework.org/schema/websocket/spring-websocket-4.1.xsd">
 		<property name="exceptionMappings">
 			<value>exception.LoginException=exception
 					exception.SnsException=exception
-					exception.AjaxException=exception</value>
+					exception.AjaxException=exception
+					exception.CartEmptyException=exception
+					exception.ItemEmptyException=exception
+					exception.LineException=exception
+					exception.QnaException=exception</value>
 		</property>
 	</bean>
 </beans>

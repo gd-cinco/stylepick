@@ -197,7 +197,7 @@
 <body>
 <div style="width:1350px;">
 <div style="float:right">
-<c:if test="${!empty sessionScope.loginUser}">
+<c:if test="${!empty sessionScope.loginUser.com_name}">
 <a href="create.shop" class="genric-btn primary circle">상품 작성</a>
 </c:if>
 </div>
@@ -249,10 +249,11 @@
 			</div>
 		</c:forEach>
 	</div>
-	<div class="boxbutton">
+	<!-- <div class="boxbutton">
 		<button class="btn" onclick="location.href='rank.shop'">더보기 ></button>
-	</div>
+	</div>  -->
 </div>
+<!-- 
 <div class="mainbox Keyword">
 	<div class="boxtitle">실시간 인기 키워드</div>
 	<div class="keywordRanking">
@@ -275,7 +276,7 @@
 	<div class="boxbutton">
 		<button class="btn" onclick="location.href='rank.shop'">더보기 ></button>
 	</div>
-</div>
+</div> -->
 <div class="mainbox Newitem">
 	<div class="boxtitle">최신 상품</div>
 	<div class="boxitemlist">
@@ -288,9 +289,9 @@
 			</div>
 		</c:forEach>
 	</div>
-	<div class="boxbutton">
+	<!-- <div class="boxbutton">
 		<button class="btn" onclick="location.href='rank.shop'">더보기 ></button>
-	</div>
+	</div>  -->
 </div>
 </body>
 </html>

@@ -131,10 +131,10 @@ function javascript1(){ //qna 작성
 <div id="target1">
 
 	 <div class="hr-sect"><h4>한줄평</h4></div>
-	 <div style="float:right;">
+	 <!-- <div style="float:right;">
 	   <input type='button' class="genric-btn info-border circle arrow" style="width:101px;" onclick='javascript()' value='한줄평'/></div>
 	   <br>
-	<div>
+	<div>  -->
 	<br>
 	<!--별점 평균 사진 놓을 곳  -->
 	<c:if test="${linecount >0 }">

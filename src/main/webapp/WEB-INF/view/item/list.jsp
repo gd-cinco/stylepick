@@ -27,7 +27,9 @@
 	</div>
 	<div class="itemContainer">
 	</div>
+<c:if test="${!empty sessionScope.loginUser.com_name}">
 <a href="create.shop" class="btn">상품 등록</a>
+</c:if>
 </div>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>

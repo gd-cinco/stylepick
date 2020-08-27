@@ -58,7 +58,7 @@ public class CartController {
 		ModelAndView mav=new ModelAndView("cart/cart");
 		Cart cart =(Cart)session.getAttribute("CART");
 		if(cart == null || cart.getItemSetList().size()==0) {
-			throw new CartEmptyException("장바구니에 상품이 없습니다.","../item/list.shop");
+			throw new CartEmptyException("장바구니에 상품이 없습니다.","../item/store.shop");
 		}
 		mav.addObject("cart",cart);
 		return mav;
