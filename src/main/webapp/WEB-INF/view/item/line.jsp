@@ -10,8 +10,8 @@
 <style>
 	.con{
 position:absolute;
-top:30%;
-left:20%;
+top:35%;
+left:27%;
 transform:translate(-50%,-50%) rotateY(180deg);
 display:flex;
 	}
@@ -57,12 +57,12 @@ opacity: 1;
 
 #con{
 position:absolute;
-top:35%;
+top:45%;
 left:0%;
 }
 #con1{
 position:absolute;
-top:75%;
+top:90%;
 left:0%;
 }
 
@@ -90,11 +90,15 @@ $(function(){
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
 </head>
 <body onunload="refresh()">
+<div style="width:500px;">
    <h1>한줄평</h1>
 <form:form action="write.shop"  name="f">
  <input type="hidden" name="item_no"  value="${param.item_no}">
  <input type="hidden" name="userid" value="${sessionScope.loginUser.userid}">
-	<p class="title_star">별점과 리뷰를 남겨주세요.</p>
+<<<<<<< Updated upstream
+ <input type="hidden" name="order_no" value="${param.order_no}">
+ <input type="hidden" name="seq" value="${param.seq}">
+	<p class="title_star">별점과 한줄평을 남겨주세요.</p>
 	<div class="con">
 	<input type="radio" name="evaluation" id="star5" value="5"><label for="star5"></label>
 	<input type="radio" name="evaluation" id="star4" value="4"><label for="star4"></label>
@@ -107,6 +111,6 @@ $(function(){
 </div>
 <input id="con1"  type="submit" class="genric-btn success medium" value="작성" >
 </form:form>
-
+</div>
 </body>
 </html>

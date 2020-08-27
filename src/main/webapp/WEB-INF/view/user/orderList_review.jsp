@@ -116,7 +116,7 @@
 						</div>
 						<div class="order_buyitem_right">
 							<div class="order_buyitem_buttondiv">
-								<button onclick="window.open('../item/line.shop?item_no=${sale.item.item_no}&order_no=${sale.order_no}&seq=${sale.seq}','','width=800,height=600,top=200,left=400')"
+								<button onclick="window.open('../item/line.shop?item_no=${sale.item.item_no}&order_no=${sale.order_no}&seq=${sale.seq}','','width=500,height=450,top=200,left=400')"
 										 class="order_buyitem_button2">한줄평 쓰기</button>
 							</div>
 						</div>
@@ -141,8 +141,10 @@
 						</div>
 						<div class="order_buyitem_right">
 							<div class="order_buyitem_buttondiv">
-								<button class="order_buyitem_button2">수정</button>
-								<button class="order_buyitem_button2">삭제</button>
+								<button onclick="window.open('../item/change.shop?line_no=${sale.line_no}','','width=800,height=600,top=200,left=400')"
+										class="order_buyitem_button2">수정</button>
+								<button onclick="window.open('../item/remove.shop?line_no=${sale.line_no}','','width=800,height=600,top=200,left=400')"
+										class="order_buyitem_button2">삭제</button>
 							</div>
 						</div>
 					</div>

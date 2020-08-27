@@ -82,11 +82,9 @@ public class CartController {
 		return mav;
 	}
 	
-	@GetMapping("checkout")
-	void checkout() {}
-	
 	@RequestMapping("end")
-	public ModelAndView checkend(Sale sale, HttpSession session, HttpServletRequest request) {
+	public ModelAndView checkend(Sale sale, HttpServletRequest request,HttpSession session) {
+
 		ModelAndView mav = new ModelAndView();
 		Cart cart = (Cart)session.getAttribute("CART");
 		User loginUser = (User)session.getAttribute("loginUser");
@@ -115,8 +113,7 @@ public class CartController {
 		return mav;
 	}
 	
-	@RequestMapping("*")
-	void all() {
-		
-	}
+	@RequestMapping("checkout")
+	void checkout(HttpSession session) {}
+	
 }

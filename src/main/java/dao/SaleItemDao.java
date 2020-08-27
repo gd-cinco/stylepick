@@ -29,7 +29,6 @@ public class SaleItemDao {
 
 	//[chyeon] 유저가 리뷰를 등록할때 review컬럼의 값을 0->1로 변경
 	public void reviewed(int order_no, int seq) {
-		System.out.println("리뷰드"+order_no+":"+seq);
 		template.getMapper(SaleItemMapper.class).reviewed(order_no,seq);
 		
 	}
@@ -44,5 +43,10 @@ public class SaleItemDao {
 
 	public int mybalance(String userid) {
 		return template.getMapper(SaleItemMapper.class).mybalance(userid);
+	}
+
+	public void rmreview(int order_no, int seq) {
+		System.out.println(order_no+"+"+seq);
+		template.getMapper(SaleItemMapper.class).rmreview(order_no,seq);
 	}
 }

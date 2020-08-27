@@ -14,6 +14,7 @@ public class SaleItem {
 
 	// 변수저장용
 	private String userid;
+	private int line_no;
 	private String content;
 
 	public SaleItem() {
@@ -124,5 +125,22 @@ public class SaleItem {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+
+	public int getLine_no() {
+		return line_no;
+	}
+
+	public void setLine_no(int i) {
+		this.line_no = i;
+	}
+
+	@Override
+	public String toString() {
+		return "SaleItem [order_no=" + order_no + ", seq=" + seq + ", item_no=" + item_no + ", quantity=" + quantity
+				+ ", item=" + item + ", item_option=" + item_option + ", size=" + size + ", reviewed=" + reviewed
+				+ ", stat=" + stat + ", amount=" + amount + ", userid=" + userid + ", line_no=" + line_no + ", content="
+				+ content + "]";
+	}
+	
 
 }

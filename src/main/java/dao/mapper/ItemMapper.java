@@ -49,7 +49,7 @@ public interface ItemMapper {
 	@Delete("delete from item where item_no=#{item_no}")
 	void delete(int item_no);
 
-	@Select("select * from item limit 0,4")
+	@Select("select * from item order by readcnt desc limit 0,4")
 	List<Item> selectRank();
 	
 	@Select("select * from item order by regdate desc limit 0,4")

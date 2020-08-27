@@ -69,7 +69,7 @@ public class AjaxController {
 	            json.append(",");
 	      }
 	      json.append("]");
-	      System.out.println(json);
+	      //System.out.println(json);
 	      return json.toString(); //클라이언트에 전달될 데이터
 	}
 	@RequestMapping(value="graph2", produces="text/plain; charset=UTF8")
@@ -85,7 +85,7 @@ public class AjaxController {
 	            json.append(",");
 	      }
 	      json.append("]");
-	      System.out.println(json);
+	      //System.out.println(json);
 	      return json.toString();
 	}
 	
@@ -235,12 +235,12 @@ public class AjaxController {
 		public String mypage(String userid,int listAmount,int status) {
 			StringBuilder html = new StringBuilder();
 			int limit = 8;
-			System.out.println(listAmount+","+limit);
+			//System.out.println(listAmount+","+limit);
 			List<Sns> itemss = service.mysns(userid,listAmount,limit);
 			if(itemss.isEmpty()) {
 				return null;
 			} else {
-				System.out.println(itemss);
+				//System.out.println(itemss);
 				//html.append("<table style=\"margin:2% 6%;\">");
 				int i = 1;
 				for(Sns s : itemss) {
@@ -287,7 +287,7 @@ public class AjaxController {
 					i++;
 				}
 				//html.append("</table>");
-				System.out.println(html);
+				//System.out.println(html);
 				return html.toString();
 			}
 		}
@@ -486,7 +486,7 @@ public class AjaxController {
 		if(keyword == null || keyword.trim().equals("")) {
 			keyword =null;
 		}
-		System.out.println("category:"+category);
+		//System.out.println("category:"+category);
 		if(category == null || category.toString().trim().equals("")) {
 			category = null;
 		}
@@ -495,7 +495,7 @@ public class AjaxController {
 		if(itemss.isEmpty()) {
 			return null;
 		} else {
-			System.out.println(itemss);
+			//System.out.println(itemss);
 			//html.append("<table style=\"margin:2% 6%;\">");
 			int i = 1;
 			for(Item it : itemss) {
@@ -524,7 +524,7 @@ public class AjaxController {
 				i++;
 			}
 			
-			System.out.println(html);
+			//System.out.println(html);
 			return html.toString();
 		}
 	}

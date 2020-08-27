@@ -357,7 +357,7 @@ public class ShopService {
 		int max= lineDao.maxnum();
 		line.setLine_no(++max);
 		lineDao.insert(line);
-//		saleItemDao.reviewed(line.getOrder_no(),line.getSeq());
+		saleItemDao.reviewed(line.getOrder_no(),line.getSeq());
 	}
 	
 
@@ -369,19 +369,17 @@ public class ShopService {
 	
 	//[아이템]한줄평 수정
 		public void lineupdate(Line line, HttpServletRequest request) {
-			// TODO Auto-generated method stub
 			lineDao.update(line);
 		}
 
 		public Line getlineno(Integer line_no) {
-		
 			return lineDao.selectOne(line_no);
 		}
 		
 		//[아이템]한줄평 삭제
 		public void lineDelete(Line line) {
 			lineDao.delete(line.getLine_no());
-			
+			saleItemDao.rmreview(line.getOrder_no(),line.getSeq());
 		}
 	
 	//[item] 상품 수정
@@ -584,10 +582,10 @@ public class ShopService {
 	
 	public void boardWrite(Board board, HttpServletRequest request) {
 		
-//		if(board.getFile1() != null && !board.getFile1().isEmpty()) {
-//			uploadFileCreate(board.getFile1(), request, "board/file/");
-//			board.setFileurl(board.getFile1().getOriginalFilename());
-//		}
+		if(board.getFile1() != null && !board.getFile1().isEmpty()) {
+			uploadFileCreate(board.getFile1(), request, "board/file/");
+			board.setFileurl(board.getFile1().getOriginalFilename());
+		}
 		
 		int max = boardDao.maxno();
 		board.setNo(++max);
@@ -721,9 +719,6 @@ public class ShopService {
 	}
 
 
-	public String getreviewcontent(int order_no, int seq) {
-		return lineDao.getreviewcontent(order_no,seq);
-	}
 
 	
 
@@ -739,12 +734,17 @@ public class ShopService {
 		return saleItemDao.mybalance(userid);
 	}
 
+
 	public int storecount(String searchtype, String searchcontent) {
 		return adminDao.storecount(searchtype,searchcontent);
 	}
 
 	public int salecount(String searchtype, String searchcontent) {
 		return adminDao.salecount(searchtype,searchcontent);
+	}
+
+	public Line getline(int order_no, int seq) {
+		return lineDao.getline(order_no,seq);
 	}
 
 }

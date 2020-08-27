@@ -64,7 +64,7 @@ function javascript1(){ //qna 작성
 </head>
 <body>
 
-<div>
+<div style="width:1000px;">
 <form action="../cart/cartAdd.shop">
 <div class="pic" >
   <img src="img/${item.pictureUrl }" width="350px" height="450px" id="img">
@@ -79,18 +79,21 @@ function javascript1(){ //qna 작성
 		<dl>
 		<dt><h5></h5></dt>
 		<dt><h2>${item.item_name }</h2></dt>
-		<dt><h3>${item.price }원</h3></dt>
+		<dt><h3><fmt:formatNumber value="${item.price }" pattern="###,###,###"/>원</h3></dt>
 		<dt>${item.keyword }</dt>
 
 	</ul>
 	<ul>
-		<dl><dt><select name="item_option">
+		<dl><dt>
+		
+		<select name="item_option">
 				<option>옵션</option>
 				<c:forEach items="${item.item_option}" var="i" varStatus="n">
 					<option><c:out value="${i}"/></option>
 				</c:forEach>
 		</select></dt>
-		<dd><select name="size" id="sel">
+		<dd>
+		<select name="size" id="sel">
 			<option>사이즈</option>
 								<c:forEach items="${item.size}" var="i"  varStatus="n">
 									<option>${i}</option>
@@ -128,16 +131,17 @@ function javascript1(){ //qna 작성
 	<div>${item.content }</div>
 	<br><br><br><br>
 </div>
-<div id="target1">
 
+<div id="target1">
+	<c:if test="${linecount >0 }">
 	 <div class="hr-sect"><h4>한줄평</h4></div>
 	 <!-- <div style="float:right;">
 	   <input type='button' class="genric-btn info-border circle arrow" style="width:101px;" onclick='javascript()' value='한줄평'/></div>
 	   <br>
 	<div>  -->
 	<br>
-	<!--별점 평균 사진 놓을 곳  -->
-	<c:if test="${linecount >0 }">
+
+
 	<table>
 		<c:forEach items="${linelist }" var="line">
 		<tr><td id="st"><i class="fa fa-star" aria-hidden="true" id="s5"><c:forEach var="star" begin="1" end="${line.evaluation }"><i class="fa fa-star" aria-hidden="true" id="s1"></i></c:forEach></td>
@@ -179,6 +183,7 @@ function javascript1(){ //qna 작성
 	</div>
 	 <br><br>
 </div>
+<div style="width:1000px;">
 <div id="target2">
 	 <div class="hr-sect"><h4>#OOTD</h4></div>
 	 <div class="reviewList">
@@ -199,8 +204,8 @@ function javascript1(){ //qna 작성
 		<c:if test="${listcount >0 }">
 	<table>
 		<c:forEach items="${qnalist }" var="qna">
-		<tr><td style="font-size:20px; color:#4ebafc"><c:if test="${qna.type ==0 }">Q</c:if><c:if test="${qna.type ==1 }">A</c:if></td>
-		<td ><span id="qnacss">${qna.userid } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<tr><td style="font-size:25px;"><c:if test="${qna.type ==0 }"><p style="color:#4ebafc">Q</p></c:if><c:if test="${qna.type ==1 }"><p style="color:#e60000">A</p></c:if></td>
+		<td ><span id="qnacss"><c:if test="${qna.type ==0 }">${qna.userid }</c:if><c:if test="${qna.type ==1 }">판매자</c:if> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<fmt:formatDate var="rdate" value="${qna.regdate }" pattern="yyyyMMdd"/>
 				<c:if test="${today==rdate }">
 					<fmt:formatDate value="${qna.regdate}" pattern="HH:mm:ss"/>
@@ -213,8 +218,8 @@ function javascript1(){ //qna 작성
 					${qna.content }</td>
 					<td class="lineno">
 				<a href="reply.shop?qna_no=${qna.qna_no}" onclick="window.open(this.href,'change1','width=800,height=500,top=200,left=400');return false;">[답글]</a>
-			 	<a href="change1.shop?qna_no=${qna.qna_no}" onclick="window.open(this.href,'change1','width=800,height=500,top=200,left=400');return false;">[수정]</a>
-				<a href="remove1.shop?qna_no=${qna.qna_no }" onclick="window.open(this.href,'change1','width=800,height=500,top=200,left=400');return false;">[삭제]</a> 
+			 	<a href="change1.shop?qna_no=${qna.qna_no}" onclick="window.open(this.href,'change1','width=500,height=400,top=200,left=400');return false;">[수정]</a>
+				<a href="remove1.shop?qna_no=${qna.qna_no }" onclick="window.open(this.href,'change1','width=500,height=400,top=200,left=400');return false;">[삭제]</a> 
 					 </td>
 		</c:forEach>
 <tr><td colspan="3">
@@ -233,9 +238,11 @@ function javascript1(){ //qna 작성
 	</table>
 	</c:if>
 	<c:if test="${listcount==0 }">
+	<h1 style="text-align:center">상품에 대해 궁금한 것을 질문해주세요</h1>
 	</c:if>
 	</div>
-	<br><br><br><br><br><br><br><br>
+	<br><br><br><br><br>
+</div>
 </div>
 <center>
 <a href="update.shop?item_no=${item.item_no}" class="genric-btn primary small">수정</a>

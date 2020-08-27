@@ -62,7 +62,8 @@ public interface AdminMapper {
 	List<Buy> yearlyheavyusers(Map<String, Object> param);
 	
 	//widgets index 3-1 우수 입점 스토어 차트
-	@Select("SELECT u.com_name, FLOOR( DATEDIFF( CURRENT_DATE , l.regdate ) / 7 ) AS weeks_ago, AVG(evaluation) evaluation FROM line l JOIN item r ON l.item_no=r.item_no JOIN user u ON l.userid=u.userid GROUP BY weeks_ago, u.com_name HAVING weeks_ago <=4 AND u.com_name IS NOT NULL AND u.com_name !=\"\" and evaluation IS NOT NULL ORDER BY evaluation DESC, u.com_name DESC LIMIT 3;")
+	//@Select("SELECT u.com_name, FLOOR( DATEDIFF( CURRENT_DATE , l.regdate ) / 7 ) AS weeks_ago, AVG(evaluation) evaluation FROM line l JOIN item r ON l.item_no=r.item_no JOIN user u ON l.userid=u.userid GROUP BY weeks_ago, u.com_name HAVING weeks_ago <=4 AND u.com_name IS NOT NULL AND u.com_name !=\"\" and evaluation IS NOT NULL ORDER BY evaluation DESC, u.com_name DESC LIMIT 3;")
+	@Select("SELECT com_name, AVG(evaluation) evaluation FROM user JOIN line ON user.userid = line.userid WHERE FLOOR( DATEDIFF( CURRENT_DATE , line.regdate ) / 7 ) <=4  AND com_name !='' GROUP BY com_name ORDER BY evaluation DESC LIMIT 3")
 	List<Line> topthreestores(Map<String, Object> param);
 	
 	//widgets index 3-2 최근 4주 별점 평균 상위 3개 스토어

@@ -158,8 +158,8 @@ public class SnsController {
 					item.setName(seller.getCom_name());
 					shopitems.add(item);
 				}
-				System.out.println(sns);
-				System.out.println(shopitems);
+				//System.out.println(sns);
+				//System.out.println(shopitems);
 				sns.setCommentnum(service.getcommentnum(sns_no));
 				sns.setLikenum(service.getlikenum(sns_no));
 				mav.addObject("snsitems",snsitems);
@@ -196,7 +196,7 @@ public class SnsController {
 			}
 			sns.setItemList(list);
 		}
-		System.out.println(sns);
+		//System.out.println(sns);
 		service.snsUpdate(sns,request);
 		mav.setViewName("redirect:/sns/detail.shop?sns_no="+sns.getSns_no());
 		return mav;

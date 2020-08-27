@@ -13,10 +13,13 @@ opener.document.location.reload();
 </script>
 </head>
 <body onunload="refresh()">
-<h1>작성한 글을 삭제 하시겠습니까?</h1>
+<div>
+<h1>QnA 삭제</h1>
 <form action="remove1.shop" method="post" name="deleteform">
 <input type="hidden" name="qna_no" value="${param.qna_no }">
 	<a href="javascript:deleteform.submit()">[예]</a>
+<a href="#" onclick="javascript:window.close()">[아니오]</a>
 </form>
+</div>
 </body>
 </html>
