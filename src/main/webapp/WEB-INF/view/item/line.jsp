@@ -95,7 +95,6 @@ $(function(){
 <form:form action="write.shop"  name="f">
  <input type="hidden" name="item_no"  value="${param.item_no}">
  <input type="hidden" name="userid" value="${sessionScope.loginUser.userid}">
-<<<<<<< Updated upstream
  <input type="hidden" name="order_no" value="${param.order_no}">
  <input type="hidden" name="seq" value="${param.seq}">
 	<p class="title_star">별점과 한줄평을 남겨주세요.</p>

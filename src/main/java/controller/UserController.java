@@ -215,6 +215,7 @@ public class UserController {
 			orderdate.add(service.getorderdate(saleItem.getOrder_no()));
 			Line line = service.getline(saleItem.getOrder_no(), saleItem.getSeq());
 			saleItem.setContent(line.getContent());
+			saleItem.setEvaluation(line.getEvaluation());
 			saleItem.setLine_no(line.getLine_no());
 		}
 

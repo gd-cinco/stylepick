@@ -160,7 +160,7 @@
 																<c:if test="${!loginUser.userid.equals('admin')}"><li><a href="${path}/sns/mypage.shop?userid=${sessionScope.loginUser.userid}">mypage</a></li></c:if>
 																<c:if test="${loginUser.seller==0}"><li><a href="${path}/user/sellerEntry.shop?id=${sessionScope.loginUser.userid}">판매자 등록</a></c:if>
 																<c:if test="${loginUser.seller==1}"><li><a href="${path}/user/sellerUpdate.shop?id=${sessionScope.loginUser.userid}">판매자 정보 수정</a></c:if>
-																<li><a href="${path}/user/orderList.shop">주문내역</a></li>
+																<li><a href="${path}/user/orderList.shop?id=${sessionScope.loginUser.userid}">주문내역</a></li>
 																<li><a href="${path}/user/logout.shop">logout</a></li>
 															</ul>
 														</li>
@@ -200,6 +200,9 @@
         				<li><a href="${path}/item/list.shop?category=8">시계</a></li>
         			</ul>
         		</div>
+        	</c:if>
+        	<c:if test="${!fn:contains(path2,'support')}">
+        	<br><br>
         	</c:if>
         	<decorator:body/>
         </div>

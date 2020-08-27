@@ -156,10 +156,6 @@ function javascript1(){ //qna 작성
 					</c:if>
 				</td>
 				<td class="lineno">${line.userid }</td>
-			<!-- 	<td class="lineno">
-				<a href="change.shop?line_no=${line.line_no}" onclick="window.open(this.href,'change','width=800,height=500,top=200,left=400');return false;">[수정]</a>
-				<a href="remove.shop?line_no=${line.line_no }" onclick="window.open(this.href,'change','width=800,height=500,top=200,left=400');return false;">[삭제]</a> 
-				</td>-->
 					</tr>
 		</c:forEach>
 <tr><td colspan="4"><center>
