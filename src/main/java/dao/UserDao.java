@@ -16,6 +16,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import dao.mapper.BoardMapper;
 import dao.mapper.UserMapper;
 import logic.Buy;
 import logic.Item;
@@ -69,13 +70,15 @@ public class UserDao {
 	}
 	
 	//[admin] user list 유저리스트
-	public List<User> list(String searchtype, String searchcontent) {
+	public List<User> list(String searchtype, String searchcontent, Integer pageNum, int limit) {
 		param.clear();
 		if (searchtype != null && searchcontent != null) {
 			//sql += " WHERE " + searchtype + " LIKE :searchcontent ";
 			param.put("searchtype", searchtype);
 			param.put("searchcontent", "%"+searchcontent+"%");
 		}
+		param.put("startrow", (pageNum - 1) * limit);
+		param.put("limit", limit);
 		return template.getMapper(UserMapper.class).select(param);
 	}
 
@@ -153,5 +156,16 @@ public class UserDao {
 	public Sale getsale(int order_no) {
 		return template.getMapper(UserMapper.class).getsale(order_no);
 	}
+
+	//[admin] user 유저리스트 페이지 카운트(1p,2p..)
+	public int usercount(String searchtype, String searchcontent) {
+		// TODO Auto-generated method stub
+		param.clear(); 
+		if(searchtype != null && searchcontent != null) { 
+	 		param.put("searchtype", searchtype);
+	 		param.put("searchcontent",  "%"+searchcontent+"%"); 
+	 	}
+		return template.getMapper(UserMapper.class).usercount(param);
+	}	
 
 }

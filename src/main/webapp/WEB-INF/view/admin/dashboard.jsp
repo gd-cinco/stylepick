@@ -72,7 +72,7 @@ function getRandomColor() {
 		        var options = {
 		        		title : "주간 매출",
 	                    //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
-	                    width : 500,
+	                    width : 600,
 	                    height : 300
 		              };
 		            options.series={};
@@ -110,7 +110,7 @@ function getRandomColor() {
                 var options = {
                 		title : "최근 4주 매출",
                         //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
-                        width : 500,
+                        width : 600,
                         height : 300
 		              };
 		            options.series={};
@@ -123,132 +123,8 @@ function getRandomColor() {
 });
 </script>
 
-<script>
-/*
- * 댓글 등록하기(Ajax)
- */
-function fn_comment(code){
-    
-    $.ajax({
-        type:'POST',
-        url : "<c:url value='/board/addComment.do'/>",
-        data:$("#commentForm").serialize(),
-        success : function(data){
-            if(data=="success")
-            {
-                getCommentList();
-                $("#comment").val("");
-            }
-        },
-        error:function(request,status,error){
-            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-       }
-        
-    });
-}
- 
-/**
- * 초기 페이지 로딩시 댓글 불러오기
- */
-$(function(){
-    
-    getCommentList();
-    
-});
- 
-/**
- * 댓글 불러오기(Ajax)
- */
-function getCommentList(){
-    
-    $.ajax({
-        type:'GET',
-        url : "<c:url value='/board/commentList.do'/>",
-        dataType : "json",
-        data:$("#commentForm").serialize(),
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-        success : function(data){
-            
-            var html = "";
-            var cCnt = data.length;
-            
-            if(data.length > 0){
-                
-                for(i=0; i<data.length; i++){
-                    html += "<div>";
-                    html += "<div><table class='table'><h6><strong>"+data[i].writer+"</strong></h6>";
-                    html += data[i].comment + "<tr><td></td></tr>";
-                    html += "</table></div>";
-                    html += "</div>";
-                }
-                
-            } else {
-                
-                html += "<div>";
-                html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
-                html += "</table></div>";
-                html += "</div>";
-                
-            }
-            
-            $("#cCnt").html(cCnt);
-            $("#commentList").html(html);
-            
-        },
-        error:function(request,status,error){
-            
-       }
-        
-    });
-}
- 
-</script>
 
 
-<script type="text/javascript">
-          /*
-          google.charts.load('current', {'packages':['corechart']});
-          //google.charts.setOnLoadCallback(numGraph1);
-          google.charts.setOnLoadCallback(numGraph2);
-			
-          
-           function numGraph1() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', '정당');
-            data.addColumn('number', '의석수');
-            data.addRows([
-              ['미래한국당', 19],
-              ['더불어시민당', 17],
-              ['정의당', 5],
-              ['국민의당', 3],
-              ['열린민주당', 3]
-            ]);
-            var options = {title:' 21대 국회의원 선거 정당별 비례대표 의석수',
-                           width:350,
-                           height:300};
-            var chart = new google.visualization.PieChart(document.getElementById('numGraph1_div'));
-            chart.draw(data, options);
-          }
-
-          function numGraph2() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', '정당');
-            data.addColumn('number', '의석수');
-            data.addRows([
-              ['민주당-시민당', 180],
-              ['통합당-미래한국', 103],
-              ['정의당', 26],
-              ['국민의당', 5],
-              ['열린민주당', 3],
-              ['무소속', 3]
-            ]);
-            var options = {title:'21대 국회의원 선거 정당별 총 의석수',
-                           width:350,
-                           height:300};
-            var chart = new google.visualization.PieChart(document.getElementById('numGraph2_div'));
-            chart.draw(data, options);
-          }*/
-</script>
 </head>
 <body>
 	<div class="left-div" style="white-space:nowrap; width:10%; border-right:1px solid gray; float:left; text-align: center;">

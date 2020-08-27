@@ -51,15 +51,50 @@ public class AdminController {
 	
 	//회원 목록
 	@RequestMapping("list")
-	public ModelAndView check_list(HttpSession session,String searchtype, String searchcontent) {
+	public ModelAndView check_list(HttpSession session,String searchtype, String searchcontent, Integer pageNum) {
 		ModelAndView mav = new ModelAndView();
 		
 		if(searchtype == null || searchcontent ==null || searchtype.trim().equals("") || searchcontent.trim().equals("")) {
 			searchtype = null;
 			searchcontent = null;
 		}
-		List<User> list = service.list(searchtype, searchcontent);
+		/*
+		 * pageNum: 현재 페이지 번호
+		 * maxpage: 최대 페이지
+		 * startpage: 보여지는 시작 페이지
+		 * endpage: 보여지는 글 페이지번호
+		 * listcount: 전체 등록 게시물 건수(db)
+		 * boardlist: 화면에 보여지는 게시물 객체
+		 * boardno: 화면내 재할당 된 게시글 번호(listcount부터 시작)
+		 */
+		
+		int limit =10;// 한 페이지에 출력할 게시물 건수
+		//listcount : 등록된 전체 게시물의 건수, 검색된 게시물의 건수
+		int listcount = service.usercount(searchtype, searchcontent);
+		//list : 화면에 출력할 내용, 목록 저장
+		if (pageNum == null) {
+			pageNum = 1;
+		}
+		List<User> list = service.list(searchtype, searchcontent,pageNum, limit);
+		
+		int maxpage=(int)((double)listcount/limit+0.95);
+		int startpage=((int)(pageNum/10.0+0.9)-1)*10+1; //시작페이지 번호
+		int endpage=startpage+9;//종료페이지번호
+		if(endpage>maxpage) endpage=maxpage;
+		//마지막페이지가 최대 글번호 보다 크지 않도록
+		
+		int boardno=listcount-(pageNum-1)*limit;
+		
+		
 		mav.addObject("list",list);
+		//mav.addObject("boardlist",boardlist);
+		mav.addObject("pageNum",pageNum);
+		mav.addObject("maxpage",maxpage);
+		mav.addObject("startpage",startpage);
+		mav.addObject("endpage",endpage);
+		mav.addObject("listcount",listcount);
+		mav.addObject("boardno",boardno);
+		
 		return mav;
 	}//check_list
 	

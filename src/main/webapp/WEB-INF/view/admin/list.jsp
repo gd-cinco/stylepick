@@ -57,6 +57,7 @@
 					<td colspan="8" style="margin: 20px; padding: 20px;">
 						<!-- 검색바 -->
 						<form action="list.shop" method="post" name="searchform">
+						<input type = "hidden" name="pageNum" value="1">
 							<select name="searchtype" style="width:100px;">
 											<option value="">검색 필터</option>
 											<option value="userid">아이디</option>
@@ -108,16 +109,23 @@
 						 -->
 					</tr>
 				</c:forEach>
-				<!-- 
-				<tr>
-					<td colspan="9" class="user_list_table">
-						<input type="submit" value="메일보내기">
-						<input type="button" value="게시물작성그래프보기(막대)" onclick="graph_open('graph1')">
-					</td>
-				</tr>
-				 -->
 			</table>
-		<!-- </form> -->
+			<div style="text-align: center; padding: 20px;">
+					<c:if test="${pageNum >1}">
+						<a href="javascript: listpage('${pageNum -1}')">이전</a>
+					</c:if>
+					<c:if test="${pageNum <= 1}">이전</c:if>
+					<c:forEach var="a" begin="${startpage}" end="${endpage}">
+						<c:if test="${a == pageNum}">[${a}]</c:if>
+						<c:if test="${a != pageNum}">
+							<a href="javascript: listpage('${a}')">[${a}]</a>
+						</c:if>
+					</c:forEach>
+					<c:if test="${pageNum < maxpage}">
+						<a href="javascript: listpage('${pageNum +1}') ">다음</a>
+					</c:if>
+					<c:if test="${pageNum >= maxpage}">다음</c:if>
+			</div>
 	</div>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
