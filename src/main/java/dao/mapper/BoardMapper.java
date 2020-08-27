@@ -3,6 +3,7 @@ package dao.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -45,5 +46,8 @@ public interface BoardMapper {
 
 	@Select("SELECT SUBSTRING_INDEX(category,',',1) FROM board GROUP BY 1")
 	List<String> clist();
+	
+	@Delete("DELETE FROM board WHERE num=#{num}")
+	void delete(int no);
 
 }

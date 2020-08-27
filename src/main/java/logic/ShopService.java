@@ -604,8 +604,8 @@ public class ShopService {
 		
 	}
 
-	public void boardDelete(Board board) {
-		
+	public void boardDelete(int no) {
+		boardDao.delete(no);
 	}
 	/** Board End **/
 

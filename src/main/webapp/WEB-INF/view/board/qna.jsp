@@ -2,7 +2,6 @@
 <%@ include file="/header/main.jsp"%>
 <div align="center">
 <a href="${path}/board/qna.shop" class="genric-btn info radius">모두보기</a>
-<a href="${path}/board/qna.shop?o=true" class="genric-btn info radius">공개된 질문 보기</a>
 <a href="${path}/board/qna.shop?s=complete" class="genric-btn info radius">답변 완료된 질문 보기</a>
 <a href="${path}/board/qna.shop?s=wait" class="genric-btn info radius">답변 대기중인 질문 보기</a>
 <c:if test="${empty sessionScope.loginUser}">
