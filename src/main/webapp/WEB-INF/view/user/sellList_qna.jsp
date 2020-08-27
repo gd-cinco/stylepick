@@ -12,9 +12,9 @@
 <div class="center" style="max-width: 900px;">
 	<ul class="userul">
 		<li class="userli" style="width: auto;"><a class="a_blockbutton"
-		href="orderList.shop">구매자</a></li>
+		href="orderList.shop?id=${user.userid}">구매자</a></li>
 		<li class="userli" style="width: auto;"><a class="a_blockbutton blockbutton_selected2"
-		href="sellList.shop">판매자</a></li>
+		href="sellList.shop?id=${user.userid}">판매자</a></li>
 	</ul>
 	<hr style="margin-top: 0px;">
 	<div class="user-info" >
@@ -52,10 +52,10 @@
 	<div class="order_downview">
 		<div class="order_leftdiv">
 		<ul>
-			<li><a class="a_leftdivbtn" href="sellList.shop">요약보기</a></li>
-			<li><a class="a_leftdivbtn" href="sellList_item.shop">등록상품</a></li>
-			<li><a class="a_leftdivbtn" href="sellList_list.shop">판매내역</a></li>
-			<li><a class="a_leftdivbtn leftdivbtn_selected2" href="sellList_qna.shop">문의관리</a></li>
+			<li><a class="a_leftdivbtn" href="sellList.shop?id=${user.userid}">요약보기</a></li>
+			<li><a class="a_leftdivbtn" href="sellList_item.shop?id=${user.userid}">등록상품</a></li>
+			<li><a class="a_leftdivbtn" href="sellList_list.shop?id=${user.userid}">판매내역</a></li>
+			<li><a class="a_leftdivbtn leftdivbtn_selected2" href="sellList_qna.shop?id=${user.userid}">문의관리</a></li>
 		</ul>
 		</div>
 		<div class="order_main">

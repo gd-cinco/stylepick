@@ -16,6 +16,7 @@ public class SaleItem {
 	private String userid;
 	private int line_no;
 	private String content;
+	private long Evaluation;
 
 	public SaleItem() {
 	}
@@ -134,13 +135,23 @@ public class SaleItem {
 		this.line_no = i;
 	}
 
+	
+	public long getEvaluation() {
+		return Evaluation;
+	}
+
+	public void setEvaluation(long evaluation) {
+		Evaluation = evaluation;
+	}
+
 	@Override
 	public String toString() {
 		return "SaleItem [order_no=" + order_no + ", seq=" + seq + ", item_no=" + item_no + ", quantity=" + quantity
 				+ ", item=" + item + ", item_option=" + item_option + ", size=" + size + ", reviewed=" + reviewed
 				+ ", stat=" + stat + ", amount=" + amount + ", userid=" + userid + ", line_no=" + line_no + ", content="
-				+ content + "]";
+				+ content + ", Evaluation=" + Evaluation + "]";
 	}
+
 	
 
 }
