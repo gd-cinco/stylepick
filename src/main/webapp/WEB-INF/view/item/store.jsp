@@ -244,10 +244,10 @@
 	<div class="boxitemlist">
 		<c:forEach items="${rankItems}" var="rank">
 			<div class="boxitem">
-			<a href="${path}/item/detail.shop?item_no= ${rank.item_no }"><img src="img/${rank.pictureUrl }" width="290px" height="270px" ></a>
-				<div class="itembrand">${rank.userid }</div>
-				<div class="itemsubject">${rank.item_name }</div>
-				<div class="itemprice">${rank.price }</div>
+			<a href="${path}/item/detail.shop?item_no= ${rank.item_no}"><img src="img/${rank.pictureUrl}" width="290px" height="270px" ></a>
+				<div class="itembrand">${rank.name}</div>
+				<div class="itemsubject">${rank.item_name}</div>
+				<div class="itemprice"><fmt:formatNumber value="${rank.price}" pattern="###,###,###"/>원</div>
 			</div>
 		</c:forEach>
 	</div>
@@ -284,10 +284,10 @@
 	<div class="boxitemlist">
 	<c:forEach items="${newItems}" var="newi">
 			<div class="boxitem">
-				<a href="${path}/item/detail.shop?item_no= ${newi.item_no }"><img src="img/${newi.pictureUrl }" width="290px" height="270px" ></a>
-				<div class="itembrand">${newi.userid }</div>
-				<div class="itemsubject">${newi.item_name }</div>
-				<div class="itemprice">${newi.price }</div>
+				<a href="${path}/item/detail.shop?item_no= ${newi.item_no}"><img src="img/${newi.pictureUrl}" width="290px" height="270px" ></a>
+				<div class="itembrand">${newi.name}</div>
+				<div class="itemsubject">${newi.item_name}</div>
+				<div class="itemprice"><fmt:formatNumber value="${newi.price}" pattern="###,###,###"/>원</div>
 			</div>
 		</c:forEach>
 	</div>

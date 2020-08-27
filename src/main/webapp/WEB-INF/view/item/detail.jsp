@@ -215,7 +215,7 @@ function javascript1(){ //qna 작성
 					<td class="lineno">
 				<a href="reply.shop?qna_no=${qna.qna_no}" onclick="window.open(this.href,'change1','width=800,height=500,top=200,left=400');return false;">[답글]</a>
 			 	<a href="change1.shop?qna_no=${qna.qna_no}" onclick="window.open(this.href,'change1','width=500,height=400,top=200,left=400');return false;">[수정]</a>
-				<a href="remove1.shop?qna_no=${qna.qna_no }" onclick="window.open(this.href,'change1','width=500,height=400,top=200,left=400');return false;">[삭제]</a> 
+				<a href="remove1.shop?qna_no=${qna.qna_no }" onclick="window.open(this.href,'change1','width=400,height=200,top=200,left=400');return false;">[삭제]</a> 
 					 </td>
 		</c:forEach>
 <tr><td colspan="3">
@@ -241,8 +241,7 @@ function javascript1(){ //qna 작성
 </div>
 </div>
 <center>
-<a href="update.shop?item_no=${item.item_no}" class="genric-btn primary small">수정</a>
-<a href="delete.shop?item_no=${item.item_no}" class="genric-btn primary small">삭제</a>
+<a href="update.shop?item_no=${item.item_no}" class="genric-btn primary small">상품 수정</a>
 </center>
 </div>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

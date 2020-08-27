@@ -85,6 +85,14 @@ public class itemController {
 			ModelAndView mav = new ModelAndView();
 			List<Item> rankItems = service.getRankItems();
 			List<Item> newItems = service.getNewItems();
+			for(Item r : rankItems) {
+				User seller = service.getUser(r.getUserid());
+				r.setName(seller.getCom_name());
+			}
+			for(Item n : newItems) {
+				User seller = service.getUser(n.getUserid());
+				n.setName(seller.getCom_name());
+			}
 			mav.addObject("rankItems",rankItems);
 			mav.addObject("newItems",newItems);
 			return mav;
@@ -343,11 +351,11 @@ public class itemController {
 			return "ckedit";
 		}
 		
-		@PostMapping("delete")	//아이템 삭제
+		@RequestMapping("delete")	//아이템 삭제
 		public ModelAndView delete(int item_no) {
 			ModelAndView mav = new ModelAndView("item/update");
 			service.itemDelete(item_no);
-			mav.setViewName("redirect:/sns/main.shop");
+			mav.setViewName("redirect:/item/store.shop");
 			return mav;
 		}
 		

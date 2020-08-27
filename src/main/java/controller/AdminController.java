@@ -179,12 +179,14 @@ public class AdminController {
 				searchtype = null;
 				searchcontent = null;
 			}
-			int limit =10;
+			int limit =50;
 			int listcount = service.salecount(searchtype, searchcontent);
 			if (pageNum == null) {
 				pageNum = 1;
 			}
 			List<Buy> list = service.saleslist(searchtype, searchcontent,pageNum, limit);
+			
+			
 			int maxpage=(int)((double)listcount/limit+0.95);
 			int startpage=((int)(pageNum/10.0+0.9)-1)*10+1; //시작페이지 번호
 			int endpage=startpage+9;//종료페이지번호

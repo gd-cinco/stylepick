@@ -233,7 +233,7 @@ function getRandomColor() {
 			<!-- 최근 4주간 매출 추이 그래프의 끝 -->
 			<br><br><br><br>
 		</div> <!-- outer_frame -->
-		<div id="mint_square"></div> 스타일픽 패션 기획전<br>
+		<div id="mint_square"></div> 스타일픽 패션 기획전 일정<br>
 		<div style="padding : 5%;">
 			<div id="timeline" style="height: 270px; width: 95%;"></div>
 		</div>

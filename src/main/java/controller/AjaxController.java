@@ -411,8 +411,12 @@ public class AjaxController {
 		return json;
 	}
 	//[admin] charts index 6-2 카테고리별 판매 현황(월) getChartData12(); later
-	//[admin] charts index 7-1 스토어 매출 점유율 트리 getChartData13(); later
-	
+	//[admin] charts index 7-1 스토어 매출 점유율 getChartData13(); later
+	@RequestMapping("storeshare")
+		public JSONObject storeshare() {
+		JSONObject json = googleChart.getChartData13();
+		return json;
+	}
 	//[admin] charts index 7-2 상위 10개 스토어 (월 매출 기준)
 	@RequestMapping("toptenstores")
 		public JSONObject toptenstores() {

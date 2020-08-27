@@ -271,11 +271,20 @@
 	</div>
 	<br>
 <input type="submit" class="genric-btn success medium" value="상품 수정" style="width: 150px;height: 45px;">
-<input type="button" class="genric-btn success2 medium" value="상품 삭제" onclick="location.href='delete.shop?=${item.item_no}'" style="width: 150px;margin-left: 20px;height: 45px;">
+<input type="button" class="genric-btn success2 medium" value="상품 삭제" onclick="javascript:deletecheck()" style="width: 150px;margin-left: 20px;height: 45px;">
 	</div>
  
 </form:form>
 
-
+<script>
+function deletecheck() {
+	var question = confirm("삭제하시겠습니까?");
+	if(question){
+		location.href="delete.shop?item_no="+${param.item_no}
+	} else {
+		return false;
+	}
+}
+</script>
 </body>
 </html>

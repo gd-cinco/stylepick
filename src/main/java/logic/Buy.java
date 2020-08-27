@@ -73,6 +73,10 @@ public class Buy {
 		this.category = category;
 	}
 	public String getRegdateinString() {
+		//Date from = new Date();
+		//SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM");
+		//String to = transFormat.format(regdate);
+		//return to;
 		return new SimpleDateFormat("yyyy-MM").format(regdate);
 	}
 	public Date getRegdate() {

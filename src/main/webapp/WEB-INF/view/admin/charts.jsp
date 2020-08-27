@@ -269,7 +269,7 @@ function getRandomColor() {
                 
                 //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
                 var options = {
-                		title : "가입연월 대비 구매금액 scatter plot",
+                		title : "가입연월 대비 구매금액",
                         //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
                         width : 900,
                         height : 300,
@@ -361,10 +361,10 @@ function getRandomColor() {
 
     }
   	
-  	//charts index 7-1 스토어 매출 점유율 트리
+  	//charts index 7-1 스토어 매출 점유율
     function drawChart9() {
         var jsonData = $.ajax({
-        	url : "${path}/ajax/salesbycategories.shop", //안만듦
+        	url : "${path}/ajax/storeshare.shop", //안만듦
         	//chart01에서는 json의 주소를 직접 적었지만 이 페이지에서는 컨트롤러로 이동해 맵핑해서 제이슨을 동적으로
             //직접만들어 그 만든 json을 직접 보낸다.
         	dataType : "json",
@@ -377,57 +377,19 @@ function getRandomColor() {
         //차트를 출력할 div
         //LineChart, ColumnChart, PieChart에 따라서 차트의 형식이 바뀐다.
         
-        var data = google.visualization.arrayToDataTable([
-          ['Location', 'Parent', 'Market trade volume (size)', 'Market increase/decrease (color)'],
-          ['Global',    null,                 0,                               0],
-          ['America',   'Global',             0,                               0],
-          ['Europe',    'Global',             0,                               0],
-          ['Asia',      'Global',             0,                               0],
-          ['Australia', 'Global',             0,                               0],
-          ['Africa',    'Global',             0,                               0],
-          ['Brazil',    'America',            11,                              10],
-          ['USA',       'America',            52,                              31],
-          ['Mexico',    'America',            24,                              12],
-          ['Canada',    'America',            16,                              -23],
-          ['France',    'Europe',             42,                              -11],
-          ['Germany',   'Europe',             31,                              -2],
-          ['Sweden',    'Europe',             22,                              -13],
-          ['Italy',     'Europe',             17,                              4],
-          ['UK',        'Europe',             21,                              -5],
-          ['China',     'Asia',               36,                              4],
-          ['Japan',     'Asia',               20,                              -12],
-          ['India',     'Asia',               40,                              63],
-          ['Laos',      'Asia',               4,                               34],
-          ['Mongolia',  'Asia',               1,                               -5],
-          ['Israel',    'Asia',               12,                              24],
-          ['Iran',      'Asia',               18,                              13],
-          ['Pakistan',  'Asia',               11,                              -52],
-          ['Egypt',     'Africa',             21,                              0],
-          ['S. Africa', 'Africa',             30,                              43],
-          ['Sudan',     'Africa',             12,                              2],
-          ['Congo',     'Africa',             10,                              12],
-          ['Zaire',     'Africa',             8,                               10]
-        ]);
-        
-        var chart  = new google.visualization.TreeMap(document.getElementById('chart_div9')); //tree map
-        //var chart = new google.visualization.PieChart(document.getElementById('chart_div')); //pie chart
-        //var chart = new google.visualization.ScatterChart(document.getElementById('chart_div')); //scatter plot
-        //var chart = new google.visualization.LineChart(document.getElementById('chart_div')); //선 그래프
-        //var chart = new google.visualization.ColumnChart(document.getElementById('chart_div8')); //막대그래프
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div9')); //pie plot
+        //var chart = new google.visualization.ScatterChart(document.getElementById('chart_div7')); //scatter plot
+        //var chart = new google.visualization.LineChart(document.getElementById('chart_div5')); //선 그래프
+        //var chart = new google.visualization.ColumnChart(document.getElementById('chart_div')); //막대그래프
         //차트 객체.draw(데이터 테이블, 옵션)
         //cuveType : "function" => 곡선처리
                 
                 //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
        var options = {
-          title: '월별 구매금액(카테고리 구분)',
+          title: '스토어 매출 쉐어',
+          //is3D: true,
           width:300,
-          height:300,
-          minColor: '#f00',
-          midColor: '#ddd',
-          maxColor: '#0d0',
-          headerHeight: 15,
-          fontColor: 'black',
-          showScale: true
+          height:300
         };
        chart.draw(data, options);
 
@@ -507,7 +469,7 @@ function getRandomColor() {
 		</div>
 		<br>
 		<div>
-			<div id="mint_square"></div> Yearly : 연 매출 현황
+			<div id="mint_square"></div> Yearly : 월별 매출 현황
 			<br>
 			<div id="chart_div3"></div>
 		</div>
@@ -522,7 +484,7 @@ function getRandomColor() {
 		</div>
 		<br>
 		<div>
-			<div id="mint_square"></div> 구매건 기준 매출 산점도
+			<div id="mint_square"></div> 가입일자 기준 매출 (최근 1년)
 			<br>
 			<div id="chart_div6"></div>
 		</div>
@@ -532,7 +494,7 @@ function getRandomColor() {
 			<br>
 			<div style="width: 1200px; overflow: hidden;">
 				<div id="chart_div7" style="float: left;"></div>
-				<div id="chart_div8" style="float: left;"></div>
+				<!-- <div id="chart_div8" style="float: left;"></div> -->
 			</div>
 		</div>
 		<br>
@@ -540,6 +502,7 @@ function getRandomColor() {
 			<div id="mint_square"></div> 스토어 매출 점유율
 			<br>
 			<div style="width: 1200px; overflow: hidden;">
+				 
 				<div id="chart_div9" style="float: left;"></div>
 				<div id="chart_div10" style="float: left;"></div>
 			</div>
