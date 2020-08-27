@@ -158,9 +158,9 @@ public class UserController {
 	}
 
 	@GetMapping("orderList")
-	public ModelAndView loginCheckorderList(HttpSession session) {
+	public ModelAndView checkorderList(String id,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		User user = (User) session.getAttribute("loginUser");
+		User user = service.getUser(id);
 		mav.addObject("user", user);
 
 		int shipping = service.getmyshipping(user.getUserid());
@@ -178,9 +178,9 @@ public class UserController {
 	}
 
 	@GetMapping("orderList_order")
-	public ModelAndView loginCheckorderlist_order(HttpSession session) {
+	public ModelAndView checkorderlist_order(String id,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		User user = (User) session.getAttribute("loginUser");
+		User user = service.getUser(id);
 		int shipping = service.getmyshipping(user.getUserid());
 		int notMentioned = service.getNotMentionedCount(user.getUserid());
 		List<Sale> buylist = service.getusersale(user.getUserid());
@@ -200,9 +200,9 @@ public class UserController {
 	}
 
 	@GetMapping("orderList_review")
-	public ModelAndView loginCheckOrderlistReview(HttpSession session) {
+	public ModelAndView checkOrderlistReview(String id,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		User user = (User) session.getAttribute("loginUser");
+		User user = service.getUser(id);
 		int shipping = service.getmyshipping(user.getUserid());
 		mav.addObject("shipping", shipping);
 		int notMentioned = service.getNotMentionedCount(user.getUserid());
@@ -225,9 +225,9 @@ public class UserController {
 	}
 
 	@GetMapping("sellList")
-	public ModelAndView loginCheckselllist(HttpSession session) {
+	public ModelAndView checkselllist(String id,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		User user = (User) session.getAttribute("loginUser");
+		User user = service.getUser(id);
 
 		List<Item> sell = service.getmyitem(user.getUserid());
 
@@ -238,9 +238,6 @@ public class UserController {
 		int sold = service.getmysoldcount(user.getUserid());
 		mav.addObject("sold", sold);
 
-		for (Item item : sell) {
-			// item.setQna(service.getNotmentionedQna(item.getItem_no()));
-		}
 		List<SaleItem> salelist = service.getmysalelist(user.getUserid());
 		for (SaleItem saleItem : salelist) {
 			saleItem.setUserid(service.getsale(saleItem.getOrder_no()).getUserid());
@@ -256,9 +253,9 @@ public class UserController {
 	}
 
 	@GetMapping("sellList_item")
-	public ModelAndView loginChecksell_order(HttpSession session) {
+	public ModelAndView checksell_order(String id,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		User user = (User) session.getAttribute("loginUser");
+		User user = service.getUser(id);
 		mav.addObject("user", user);
 
 		List<Item> sell = service.getmyitem(user.getUserid());
@@ -275,9 +272,9 @@ public class UserController {
 	}
 
 	@GetMapping("sellList_list")
-	public ModelAndView loginChecksell_list(HttpSession session) {
+	public ModelAndView checksell_list(String id,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		User user = (User) session.getAttribute("loginUser");
+		User user = service.getUser(id);
 		mav.addObject("user", user);
 
 		int balance = service.getmybalance(user.getUserid());
@@ -313,9 +310,9 @@ public class UserController {
 	}
 
 	@GetMapping("sellList_qna")
-	public ModelAndView loginChecksessionview(HttpSession session) {
+	public ModelAndView checksessionview(String id,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		User user = (User) session.getAttribute("loginUser");
+		User user = service.getUser(id);
 		mav.addObject("user", user);
 
 		int balance = service.getmybalance(user.getUserid());
