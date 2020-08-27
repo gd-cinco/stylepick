@@ -76,7 +76,7 @@ public class UserDao {
 			param.put("searchtype", searchtype);
 			param.put("searchcontent", "%"+searchcontent+"%");
 		}
-		return template.getMapper(UserMapper.class).select(null);
+		return template.getMapper(UserMapper.class).select(param);
 	}
 
 	public List<User> list(String[] idchks) {

@@ -93,13 +93,12 @@ public class BoardController {
 		return mav;
 	}
 
-	@PostMapping("delete")
-	public ModelAndView delete(Board board, BindingResult bresult) {
+	@RequestMapping("delete")
+	public ModelAndView delete(Board board) {
 		ModelAndView mav = new ModelAndView();
 
-		service.boardDelete(board);
+		service.boardDelete(board.getNo());
 		mav.setViewName("redirect:support.shop");
-
 		
 		return mav;
 	}
