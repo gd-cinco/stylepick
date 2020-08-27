@@ -132,6 +132,9 @@ public class SnsController {
 	@PostMapping("comment")
 	public ModelAndView comment(Comment comment) {
 		ModelAndView mav = new ModelAndView();
+		if(comment.getContent().trim().equals("")) {
+			throw new SnsException("내용을 입력하세요.","detail.shop?sns_no="+comment.getSns_no());
+		}
 		comment.setReply_no(service.replyNum(comment.getSns_no()));
 		service.replyWrite(comment);
 		mav.setViewName("redirect:detail.shop?sns_no="+comment.getSns_no());
