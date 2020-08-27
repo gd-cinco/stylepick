@@ -97,7 +97,4 @@ public class BoardDao {
 		template.getMapper(BoardMapper.class).updateStatComplete(bno);
 	}
 
-	public void statWait(int bno) {
-		template.getMapper(BoardMapper.class).updateStatWait(bno);
-	}
 }

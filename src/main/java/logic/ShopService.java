@@ -611,10 +611,6 @@ public class ShopService {
 	public void boardStatComplete(int bno) {
 		boardDao.statComplete(bno);
 	}
-
-	public void boardStatWait(int bno) {
-		boardDao.statWait(bno);
-	}
 	/** Board End **/
 
 	public Sale checkend(Sale sale, Cart cart, User loginUser) {

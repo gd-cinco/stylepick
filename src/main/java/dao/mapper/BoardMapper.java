@@ -67,6 +67,4 @@ public interface BoardMapper {
 	@Update("UPDATE board SET stat = 'complete' WHERE no = #{no}")
 	void updateStatComplete(int bno);
 
-	@Update("UPDATE board SET stat = 'wait' WHERE no = #{no}")
-	void updateStatWait(int bno);
 }

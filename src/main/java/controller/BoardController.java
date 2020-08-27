@@ -114,8 +114,6 @@ public class BoardController {
 		if (seq == 2) {
 			if (loginUser.getUserid().equals("admin")) {
 				service.boardStatComplete(bno);
-			} else if (loginUser.getUserid().equals(author)) {
-				service.boardStatWait(bno);
 			}
 		}
 		reply.setAuthor(loginUser.getUserid());
