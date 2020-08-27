@@ -201,9 +201,11 @@
         			</ul>
         		</div>
         	</c:if>
+        	<!--  
         	<c:if test="${!fn:contains(path2,'support')}">
         	<br><br>
         	</c:if>
+        	-->
         	<decorator:body/>
         </div>
     </div>

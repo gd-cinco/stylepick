@@ -208,16 +208,16 @@
 		<!-- 목록 처음에는 5번 이미지의 복사본을 붙여넣음  -->
 		<!-- 목록 끝에는 1번 이미지의 복사본을 붙여넣음  -->
 		<!-- 자세한 설명은 http://blog.naver.com/2woo30225/220838511483 에서 참고 -->
-		<li class="slide slide8"><a href="${path}/item/list.shop?category=8"><img src="${path}/item/img/clock.jpg" class="slider_image" /></a></li>
-		<li class="slide slide1"><a href="${path}/item/list.shop?category=1"><img src="${path}/item/img/cap.jpg" class="slider_image" /></a></li>
-		<li class="slide slide2"><a href="${path}/item/list.shop?category=2"><img src="${path}/item/img/outer.jpg" class="slider_image" /></a></li>
-		<li class="slide slide3"><a href="${path}/item/list.shop?category=3"><img src="${path}/item/img/one.jpg" class="slider_image" /></a></li>
-		<li class="slide slide4"><a href="${path}/item/list.shop?category=4"><img src="${path}/item/img/top.jpg" class="slider_image" /></a></li>
-		<li class="slide slide5"><a href="${path}/item/list.shop?category=5"><img src="${path}/item/img/jean.png" class="slider_image" /></a></li>
-		<li class="slide slide6"><a href="${path}/item/list.shop?category=6"><img src="${path}/item/img/bag.jpg" class="slider_image" /></a></li>
-		<li class="slide slide7"><a href="${path}/item/list.shop?category=7"><img src="${path}/item/img/shoes.jpg" class="slider_image" /></a></li>
-		<li class="slide slide8"><a href="${path}/item/list.shop?category=8"><img src="${path}/item/img/clock.jpg" class="slider_image" /></a></li>
-		<li class="slide slide1"><a href="${path}/item/list.shop?category=1"><img src="${path}/item/img/cap.jpg" class="slider_image" /></a></li>
+		<li class="slide slide8"><a href="${path}/item/list.shop?category=8"><img src="../assets/img/watch.PNG" class="slider_image" /></a></li>
+		<li class="slide slide1"><a href="${path}/item/list.shop?category=1"><img src="../assets/img/hat.PNG" class="slider_image" /></a></li>
+		<li class="slide slide2"><a href="${path}/item/list.shop?category=2"><img src="../assets/img/outer.PNG" class="slider_image" /></a></li>
+		<li class="slide slide3"><a href="${path}/item/list.shop?category=3"><img src="../assets/img/onepiece.PNG" class="slider_image" /></a></li>
+		<li class="slide slide4"><a href="${path}/item/list.shop?category=4"><img src="../assets/img/top.PNG" class="slider_image" /></a></li>
+		<li class="slide slide5"><a href="${path}/item/list.shop?category=5"><img src="../assets/img/pants.PNG" class="slider_image" /></a></li>
+		<li class="slide slide6"><a href="${path}/item/list.shop?category=6"><img src="../assets/img/bag.PNG" class="slider_image" /></a></li>
+		<li class="slide slide7"><a href="${path}/item/list.shop?category=7"><img src="../assets/img/shoes.PNG" class="slider_image" /></a></li>
+		<li class="slide slide8"><a href="${path}/item/list.shop?category=8"><img src="../assets/img/watch.PNG" class="slider_image" /></a></li>
+		<li class="slide slide1"><a href="${path}/item/list.shop?category=1"><img src="../assets/img/hat.PNG" class="slider_image" /></a></li>
 		<!-- 여기까지 수정 -->
 	</ul>
 
