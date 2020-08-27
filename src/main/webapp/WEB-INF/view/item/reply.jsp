@@ -15,13 +15,13 @@ opener.document.location.reload();
 </head>
 <body onunload="refresh()">
 
-<form:form modelAttribute="reply" action="reply.shop" method="post" name="f">
-		<input type="hidden" name="item_no" value="${param.item_no}">
-
+<form:form  action="replyadd.shop" method="post" name="f">
+	<input type="hidden" name="item_no" value="${qna.item_no}">
 	<input type="hidden" name="grp" value="${qna.grp }">
-		<input type="hidden" name="grplevel" value="${qna.grplevel }">
-		<input type="hidden" name="grpstep" value="${qna.grpstep }">
-	 <input type="hidden" name="userid" value="${sessionScope.loginUser.userid}"/>
+	<input type="hidden" name="grplevel" value="${qna.grplevel }">
+	<input type="hidden" name="grpstep" value="${qna.grpstep }">
+	<input type="hidden" name="userid" value="${sessionScope.loginUser.userid}"/>
+	
 	<input type="hidden" name="type" value="1">
 	<table>
 		<caption>Spring 게시판 답글 등록</caption>

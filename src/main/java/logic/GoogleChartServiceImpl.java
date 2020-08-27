@@ -406,7 +406,7 @@ public class GoogleChartServiceImpl implements GoogleChartService {
         return data; //이 데이터가 넘어가면 json형식으로 넘어가게되서 json이 만들어지게 된다.
     }
     
-    //[admin] charts index 4-1 지역별 매출 평균 barplot
+    //[admin] charts index 4-1 지역별 매출 평균 boxplot
     @Override
     public JSONObject getChartData8() {//제이슨 오브젝트를 리턴하는 것
     	// getChartData메소드를 호출하면
@@ -437,9 +437,7 @@ public class GoogleChartServiceImpl implements GoogleChartService {
         data.put("cols", title);//제이슨을 넘김
         //이런형식으로 추가가된다. {"cols" : [{"label" : 지역구","type":"string"}
         //,{"label" : "금액", "type" : "number"}]}
-        
-        
-        
+
         List<Integer> overlap = new ArrayList<Integer>();
         JSONArray body = new JSONArray(); //json 배열을 사용하기 위해 객체를 생성
         for (Buy dto : items) { //items에 저장된 값을 dto로 반복문을 돌려서 하나씩 저장한다.
@@ -464,6 +462,7 @@ public class GoogleChartServiceImpl implements GoogleChartService {
             address.put("v", dto.getAddress()); //name변수에 dto에 저장된 주문일을 v라고 저장한다.
             
             //================================================================================
+            /*
             int count=0;	//중복일경우 중복된 지점을 체크하기 위한 초기화
             for (Object object : body) {
             	String bodyaddress = object.toString().substring(12);				//주소   ex) 안산시 단원
@@ -477,6 +476,7 @@ public class GoogleChartServiceImpl implements GoogleChartService {
 				}
 				count++;
 			}
+			*/
             //================================================================================
             
             JSONObject amount = new JSONObject(); //json오브젝트 객체를 생성
@@ -493,11 +493,13 @@ public class GoogleChartServiceImpl implements GoogleChartService {
                 
         }
         //Chyeon , 중복된 array 제거
+        /*
         int count = 0;
         for (int over : overlap) {
 			body.remove(over-count); //한번삭제하면 뒤에있는 값이 땡겨지므로 1씩 빼야한다.
 			count++;
 		}
+		*/
         
         data.put("rows", body); //data에 body를 저장하고 이름을 rows라고 한다.
         return data; //이 데이터가 넘어가면 json형식으로 넘어가게되서 json이 만들어지게 된다.

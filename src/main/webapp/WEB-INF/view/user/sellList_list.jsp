@@ -74,14 +74,14 @@
 			<table>
 				<tr>
 					<td>판매수익</td>
-					<td>등록한 상품</td>
+					<td>판매 중</td>
 					<td>판매 완료</td>
 					<td>문의 관리</td>
 				</tr>
 				<tr>
-					<td>5</td>
-					<td>10</td>
-					<td>11</td>
+					<td>${balance}원</td>
+					<td>${sellcount}건</td>
+					<td>${sold}건</td>
 					<td>4</td>
 				</tr>
 			</table>

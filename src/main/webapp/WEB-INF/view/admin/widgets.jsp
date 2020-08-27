@@ -34,6 +34,16 @@ $(function() {
 	google.setOnLoadCallback(drawRankingChart2); //라이브러리를 불러오는 작업이 완료되었으면 drawChart작업을 실행하라는 뜻.
 	google.setOnLoadCallback(drawRankingChart3); //라이브러리를 불러오는 작업이 완료되었으면 drawChart작업을 실행하라는 뜻.
 	
+	function getRandomColor() {
+	    var letters = '0123456789ABCDEF'.split('');
+	    var color = '#';
+	    for (var i = 0; i < 6; i++ ) {
+	        color += letters[Math.floor(Math.random() * 16)];
+	    }
+	    return color;
+	}
+	
+	
 	//[admin] widgets index 2-1 이번 달 최다 구매 회원 랭킹
 	function drawRankingChart1() {
 		var jsonData = $.ajax({
@@ -55,19 +65,24 @@ $(function() {
        //chart.draw(data, options);
        
       //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
-        chart.draw(data, {
-            title : "이번 달 최다 구매 회원 순위",
-            //width : 500,
-            //height : 300
-            chartArea: {width: '50%'},
-            hAxis: {
-              title: '구매 금액(원)',
-              minValue: 0
-            },
-            vAxis: {
-              title: '아이디'
+        var options = {
+        		title : "이번 달 최다 구매 회원 순위",
+                //width : 500,
+                //height : 300
+                chartArea: {width: '50%'},
+                hAxis: {
+                  title: '구매 금액(원)',
+                  minValue: 0
+                },
+                vAxis: {
+                  title: '아이디'
+                }
+              };
+            options.series={};
+            for(var i = 0;i < data.getNumberOfRows();i++){
+                options.series[i]={color:getRandomColor()}
             }
-        });
+             chart.draw(data, options);
 	}
 	
 	//[admin] widgets index 2-2 올해 최다 구매 회원 랭킹
@@ -91,19 +106,26 @@ $(function() {
        //chart.draw(data, options);
        
       //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
-        chart.draw(data, {
-            title : "올해의 최다 구매 회원 순위",
-            //width : 500,
-            //height : 300
-            chartArea: {width: '50%'},
-            hAxis: {
-              title: '구매 금액(원)',
-              minValue: 0
-            },
-            vAxis: {
-              title: '아이디'
+        var options = {
+        		title : "올해의 최다 구매 회원 순위",
+                //width : 500,
+                //height : 300
+                chartArea: {width: '50%'},
+                hAxis: {
+                  title: '구매 금액(원)',
+                  minValue: 0
+                },
+                vAxis: {
+                  title: '아이디'
+                }
+              };
+            options.series={};
+            for(var i = 0;i < data.getNumberOfRows();i++){
+                options.series[i]={color:getRandomColor()}
             }
-        });
+             chart.draw(data, options);
+      
+
 	}
 
 	//[admin] widgets index 3-1 우수 입점 스토어 차트
@@ -127,19 +149,24 @@ $(function() {
        //chart.draw(data, options);
        
       //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
-        chart.draw(data, {
-            title : "우수입점스토어 (최근 4주 기준)",
-            //width : 500,
-            //height : 300
-            chartArea: {width: '50%'},
-            hAxis: {
+      
+      var options = {
+          title: '우수입점스토어 (최근 4주 기준)',
+          hAxis: {
               title: '별점 평균',
               minValue: 0
             },
             vAxis: {
               title: '스토어명'
-            }
-        });
+            },
+          chartArea: {width: '50%'}
+        };
+      options.series={};
+      for(var i = 0;i < data.getNumberOfRows();i++){
+          options.series[i]={color:getRandomColor()}
+      }
+       chart.draw(data, options);
+
 	}
 	
 	

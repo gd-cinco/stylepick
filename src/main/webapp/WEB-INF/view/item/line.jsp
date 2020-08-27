@@ -65,19 +65,33 @@ position:absolute;
 top:75%;
 left:0%;
 }
+
+
+
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script> 
 <script type="text/javascript">
 function refresh(){
 opener.document.location.reload();
 	self.close();
 }
+
+$(function(){
+	$('.review').on('keyup', function() {
+		if($(this).val().length > 50) {
+	alert("글자수는 50자로 이내로 제한됩니다.");
+			$(this).val($(this).val().substring(0, 50));
+		}
+
+	});
+});
 </script>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
 </head>
 <body onunload="refresh()">
    <h1>한줄평</h1>
-<form:form modelAttribute="line" action="write.shop"  name="f">
+<form:form action="write.shop"  name="f">
  <input type="hidden" name="item_no"  value="${param.item_no}">
  <input type="hidden" name="userid" value="${sessionScope.loginUser.userid}">
 	<p class="title_star">별점과 리뷰를 남겨주세요.</p>
@@ -89,7 +103,7 @@ opener.document.location.reload();
 	<input type="radio" name="evaluation" id="star1" value="1"><label for="star1"></label>
 	</div>
 	<div>
-<textarea id="con" name="content" cols="99" rows="12" ></textarea>
+<textarea id="con" class="review" name="content" cols="55" rows="12"  placeholder="내용을 입력해 주세요.(최대 50자)"></textarea>
 </div>
 <input id="con1"  type="submit" class="genric-btn success medium" value="작성" >
 </form:form>

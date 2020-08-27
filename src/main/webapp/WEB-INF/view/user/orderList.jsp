@@ -41,8 +41,8 @@
 					<td style="color: red;">최근 본 상품</td>
 				</tr>
 				<tr>
-					<td>${shipping}</td>
-					<td>${notmentioned}</td>
+					<td>${shipping}건</td>
+					<td>${notmentioned}건</td>
 					<td style="color: red;">11</td>
 				</tr>
 			</table>

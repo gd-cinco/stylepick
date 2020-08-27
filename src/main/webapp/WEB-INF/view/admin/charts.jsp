@@ -40,7 +40,16 @@ google.setOnLoadCallback(drawChart8);
 google.setOnLoadCallback(drawChart9);
 google.setOnLoadCallback(drawChart10);
 
-	
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+//charts index 1 스타일픽 회원 수 0818
 	function drawChart1() {
 	    var jsonData = $.ajax({
 	    	url : "${path}/ajax/totnumofusers.shop",
@@ -66,12 +75,18 @@ google.setOnLoadCallback(drawChart10);
 	            //cuveType : "function" => 곡선처리
 	            
 	            //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
-	            chart.draw(data, {
-	                title : "스타일픽 회원",
-	                //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
-	                width : 900,
-	                height : 300
-	            });
+			    var options = {
+			    		title : "스타일픽 회원",
+		                //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
+		                width : 500,
+		                height : 300
+		              };
+		            options.series={};
+		            for(var i = 0;i < data.getNumberOfRows();i++){
+		                options.series[i]={color:getRandomColor()}
+		            }
+		             chart.draw(data, options);
+
 	}
 
 	//charts index 2 Weekly : 일자별 매출 현황 0818
@@ -105,13 +120,18 @@ google.setOnLoadCallback(drawChart10);
                 
                 //cuveType : "function" => 곡선처리
                 
-                //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
-                chart.draw(data, {
-                    title : "주간 매출(최근 7일)",
-                    //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
-                    width : 900,
-                    height : 300
-                });
+                //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.     
+                var options = {
+                		title : "주간 매출(최근 7일)",
+                        //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
+                        width : 900,
+                        height : 300
+		              };
+		            options.series={};
+		            for(var i = 0;i < data.getNumberOfRows();i++){
+		                options.series[i]={color:getRandomColor()}
+		            }
+		             chart.draw(data, options);
     }
 	//charts index 3 Yearly : 연 매출 현황 0818
     function drawChart3() {
@@ -140,12 +160,18 @@ google.setOnLoadCallback(drawChart10);
                 //cuveType : "function" => 곡선처리
                 
                 //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
-                chart.draw(data, {
-                    title : "연 매출(1년)",
-                    //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
-                    width : 900,
-                    height : 300
-                });
+		        var options = {
+		        		title : "연 매출(1년)",
+	                    //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
+	                    width : 900,
+	                    height : 300
+		              };
+		            options.series={};
+		            for(var i = 0;i < data.getNumberOfRows();i++){
+		                options.series[i]={color:getRandomColor()}
+		            }
+		             chart.draw(data, options);
+
     }
     //charts index 4-1 지역별 매출 평균 boxplot
     function drawChart4() {
@@ -161,6 +187,17 @@ google.setOnLoadCallback(drawChart10);
         //데이터테이블 생성
         var data = new google.visualization.DataTable(jsonData);
         //제이슨 형식을 구글의 테이블 형식으로 바꿔주기 위해서 집어넣음
+        
+        var data = google.visualization.arrayToDataTable([
+               ['광주 서구', 45000, 22000, 10000, 40000],
+               ['서울시 강서', 30000, 38000, 55000, 66000],
+               ['서울시 금천', 50000, 50500, 77000, 80000],
+               ['서울시 성동', 77000, 77000, 66000, 50000],
+               ['서울시 양천', 68000, 66000, 22000, 15000]
+               // Treat first row as data as well.
+            ], true);
+        
+        
         //차트를 출력할 div
         //LineChart, ColumnChart, PieChart에 따라서 차트의 형식이 바뀐다.
         
@@ -173,18 +210,24 @@ google.setOnLoadCallback(drawChart10);
         //cuveType : "function" => 곡선처리
                 
                 //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
-                chart.draw(data, {
-                    title : "지역구 별 매출 boxplot",
-                    //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
-                    width : 900,
-                    height : 300,
-                    seriesType: 'candlesticks',
-                    //series: {1: {type: 'line'}}
-                    series: {0: {type: 'line'}}
-                    //hAxis: {title: '가입연월', minValue: 0}, // maxValue: 15
-                    //vAxis: {title: '구매 금액', minValue: 0},
-                    //legend: 'none',
-                });
+                var options = {
+                		 title : "지역구 별 매출 boxplot",
+                         //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
+                         width : 900,
+                         height : 300,
+                         seriesType: 'candlesticks',
+                         hAxis: {title: '지역구'},
+                         vAxis: {title: '구매 금액'}
+                         //series: {2: {type: "line"}}
+                         //hAxis: {title: '가입연월', minValue: 0}, // maxValue: 15
+                         //vAxis: {title: '구매 금액', minValue: 0},
+                         //legend: 'none',
+		              };
+		            options.series={};
+		            for(var i = 0;i < data.getNumberOfRows();i++){
+		                options.series[i]={color:getRandomColor()}
+		            }
+		             chart.draw(data, options); 	
     }
     
     //charts index 4-2 지역별 매출 평균 >later drawChart5
@@ -225,15 +268,20 @@ google.setOnLoadCallback(drawChart10);
         //cuveType : "function" => 곡선처리
                 
                 //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
-                chart.draw(data, {
-                    title : "가입연월 대비 구매금액 scatter plot",
-                    //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
-                    width : 900,
-                    height : 300,
-                    hAxis: {title: '가입연월', minValue: 0}, // maxValue: 15
-                    vAxis: {title: '구매 금액', minValue: 0},
-                    legend: 'none',
-                });
+                var options = {
+                		title : "가입연월 대비 구매금액 scatter plot",
+                        //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
+                        width : 900,
+                        height : 300,
+                        hAxis: {title: '가입연월', minValue: 0}, // maxValue: 15
+                        vAxis: {title: '구매 금액', minValue: 0},
+                        legend: 'none',
+		              };
+		            options.series={};
+		            for(var i = 0;i < data.getNumberOfRows();i++){
+		                options.series[i]={color:getRandomColor()}
+		            }
+		             chart.draw(data, options);
     }
     
   	//charts index 6-1 카테고리별 판매 현황(월)
@@ -407,13 +455,17 @@ google.setOnLoadCallback(drawChart10);
         //차트 객체.draw(데이터 테이블, 옵션)
         //cuveType : "function" => 곡선처리
                 
-                //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
-       var options = {
-          title: '상위 10개 스토어 (월 매출 기준)',
-          width:300,
-          height:300
-        };
-       chart.draw(data, options);
+      //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
+        var options = {
+        		 title: '상위 10개 스토어 (월 매출 기준)',
+                 width:300,
+                 height:300
+              };
+            options.series={};
+            for(var i = 0;i < data.getNumberOfRows();i++){
+                options.series[i]={color:getRandomColor()}
+            }
+             chart.draw(data, options);
     }
 
 

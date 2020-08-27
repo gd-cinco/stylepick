@@ -125,6 +125,10 @@ public class UserDao {
 	public List<Item> getmyitem(String userid) {
 		return template.getMapper(UserMapper.class).myitem(userid);
 	}
+	
+	public int getmysellcount(String userid) {
+		return template.getMapper(UserMapper.class).sellcount(userid);
+	}
 
 	public int getNotmentionedQna(int item_no) {
 		return template.getMapper(UserMapper.class).notmentionedQna(item_no);
