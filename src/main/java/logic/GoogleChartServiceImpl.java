@@ -28,6 +28,7 @@ public class GoogleChartServiceImpl implements GoogleChartService {
     	//List<CartDTO> items = cartService.cartMoney();
     	//Map<String, Object> items = service.weeklyrevenue(); //이게 문젠가?
         List<Buy> items = service.weeklyrevenue(); //it works
+        //System.out.println(items.toString());
     	
         //리턴할 json 객체
         JSONObject data = new JSONObject(); //{}
@@ -277,7 +278,7 @@ public class GoogleChartServiceImpl implements GoogleChartService {
         for (Line dto : items) { //items에 저장된 값을 dto로 반복문을 돌려서 하나씩 저장한다.
             
             JSONObject com_name = new JSONObject(); //json오브젝트 객체를 생성
-            //com_name.put("v", dto.getCom_name()); //name변수에 dto에 저장된 주문일을 v라고 저장한다.
+            com_name.put("v", dto.getCom_name()); //name변수에 dto에 저장된 주문일을 v라고 저장한다.
             
             JSONObject amount = new JSONObject(); //json오브젝트 객체를 생성
             amount.put("v", dto.getEvaluation()); //name변수에 dto에 저장된 금액을 v라고 저장한다.
