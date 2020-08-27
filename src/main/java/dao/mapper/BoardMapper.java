@@ -44,7 +44,7 @@ public interface BoardMapper {
 			+ " VALUES (#{no}, #{title}, #{author}, #{seq}, #{category}, #{stat}, NOW(), 0, #{content}, #{fileurl}, 1, 1, #{email}) ")
 	void insert(Board board);
 
-	@Select("SELECT SUBSTRING_INDEX(category,',',1) FROM board GROUP BY 1")
+	@Select("SELECT IFNULL(SUBSTRING_INDEX(category,',',1),'선택안함') FROM board GROUP BY 1")
 	List<String> clist();
 	
 	@Delete("DELETE FROM board WHERE num=#{num}")
