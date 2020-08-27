@@ -68,25 +68,7 @@ public class UserDao {
 	public List<User> list() {
 		return template.getMapper(UserMapper.class).select(null);
 	}
-	
-	//[admin] user list 유저리스트
-	public List<User> list(String searchtype, String searchcontent, Integer pageNum, int limit) {
-		param.clear();
-		if (searchtype != null && searchcontent != null) {
-			//sql += " WHERE " + searchtype + " LIKE :searchcontent ";
-			param.put("searchtype", searchtype);
-			param.put("searchcontent", "%"+searchcontent+"%");
-		}
-		param.put("startrow", (pageNum - 1) * limit);
-		param.put("limit", limit);
-		return template.getMapper(UserMapper.class).select(param);
-	}
 
-	public List<User> list(String[] idchks) {
-		param.clear();
-		param.put("userids", idchks);
-		return template.getMapper(UserMapper.class).select(param);
-	}
 
 
 	public int getmaxno() {
@@ -166,6 +148,10 @@ public class UserDao {
 	 		param.put("searchcontent",  "%"+searchcontent+"%"); 
 	 	}
 		return template.getMapper(UserMapper.class).usercount(param);
+	}
+
+	public List<User> list(String[] idchks) {
+		return null;
 	}	
 
 }

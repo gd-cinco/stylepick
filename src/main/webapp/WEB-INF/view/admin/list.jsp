@@ -48,8 +48,9 @@
 		<!-- <form action="mailForm.shop" method="post"> -->
 			<h3>Users</h3><br>
 		
-			<h4 style="text-align: center; margin-bottom: 50px;">스타일픽 전체 회원 리스트 (개인+스토어)</h4>
+			<h5 style="text-align: center;">' STYLEPICK USERS '</h5>
 			<br>
+			<p style="text-align: center; margin-bottom: 30px;"><img src="https://cdn.crowdpic.net/list-thumb/thumb_l_775E9063849AE734A72BCFF462FF9239.png" style="width:20px; height:auto;"></p>
 			
 			<!-- <table class="user_list_table"> -->
 			<table style="margin-left: auto; margin-right: auto;">
@@ -64,7 +65,6 @@
 											<option value="nickname">닉네임</option>
 											<option value="email">이메일</option>
 											<option value="age">나이</option>
-											<option value="gender">성별</option>
 							</select>
 							<script type="text/javascript">
 								searchform.searchtype.value="${param.searchtype}";
