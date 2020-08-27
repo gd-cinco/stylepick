@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>SNS 상세보기</title>
-<link rel="stylesheet" href="../assets/css/sns.css?ver=1.3">
+<link rel="stylesheet" href="../assets/css/sns.css?ver=1.4">
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <style>
 	.form {
