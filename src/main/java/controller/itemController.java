@@ -80,7 +80,7 @@ public class itemController {
 		
 	
 		
-		@RequestMapping("store")	//item/list.shop
+		@GetMapping("store")	//item/list.shop
 		public ModelAndView storemain() {
 			ModelAndView mav = new ModelAndView();
 			List<Item> rankItems = service.getRankItems();
@@ -92,15 +92,15 @@ public class itemController {
 		
 	
 
-		@RequestMapping("create")
-		public String loginCheckaddform(Model model) {
-			model.addAttribute(new Item());
-			return "item/add";
+		@RequestMapping("add")	//아이템 등록 뷰
+		public ModelAndView loginCheckaddform(HttpSession session) {
+			ModelAndView mav =new ModelAndView();
+			return mav;
 		}
 		
 	
 		
-		@PostMapping("write")
+		@PostMapping("write")	//한줄평 등록
 		public ModelAndView write(Line line,HttpServletRequest request) {
 			ModelAndView mav =new ModelAndView();
 			service.lineWrite(line,request);  
@@ -108,14 +108,14 @@ public class itemController {
 		}
 
 		
-		@RequestMapping("plus")
+		@RequestMapping("plus")	//qna 등록
 		public ModelAndView add(Qna qna,HttpServletRequest request) {
 			ModelAndView mav = new ModelAndView();
 			service.qnaWrite(qna,request);
 			return mav;
 		}
 
-		@GetMapping("reply")
+		@GetMapping("reply")	//qna 답변 뷰
 		public ModelAndView replyform(Integer qna_no,HttpServletRequest request) {
 			ModelAndView mav = new ModelAndView();
 			Qna qna = service.getQna(qna_no);
@@ -124,7 +124,7 @@ public class itemController {
 			return mav;
 		}
 		
-		@PostMapping("replyadd")
+		@PostMapping("replyadd")	//qna 등록
 		public ModelAndView reply(@Valid Qna qna,HttpServletRequest request) {
 			ModelAndView mav = new ModelAndView();
 			service.qnaReply(qna, request);
@@ -133,7 +133,7 @@ public class itemController {
 		
 	
 		
-		@RequestMapping("register")
+		@RequestMapping("register")	//아이템 등록
 		public ModelAndView add(@Valid Item item, BindingResult bresult, HttpServletRequest request) {
 		ModelAndView mav=new ModelAndView();
 		if(bresult.hasErrors()) {
@@ -153,7 +153,7 @@ public class itemController {
 		return mav;
 		}
 		
-		@RequestMapping("*") // /item/*.shop
+		@RequestMapping("*") // /item/*.shop 각종 뷰
 		public ModelAndView detail(Integer item_no,Integer qna_no,Integer line_no, HttpServletRequest request,Integer pageNum,Integer pageNum1,Integer pageNum2) {
 			ModelAndView mav =new ModelAndView();
 			
@@ -267,7 +267,7 @@ public class itemController {
 		}
 		
 		
-		@GetMapping("update")
+		@GetMapping("update")	//아이템 수정 뷰
 		public ModelAndView getItem(Integer item_no,HttpServletRequest request) {
 			ModelAndView mav =new ModelAndView();
 			boolean readcntable=false;
@@ -280,7 +280,7 @@ public class itemController {
 			return mav;
 		}
 		
-		@PostMapping("update")
+		@PostMapping("update")	//아이템 수정
 		public ModelAndView update(Item item,HttpServletRequest request) {
 			ModelAndView mav = new ModelAndView("item/update");
 			service.itemUpdate(item,request);
@@ -289,7 +289,7 @@ public class itemController {
 		}
 		
 
-		@GetMapping(value = {"change"})
+		@GetMapping(value = {"change"})	//한줄평 수정 뷰
 		public ModelAndView check(Integer line_no,HttpSession session) {
 			ModelAndView mav = new ModelAndView();
 			Line line = service.getlineno(line_no);
@@ -297,7 +297,7 @@ public class itemController {
 			return mav;
 		}
 		
-		@PostMapping("change")
+		@PostMapping("change")	//한줄평 수정
 		public ModelAndView update(Line line ,HttpServletRequest request) {
 			ModelAndView mav =new ModelAndView("item/change");
 			service.lineupdate(line,request);
@@ -305,7 +305,7 @@ public class itemController {
 			return mav;
 		}
 		
-		@GetMapping(value = {"change1"})
+		@GetMapping(value = {"change1"}) //qna 수정 뷰
 		public ModelAndView check1(Integer qna_no,HttpSession session) {
 			ModelAndView mav = new ModelAndView();
 			Qna qna = service.getQna(qna_no);
@@ -313,7 +313,7 @@ public class itemController {
 			return mav;
 		}
 		
-		@PostMapping("change1")
+		@PostMapping("change1")	//qna 수정
 		public ModelAndView update1(Qna qna ,HttpServletRequest request) {
 			ModelAndView mav =new ModelAndView("item/change1");
 			service.qnaupdate(qna,request);
@@ -343,7 +343,7 @@ public class itemController {
 			return "ckedit";
 		}
 		
-		@PostMapping("delete")
+		@PostMapping("delete")	//아이템 삭제
 		public ModelAndView delete(int item_no) {
 			ModelAndView mav = new ModelAndView("item/update");
 			service.itemDelete(item_no);
@@ -351,6 +351,7 @@ public class itemController {
 			return mav;
 		}
 		
+
 		@PostMapping("remove")
 		public ModelAndView delete1(int line_no) {
 			ModelAndView mav = new ModelAndView();
@@ -359,7 +360,7 @@ public class itemController {
 			return mav;
 		}
 		
-		@PostMapping("remove1")
+		@PostMapping("remove1")	//qna 삭제
 		public ModelAndView delete(Qna qna) {
 			ModelAndView mav = new ModelAndView();
 			service.qnaDelete(qna);	

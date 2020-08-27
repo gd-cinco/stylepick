@@ -69,7 +69,7 @@
 		var height = 500; //슬라이드 높이
 		var animationSpeed = 1500; //화면전환 속도
 		var pause = 4000; //화면전환 후 일시 정지 속도
-		var totalSlides = 9; //복제 슬라이드를 포함한 전체 슬라이드 개수
+		var totalSlides = 10; //복제 슬라이드를 포함한 전체 슬라이드 개수
 
 		var currentSlide = 2; //이 항목은 수정하지 않음
 		var interval;
@@ -197,9 +197,9 @@
 <body>
 <div style="width:1350px;">
 <div style="float:right">
-<c:if test="${!empty sessionScope.loginUser.com_name}">
+
 <a href="create.shop" class="genric-btn primary circle">상품 작성</a>
-</c:if>
+
 </div>
 <div id="slider">
 	<ul class="slides">
@@ -208,15 +208,16 @@
 		<!-- 목록 처음에는 5번 이미지의 복사본을 붙여넣음  -->
 		<!-- 목록 끝에는 1번 이미지의 복사본을 붙여넣음  -->
 		<!-- 자세한 설명은 http://blog.naver.com/2woo30225/220838511483 에서 참고 -->
-		<li class="slide slide7"><img src="${path}/item/img/skirt.jpg" class="slider_image" /></li>
-		<li class="slide slide1"><img src="${path}/item/img/bag.jpg" class="slider_image" /></li>
-		<li class="slide slide2"><img src="${path}/item/img/top.jpg" class="slider_image" /></li>
-		<li class="slide slide3"><img src="${path}/item/img/cap.jpg" class="slider_image" /></li>
-		<li class="slide slide4"><img src="${path}/item/img/jean.png" class="slider_image" /></li>
-		<li class="slide slide5"><img src="${path}/item/img/clock.jpg" class="slider_image" /></li>
-		<li class="slide slide6"><img src="${path}/item/img/shoes.jpg" class="slider_image" /></li>
-		<li class="slide slide7"><img src="${path}/item/img/skirt.jpg" class="slider_image" /></li>
-		<li class="slide slide1"><img src="${path}/item/img/bag.jpg" class="slider_image" /></li>
+		<li class="slide slide8"><a href="${path}/item/list.shop?category=8"><img src="${path}/item/img/clock.jpg" class="slider_image" /></a></li>
+		<li class="slide slide1"><a href="${path}/item/list.shop?category=1"><img src="${path}/item/img/cap.jpg" class="slider_image" /></a></li>
+		<li class="slide slide2"><a href="${path}/item/list.shop?category=2"><img src="${path}/item/img/outer.jpg" class="slider_image" /></a></li>
+		<li class="slide slide3"><a href="${path}/item/list.shop?category=3"><img src="${path}/item/img/one.jpg" class="slider_image" /></a></li>
+		<li class="slide slide4"><a href="${path}/item/list.shop?category=4"><img src="${path}/item/img/top.jpg" class="slider_image" /></a></li>
+		<li class="slide slide5"><a href="${path}/item/list.shop?category=5"><img src="${path}/item/img/jean.png" class="slider_image" /></a></li>
+		<li class="slide slide6"><a href="${path}/item/list.shop?category=6"><img src="${path}/item/img/bag.jpg" class="slider_image" /></a></li>
+		<li class="slide slide7"><a href="${path}/item/list.shop?category=7"><img src="${path}/item/img/shoes.jpg" class="slider_image" /></a></li>
+		<li class="slide slide8"><a href="${path}/item/list.shop?category=8"><img src="${path}/item/img/clock.jpg" class="slider_image" /></a></li>
+		<li class="slide slide1"><a href="${path}/item/list.shop?category=1"><img src="${path}/item/img/cap.jpg" class="slider_image" /></a></li>
 		<!-- 여기까지 수정 -->
 	</ul>
 
@@ -232,6 +233,7 @@
 			<span class="slider-nav-dot" id="nav-dot5"></span>
 			<span class="slider-nav-dot" id="nav-dot6"></span>
 			<span class="slider-nav-dot" id="nav-dot7"></span>
+			<span class="slider-nav-dot" id="nav-dot8"></span>
 			<!-- 여기까지 수정 -->
 		</div>
 </div>
@@ -282,6 +284,7 @@
 	<div class="boxitemlist">
 		<c:forEach begin="1" end="4">
 			<div class="boxitem">
+			
 				<img src="#" width="290px" height="270px" >
 				<div class="itembrand">브랜드명</div>
 				<div class="itemsubject">상품명</div>
