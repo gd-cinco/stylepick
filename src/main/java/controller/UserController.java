@@ -193,7 +193,6 @@ public class UserController {
 			sale.setItemList(temp);
 		}
 
-
 		mav.addObject("notmentioned",notMentioned);
 		mav.addObject("user",user);
 		mav.addObject("shipping",shipping);

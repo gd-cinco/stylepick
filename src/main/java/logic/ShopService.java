@@ -586,10 +586,10 @@ public class ShopService {
 	
 	public void boardWrite(Board board, HttpServletRequest request) {
 		
-//		if(board.getFile1() != null && !board.getFile1().isEmpty()) {
-//			uploadFileCreate(board.getFile1(), request, "board/file/");
-//			board.setFileurl(board.getFile1().getOriginalFilename());
-//		}
+		if(board.getFile1() != null && !board.getFile1().isEmpty()) {
+			uploadFileCreate(board.getFile1(), request, "board/file/");
+			board.setFileurl(board.getFile1().getOriginalFilename());
+		}
 		
 		int max = boardDao.maxno();
 		board.setNo(++max);
