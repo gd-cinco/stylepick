@@ -614,8 +614,7 @@ public class ShopService {
 		sale.setOrder_no(++maxno);
 		sale.setUser(loginUser);
 		sale.setUserid(loginUser.getUserid());
-		
-		saleDao.insert(sale);
+
 		// 장바구니 판매 상품 정보
 		List<ItemSet> itemList = cart.getItemSetList();
 		int seq = 0;
@@ -625,6 +624,7 @@ public class ShopService {
 			sale.getItemList().add(saleItem);
 			saleItemDao.insert(saleItem);
 		}
+		saleDao.insert(sale);
 		
 		return sale;
 	}

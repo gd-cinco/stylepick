@@ -13,8 +13,8 @@ import logic.SaleItem;
 public interface SaleItemMapper {
 
 	@Insert("INSERT INTO buy_detail "
-			+ "(order_no, seq, item_no, quantity, item_option, size, stat, reviewed, amount) "
-			+ "VALUES (#{order_no}, #{seq}, #{item_no}, #{quantity}, #{item_option}, #{size}, 0, 0, #{amount}) ")
+			+ "(order_no, seq, item_no, quantity, item_option, size, stat, reviewed) "
+			+ "VALUES (#{order_no}, #{seq}, #{item_no}, #{quantity}, #{item_option}, #{size}, 0, 0) ")
 	void insert(SaleItem saleItem);
 
 	@Select("SELECT * FROM buy_detail WHERE order_no = #{order_no}")

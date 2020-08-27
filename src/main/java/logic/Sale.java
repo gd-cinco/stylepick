@@ -14,14 +14,18 @@ public class Sale {
 	private String address;
 	private String tel;
 	private String memo;
-	private long amount;
+	private int amount;
 
-	public long getAmount() {
-		long sum = 0;
+	public int getAmount() {
+		int sum = 0;
 		for(SaleItem si : itemList) {
-			sum += si.getItem().getPrice() * si.getQuantity();
+			sum += si.getAmount();
 		}
 		return sum;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
 	public int getOrder_no() {

@@ -95,7 +95,7 @@ public class AdminDao {
 	//dashboard index 3-1 To-do list
 	public void addtodolist() {
 		// TODO Auto-generated method stub
-		template.getMapper(AdminMapper.class).addtodolist();
+//		template.getMapper(AdminMapper.class).addtodolist();
 	}
 	//widgets index 3-2 최근 4주 별점 평균 상위 3개 스토어
 	public List<Line> getEvaluation() {
