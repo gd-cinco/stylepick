@@ -92,11 +92,6 @@ public class AdminDao {
 		// TODO Auto-generated method stub
 		return template.getMapper(AdminMapper.class).topthreestores(param);
 	}
-	//dashboard index 3-1 To-do list
-	public void addtodolist() {
-		// TODO Auto-generated method stub
-//		template.getMapper(AdminMapper.class).addtodolist();
-	}
 	//widgets index 3-2 최근 4주 별점 평균 상위 3개 스토어
 	public List<Line> getEvaluation() {
 		// TODO Auto-generated method stub
@@ -145,6 +140,19 @@ public class AdminDao {
 		param.clear();
 		return template.getMapper(AdminMapper.class).saleslist(param);
 	}
+	
+	//[admin] user list 유저리스트
+		public List<User> list(String searchtype, String searchcontent, Integer pageNum, int limit) {
+			param.clear();
+			if (searchtype != null && searchcontent != null) {
+				//sql += " WHERE " + searchtype + " LIKE :searchcontent ";
+				param.put("searchtype", searchtype);
+				param.put("searchcontent", "%"+searchcontent+"%");
+			}
+			param.put("startrow", (pageNum - 1) * limit);
+			param.put("limit", limit);
+			return template.getMapper(AdminMapper.class).select(param);
+		}
 
 	
 	
