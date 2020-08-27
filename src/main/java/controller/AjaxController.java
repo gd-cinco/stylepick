@@ -322,7 +322,7 @@ public class AjaxController {
 		} else {
 			service.addlike(sns_no,userid);
 			int likenum = service.getlikenum(sns_no);
-			html.append("<button style=\"border:none;background:#fff; cursor:pointer;\"><img src=\"../assets/img/heart2.PNG\" width=\"23px\" height=\"21px\"></button>&nbsp;|&nbsp;"+likenum);
+			html.append("<button style=\"border:none;background:#fff; cursor:pointer;\"><img src=\"../assets/img/heart2.PNG\" width=\"23px\" height=\"21px\"></button>&nbsp;|&nbsp;&nbsp;"+likenum);
 		}
 		return html.toString();
 	}
@@ -492,6 +492,7 @@ public class AjaxController {
 		}
 		int limit = 12;
 		List<Item> itemss = service.getItemList(listAmount,limit,keyword,category);
+		System.out.println(itemss);
 		if(itemss.isEmpty()) {
 			return null;
 		} else {
