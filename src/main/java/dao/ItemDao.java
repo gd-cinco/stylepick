@@ -37,7 +37,7 @@ public class ItemDao {
 		param.put("startrow",(pageNum-1)*4);
 		param.put("limit", limit);
 		param.put("keyword",keyword);
-		return template.getMapper(ItemMapper.class).select(param);
+		return template.getMapper(ItemMapper.class).select2(param);
 	}
 
 	public void insert(Item item) {

@@ -187,23 +187,27 @@
 					<td></td>
 				</tr>
 				<tr id="info">
-					<td><select name="category" style="margin-left:10px">
-							<option value="hat">Hat</option>
-							<option value="outer">Outer</option>
-							<option value="dress">Dress</option>
-							<option value="top">Top</option>
-							<option value="bottom">Bottom</option>
-							<option value="dress">Bag</option>
-							<option value="shoes">Shoes</option>
-							<option value="watch">Watch</option>
+					<td><select name="category" style="margin-left:10px" id="cg">
+							<option value="1">Hat</option>
+							<option value="2">Outer</option>
+							<option value="3">One-piece</option>
+							<option value="4">Top</option>
+							<option value="5">Bottom</option>
+							<option value="6">Bag</option>
+							<option value="7">Shoes</option>
+							<option value="8">Watch</option>
 						</select></td>
 					<td><input type="text" name="detail" placeholder="직접 입력" style="width: 270px;">
 						<input type="hidden" name="item_no" value="0">
 						<button type="button" class="btn_3" style="padding: 3px 10px; margin-left: 7px;" onclick="javascript:search_item(parentNode.parentNode.rowIndex)">상품 찾기</button>
 						<script type="text/javascript">
 							function search_item(index) {
+								var tbl = document.getElementById("Table2");
+								var tr = tbl.getElementsByTagName("tr")[index]
+								var td = tr.getElementsByTagName("td")[0]
+								var category = td.getElementsByTagName("select")[0].value 
 								var op = "width=500,height=600,left=50,top=150";
-								open("searchForm.shop?index="+index,"",op);
+								open("searchForm.shop?index="+index+"&category="+category,"",op);
 							}
 						</script>
 						</td>
@@ -214,7 +218,7 @@
 			<script>
 				function add_row(){
 					$("#Table2").append("				<tr>\r\n" + 
-							"					<td><select name=\"category\" style=\"margin-left:10px\">\r\n" + 
+							"					<td><select name=\"category\" style=\"margin-left:10px; display:none;\">\r\n" + 
 							"							<option value=\"hat\">Hat</option>\r\n" + 
 							"							<option value=\"outer\">Outer</option>\r\n" + 
 							"							<option value=\"dress\">Dress</option>\r\n" + 
@@ -223,7 +227,8 @@
 							"							<option value=\"dress\">Bag</option>\r\n" + 
 							"							<option value=\"shoes\">Shoes</option>\r\n" + 
 							"							<option value=\"watch\">Watch</option>\r\n" + 
-							"						</select></td>\r\n" + 
+							"						</select><div class=\"nice-select\" tabindex=\"0\"><span class=\"current\">Hat</span><ul class=\"list\"><li data-value=\"hat\" class=\"option selected\">Hat</li><li data-value=\"outer\" class=\"option\">Outer</li><li data-value=\"dress\" class=\"option\">Dress</li><li data-value=\"top\" class=\"option\">Top</li><li data-value=\"bottom\" class=\"option\">Bottom</li><li data-value=\"dress\" class=\"option\">Bag</li><li data-value=\"shoes\" class=\"option\">Shoes</li><li data-value=\"watch\" class=\"option\">Watch</li></ul></div>" +
+							"					</td>\r\n" + 
 							"					<td><input type=\"text\" name=\"detail\" placeholder=\"직접 입력\" style=\"width: 270px;\">\r\n" + 
 							"						<input type=\"hidden\" name=\"item_no\" value=\"0\">\r\n" + 
 							"						<button type=\"button\" class=\"btn_3\" style=\"padding: 3px 10px; margin-left: 7px;\" onclick=\"javascript:search_item(parentNode.parentNode.rowIndex)\">상품 찾기</button>\r\n" + 

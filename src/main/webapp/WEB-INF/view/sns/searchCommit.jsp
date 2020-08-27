@@ -7,5 +7,7 @@
 	var td = tr.getElementsByTagName("td")[1]
 	var detail = td.getElementsByTagName("input")[0].value = '${detail}'
 	var itemno = td.getElementsByTagName("input")[1].value = ${item_no}
+	var td1 = tr.getElementsByTagName("td")[0]
+	var category = td.getElementsByTagName("option")[0].value = ${category}
 	self.close();
 </script>

@@ -58,6 +58,9 @@ public interface ItemMapper {
 	@Select("select sns_no,type,userid,img1 img1url,description,regdate from sns where sns_no in (select sns_no from snsitem where isshopitem = #{item_no}) limit #{startrow}, #{limit}")
 	List<Sns> selectSns(Map<String, Object> param);
 
+	@Select("select * from item where subject like '%${keyword}%' or item_name like '%${keyword}%' or keyword like '%${keyword}%' limit #{startrow}, #{limit}")
+	List<Item> select2(Map<String, Object> param);
+
 	
 
 

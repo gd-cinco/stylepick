@@ -84,7 +84,6 @@ public class SnsController {
 			sns.setItemList(list);
 		}
 		sns.setItemList(list);
-		System.out.println("게시글 등록:"+sns);
 		service.snsWrite(sns,request);
 		if(sns.getType()==1) {
 			mav.setViewName("redirect:main.shop?ksb=new&type=1");
@@ -229,13 +228,14 @@ public class SnsController {
 	}
 	
 	@GetMapping("searchForm")
-	public ModelAndView form(int index) {
+	public ModelAndView form(int index,String category) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("index",index+1);
+		mav.addObject("category",category);
 		return mav;
 	}
 	
-	@PostMapping("search")
+	@RequestMapping("search")
 	public ModelAndView search(Integer pageNum,Integer category,String keyword,int index) {
 		System.out.println("category:"+category+", keyword:"+keyword);
 		ModelAndView mav = new ModelAndView("sns/searchForm");
@@ -245,9 +245,12 @@ public class SnsController {
 		if(keyword == null ||keyword.trim().equals("")) {
 			keyword =null;
 		}
+		
 		int limit = 4;
 		int listcount=service.getItemCount2(keyword,category);
+		System.out.println(pageNum+limit+keyword+category);
 		List<Item> itemlist = service.getItemList2(pageNum,limit,keyword,category);
+		System.out.println(itemlist);
 		for(Item i : itemlist) {
 			User user = service.getUser(i.getUserid());
 			i.setName(user.getCom_name());
@@ -258,7 +261,6 @@ public class SnsController {
 		if(endpage > maxpage) {
 			endpage = maxpage;
 		}
-		System.out.println(itemlist);
 		mav.addObject("index",index);
 		mav.addObject("pageNum",pageNum);
 		mav.addObject("maxpage",maxpage);

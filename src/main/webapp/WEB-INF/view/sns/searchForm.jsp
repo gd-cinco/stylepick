@@ -8,8 +8,8 @@
 <title>상품 찾기</title>
 <link rel="stylesheet" href="../assets/css/sns.css?ver=1.1">
 <script type="text/javascript">
-	function searchbtn(item_no,index) {
-			location.href="searchCommit.shop?item_no="+item_no+"&index="+index;
+	function searchbtn(item_no,index,category) {
+			location.href="searchCommit.shop?item_no="+item_no+"&index="+index+"&category="+category;
 	}
 </script>
 
@@ -25,7 +25,7 @@
 		<select name="category" style="width: 80px; height: 40px; float: left; margin-right: 10px;">
 			<option value="1">Hat</option>
 			<option value="2">Outer</option>
-			<option value="3">Dress</option>
+			<option value="3">One-piece</option>
 			<option value="4">Top</option>
 			<option value="5">Bottom</option>
 			<option value="6">Bag</option>
@@ -45,7 +45,7 @@
 			</tr>
 			<tr>
 				<td>${i.getItem_name()}</td>
-				<td><button class="selectbtn2" style="padding: 0 10px;" onclick="javascript:searchbtn(${i.getItem_no()},${index})">선택</button>
+				<td><button class="selectbtn2" style="padding: 0 10px;" onclick="javascript:searchbtn(${i.getItem_no()},${index},${i.getCategory()})">선택</button>
 				</td>
 			</tr>
 			<tr>
