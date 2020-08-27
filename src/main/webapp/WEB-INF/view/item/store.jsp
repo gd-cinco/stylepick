@@ -198,7 +198,7 @@
 <div style="width:1350px;">
 <div style="float:right">
 
-<a href="create.shop" class="genric-btn primary circle">상품 작성</a>
+<!-- <a href="create.shop" class="genric-btn primary circle">상품 작성</a> -->
 
 </div>
 <div id="slider">
@@ -242,12 +242,12 @@
 <div class="mainbox Ranking">
 	<div class="boxtitle">인기 상품</div>
 	<div class="boxitemlist">
-		<c:forEach begin="1" end="4">
+		<c:forEach items="${rankItems}" var="rank">
 			<div class="boxitem">
-				<img src="#" width="290px" height="270px" >
-				<div class="itembrand">브랜드명</div>
-				<div class="itemsubject">상품명</div>
-				<div class="itemprice">상품가격</div>
+			<a href="${path}/item/detail.shop?item_no= ${rank.item_no }"><img src="img/${rank.pictureUrl }" width="290px" height="270px" ></a>
+				<div class="itembrand">${rank.userid }</div>
+				<div class="itemsubject">${rank.item_name }</div>
+				<div class="itemprice">${rank.price }</div>
 			</div>
 		</c:forEach>
 	</div>
@@ -282,13 +282,12 @@
 <div class="mainbox Newitem">
 	<div class="boxtitle">최신 상품</div>
 	<div class="boxitemlist">
-		<c:forEach begin="1" end="4">
+	<c:forEach items="${newItems}" var="newi">
 			<div class="boxitem">
-			
-				<img src="#" width="290px" height="270px" >
-				<div class="itembrand">브랜드명</div>
-				<div class="itemsubject">상품명</div>
-				<div class="itemprice">상품가격</div>
+				<a href="${path}/item/detail.shop?item_no= ${newi.item_no }"><img src="img/${newi.pictureUrl }" width="290px" height="270px" ></a>
+				<div class="itembrand">${newi.userid }</div>
+				<div class="itemsubject">${newi.item_name }</div>
+				<div class="itemprice">${newi.price }</div>
 			</div>
 		</c:forEach>
 	</div>
