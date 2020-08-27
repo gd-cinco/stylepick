@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import logic.Board;
+import logic.Reply;
 import logic.ShopService;
+import logic.User;
 
 @Controller
 @RequestMapping("board")
@@ -58,7 +61,10 @@ public class BoardController {
 			case 3: map.put("title", "FAQ"); map.put("uri", "faq.shop"); break;
 			}
 
+			List<Reply> reply = service.getReply(no);
+			
 			mav.addObject("type", map);
+			mav.addObject("reply", reply);
 		}
 		
 		mav.addObject("board", board);
@@ -73,13 +79,6 @@ public class BoardController {
 		service.boardWrite(board, request);
 		mav.setViewName("redirect:support.shop");
 	
-		return mav;
-	}
-	
-	@PostMapping("reply")
-	public ModelAndView replay() {
-		ModelAndView mav = new ModelAndView();
-		
 		return mav;
 	}
 	
@@ -99,7 +98,32 @@ public class BoardController {
 
 		service.boardDelete(board.getNo());
 		mav.setViewName("redirect:support.shop");
+
+		return mav;
+	}
+	
+	@PostMapping("regreply")
+	public ModelAndView regreply(Reply reply, int bno, int seq, String author, HttpServletRequest request, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
 		
+		User loginUser = (User)session.getAttribute("loginUser");
+		if (loginUser == null) {
+			mav.setViewName("redirect:/user/login.shop");
+			return mav;
+		}
+		if (seq == 2) {
+			if (loginUser.getUserid().equals("admin")) {
+				service.boardStatComplete(bno);
+			} else if (loginUser.getUserid().equals(author)) {
+				service.boardStatWait(bno);
+			}
+		}
+		reply.setAuthor(loginUser.getUserid());
+		reply.setBno(bno);
+		
+		service.regReply(reply, request);
+		mav.setViewName("redirect:detail.shop?no=" + bno);
+	
 		return mav;
 	}
 }

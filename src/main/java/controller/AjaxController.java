@@ -441,12 +441,23 @@ public class AjaxController {
 	}
 	
 	@RequestMapping(value="qd", produces="text/plain; charset=UTF8")
-	public String qnaData(HttpServletRequest request) { 
+	public String qnaData(HttpServletRequest request, HttpSession session) { 
 		String stat = request.getParameter("s");
+		String author = request.getParameter("author");
+		User loginUser = (User)session.getAttribute("loginUser");
+		String admin = null;
+		
 		if (stat.equals("")) {
 			stat = null;
 		}
-		List<Board> list = service.getQnaList(stat);
+		if (author.equals("")) {
+			author = null;
+		}
+		if (loginUser != null && loginUser.getUserid().equals("admin")) {
+			admin = "admin";
+		}
+		
+		List<Board> list = service.getQnaList(stat, author, admin);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		String json = null;

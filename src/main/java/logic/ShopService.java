@@ -576,12 +576,11 @@ public class ShopService {
 		return boardDao.categoryList();
 	}
 	
-	public List<Board> getQnaList(String stat) {
-		return boardDao.qnalist(stat);
+	public List<Board> getQnaList(String stat, String author, String admin) {
+		return boardDao.qnalist(stat, author, admin);
 	}
 	
 	public void boardWrite(Board board, HttpServletRequest request) {
-		
 		if(board.getFile1() != null && !board.getFile1().isEmpty()) {
 			uploadFileCreate(board.getFile1(), request, "board/file/");
 			board.setFileurl(board.getFile1().getOriginalFilename());
@@ -598,6 +597,23 @@ public class ShopService {
 
 	public void boardDelete(int no) {
 		boardDao.delete(no);
+	}
+	
+	public List<Reply> getReply(Integer no) {
+		return boardDao.replyList(no);
+	}
+	
+	public void regReply(Reply reply, HttpServletRequest request) {
+		reply.setRno(boardDao.maxrno() + 1);
+		boardDao.regReply(reply); 
+	}
+	
+	public void boardStatComplete(int bno) {
+		boardDao.statComplete(bno);
+	}
+
+	public void boardStatWait(int bno) {
+		boardDao.statWait(bno);
 	}
 	/** Board End **/
 
@@ -719,8 +735,6 @@ public class ShopService {
 	}
 
 
-
-	
 
 	public int updatestat(int order_no, int seq, int stat) {
 		return saleItemDao.updatestat(order_no,seq,stat);

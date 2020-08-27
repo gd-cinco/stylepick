@@ -91,6 +91,7 @@ function reg() {
 				<hr><br>
 				<c:if test="${!empty sessionScope.loginUser}">
 				<div class="switch-wrap d-flex justify-content-between">
+					<input type="hidden" value="0" name="mail" id="mail">
 					<p><b>이메일로 답변 받기</b></p>
 					<div class="confirm-checkbox">
 						<input type="checkbox" id="confirm-checkbox">
@@ -100,6 +101,7 @@ function reg() {
 				</c:if>
 				<c:if test="${empty sessionScope.loginUser}">
 				<div class="switch-wrap d-flex justify-content-between">
+					<input type="hidden" value="1" name="mail" id="mail">
 					<p><b>이메일로 답변 받기</b></p>
 					<div class="disabled-checkbox">
 						<input type="checkbox" id="disabled-checkbox" checked disabled>
@@ -113,6 +115,7 @@ function reg() {
 					<br>
 				</div>
 				<div class="switch-wrap d-flex justify-content-between">
+					<input type="hidden" value="1" name="openstatus" id="openstatus">
 					<p><b>비공개 질문으로 등록하기</b></p>
 					<div class="confirm-checkbox">
 						<input type="checkbox" id="confirm-checkbox2">
@@ -188,15 +191,25 @@ function reg() {
 		
 		$("#confirm-checkbox").change(function() {
 	        if ($("#confirm-checkbox").is(":checked")) {
-	            $("#div-email").css("display", "")
+				$("#div-email").css("display", "")
+				$("#openstatus").val(1)
 	        } else {
 	        	$("#div-email").css("display", "none")
+				$("#openstatus").val(0)
 	        }
 	    });
 		
 		if (${empty sessionScope.loginUser}) {
 			$("#div-email").css("display", "")
 		}
+		
+		$("#confirm-checkbox2").change(function() {
+	        if ($("#confirm-checkbox2").is(":checked")) {
+	            $("#openstatus").val(0)
+	        } else {
+	        	$("#openstatus").val(1)
+	        }
+		});
 		
 		$('#cts').change(function() { 
 			$('#cti').val($('#cts option:selected').val())
