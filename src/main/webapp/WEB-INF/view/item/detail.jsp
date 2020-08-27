@@ -241,8 +241,7 @@ function javascript1(){ //qna 작성
 </div>
 </div>
 <center>
-<a href="update.shop?item_no=${item.item_no}" class="genric-btn primary small">수정</a>
-<a href="delete.shop?item_no=${item.item_no}" class="genric-btn primary small">삭제</a>
+<a href="update.shop?item_no=${item.item_no}" class="genric-btn primary small">상품 수정</a>
 </center>
 </div>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
