@@ -31,7 +31,7 @@
 	</c:if>
 	
 	<c:if test="${!empty sessionScope.loginUser}">
-	<a href="${path}/board/qna.shop?search=myq" class="genric-btn info radius">내가 쓴 질문 보기</a>
+	<a href="${path}/board/qna.shop?author=${sessionScope.loginUser.userid}" class="genric-btn info radius">내가 쓴 질문 보기</a>
 	<a href="${path}/board/add.shop?t=q" class="genric-btn info radius" >
 		문의하기
 	</a>

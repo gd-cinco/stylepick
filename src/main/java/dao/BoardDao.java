@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import dao.mapper.BoardMapper;
 import logic.Board;
+import logic.Reply;
 
 @Repository
 public class BoardDao {
@@ -26,8 +27,11 @@ public class BoardDao {
 		return list;
 	}
 
-	public List<Board> qnalist(String stat) {
+	public List<Board> qnalist(String stat, String author, String admin) {
 		param.put("stat", stat);
+		param.put("author", author);
+		param.put("admin", admin);
+		
 		List<Board> list = template.getMapper(BoardMapper.class).qnalist(param);
 		int i = 1;
 		for (Board b : list) {
@@ -75,6 +79,22 @@ public class BoardDao {
 
 	public void delete(int no) {
 		template.getMapper(BoardMapper.class).delete(no);
+	}
+
+	public List<Reply> replyList(Integer no) {
+		return template.getMapper(BoardMapper.class).rlist(no);
+	}
+
+	public void regReply(Reply reply) {
+		template.getMapper(BoardMapper.class).rinsert(reply);
+	}
+
+	public int maxrno() {
+		return template.getMapper(BoardMapper.class).maxrno();
+	}
+
+	public void statComplete(int bno) {
+		template.getMapper(BoardMapper.class).updateStatComplete(bno);
 	}
 
 }

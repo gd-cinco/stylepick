@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import logic.Board;
+import logic.Reply;
 
 public interface BoardMapper {
 	@Select("select * from board where seq=#{seq}")
@@ -17,6 +18,8 @@ public interface BoardMapper {
 	@Select({"<script>",
 		"select no, title, category, if(author = 'admin', '관리자', if(author = '비회원', author, REPLACE(author, SUBSTR(author,-2,2),'**'))) author, seq, regtime, stat from board where seq=2",
 		"<if test='stat != null'> and stat=#{stat}</if>",
+		"<if test='author != null'> and author=#{author}</if>",
+		"<if test='admin == null'> and openstatus=1</if>",
 		" order by no",
 		"</script>"
 	})
@@ -41,7 +44,7 @@ public interface BoardMapper {
 
 	@Insert("INSERT INTO board " 
 			+ " (no, title, author, seq, category, stat, regtime, readcnt, content, file1, openstatus, mail, email) "
-			+ " VALUES (#{no}, #{title}, #{author}, #{seq}, #{category}, #{stat}, NOW(), 0, #{content}, #{fileurl}, 1, 1, #{email}) ")
+			+ " VALUES (#{no}, #{title}, #{author}, #{seq}, #{category}, #{stat}, NOW(), 0, #{content}, #{fileurl}, #{openstatus}, #{mail}, #{email}) ")
 	void insert(Board board);
 
 	@Select("SELECT IFNULL(SUBSTRING_INDEX(category,',',1),'선택안함') FROM board GROUP BY 1")
@@ -49,5 +52,19 @@ public interface BoardMapper {
 	
 	@Delete("DELETE FROM board WHERE num=#{num}")
 	void delete(int no);
+
+	@Select("SELECT * FROM reply WHERE bno=#{no}")
+	List<Reply> rlist(Integer no);
+
+	@Insert("INSERT INTO reply " 
+			+ " (rno, bno, regtime, author, content) "
+			+ " VALUES (#{rno}, #{bno}, NOW(), #{author}, #{content}) ")
+	void rinsert(Reply reply);
+	
+	@Select("SELECT IFNULL(MAX(rno),0) FROM reply")
+	int maxrno();
+
+	@Update("UPDATE board SET stat = 'complete' WHERE no = #{no}")
+	void updateStatComplete(int bno);
 
 }

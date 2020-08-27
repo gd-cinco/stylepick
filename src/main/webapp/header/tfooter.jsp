@@ -32,7 +32,7 @@
 <c:if test="${fn:contains(path2,'board/qna')}">
 	<script>
 		document.title = "Q&A"
-		var url = "${path}/ajax/qd.shop?s=${param.s}"
+		var url = "${path}/ajax/qd.shop?s=${param.s}&author=${param.author}"
 		var col = [
 			{"data" : "count"},
 			{"data" : "title"}, 

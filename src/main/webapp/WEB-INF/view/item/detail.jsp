@@ -215,7 +215,7 @@ function javascript1(){ //qna 작성
 					<td class="lineno">
 				<a href="reply.shop?qna_no=${qna.qna_no}" onclick="window.open(this.href,'change1','width=800,height=500,top=200,left=400');return false;">[답글]</a>
 			 	<a href="change1.shop?qna_no=${qna.qna_no}" onclick="window.open(this.href,'change1','width=500,height=400,top=200,left=400');return false;">[수정]</a>
-				<a href="remove1.shop?qna_no=${qna.qna_no }" onclick="window.open(this.href,'change1','width=500,height=400,top=200,left=400');return false;">[삭제]</a> 
+				<a href="remove1.shop?qna_no=${qna.qna_no }" onclick="window.open(this.href,'change1','width=400,height=200,top=200,left=400');return false;">[삭제]</a> 
 					 </td>
 		</c:forEach>
 <tr><td colspan="3">
