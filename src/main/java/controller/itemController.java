@@ -93,7 +93,7 @@ public class itemController {
 	
 
 		@RequestMapping("create")
-		public String addform(Model model) {
+		public String loginCheckaddform(Model model) {
 			model.addAttribute(new Item());
 			return "item/add";
 		}
@@ -156,6 +156,7 @@ public class itemController {
 		@RequestMapping("*") // /item/*.shop
 		public ModelAndView detail(Integer item_no,Integer qna_no,Integer line_no, HttpServletRequest request,Integer pageNum,Integer pageNum1,Integer pageNum2) {
 			ModelAndView mav =new ModelAndView();
+			
 			Item item=null;
 			Qna qna=new Qna();
 			Line line=new Line();
@@ -175,6 +176,7 @@ public class itemController {
 						String[] size = item.getSize().split(",");
 						mav.addObject("option",option);
 						mav.addObject("size",size);
+						
 					}
 				}
 		

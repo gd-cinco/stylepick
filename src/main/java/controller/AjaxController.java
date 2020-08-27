@@ -556,7 +556,7 @@ public class AjaxController {
 				html.append("<div><img src=\"img/"+it.getPictureUrl()+"\" width=\"226px\" height=\"270px\"></div>");
 				html.append("									<div>\r\n" + 
 						"										<ul>\r\n" + 
-						"											<li>"+it.getName()+"</li>\r\n" + 
+						"											<li>"+seller.getCom_name()+"</li>\r\n" + 
 						"											<li>"+it.getSubject()+"</li>\r\n" + 
 						"											<li><fmt:formatNumber value="+it.getPrice()+" pattern=\"###,###,###\"/>원</li>\r\n" + 
 						"										</ul>\r\n" + 

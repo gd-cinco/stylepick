@@ -29,19 +29,29 @@ public class CartController {
 
 	@RequestMapping("cartAdd")
 	public ModelAndView add(Integer item_no,Integer quantity ,String item_option, String size,HttpSession session) {
-		ModelAndView mav=new ModelAndView("cart/cart");
+		ModelAndView mav=new ModelAndView();
 		Item item=service.getItem(item_no);
 		Cart cart =(Cart)session.getAttribute("CART");
 		if(cart==null) {
 			cart = new Cart();
 			session.setAttribute("CART", cart);
 		}
-		
+	
+		try {
+			
 		cart.push(new ItemSet(item,quantity, item_option, size));
-		mav.addObject("message",item.getItem_name()+":"+quantity+"개 바구니 추가");
+		mav.setViewName("redirect:cartView.shop");
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new CartEmptyException("장바구니 등록에 실패했습니다.", "list.shop?="+item.getItem_no());
+		}
 		mav.addObject("cart",cart);
+
 		return mav;
 	}
+
+
 	
 	@RequestMapping("cartView")
 	public ModelAndView cartview(HttpSession session) {

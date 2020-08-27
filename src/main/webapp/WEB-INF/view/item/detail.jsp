@@ -77,7 +77,7 @@ function javascript1(){ //qna 작성
 <div class="etc">
 	<ul>
 		<dl>
-		<dt><h5>${item.userid }</h5></dt>
+		<dt><h5></h5></dt>
 		<dt><h2>${item.item_name }</h2></dt>
 		<dt><h3>${item.price }원</h3></dt>
 		<dt>${item.keyword }</dt>
