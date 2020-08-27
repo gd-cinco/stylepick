@@ -50,9 +50,6 @@ public class LineDao { //한줄평
 		return template.getMapper(LineMapper.class).select(param);
 	}
 
-	public String getreviewcontent(int order_no, int seq) {
-		return template.getMapper(LineMapper.class).getreviewcontent(order_no,seq);
-	}
 
 	public void update(Line line) {
 		template.getMapper(LineMapper.class).update(line);
@@ -71,6 +68,17 @@ public class LineDao { //한줄평
 		param.put("line_no", line_no);
 		template.getMapper(LineMapper.class).delete(param);
 		
+	}
+
+	public Line getline(int order_no, int seq) {
+		param.clear();
+		param.put("order_no", order_no);
+		param.put("seq", seq);
+		Line line =template.getMapper(LineMapper.class).selectone(param); 
+		if(line==null)
+			return new Line();
+		else
+			return line;
 	}
 
 	

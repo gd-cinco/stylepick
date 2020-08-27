@@ -352,9 +352,10 @@ public class itemController {
 		}
 		
 		@PostMapping("remove")
-		public ModelAndView delete(Line line) {
+		public ModelAndView delete1(int line_no) {
 			ModelAndView mav = new ModelAndView();
-			service.lineDelete(line);	
+			Line line = service.getlineno(line_no);
+			service.lineDelete(line);
 			return mav;
 		}
 		

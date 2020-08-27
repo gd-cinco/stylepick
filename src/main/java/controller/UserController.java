@@ -37,49 +37,48 @@ import logic.Userorder;
 public class UserController {
 	@Autowired
 	private ShopService service;
-	
+
 	@RequestMapping("*")
 	public String entryform(Model model) {
 		model.addAttribute(new User());
 		return null;
 	}
-	
+
 	@RequestMapping("/confirmid")
 	@ResponseBody
 	public String confirm(String id) {
-		int result = service.joincompare("userid",id);
-		if(result>0)
+		int result = service.joincompare("userid", id);
+		if (result > 0)
 			return "true";
 		else
 			return "false";
 	}
-	
+
 	@RequestMapping("/confirmnickname")
 	@ResponseBody
 	public String confirm2(String nickname) {
-		int result = service.joincompare("nickname",nickname);
-		if(result>0)
+		int result = service.joincompare("nickname", nickname);
+		if (result > 0)
 			return "true";
 		else
 			return "false";
 	}
-	
+
 	@RequestMapping("/updatestat")
 	@ResponseBody
-	public int updatestat(int order_no,int seq,int stat) {
-		int result = service.updatestat(order_no,seq,stat);
-		if(result>0)
+	public int updatestat(int order_no, int seq, int stat) {
+		int result = service.updatestat(order_no, seq, stat);
+		if (result > 0)
 			return 1;
 		else
 			return 0;
-		
+
 	}
-	
-	
+
 	@PostMapping("userEntry")
-	public ModelAndView add(@Valid User user,BindingResult bresult,HttpServletRequest request) {
+	public ModelAndView add(@Valid User user, BindingResult bresult, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("user/userEntry");
-		if(bresult.hasErrors()) {
+		if (bresult.hasErrors()) {
 			bresult.reject("error.input.user");
 			mav.getModel().putAll(bresult.getModel());
 			return mav;
@@ -87,101 +86,101 @@ public class UserController {
 		try {
 			int maxno = service.getmaxno();
 			user.setNo(++maxno);
-			service.userInsert(user,request);
+			service.userInsert(user, request);
 			mav.setViewName("redirect:welcome.shop");
-		}catch (DataIntegrityViolationException e) {
+		} catch (DataIntegrityViolationException e) {
 			e.printStackTrace();
 			bresult.reject("error.input.user");
 			mav.getModel().putAll(bresult.getModel());
 		}
 		return mav;
-		
+
 	}
-	
+
 	@PostMapping("sellerEntry")
-	public ModelAndView checksellerEntry(User user,BindingResult bresult,HttpSession session,HttpServletRequest request) {
+	public ModelAndView checksellerEntry(User user, BindingResult bresult, HttpSession session,
+			HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		if(bresult.hasErrors()) {
+		if (bresult.hasErrors()) {
 			bresult.reject("error.input.user");
 			return mav;
 		}
-		User loginUser = (User)session.getAttribute("loginUser");
+		User loginUser = (User) session.getAttribute("loginUser");
 		try {
-			service.sellerEntry(user,request);
+			service.sellerEntry(user, request);
 			mav.setViewName("redirect:../user/sellerwelcome.shop");
-			if(loginUser.getUserid().equals(user.getUserid())) {
+			if (loginUser.getUserid().equals(user.getUserid())) {
 				user = service.getUser(user.getUserid());
 				session.setAttribute("loginUser", user);
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			bresult.reject("error.user.sellerEntry");
 		}
 		return mav;
 	}
 
-	
 	@PostMapping("login")
-	public ModelAndView login(@Valid User user,BindingResult bresult,HttpSession session) {
+	public ModelAndView login(@Valid User user, BindingResult bresult, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		if(bresult.hasErrors()) {
+		if (bresult.hasErrors()) {
 			bresult.reject("error.input.user");
 			return mav;
 		}
 		try {
 			User dbUser = service.getUser(user.getUserid());
-			if(user.getPassword().equals(dbUser.getPassword())) {
-				session.setAttribute("loginUser",dbUser);
+			if (user.getPassword().equals(dbUser.getPassword())) {
+				session.setAttribute("loginUser", dbUser);
 				mav.setViewName("redirect:../sns/main.shop?ksb=hot&type=1");
-			}else {
+			} else {
 				bresult.reject("error.login.password");
 			}
-		}catch (EmptyResultDataAccessException e) {
+		} catch (EmptyResultDataAccessException e) {
 			bresult.reject("error.login.id");
-		}catch (IndexOutOfBoundsException e) {
+		} catch (IndexOutOfBoundsException e) {
 			bresult.reject("error.login.id");
 		}
 		return mav;
 	}
-	
+
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:../sns/main.shop?ksb=hot&type=1";
 	}
-	
-	@GetMapping(value = {"update","delete","sellerEntry","sellerUpdate"})
-	public ModelAndView checkview(String id,HttpSession session) {
+
+	@GetMapping(value = { "update", "delete", "sellerEntry", "sellerUpdate" })
+	public ModelAndView checkview(String id, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		User user = service.getUser(id);
-		mav.addObject("user",user);
+		mav.addObject("user", user);
 		return mav;
 	}
-	
+
 	@GetMapping("orderList")
 	public ModelAndView loginCheckorderList(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		User user = (User)session.getAttribute("loginUser");
-		mav.addObject("user",user);
-		
+		User user = (User) session.getAttribute("loginUser");
+		mav.addObject("user", user);
+
 		int shipping = service.getmyshipping(user.getUserid());
-		mav.addObject("shipping",shipping);
+		mav.addObject("shipping", shipping);
 		int notMentioned = service.getNotMentionedCount(user.getUserid());
-		mav.addObject("notmentioned",notMentioned);
-		
+		mav.addObject("notmentioned", notMentioned);
+
 		List<Userorder> order = service.getUserOrder(user.getUserid());
-		mav.addObject("order",order);
-		
+		mav.addObject("order", order);
+
 		List<Userorder> line = service.getline(user.getUserid());
-		mav.addObject("line",line);
-		
+		mav.addObject("line", line);
+
 		return mav;
 	}
-	
+
 	@GetMapping("orderList_order")
 	public ModelAndView loginCheckorderlist_order(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		User user = (User)session.getAttribute("loginUser");
+		User user = (User) session.getAttribute("loginUser");
 		int shipping = service.getmyshipping(user.getUserid());
 		int notMentioned = service.getNotMentionedCount(user.getUserid());
 		List<Sale> buylist = service.getusersale(user.getUserid());
@@ -193,211 +192,214 @@ public class UserController {
 			sale.setItemList(temp);
 		}
 
-
-		mav.addObject("notmentioned",notMentioned);
-		mav.addObject("user",user);
-		mav.addObject("shipping",shipping);
-		mav.addObject("buylist",buylist);
+		mav.addObject("notmentioned", notMentioned);
+		mav.addObject("user", user);
+		mav.addObject("shipping", shipping);
+		mav.addObject("buylist", buylist);
 		return mav;
 	}
-	
+
 	@GetMapping("orderList_review")
 	public ModelAndView loginCheckOrderlistReview(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		User user = (User)session.getAttribute("loginUser");
+		User user = (User) session.getAttribute("loginUser");
 		int shipping = service.getmyshipping(user.getUserid());
-		mav.addObject("shipping",shipping);
+		mav.addObject("shipping", shipping);
 		int notMentioned = service.getNotMentionedCount(user.getUserid());
-		mav.addObject("notmentioned",notMentioned);
-		
+		mav.addObject("notmentioned", notMentioned);
+
 		List<SaleItem> sale = service.getusersaleitem(user.getUserid());
 		List<Date> orderdate = new ArrayList<Date>();
 		for (SaleItem saleItem : sale) {
 			saleItem.setItem(service.getItem(saleItem.getItem_no()));
 			orderdate.add(service.getorderdate(saleItem.getOrder_no()));
-			saleItem.setContent(service.getreviewcontent(saleItem.getOrder_no(),saleItem.getSeq()));
+			Line line = service.getline(saleItem.getOrder_no(), saleItem.getSeq());
+			saleItem.setContent(line.getContent());
+			saleItem.setLine_no(line.getLine_no());
 		}
-		
-		mav.addObject("orderdate",orderdate);
-		mav.addObject("sale",sale);
-		mav.addObject("user",user);
+
+		mav.addObject("orderdate", orderdate);
+		mav.addObject("sale", sale);
+		mav.addObject("user", user);
 		return mav;
 	}
-	
+
 	@GetMapping("sellList")
 	public ModelAndView loginCheckselllist(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		User user = (User)session.getAttribute("loginUser");
-		
+		User user = (User) session.getAttribute("loginUser");
+
 		List<Item> sell = service.getmyitem(user.getUserid());
-		
+
 		int balance = service.getmybalance(user.getUserid());
-		mav.addObject("balance",balance);
+		mav.addObject("balance", balance);
 		int sellcount = service.getmysellcount(user.getUserid());
-		mav.addObject("sellcount",sellcount);
+		mav.addObject("sellcount", sellcount);
 		int sold = service.getmysoldcount(user.getUserid());
-		mav.addObject("sold",sold);
-		
+		mav.addObject("sold", sold);
+
 		for (Item item : sell) {
-			//item.setQna(service.getNotmentionedQna(item.getItem_no()));
+			// item.setQna(service.getNotmentionedQna(item.getItem_no()));
 		}
 		List<SaleItem> salelist = service.getmysalelist(user.getUserid());
 		for (SaleItem saleItem : salelist) {
 			saleItem.setUserid(service.getsale(saleItem.getOrder_no()).getUserid());
-			saleItem.setStat(service.getsaleItem(saleItem.getOrder_no(),saleItem.getSeq()).getStat());
+			saleItem.setStat(service.getsaleItem(saleItem.getOrder_no(), saleItem.getSeq()).getStat());
 			saleItem.setItem(service.getItem(saleItem.getItem_no()));
 		}
-		
-		
-		mav.addObject("user",user);
-		mav.addObject("sell",sell);
-		mav.addObject("list",salelist);
-		
+
+		mav.addObject("user", user);
+		mav.addObject("sell", sell);
+		mav.addObject("list", salelist);
+
 		return mav;
 	}
+
 	@GetMapping("sellList_item")
 	public ModelAndView loginChecksell_order(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		User user = (User)session.getAttribute("loginUser");
-		mav.addObject("user",user);
-		
+		User user = (User) session.getAttribute("loginUser");
+		mav.addObject("user", user);
+
 		List<Item> sell = service.getmyitem(user.getUserid());
-		mav.addObject("sell",sell);
-		
+		mav.addObject("sell", sell);
+
 		int balance = service.getmybalance(user.getUserid());
-		mav.addObject("balance",balance);
+		mav.addObject("balance", balance);
 		int sellcount = service.getmysellcount(user.getUserid());
-		mav.addObject("sellcount",sellcount);
+		mav.addObject("sellcount", sellcount);
 		int sold = service.getmysoldcount(user.getUserid());
-		mav.addObject("sold",sold);
-		
+		mav.addObject("sold", sold);
+
 		return mav;
 	}
-	
+
 	@GetMapping("sellList_list")
 	public ModelAndView loginChecksell_list(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		User user= (User)session.getAttribute("loginUser");
-		mav.addObject("user",user);
-		
+		User user = (User) session.getAttribute("loginUser");
+		mav.addObject("user", user);
+
 		int balance = service.getmybalance(user.getUserid());
-		mav.addObject("balance",balance);
+		mav.addObject("balance", balance);
 		int sellcount = service.getmysellcount(user.getUserid());
-		mav.addObject("sellcount",sellcount);
+		mav.addObject("sellcount", sellcount);
 		int sold = service.getmysoldcount(user.getUserid());
-		mav.addObject("sold",sold);
-		
+		mav.addObject("sold", sold);
+
 		List<SaleItem> salelist = service.getmysalelist(user.getUserid());
 		for (SaleItem saleItem : salelist) {
 			saleItem.setUserid(service.getsale(saleItem.getOrder_no()).getUserid());
-			saleItem.setStat(service.getsaleItem(saleItem.getOrder_no(),saleItem.getSeq()).getStat());
+			saleItem.setStat(service.getsaleItem(saleItem.getOrder_no(), saleItem.getSeq()).getStat());
 			saleItem.setItem(service.getItem(saleItem.getItem_no()));
 		}
-		mav.addObject("list",salelist);
-		
+		mav.addObject("list", salelist);
+
 		return mav;
 	}
-	
+
 	@GetMapping("sellerInfo")
-	public ModelAndView loginChecksellerInfo(int order_no,int seq,HttpSession session) {
+	public ModelAndView loginChecksellerInfo(int order_no, int seq, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		SaleItem saleItem = service.getsaleItem(order_no,seq);
+		SaleItem saleItem = service.getsaleItem(order_no, seq);
 		Sale sale = service.getsale(order_no);
 		Item item = service.getItem(saleItem.getItem_no());
-		
-		mav.addObject("saleItem",saleItem);
-		mav.addObject("sale",sale);
-		mav.addObject("item",item);
+
+		mav.addObject("saleItem", saleItem);
+		mav.addObject("sale", sale);
+		mav.addObject("item", item);
 		return mav;
-		
+
 	}
-	
+
 	@GetMapping("sellList_qna")
-	public ModelAndView loginChecksessionview(HttpSession session){
+	public ModelAndView loginChecksessionview(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		User user = (User)session.getAttribute("loginUser");
-		mav.addObject("user",user);
-		
+		User user = (User) session.getAttribute("loginUser");
+		mav.addObject("user", user);
+
 		int balance = service.getmybalance(user.getUserid());
-		mav.addObject("balance",balance);
+		mav.addObject("balance", balance);
 		int sellcount = service.getmysellcount(user.getUserid());
-		mav.addObject("sellcount",sellcount);
+		mav.addObject("sellcount", sellcount);
 		int sold = service.getmysoldcount(user.getUserid());
-		mav.addObject("sold",sold);
-		
+		mav.addObject("sold", sold);
+
 		return mav;
 	}
-	
+
 	@PostMapping("update")
-	public ModelAndView checkupdate(@Valid User user,BindingResult bresult,HttpSession session,HttpServletRequest request) {
+	public ModelAndView checkupdate(@Valid User user, BindingResult bresult, HttpSession session,
+			HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		if(bresult.hasErrors()) {
+		if (bresult.hasErrors()) {
 			bresult.reject("error.input.user");
 			return mav;
 		}
-		User loginUser = (User)session.getAttribute("loginUser");
+		User loginUser = (User) session.getAttribute("loginUser");
 		try {
-			service.userUpdate(user,request);
-			mav.setViewName("redirect:../sns/mypage.shop?userid="+user.getUserid());
-			if(loginUser.getUserid().equals(user.getUserid())) {
+			service.userUpdate(user, request);
+			mav.setViewName("redirect:../sns/mypage.shop?userid=" + user.getUserid());
+			if (loginUser.getUserid().equals(user.getUserid())) {
 				user = service.getUser(user.getUserid());
 				session.setAttribute("loginUser", user);
-			}else if(loginUser.getUserid().equals("admin"))
+			} else if (loginUser.getUserid().equals("admin"))
 				mav.setViewName("redirect:../admin/list.shop");
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			bresult.reject("error.user.update");
 		}
 		return mav;
 	}
-	
+
 	@PostMapping("sellerUpdate")
-	public ModelAndView checksellerupdate(User user,BindingResult bresult,HttpSession session,HttpServletRequest request) {
+	public ModelAndView checksellerupdate(User user, BindingResult bresult, HttpSession session,
+			HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		if(bresult.hasErrors()) {
+		if (bresult.hasErrors()) {
 			bresult.reject("error.input.user");
 			return mav;
 		}
-		User loginUser = (User)session.getAttribute("loginUser");
+		User loginUser = (User) session.getAttribute("loginUser");
 		try {
-			service.sellerUpdate(user,request);
-			mav.setViewName("redirect:../sns/mypage.shop"); //판매자페이지
-			if(loginUser.getUserid().equals(user.getUserid())) {
+			service.sellerUpdate(user, request);
+			mav.setViewName("redirect:../sns/mypage.shop"); // 판매자페이지
+			if (loginUser.getUserid().equals(user.getUserid())) {
 				user = service.getUser(user.getUserid());
 				session.setAttribute("loginUser", user);
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			bresult.reject("error.user.update");
 		}
 		return mav;
 	}
-	
+
 	@PostMapping("delete")
-	public ModelAndView delete(String userid,String password,HttpSession session) {
+	public ModelAndView delete(String userid, String password, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		User loginUser = (User)session.getAttribute("loginUser");
-		if(userid.equals("admin")) {
-			throw new LoginException("관리자 탈퇴는 불가능합니다.","main.shop");
+		User loginUser = (User) session.getAttribute("loginUser");
+		if (userid.equals("admin")) {
+			throw new LoginException("관리자 탈퇴는 불가능합니다.", "main.shop");
 		}
-		if(loginUser.getPassword().equals(password)) {
+		if (loginUser.getPassword().equals(password)) {
 			try {
-				service.delete(userid);				
-			}catch (Exception e) {
+				service.delete(userid);
+			} catch (Exception e) {
 				e.printStackTrace();
-				throw new LoginException("회원탈퇴시 오류가 발생했습니다.", "delete.shop?id="+userid);
+				throw new LoginException("회원탈퇴시 오류가 발생했습니다.", "delete.shop?id=" + userid);
 			}
-			if(loginUser.getUserid().equals("admin")) {
+			if (loginUser.getUserid().equals("admin")) {
 				mav.setViewName("redirect:main.shop");
-			}else {
+			} else {
 				session.invalidate();
-				throw new LoginException(userid+"님 탈퇴되었습니다.", "login.shop");
+				throw new LoginException(userid + "님 탈퇴되었습니다.", "login.shop");
 			}
-		}else {
-			throw new LoginException("비밀번호가 틀립니다.", "delete.shop?id="+userid);
+		} else {
+			throw new LoginException("비밀번호가 틀립니다.", "delete.shop?id=" + userid);
 		}
 		return mav;
 	}
-	
+
 }

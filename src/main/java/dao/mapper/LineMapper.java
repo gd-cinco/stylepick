@@ -13,7 +13,7 @@ import logic.Line;
 
 public interface LineMapper {
 
-	@Insert("insert into line (line_no, item_no, userid,content ,evaluation, regdate) values (#{line_no},#{item_no},#{userid},#{content},#{evaluation},now())")
+	@Insert("insert into line (line_no, item_no, userid,content ,evaluation, regdate,order_no,seq) values (#{line_no},#{item_no},#{userid},#{content},#{evaluation},now(),#{order_no},#{seq})")
 	void insert(Line line);
 
 	@Select("select ifnull(max(line_no),0) from line")
@@ -38,12 +38,8 @@ public interface LineMapper {
 		"<if test='line_no != null'> where line_no=#{line_no} </if>",
 		"<if test='limit != null'>order by line_no desc limit #{startrow}, #{limit}</if>",
 		"</script>"
-		
 	})
 	List<Line> select(Map<String, Object> param);
-
-	@Select("select content from line where order_no=#{order_no} and seq=#{seq}")
-	String getreviewcontent(@Param("order_no")int order_no, @Param("seq")int seq);
 
 	
 	@Update("update line set evaluation=#{evaluation}, content=#{content} where line_no=#{line_no}")
@@ -52,6 +48,8 @@ public interface LineMapper {
 	@Delete("delete from line where line_no=#{line_no}")
 	void delete(Map<String, Object> param);
 
+	@Select("select * from line where order_no=#{order_no} and seq=#{seq}")
+	Line selectone(Map<String, Object> param);
 
 
 
