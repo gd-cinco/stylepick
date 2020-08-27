@@ -14,11 +14,11 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
 		<property name="driverClass">
 			<value>org.mariadb.jdbc.Driver</value></property>
 		<property name="jdbcUrl">
-
-		<value>jdbc:mariadb://192.168.0.170:3306/stylepick</value></property>
-		<!-- 
+		 
+		<value>jdbc:mariadb://192.168.101.44:3306/stylepick</value></property>
+		 <!-- 
 		<value>jdbc:mariadb://localhost:3306/stylepick</value></property>
-		-->
+		 -->
 
 
 		<property name="user"><value>scott</value></property>

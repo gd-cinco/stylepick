@@ -553,6 +553,12 @@ public class ShopService {
 		// TODO Auto-generated method stub
 		return userDao.usercount(searchtype, searchcontent);
 	}
+	
+	//[admin] charts index 7-1 스토어 매출 점유율 0827
+	public List<Buy> storeshare() {
+		// TODO Auto-generated method stub
+		return adminDao.storeshare();
+	}
 
 	/**
 	 * Board
@@ -746,5 +752,6 @@ public class ShopService {
 	public Line getline(int order_no, int seq) {
 		return lineDao.getline(order_no,seq);
 	}
+
 
 }

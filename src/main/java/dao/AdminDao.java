@@ -165,30 +165,36 @@ public class AdminDao {
 	}
 	
 	//[admin] user list 유저리스트
-		public List<User> list(String searchtype, String searchcontent, Integer pageNum, int limit) {
-			param.clear();
-			if (searchtype != null && searchcontent != null) {
-				//sql += " WHERE " + searchtype + " LIKE :searchcontent ";
-				param.put("searchtype", searchtype);
-				param.put("searchcontent", "%"+searchcontent+"%");
-			}
-			param.put("startrow", (pageNum - 1) * limit);
-			param.put("limit", limit);
-			return template.getMapper(AdminMapper.class).select(param);
+	public List<User> list(String searchtype, String searchcontent, Integer pageNum, int limit) {
+		param.clear();
+		if (searchtype != null && searchcontent != null) {
+			//sql += " WHERE " + searchtype + " LIKE :searchcontent ";
+			param.put("searchtype", searchtype);
+			param.put("searchcontent", "%"+searchcontent+"%");
 		}
+		param.put("startrow", (pageNum - 1) * limit);
+		param.put("limit", limit);
+		return template.getMapper(AdminMapper.class).select(param);
+	}
 		
 	//[admin] 판매자수	
-		public int storecount(String searchtype, String searchcontent) {
-			param.put("searchtype", searchtype);
-			param.put("searchcontent", "%"+searchcontent+"%");
-			return template.getMapper(AdminMapper.class).storecount(param);
-		}
+	public int storecount(String searchtype, String searchcontent) {
+		param.put("searchtype", searchtype);
+		param.put("searchcontent", "%"+searchcontent+"%");
+		return template.getMapper(AdminMapper.class).storecount(param);
+	}
 	//[admin] 거래수
-		public int salecount(String searchtype, String searchcontent) {
-			param.put("searchtype", searchtype);
-			param.put("searchcontent", "%"+searchcontent+"%");
-			return template.getMapper(AdminMapper.class).salecount(param);
-		}
+	public int salecount(String searchtype, String searchcontent) {
+		param.put("searchtype", searchtype);
+		param.put("searchcontent", "%"+searchcontent+"%");
+		return template.getMapper(AdminMapper.class).salecount(param);
+	}
+	//[admin] charts index 7-1 스토어 매출 점유율
+	public List<Buy> storeshare() {
+		// TODO Auto-generated method stub
+		param.clear();
+		return template.getMapper(AdminMapper.class).storeshare(param);
+	}
 		
 		
 

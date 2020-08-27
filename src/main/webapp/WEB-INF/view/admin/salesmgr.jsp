@@ -46,15 +46,17 @@
 	</div>
 	<div class="right-div" style="width: 80%; margin-left: 3%;  padding: 1%; float:left;">
 		<!-- <form action="mailForm.shop" method="post"> -->
-			<h3>Users</h3><br>
+			<h3>Sales</h3><br>
 		
-			<h4 style="text-align: center; margin-bottom: 50px;">스타일픽 매출내역</h4>
+			<h5 style="text-align: center;">' PURCHASE ORDERS '</h5>
 			<br>
+			<p style="text-align: center; margin-bottom: 30px;"><img src="https://cdn.crowdpic.net/list-thumb/thumb_l_775E9063849AE734A72BCFF462FF9239.png" style="width:20px; height:auto;"></p>
+			
 			
 			<!-- <table class="user_list_table"> -->
 			<table style="margin-left: auto; margin-right: auto;">
 				<tr>
-					<td colspan="8" style="margin: 20px; padding: 20px;">
+					<td colspan="5" style="margin: 20px; padding: 20px;">
 						<!-- 검색바 -->
 						<form action="salesmgr.shop" method="post" name="searchform">
 							<select name="searchtype" style="width:100px;">
@@ -72,7 +74,7 @@
 				</tr>
 				<tr class="user_list_table">
 					<th class="user_list_th">오더번호</th><th class="user_list_th">판매일</th><th class="user_list_th">스토어</th>
-					<th class="user_list_th">품명</th><th class="user_list_th">금액</th><th class="user_list_th">상태</th><th class="user_list_th">배송지</th><th class="user_list_th">주문상세</th>
+					<th class="user_list_th">금액</th><th class="user_list_th">배송지</th>
 					<!-- 
 					<th><input type="checkbox" name="allchk" onchange="allchkbox(this)"></th>
 					 -->
@@ -86,11 +88,10 @@
 						<td class="user_list_table">${list.order_no}</td>
 						<td class="user_list_table"><fmt:formatDate value="${list.orderdate}" pattern="yyyy-MM-dd"/></td>
 						<td class="user_list_table">${list.com_name}</td>
-						<td class="user_list_table">${list.item_name}</td>
 						<td class="user_list_table">${list.amount}</td>
 						<td class="user_list_table">${list.stat}</td>
 						<td class="user_list_table">${list.address}</td>
-						<td class="user_list_table"><a href="#">[이동]</a></td>
+						<!-- <td class="user_list_table"><a href="#">[이동]</a></td> -->
 					</tr>
 				</c:forEach>
 				<!-- 
