@@ -549,14 +549,14 @@ public class AjaxController {
 					html.append("<div class=\"row\">");
 				}
 				User seller = service.getUser(it.getUserid());
-				it.setName(seller.getName());
+				it.setName(seller.getCom_name());
 				html.append("<div class=\"col-xl-4 col-lg-4 col-md-6\"  style=\"max-width: 25%;\">");
 				html.append("<div class=\"single_product_item\">");
 				html.append("<div class=\"item_detail\" onClick=\"location.href='detail.shop?item_no="+it.getItem_no()+"'\">");
 				html.append("<div><img src=\"img/"+it.getPictureUrl()+"\" width=\"226px\" height=\"270px\"></div>");
 				html.append("									<div>\r\n" + 
 						"										<ul>\r\n" + 
-						"											<li>"+seller.getCom_name()+"</li>\r\n" + 
+						"											<li>"+it.getName()+"</li>\r\n" + 
 						"											<li>"+it.getSubject()+"</li>\r\n" + 
 						"											<li><fmt:formatNumber value="+it.getPrice()+" pattern=\"###,###,###\"/>원</li>\r\n" + 
 						"										</ul>\r\n" + 
