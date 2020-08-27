@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/header/main.jsp"%>
+<br><br>
 <div class="wrap">
 	<h1>공지사항</h1>
 	<table id="board" class="display" style="width: 100%;">

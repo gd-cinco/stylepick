@@ -28,6 +28,7 @@ function reg() {
 </script>
 </head>
 <body>
+<br><br>
 	<div align="center">
 		<form:form modelAttribute="board" action="add.shop" enctype="multipart/form-data" name="f" id="f">
 		<c:if test="${empty sessionScope.loginUser}">
@@ -192,6 +193,10 @@ function reg() {
 	        	$("#div-email").css("display", "none")
 	        }
 	    });
+		
+		if (${empty sessionScope.loginUser}) {
+			$("#div-email").css("display", "")
+		}
 		
 		$('#cts').change(function() { 
 			$('#cti').val($('#cts option:selected').val())

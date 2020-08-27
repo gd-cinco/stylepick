@@ -26,9 +26,12 @@ $(function() {
 google.load('visualization','1',{
     'packages' : ['corechart']
 });
+google.charts.load('current', {'packages':['timeline']});
 //로딩이 완료되면 drawChart 함수를 호출
 google.setOnLoadCallback(drawChart); //라이브러리를 불러오는 작업이 완료되었으면 drawChart작업을 실행하라는 뜻.
 google.setOnLoadCallback(drawChart2); //2nd chart
+google.charts.setOnLoadCallback(drawChart3);//3rd chart
+google.charts.setOnLoadCallback(drawChart4);//3th chart
 
 function getRandomColor() {
     var letters = '0123456789ABCDEF'.split('');
@@ -119,6 +122,47 @@ function getRandomColor() {
 		            }
 		             chart.draw(data, options);
     }
+    
+    function drawChart3() {
+        var container = document.getElementById('timeline');
+        var chart = new google.visualization.Timeline(container);
+        var dataTable = new google.visualization.DataTable();
+
+        dataTable.addColumn({ type: 'string', id: 'President' });
+        dataTable.addColumn({ type: 'date', id: 'Start' });
+        dataTable.addColumn({ type: 'date', id: 'End' });
+        dataTable.addRows([
+          [ '여름바캉스 기획전', new Date(2020, 7, 20), new Date(2020, 8, 3) ],
+          [ '스픽 친구초대 10% 할인 이벤트',     new Date(2020, 8, 1),  new Date(2020, 9, 31) ],
+          [ '디자이너 편집샵 입점 기념 할인',      new Date(2020, 8, 9),  new Date(2020, 9, 9) ],
+          [ '늦봄/초가을 아우터 신상 기획전',      new Date(2020, 8, 15),  new Date(2020, 9, 31) ],
+          [ '간절기 특집 트렌드 언더 더블할인', 		new Date(2020, 9, 1),  new Date(2020, 10, 10) ]]);
+
+        chart.draw(dataTable);
+      }
+    
+    
+    function drawChart4() {
+        var data = google.visualization.arrayToDataTable([
+          ['모자', '아우터', '원피스', '상의', '하의', '가방', '신발','시계'],
+          ['2020/08',  3650,      4380,         5220,             6980,           4500,      6460,  5000],
+          ['2020/09',  3350,      4200,        5990,             5680,          6880,      6820, 		4600],
+          ['2020/10',  3570,      6670,        5870,             7070,           3970,      6230,  	6000],
+          ['2020/11',  3390,      5100,        6150,             5680,           5150,      6940,  	7000],
+          ['2020/12',  4360,      4910,         8290,             9500,          6900,      6200,  	9500]
+        ]);
+
+        var options = {
+          //title : '하반기 스픽 카테고리별 매출 KPI (월 기준)',
+          vAxis: {title: 'Revenue(천원)'},
+          hAxis: {title: 'Month'},
+          seriesType: 'bars',
+          //series: {5: {type: 'line'}}
+        };
+
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div4'));
+        chart.draw(data, options);
+      }
 
 });
 </script>
@@ -143,7 +187,7 @@ function getRandomColor() {
 		<h3>DashBoard</h3><br>
 		
 		<!-- 1. 지표 요약 -->
-		<div class="outer_frame">
+		<div class="outer_frame" style="margin-bottom: 50px;">
 			<div class="quarter_frame skyblue">
 				<fmt:formatNumber value="${salesofthismonth}" pattern="#,###" /> 원
 				<p class="smaller_size">이번 달 매출</p>
@@ -170,11 +214,11 @@ function getRandomColor() {
 		<br><br>
 		
 		<!-- 1. 매출 요약 -->
-		<div class="outer_frame">
+		<div class="outer_frame" style="margin-bottom: 30px;">
 			
 			<!-- 주간매출 바그래프 -->
 			<div class="double_frame">
-				<h5>스타일픽 주 매출 집계(일기준)</h5>
+				<h5 style="font-size: medium;">스타일픽 주 매출 집계(일기준)</h5>
 				<!--Table and divs that hold the pie charts-->
 			    <!-- <div id="numGraph1_div" style="border: 1px solid #ccc"></div> -->
 			    <div id="chart_div1"></div>
@@ -182,14 +226,19 @@ function getRandomColor() {
 			
 			<!-- 최근 4주간 매출 추이 그래프 -->
 			<div class="double_frame">
-			<h5>스타일픽 최근 4주 매출 (주기준)</h5>
+			<h5 style="font-size: medium;">스타일픽 최근 4주 매출 (주기준)</h5>
 			<div id="chart_div2"></div>
 			<!-- <div id="numGraph2_div" style="border: 1px solid #ccc"></div> -->
 			</div>
 			<!-- 최근 4주간 매출 추이 그래프의 끝 -->
-			<br>
+			<br><br><br><br>
 		</div> <!-- outer_frame -->
-
+		<div id="mint_square"></div> 스타일픽 패션 기획전<br>
+		<div style="padding : 5%;">
+			<div id="timeline" style="height: 270px; width: 95%;"></div>
+		</div>
+		<div id="mint_square"></div>하반기 카테고리별 매출 KPI (월 기준)<br>
+		<div id="chart_div4" style="height : 500px; width: 95%;"></div>
 	<!-- right_div -->
 <br><br><br><br><br><br><br><br><br><br><br><br>
 		

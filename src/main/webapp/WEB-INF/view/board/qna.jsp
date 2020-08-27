@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/header/main.jsp"%>
+<br><br>
 <div align="center">
 <a href="${path}/board/qna.shop" class="genric-btn info radius">모두보기</a>
 <a href="${path}/board/qna.shop?s=complete" class="genric-btn info radius">답변 완료된 질문 보기</a>

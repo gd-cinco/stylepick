@@ -209,53 +209,6 @@
 	<!-- Footer Start-->
 	<div class="footer-area footer-padding">
 		<div class="container">
-			<div class="row d-flex justify-content-between">
-				<div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
-					<div class="single-footer-caption mb-50">
-						<div class="single-footer-caption mb-30">
-							<!-- logo -->
-							<div class="footer-logo">
-								<a href="index.html"><img src="${path}/assets/img/logo/logo2_footer.png" alt=""></a>
-							</div>
-							<div class="footer-tittle">
-								<div class="footer-pera">
-									<p>Input004</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-2 col-lg-3 col-md-3 col-sm-5">
-					<div class="single-footer-caption mb-50">
-						<div class="footer-tittle">
-							<h4>Input005</h4>
-							<ul>
-								<li><a href="#">Input006</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-7">
-					<div class="single-footer-caption mb-50">
-						<div class="footer-tittle">
-							<h4>Input007</h4>
-							<ul>
-								<li><a href="#">Input008</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
-					<div class="single-footer-caption mb-50">
-						<div class="footer-tittle">
-							<h4>Input009</h4>
-							<ul>
-								<li><a href="#">Input010</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
 			<!-- Footer bottom -->
 			<div class="row">
 				<div class="col-xl-7 col-lg-7 col-md-7">
