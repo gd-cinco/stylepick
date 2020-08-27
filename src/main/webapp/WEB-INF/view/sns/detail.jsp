@@ -134,7 +134,7 @@
 				<input type="hidden" name="sns_no" value="${param.sns_no}"/>
 				<input type="hidden" name="userid" value="${sessionScope.loginUser.userid}"/>
 				<textarea name="content" placeholder="댓글을 입력하세요" style="width:300px; height:50px; margin-top:10px;margin-left:5px;"></textarea>
-				<button type="submit" style="height: 50px;float: right; margin-top:10px;border:none;background:#007bff;">입력</button>
+				<button type="submit" style="height: 50px;float: right; margin-top:10px;border:none;background:#007bff;cursor:pointer;">입력</button>
 			</form>
 			<table class="reply_list"> 
 			</table>

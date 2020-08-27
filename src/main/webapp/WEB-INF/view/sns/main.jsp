@@ -18,6 +18,7 @@
 	background-color: #ffffff;
 	width:230px;
 	height:395px;
+	cursor: pointer;
 }
 
 .style-img {

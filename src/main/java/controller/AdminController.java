@@ -151,7 +151,23 @@ public class AdminController {
 			pageNum = 1;
 		}
 		List<User> list = service.storelist(searchtype, searchcontent,pageNum, limit);
+		int maxpage=(int)((double)listcount/limit+0.95);
+		int startpage=((int)(pageNum/10.0+0.9)-1)*10+1; //시작페이지 번호
+		int endpage=startpage+9;//종료페이지번호
+		if(endpage>maxpage) endpage=maxpage;
+		//마지막페이지가 최대 글번호 보다 크지 않도록
+		
+		int boardno=listcount-(pageNum-1)*limit;
+		
+		
 		mav.addObject("list",list);
+		//mav.addObject("boardlist",boardlist);
+		mav.addObject("pageNum",pageNum);
+		mav.addObject("maxpage",maxpage);
+		mav.addObject("startpage",startpage);
+		mav.addObject("endpage",endpage);
+		mav.addObject("listcount",listcount);
+		mav.addObject("boardno",boardno);
 		return mav;
 	}//check_storelist
 	
@@ -169,7 +185,23 @@ public class AdminController {
 				pageNum = 1;
 			}
 			List<Buy> list = service.saleslist(searchtype, searchcontent,pageNum, limit);
+			int maxpage=(int)((double)listcount/limit+0.95);
+			int startpage=((int)(pageNum/10.0+0.9)-1)*10+1; //시작페이지 번호
+			int endpage=startpage+9;//종료페이지번호
+			if(endpage>maxpage) endpage=maxpage;
+			//마지막페이지가 최대 글번호 보다 크지 않도록
+			
+			int boardno=listcount-(pageNum-1)*limit;
+			
+			
 			mav.addObject("list",list);
+			//mav.addObject("boardlist",boardlist);
+			mav.addObject("pageNum",pageNum);
+			mav.addObject("maxpage",maxpage);
+			mav.addObject("startpage",startpage);
+			mav.addObject("endpage",endpage);
+			mav.addObject("listcount",listcount);
+			mav.addObject("boardno",boardno);
 			return mav;
 		}//check_salesmgr
 			

@@ -56,7 +56,7 @@
 				<tr>
 					<td colspan="8" style="margin: 20px; padding: 20px;">
 						<!-- 검색바 -->
-						<form action="list.shop" method="post" name="searchform">
+						<form action="salesmgr.shop" method="post" name="searchform">
 							<select name="searchtype" style="width:100px;">
 											<option value="">검색필터</option>
 											<option value="order_no">오더번호</option>

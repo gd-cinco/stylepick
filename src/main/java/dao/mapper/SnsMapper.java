@@ -26,7 +26,7 @@ public interface SnsMapper {
 	@Select({"<script>",
 		"select sns_no,type,userid,img1 img1url,description,regdate from sns ",
 		"<if test='sns_no == null and keyword ==null'> where type = #{type} order by sns_no limit #{startrow}, #{limit}</if>",
-		"<if test='sns_no == null and keyword != null'> where description like #{keyword} order by regdate desc limit #{startrow}, #{limit}</if>",
+		"<if test='sns_no == null and keyword != null'> where description like '%${keyword}%' order by regdate desc limit #{startrow}, #{limit}</if>",
 		"</script>"})
 	List<Sns> select1(Map<String, Object> param);
 
