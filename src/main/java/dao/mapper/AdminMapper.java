@@ -98,6 +98,14 @@ public interface AdminMapper {
 	@Select("select * from buy order by order_no DESC")
 	List<Buy> saleslist(Map<String, Object> param);
 	
+	//유저리스트 가져오기
+	@Select({"<script>",
+		"select * from user",
+		"<if test='searchtype!=null and searchcontent!=null'> WHERE ${searchtype} LIKE #{searchcontent}</if>",
+		" limit ${startrow},${limit}",
+		"</script>"})
+	List<User> select(Map<String, Object> param);
+	
 
 }
 

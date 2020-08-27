@@ -143,10 +143,7 @@ public class ShopService {
 		return userDao.getusersale(userid);
 	}
 	
-	//[admin] 메일 보낼 유저리스트 0728
-	public List<User> userlist(String[] idchks) {
-		return userDao.list(idchks);
-	}
+
 	
 	//[admin] 그래프1 0728
 	public Map<String, Object> graph1() {
@@ -158,10 +155,9 @@ public class ShopService {
 		return map;
 	}
 	
-	//[admin] 유저리스트 가져오기 0822 0728
+	//[admin] 유저리스트 가져오기 0827 0822 0728
 	public List<User> list(String searchtype, String searchcontent, Integer pageNum, int limit) {
-		// TODO Auto-generated method stub
-		return userDao.list(searchtype, searchcontent, pageNum, limit);
+		return adminDao.list(searchtype, searchcontent, pageNum, limit);
 		}
 
 	//[admin] 그래프2 0728
