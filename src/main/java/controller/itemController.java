@@ -92,10 +92,10 @@ public class itemController {
 		
 	
 
-		@RequestMapping("add")	//아이템 등록 뷰
-		public ModelAndView loginCheckaddform(HttpSession session) {
-			ModelAndView mav =new ModelAndView();
-			return mav;
+		@RequestMapping("create")
+		public String loginCheckaddform(Model model) {
+			model.addAttribute(new Item());
+			return "item/add";
 		}
 		
 	
