@@ -50,7 +50,7 @@ public interface BoardMapper {
 	@Select("SELECT IFNULL(SUBSTRING_INDEX(category,',',1),'선택안함') FROM board GROUP BY 1")
 	List<String> clist();
 	
-	@Delete("DELETE FROM board WHERE num=#{num}")
+	@Delete("DELETE FROM board WHERE no=#{no}")
 	void delete(int no);
 
 	@Select("SELECT * FROM reply WHERE bno=#{no}")
@@ -66,5 +66,8 @@ public interface BoardMapper {
 
 	@Update("UPDATE board SET stat = 'complete' WHERE no = #{no}")
 	void updateStatComplete(int bno);
+
+	@Update("UPDATE board SET title=#{title}, content=#{content}, file1=#{fileurl} WHERE no=#{no}")
+	void update(Board board);
 
 }

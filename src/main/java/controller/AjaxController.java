@@ -19,27 +19,18 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import exception.AjaxException;
-import exception.ItemEmptyException;
-import exception.SnsException;
 import logic.Board;
 import logic.Comment;
 import logic.GoogleChartService;
 import logic.Item;
-import logic.Line;
-import logic.Qna;
 import logic.ShopService;
 import logic.Sns;
-import logic.Todolist;
 import logic.User;
 
 

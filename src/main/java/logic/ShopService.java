@@ -598,7 +598,12 @@ public class ShopService {
 	}
 
 	public void boardUpdate(Board board, HttpServletRequest request) {
+		if(board.getFile1() != null && !board.getFile1().isEmpty()) {
+			uploadFileCreate(board.getFile1(), request, "board/file/");
+			board.setFileurl(board.getFile1().getOriginalFilename());
+		}
 		
+		boardDao.update(board);
 	}
 
 	public void boardDelete(int no) {
@@ -609,7 +614,7 @@ public class ShopService {
 		return boardDao.replyList(no);
 	}
 	
-	public void regReply(Reply reply, HttpServletRequest request) {
+	public void regReply(Reply reply) {
 		reply.setRno(boardDao.maxrno() + 1);
 		boardDao.regReply(reply); 
 	}

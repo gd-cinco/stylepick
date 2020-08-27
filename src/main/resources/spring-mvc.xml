@@ -47,4 +47,9 @@ http://www.springframework.org/schema/websocket/spring-websocket-4.1.xsd">
 					exception.QnaException=exception</value>
 		</property>
 	</bean>
+	
+	<!-- websocket 관련 설정 -->
+	<websocket:handlers>
+		<websocket:mapping handler="echoHandler" path="/"/>
+	</websocket:handlers>
 </beans>

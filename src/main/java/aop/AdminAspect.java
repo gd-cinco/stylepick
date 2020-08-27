@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 import exception.LoginException;
 import logic.User;
 
-//@Component
-//@Aspect
-//@Order(3)
+@Component
+@Aspect
+@Order(1)
 public class AdminAspect {
 	/*
 	 * AdminController 클래스의 모든 클래스는 admin으로 로그인 한 경우만 접근 가능
@@ -25,7 +25,7 @@ public class AdminAspect {
 	//관리자 로그인인지 여부 확인
 	//controller 패키지의 Admin으로 시작하는 클래스
 	
-	@Around("execution(* controller.Admin*.*(..) )")
+	@Around("execution(* controller.Admin*.*(..) ) || execution(* controller.Board*.check*(..))")
 	public Object loginCheck(ProceedingJoinPoint joinPoint) throws Throwable {
 		User loginUser = null;
 		for(Object o : joinPoint.getArgs()) {
@@ -39,7 +39,7 @@ public class AdminAspect {
 			throw new LoginException("로그인 후 접근할 수 있습니다.","../user/login.shop");
 		}
 		if(!loginUser.getUserid().equals("admin")) {
-			throw new LoginException("관리자만 접근할 수 있습니다.","../user/main.shop?id="+loginUser.getUserid());
+			throw new LoginException("관리자만 접근할 수 있습니다.","../item/store.shop?id="+loginUser.getUserid());
 		}
 		Object ret = joinPoint.proceed();
 		return ret;

@@ -87,6 +87,14 @@ public class CartController {
 
 		ModelAndView mav = new ModelAndView();
 		Cart cart = (Cart)session.getAttribute("CART");
+
+		String name = cart.getItemSetList().get(0).getItem().getItem_name().trim();
+		
+		int count = cart.getItemSetList().size();
+		if (count > 1) {
+			name += " 외 " + (count - 1) + "건";
+		}
+		
 		User loginUser = (User)session.getAttribute("loginUser");
 		
 		Sale res = service.checkend(sale, cart, loginUser);
@@ -94,11 +102,7 @@ public class CartController {
 		
 		// 결제창에 표시될 내용
 		Map<String, String> outMap = new HashMap<>();
-		String name = res.getItemList().get(0).getItem().getItem_name();
-		int count = cart.getItemSetList().size();
-		if (count > 1) {
-			name += " 외 " + (count - 1) + "건";
-		}
+
 		outMap.put("name", name);
 		outMap.put("count", count + "");
 		outMap.put("total", total + "");
@@ -109,11 +113,13 @@ public class CartController {
 		//mav.addObject("total", total);
 		
 		mav.addObject("outMap", outMap);
-		mav.setViewName("redirect:pay.shop?name="+outMap.get("name")+"&total="+outMap.get("total"));
+		mav.setViewName("redirect:pay.shop?name="+name+"&total="+outMap.get("total"));
 		return mav;
 	}
 	
 	@RequestMapping("checkout")
 	void checkout(HttpSession session) {}
 	
+	@RequestMapping("*")
+	void all(HttpSession session) {}
 }

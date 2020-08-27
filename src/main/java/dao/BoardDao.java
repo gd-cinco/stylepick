@@ -97,4 +97,8 @@ public class BoardDao {
 		template.getMapper(BoardMapper.class).updateStatComplete(bno);
 	}
 
+	public void update(Board board) {
+		template.getMapper(BoardMapper.class).update(board);
+	}
+
 }

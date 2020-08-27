@@ -290,5 +290,6 @@
 	<c:if test="${fn:contains(path2,'board/faq') || fn:contains(path2,'board/qna') || fn:contains(path2,'board/notice')}" >
 		<%@ include file="/header/tfooter.jsp"%>
 	</c:if>
+	<%@ include file="/header/socket.jsp"%>
 </body>
 </html>
