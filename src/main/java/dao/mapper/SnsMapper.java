@@ -26,11 +26,11 @@ public interface SnsMapper {
 	@Select({"<script>",
 		"select sns_no,type,userid,img1 img1url,description,regdate from sns ",
 		"<if test='sns_no == null and keyword ==null'> where type = #{type} order by sns_no limit #{startrow}, #{limit}</if>",
-		"<if test='sns_no != null and keyword != null'> where description like #{keyword} order by regdate desc limit #{startrow}, #{limit}</if>",
+		"<if test='sns_no == null and keyword != null'> where description like #{keyword} order by regdate desc limit #{startrow}, #{limit}</if>",
 		"</script>"})
 	List<Sns> select1(Map<String, Object> param);
 
-	@Select("SELECT a.* FROM sns a LEFT OUTER JOIN (SELECT sns_no,COUNT(*) cnt FROM sns_like GROUP BY sns_no) b ON b.sns_no = a.sns_no ORDER BY b.cnt desc")
+	@Select("SELECT a.sns_no,a.type,a.userid,a.img1 img1url,a.description,a.regdate FROM sns a LEFT OUTER JOIN (SELECT sns_no,COUNT(*) cnt FROM sns_like GROUP BY sns_no) b ON b.sns_no = a.sns_no where type=${type} ORDER BY b.cnt desc limit #{startrow}, #{limit} ")
 	List<Sns> select3(Map<String, Object> param);
 	
 	@Select({"<script>",

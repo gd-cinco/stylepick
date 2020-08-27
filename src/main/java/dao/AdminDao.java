@@ -140,10 +140,28 @@ public class AdminDao {
 		return template.getMapper(AdminMapper.class).boxplot(param);
 	}
 	//salesmgr 매출 관리 0822
-	public List<Buy> saleslist() {
-		// TODO Auto-generated method stub
+	public List<Buy> saleslist(String searchtype, String searchcontent,int pageNum,int limit) {
 		param.clear();
+		if (searchtype != null && searchcontent != null) {
+			//sql += " WHERE " + searchtype + " LIKE :searchcontent ";
+			param.put("searchtype", searchtype);
+			param.put("searchcontent", "%"+searchcontent+"%");
+		}
+		param.put("startrow", (pageNum - 1) * limit);
+		param.put("limit", limit);
 		return template.getMapper(AdminMapper.class).saleslist(param);
+	}
+	//storelist 스토어 관리
+	public List<User> storelist(String searchtype, String searchcontent,int pageNum,int limit) {
+		param.clear();
+		if (searchtype != null && searchcontent != null) {
+			//sql += " WHERE " + searchtype + " LIKE :searchcontent ";
+			param.put("searchtype", searchtype);
+			param.put("searchcontent", "%"+searchcontent+"%");
+		}
+		param.put("startrow", (pageNum - 1) * limit);
+		param.put("limit", limit);
+		return template.getMapper(AdminMapper.class).storelist(param);
 	}
 	
 	//[admin] user list 유저리스트
@@ -158,6 +176,21 @@ public class AdminDao {
 			param.put("limit", limit);
 			return template.getMapper(AdminMapper.class).select(param);
 		}
+		
+	//[admin] 판매자수	
+		public int storecount(String searchtype, String searchcontent) {
+			param.put("searchtype", searchtype);
+			param.put("searchcontent", "%"+searchcontent+"%");
+			return template.getMapper(AdminMapper.class).storecount(param);
+		}
+	//[admin] 거래수
+		public int salecount(String searchtype, String searchcontent) {
+			param.put("searchtype", searchtype);
+			param.put("searchcontent", "%"+searchcontent+"%");
+			return template.getMapper(AdminMapper.class).salecount(param);
+		}
+		
+		
 
 	
 	

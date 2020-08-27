@@ -92,7 +92,7 @@
 						<td class="user_list_table">
 							<!-- <a href="../user/update.shop?id=${user.userid}">edit</a>  -->
 							<!-- <a href="../user/delete.shop?id=${user.userid}">강제탈퇴</a>  -->
-							<a href="../sns/mypage.shop?userid=${user.userid}">store</a>
+							<a href="../user/sellList.shop">store</a>
 							<!-- http://localhost:8080/stylepick/sns/mypage.shop?userid=jieun -->
 						</td>
 						<!-- 
@@ -112,6 +112,22 @@
 				 -->
 			</table>
 		<!-- </form> -->
+			<div style="text-align: center; padding: 20px;">
+				<c:if test="${pageNum >1}">
+					<a href="javascript: listpage('${pageNum -1}')">이전</a>
+				</c:if>
+				<c:if test="${pageNum <= 1}">이전</c:if>
+				<c:forEach var="a" begin="${startpage}" end="${endpage}">
+					<c:if test="${a == pageNum}">[${a}]</c:if>
+					<c:if test="${a != pageNum}">
+						<a href="javascript: listpage('${a}')">[${a}]</a>
+					</c:if>
+				</c:forEach>
+				<c:if test="${pageNum < maxpage}">
+					<a href="javascript: listpage('${pageNum +1}') ">다음</a>
+				</c:if>
+				<c:if test="${pageNum >= maxpage}">다음</c:if>
+			</div>
 	</div>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>

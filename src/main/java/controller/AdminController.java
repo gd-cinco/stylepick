@@ -139,22 +139,36 @@ public class AdminController {
 		
 	//스토어 관리
 	@RequestMapping("storelist")
-	public ModelAndView check_storelist(HttpSession session, String searchtype, String searchcontent) {
+	public ModelAndView check_storelist(HttpSession session, String searchtype, String searchcontent,Integer pageNum) {
 		ModelAndView mav = new ModelAndView();
 		if(searchtype == null || searchcontent ==null || searchtype.trim().equals("") || searchcontent.trim().equals("")) {
 			searchtype = null;
 			searchcontent = null;
 		}
-		List<User> list = service.storelist(searchtype, searchcontent);
+		int limit =10;
+		int listcount = service.storecount(searchtype, searchcontent);
+		if (pageNum == null) {
+			pageNum = 1;
+		}
+		List<User> list = service.storelist(searchtype, searchcontent,pageNum, limit);
 		mav.addObject("list",list);
 		return mav;
 	}//check_storelist
 	
 	//매출 관리
 		@RequestMapping("salesmgr")
-		public ModelAndView check_salesmgr(HttpSession session) {
+		public ModelAndView check_salesmgr(HttpSession session, String searchtype, String searchcontent,Integer pageNum) {
 			ModelAndView mav = new ModelAndView();
-			List<Buy> list = service.saleslist();
+			if(searchtype == null || searchcontent ==null || searchtype.trim().equals("") || searchcontent.trim().equals("")) {
+				searchtype = null;
+				searchcontent = null;
+			}
+			int limit =10;
+			int listcount = service.salecount(searchtype, searchcontent);
+			if (pageNum == null) {
+				pageNum = 1;
+			}
+			List<Buy> list = service.saleslist(searchtype, searchcontent,pageNum, limit);
 			mav.addObject("list",list);
 			return mav;
 		}//check_salesmgr
