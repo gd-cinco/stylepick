@@ -123,4 +123,11 @@ public interface UserMapper {
 	@Select("select * from buy_detail where order_no=#{order_no} and seq=#{seq}")
 	SaleItem getsaleItem(@Param("order_no")int order_no,@Param("seq")int seq);
 
+	//[admin] user 유저리스트 페이지 카운트(1p,2p..)
+	@Select({"<script>",
+		"SELECT COUNT(*) FROM user",
+		"<if test='searchtype!=null and searchcontent!=null'>WHERE ${searchtype} LIKE #{searchcontent}</if>",
+		"</script>"})
+	int usercount(Map<String, Object> param);
+
 }
