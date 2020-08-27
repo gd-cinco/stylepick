@@ -53,7 +53,7 @@ public class AdminController {
 	@RequestMapping("list")
 	public ModelAndView check_list(HttpSession session,String searchtype, String searchcontent, Integer pageNum) {
 		ModelAndView mav = new ModelAndView();
-		
+		System.out.println(pageNum);
 		if(searchtype == null || searchcontent ==null || searchtype.trim().equals("") || searchcontent.trim().equals("")) {
 			searchtype = null;
 			searchcontent = null;
@@ -75,6 +75,7 @@ public class AdminController {
 		if (pageNum == null) {
 			pageNum = 1;
 		}
+
 		List<User> list = service.list(searchtype, searchcontent,pageNum, limit);
 		
 		int maxpage=(int)((double)listcount/limit+0.95);
@@ -158,19 +159,6 @@ public class AdminController {
 			return mav;
 		}//check_salesmgr
 			
-	//메일 폼 화면 열기 0710-2
-	@RequestMapping("mailForm")
-	public ModelAndView mailform (String[] idchks, HttpSession session) {
-		//view는 admin/mail.jsp로 설정
-		ModelAndView mav = new ModelAndView("admin/mail");
-		if(idchks == null || idchks.length==0) {
-			throw new LoginException("[AdminController] 메일을 보낼 대상자를 선택하세요","list.shop");
-		}
-		//list : 클릭한 User objects
-		List<User> list = service.userlist(idchks);
-		mav.addObject("list",list);
-		return mav;
-	}//mailform
 	
 	//메일 보내기 0710-2
 	@RequestMapping("mail")

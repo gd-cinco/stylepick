@@ -29,6 +29,9 @@ public interface SnsMapper {
 		"<if test='sns_no != null and keyword != null'> where description like #{keyword} order by regdate desc limit #{startrow}, #{limit}</if>",
 		"</script>"})
 	List<Sns> select1(Map<String, Object> param);
+
+	@Select("SELECT a.* FROM sns a LEFT OUTER JOIN (SELECT sns_no,COUNT(*) cnt FROM sns_like GROUP BY sns_no) b ON b.sns_no = a.sns_no ORDER BY b.cnt desc")
+	List<Sns> select3(Map<String, Object> param);
 	
 	@Select({"<script>",
 		"select sns_no,type,userid,img1 img1url,description,regdate from sns ",

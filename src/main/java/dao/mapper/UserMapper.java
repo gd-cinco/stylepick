@@ -40,7 +40,7 @@ public interface UserMapper {
 		"select * from user",
 		"<if test='userid !=null'> where userid = #{userid}</if>",
 		"<if test='userid ==null'> where userid != 'admin'</if>",
-		"<if test='searchtype!=null and searchcontent!=null'>${searchtype} LIKE #{searchcontent}</if>",
+		"<if test='searchtype!=null and searchcontent!=null'> and ${searchtype} LIKE #{searchcontent}</if>",
 		"<if test='userids !=null'> and userid in ",
 		"<foreach collection='userids' item='id' separator=',' ",
 		"open='(' close=')'>#{id}</foreach></if>",

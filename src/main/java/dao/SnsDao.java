@@ -42,7 +42,7 @@ public class SnsDao {
 		param.put("limit",limit);
 		System.out.println(param);
 		if(ksb.equals("hot")) {
-			return template.getMapper(SnsMapper.class).select1(param);
+			return template.getMapper(SnsMapper.class).select3(param);
 		} else if(ksb.equals("new") || ksb.trim().isEmpty()){
 			return template.getMapper(SnsMapper.class).select2(param);
 		}

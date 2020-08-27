@@ -73,4 +73,8 @@ public class BoardDao {
 		return template.getMapper(BoardMapper.class).clist();
 	}
 
+	public void delete(int no) {
+		template.getMapper(BoardMapper.class).delete(no);
+	}
+
 }
