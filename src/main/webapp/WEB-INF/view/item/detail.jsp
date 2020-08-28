@@ -74,13 +74,13 @@ function javascript1(){ //qna 작성
 <div style="width:1000px;">
 <form action="../cart/cartAdd.shop">
 <div class="pic" >
-  <img src="img/${item.imgurl}" width="350px" height="450px" id="img">
+  <img src="img/${item.pictureUrl}" width="350px" height="450px" id="img">
 </div>
 	<input type="hidden" name="item_no" value="${item.item_no }">
 	<input type="hidden" name="userid" value="${item.userid }">
 	<input type="hidden" name="item_name" value="${item.item_name }">
 	<input type="hidden" name="item_price" value="${item.price }">
-	<input type="hidden" name="pictureUrl" value="${item.imgurl}">
+	<input type="hidden" name="pictureUrl" value="${item.pictureUrl}">
 <div class="etc">
 	<ul>
 		<dl>
