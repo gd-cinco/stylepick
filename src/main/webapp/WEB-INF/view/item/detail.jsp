@@ -71,11 +71,10 @@ function javascript1(){ //qna 작성
 
 </head>
 <body>
-
 <div style="width:1000px;">
 <form action="../cart/cartAdd.shop">
 <div class="pic" >
-  <img src="img/${item.pictureUrl }" width="350px" height="450px" id="img">
+  <img src="img/${item.imgurl}" width="350px" height="450px" id="img">
 </div>
 	<input type="hidden" name="item_no" value="${item.item_no }">
 	<input type="hidden" name="userid" value="${item.userid }">
@@ -203,7 +202,9 @@ function javascript1(){ //qna 작성
 <div id="target3">
 	 <div class="hr-sect"><h4>Q&A</h4></div>
 	  <div style="float:right;">
-	   <input type='button' class="genric-btn info-border circle arrow" style="width:101px;" onclick='javascript1()' value='작성하기'/></div>
+	 <c:if test="${!empty sessionScope.loginUser}">
+	   <input type='button' class="genric-btn info-border circle arrow" style="width:101px;" onclick='javascript1()' value='작성하기'/></c:if></div>
+	
 	<br><br>
 	<div>
 	<div>
