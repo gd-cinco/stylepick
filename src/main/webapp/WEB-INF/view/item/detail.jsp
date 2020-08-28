@@ -95,7 +95,7 @@ function javascript1(){ //qna 작성
 		<dl>
 			<dt>
 				<select name="item_option">
-					<option>사이즈</option>
+					<option>옵션</option>
 					<c:forEach items="${item.item_option}" var="i" varStatus="n">
 						<option><c:out value="${i}"/></option>
 					</c:forEach>
