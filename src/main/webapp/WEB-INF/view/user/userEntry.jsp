@@ -110,14 +110,14 @@
 <div class="center">
 			<div style="width: 200px; margin-left:auto; padding-top: 20px" >
 			<ul class="userul">
-		  		<li class="userli"><a class="usera" href="../sns/main.shop">홈</a></li>
+		  		<li class="userli"><a class="usera" href="../sns/main.shop?ksb=hot&type=1">홈</a></li>
 		  		<li class="userli" style="width: 1px; height : 26px; background: #000; position: absolute;"/>
 		  		<li class="userli"><a class="usera" href="../board/">고객센터</a></li> <%--TODO 고객센터 --%>
 	  		</ul>
 	  		</div>
 <div style="margin-top:25px; margin-bottom:50px; position: relative;">
     		<img src="../assets/img/splogo.PNG" width="620px"
-    		 onclick="javascript:location.href='../sns/main.shop'" style="margin-bottom:20px; cursor: pointer;">
+    		 onclick="javascript:location.href='../sns/main.shop?ksb=hot&type=1'" style="margin-bottom:20px; cursor: pointer;">
     	<div class="social_login_box" style="display: none;" >
     		<div style="padding-top: 1px; padding-left: 13px;">
     		<h2>소셜로 간편히 로그인하세요.</h2>
