@@ -118,7 +118,7 @@
 <div style="margin-top:25px; margin-bottom:50px; position: relative;">
     		<img src="../assets/img/splogo.PNG" width="620px"
     		 onclick="javascript:location.href='../sns/main.shop'" style="margin-bottom:20px; cursor: pointer;">
-    	<div class="social_login_box" >
+    	<div class="social_login_box" style="display: none;" >
     		<div style="padding-top: 1px; padding-left: 13px;">
     		<h2>소셜로 간편히 로그인하세요.</h2>
     			<ul class="userul">
@@ -132,7 +132,7 @@
     			</ul>
     		</div>
     	</div>
-    	<hr>
+    	<hr style="display: none;">
 	<form:form modelAttribute="user" method="post" enctype="multipart/form-data" action="userEntry.shop" onsubmit="return chkboxcheck(this)">
 		<div style="width: 100%; display:inline;text-align: center; height: 100px;">
 			<spring:hasBindErrors name="user">
