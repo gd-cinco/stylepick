@@ -25,7 +25,7 @@ public class AdminAspect {
 	//관리자 로그인인지 여부 확인
 	//controller 패키지의 Admin으로 시작하는 클래스
 	
-	@Around("execution(* controller.Admin*.*(..) ) || execution(* controller.Board*.check*(..))")
+	@Around("execution(* controller.Admin*.*(..) )")
 	public Object loginCheck(ProceedingJoinPoint joinPoint) throws Throwable {
 		User loginUser = null;
 		for(Object o : joinPoint.getArgs()) {

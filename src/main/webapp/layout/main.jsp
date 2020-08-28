@@ -114,7 +114,7 @@
 								<li class="d-none d-xl-block">
 									<div class="form-box f-right ">
 									<form name="searchform">
-										<input type="text" name="keyword" placeholder="검색">
+										<input type="text" name="keyword" autocomplete="off" placeholder="검색">
 										<div class="search-icon">
 											<c:if test="${fn:contains(path2,'sns')}" >
 												<i class="fas fa-search special-tag" onclick="javascript:listpage('sns')"></i>
