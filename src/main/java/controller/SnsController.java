@@ -237,7 +237,6 @@ public class SnsController {
 	
 	@RequestMapping("search")
 	public ModelAndView search(Integer pageNum,Integer category,String keyword,int index) {
-		System.out.println("category:"+category+", keyword:"+keyword);
 		ModelAndView mav = new ModelAndView("sns/searchForm");
 		if(pageNum==null || pageNum.toString().equals("")){
 			pageNum=1;
@@ -248,9 +247,7 @@ public class SnsController {
 		
 		int limit = 4;
 		int listcount=service.getItemCount2(keyword,category);
-		System.out.println(pageNum+limit+keyword+category);
 		List<Item> itemlist = service.getItemList2(pageNum,limit,keyword,category);
-		System.out.println(itemlist);
 		for(Item i : itemlist) {
 			User user = service.getUser(i.getUserid());
 			i.setName(user.getCom_name());

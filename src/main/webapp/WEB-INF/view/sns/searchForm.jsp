@@ -11,8 +11,11 @@
 	function searchbtn(item_no,index,category) {
 			location.href="searchCommit.shop?item_no="+item_no+"&index="+index+"&category="+category;
 	}
+	function listpage(page) {
+		document.f.pageNum.value=page;
+		document.f.submit();
+	}
 </script>
-
 </head>
 <body style="margin:0;">
 <div class="searchform">
@@ -22,6 +25,7 @@
 <div class="search_area">
 	<form name="f" action="search.shop" method="post">
 		<input type="hidden" name="index" value="${param.index}">
+		<input type="hidden" name="pageNum" value="1">
 		<select name="category" style="width: 80px; height: 40px; float: left; margin-right: 10px;">
 			<option value="1">Hat</option>
 			<option value="2">Outer</option>

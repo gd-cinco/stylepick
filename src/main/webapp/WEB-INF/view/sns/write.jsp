@@ -202,7 +202,7 @@
 						<button type="button" class="btn_3" style="padding: 3px 10px; margin-left: 7px;" onclick="javascript:search_item(parentNode.parentNode.rowIndex)">상품 찾기</button>
 						<script type="text/javascript">
 							function search_item(index) {
-								var op = "width=520,height=600,left=50,top=150";
+								var op = "width=520,height=620,left=50,top=150";
 								open("searchForm.shop?index="+index,"",op);
 							}
 						</script>
