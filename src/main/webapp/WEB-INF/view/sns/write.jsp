@@ -217,7 +217,7 @@
 							"					<td><select name=\"category\" style=\"margin-left:10px; display:none;\">\r\n" + 
 							"							<option value=\"hat\">Hat</option>\r\n" + 
 							"							<option value=\"outer\">Outer</option>\r\n" + 
-							"							<option value=\"dress\">Dress</option>\r\n" + 
+							"							<option value=\"one-piece\">one-piece</option>\r\n" + 
 							"							<option value=\"top\">Top</option>\r\n" + 
 							"							<option value=\"bottom\">Bottom</option>\r\n" + 
 							"							<option value=\"dress\">Bag</option>\r\n" + 
