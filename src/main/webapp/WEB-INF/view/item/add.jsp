@@ -148,6 +148,39 @@ function removeRow1() {
 oTbl1.deleteRow(oTbl1.clickedRowIndex);
 }
 </script>
+<script type="text/javascript">
+function inputcheck(){
+	f=document.f;
+	if(f.subject.value==""){
+		alert("제목을 입력해주세요");
+		f.subject.focus();
+		return;
+	}
+	if(f.category.value==""){
+		alert("카테고리를 선택해주세요");
+		f.category.focus();
+		return;
+	}
+	if(f.code.value==""){
+		alert("상품번호를 입력해주세요");
+		f.code.focus();
+		return;
+	}
+	if(f.item_name.value==""){
+		alert("상품이름을 입력해주세요");
+		f.item_name.focus();
+		return;
+	}
+	if(f.price.value==0){
+		alert("가격을 설정해주세요");
+		f.price.focus();
+		return;
+	}
+	
+	f.submit()
+	
+}
+</script>
 </head>
 <body>
 	<h1 style="width: fit-content;border-bottom: 3px solid #c0d4fb;">상품 올리기</h1>
@@ -264,7 +297,8 @@ oTbl1.deleteRow(oTbl1.clickedRowIndex);
 	</div>
 	</div>
 	<br>
-		<input type="submit" class="genric-btn success medium" value="상품올리기">
+	<a href="javascript:inputcheck()" class="genric-btn success medium">상품등록</a>
+	
 	</div>
  
 </form:form>
