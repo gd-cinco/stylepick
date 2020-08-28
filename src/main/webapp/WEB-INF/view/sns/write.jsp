@@ -188,26 +188,22 @@
 				</tr>
 				<tr id="info">
 					<td><select name="category" style="margin-left:10px" id="cg">
-							<option value="1">Hat</option>
-							<option value="2">Outer</option>
-							<option value="3">One-piece</option>
-							<option value="4">Top</option>
-							<option value="5">Bottom</option>
-							<option value="6">Bag</option>
-							<option value="7">Shoes</option>
-							<option value="8">Watch</option>
+							<option value="hat">Hat</option>
+							<option value="outer">Outer</option>
+							<option value="one-piece">One-piece</option>
+							<option value="top">Top</option>
+							<option value="bottom">Bottom</option>
+							<option value="bag">Bag</option>
+							<option value="shoes">Shoes</option>
+							<option value="watch">Watch</option>
 						</select></td>
 					<td><input type="text" name="detail" placeholder="직접 입력" style="width: 270px;">
 						<input type="hidden" name="item_no" value="0">
 						<button type="button" class="btn_3" style="padding: 3px 10px; margin-left: 7px;" onclick="javascript:search_item(parentNode.parentNode.rowIndex)">상품 찾기</button>
 						<script type="text/javascript">
 							function search_item(index) {
-								var tbl = document.getElementById("Table2");
-								var tr = tbl.getElementsByTagName("tr")[index]
-								var td = tr.getElementsByTagName("td")[0]
-								var category = td.getElementsByTagName("select")[0].value 
-								var op = "width=500,height=600,left=50,top=150";
-								open("searchForm.shop?index="+index+"&category="+category,"",op);
+								var op = "width=520,height=600,left=50,top=150";
+								open("searchForm.shop?index="+index,"",op);
 							}
 						</script>
 						</td>

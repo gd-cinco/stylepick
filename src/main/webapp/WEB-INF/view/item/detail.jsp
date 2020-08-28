@@ -128,8 +128,8 @@ function javascript1(){ //qna 작성
 <div id="target">
 	 <div class="hr-sect"><h4>상품 정보</h4></div>
 	 <br>
-	<div>${item.content }</div>
-	<br><br><br><br>
+	<div style="padding:0 10%;">${item.content }</div>
+	<br>
 </div>
 
 <div id="target1">

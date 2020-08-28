@@ -40,7 +40,7 @@
 	<table>
 		<c:forEach var="i" items="${itemlist}">
 			<tr>
-				<td rowspan="3" style="width: 80px;padding-right: 10px;"><img src="item/img/${i.getPictureUrl()}" width="80px" height="80px"></td>
+				<td rowspan="3" style="width: 80px;padding-right: 10px;"><img src="../item/img/${i.pictureUrl}" width="80px" height="80px"></td>
 				<td style="font-weight:bold;width: 60%;padding-top: 10px;font-size: 17px;">${i.getSubject()}</td>
 			</tr>
 			<tr>

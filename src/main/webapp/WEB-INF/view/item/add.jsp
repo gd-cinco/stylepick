@@ -176,7 +176,7 @@ oTbl1.deleteRow(oTbl1.clickedRowIndex);
 	<br>
 	<div class="subject-name">
 	<ul class="subject-name2">상품 제목</ul>
-	<dl><input type="text" name="subject" maxlength="20"  style="width:400px;"></dl>
+	<dl><input type="text" name="subject" maxlength="40"  style="width:400px;"></dl>
 	</div>
 	<div style="margin-bottom:15px;">
 	<ul>대표 이미지</ul>

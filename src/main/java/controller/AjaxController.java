@@ -519,7 +519,7 @@ public class AjaxController {
 						"										<ul>\r\n" + 
 						"											<li>"+it.getName()+"</li>\r\n" + 
 						"											<li>"+it.getSubject()+"</li>\r\n" + 
-						"											<li><fmt:formatNumber value="+it.getPrice()+" pattern=\"###,###,###\"/>원</li>\r\n" + 
+						"											<li>"+it.getPrice()+"원</li>\r\n" + 
 						"										</ul>\r\n" + 
 						"									</div>");
 				html.append("								</div>\r\n" + 
