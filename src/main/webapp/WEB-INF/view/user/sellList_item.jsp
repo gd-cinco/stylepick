@@ -68,9 +68,14 @@
 		</div>
 		<div class="order_main">
 			<div class="order_main_block">
-				<div style="width: 100%;text-align: left;">
-				<a class="order_header">등록상품</a>
+			<div style="overflow: hidden;">
+				<div style="width: 50%;text-align: left; float: left;">
+					<a class="order_header">등록상품</a>
 				</div>
+				<div style="width: 50%; text-align: right; float: left;">
+					<button style="width: 148px;" class="order_buyitem_button3" onclick="location.href='../item/create.shop'">상품 등록</button>
+				</div>
+			</div>
 					<c:forEach items="${sell}" var="item">
 					<div class="order_buyitem" onmouseenter="enter(this)" onmouseleave="leave(this)">
 						<div class="order_buyitem_left" style="cursor: pointer;" onclick="location.href='../item/detail.shop?item_no=${item.item_no}'">
