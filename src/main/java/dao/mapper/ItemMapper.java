@@ -20,7 +20,7 @@ public interface ItemMapper {
 	void insert(Item item);
 
 	@Select({"<script>",
-		"select * from item",
+		"select item_no,userid,code,category,subject,item_name,price,keyword,pictureUrl imgurl,content,regdate,readcnt,item_option,size from item",
 		"<if test='category != null and keyword == null'> where category=#{category} limit #{startrow}, #{limit} </if>",
 		"<if test='keyword != null and category != null'> where category=#{category} and (subject like #{keyword} or item_name like #{keyword} or keyword like #{keyword})</if>",
 		"<if test='keyword != null and category == null'> where subject like '%${keyword}%' or item_name like '%${keyword}%' or keyword like '%${keyword}%' limit #{startrow}, #{limit}</if>",

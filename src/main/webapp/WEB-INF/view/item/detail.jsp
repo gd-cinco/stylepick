@@ -59,6 +59,14 @@ function javascript1(){ //qna 작성
 	}
 	#st{
 	text-align:center;}
+	.nice-select {
+		width:100%;
+		margin-bottom: 10px;
+	}
+	
+	.list {
+		width:100%;
+	}
 </style>
 
 </head>
@@ -77,21 +85,22 @@ function javascript1(){ //qna 작성
 <div class="etc">
 	<ul>
 		<dl>
-		<dt><h5>${item.userid }</h5></dt>
-		<dt><h2>${item.item_name }</h2></dt>
-		<dt><h3><fmt:formatNumber value="${item.price }" pattern="###,###,###"/>원</h3></dt>
-		<dt>${item.keyword }</dt>
+		<dt><h5>${item.userid}</h5></dt>
+		<dt style="font-weight:bold;font-size:34px;">${item.item_name}</dt>
+		<dt><h3><fmt:formatNumber value="${item.price}" pattern="###,###,###"/>원</h3></dt>
+		<dt>keyword : <span style="color: #ff6a8d;">${item.keyword }</span></dt>
 
 	</ul>
 	<ul>
-		<dl><dt>
-		
-		<select name="item_option">
-				<option>옵션</option>
-				<c:forEach items="${item.item_option}" var="i" varStatus="n">
-					<option><c:out value="${i}"/></option>
-				</c:forEach>
-		</select></dt>
+		<dl>
+			<dt>
+				<select name="item_option">
+					<option>사이즈</option>
+					<c:forEach items="${item.item_option}" var="i" varStatus="n">
+						<option><c:out value="${i}"/></option>
+					</c:forEach>
+				</select>
+			</dt>
 		<dd>
 		<select name="size" id="sel">
 			<option>사이즈</option>
@@ -102,9 +111,10 @@ function javascript1(){ //qna 작성
 	
 	
 		<dt><select name="quantity">
-								<c:forEach begin="1" end="10" var="i">
-									<option>${i}</option>
-								</c:forEach>
+			<option>수량</option>
+			<c:forEach begin="1" end="10" var="i">
+				<option>${i}</option>
+			</c:forEach>
 		</select></dt></dl>
 	</ul>
 	
