@@ -71,11 +71,10 @@ function javascript1(){ //qna 작성
 
 </head>
 <body>
-
 <div style="width:1000px;">
 <form action="../cart/cartAdd.shop">
 <div class="pic" >
-  <img src="img/${item.pictureUrl }" width="350px" height="450px" id="img">
+  <img src="img/${item.imgurl}" width="350px" height="450px" id="img">
 </div>
 	<input type="hidden" name="item_no" value="${item.item_no }">
 	<input type="hidden" name="userid" value="${item.userid }">
@@ -95,7 +94,7 @@ function javascript1(){ //qna 작성
 		<dl>
 			<dt>
 				<select name="item_option">
-					<option>사이즈</option>
+					<option>색상</option>
 					<c:forEach items="${item.item_option}" var="i" varStatus="n">
 						<option><c:out value="${i}"/></option>
 					</c:forEach>
