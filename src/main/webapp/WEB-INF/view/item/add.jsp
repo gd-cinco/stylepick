@@ -109,6 +109,7 @@ oCell.innerHTML = frmTag;
 }
 //Row 삭제
 function removeRow() {
+	console.log(oTbl.clickedRowIndex);
 oTbl.deleteRow(oTbl.clickedRowIndex);
 }
 
@@ -237,7 +238,8 @@ oTbl1.deleteRow(oTbl1.clickedRowIndex);
 	<div class ="oi">
 	<ul>상품 옵션</ul>
 
-	<dl><input type="text" name="item_option" style="width:345px"><input name="addButton" type="button" style="cursor:hand; width:45px;" onClick="insRow()" value="+" ></dl>
+	<dl><input type="text" name="item_option" style="width:345px">
+	<input name="addButton" type="button" style="cursor:hand; width:45px;" onClick="insRow()" value="+" ></dl>
 	<table id="addTable" width="400" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" border="0"></table>
 	</div>
 	

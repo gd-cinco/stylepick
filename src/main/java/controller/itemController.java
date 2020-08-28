@@ -168,7 +168,7 @@ public class itemController {
 			Item item=null;
 			Qna qna=new Qna();
 			Line line=new Line();
-		
+			User user1=null;
 			try {
 				if(item_no == null) {
 					item =new Item();
@@ -178,7 +178,7 @@ public class itemController {
 						readcntable=true;
 					}
 					item=service.getItem(item_no,readcntable);
-			
+					user1=service.getUser(item.getUserid());
 					if(request.getRequestURI().contains("update.shop")) {
 						String[] option = item.getItem_option().split(",");
 						String[] size = item.getSize().split(",");
@@ -188,6 +188,7 @@ public class itemController {
 					}
 				}
 		
+			mav.addObject("user1",user1);
 			mav.addObject("item",item);
 
 			}catch(IndexOutOfBoundsException e) {
@@ -353,7 +354,7 @@ public class itemController {
 		
 		@RequestMapping("delete")	//아이템 삭제
 		public ModelAndView delete(int item_no) {
-			ModelAndView mav = new ModelAndView("item/update");
+			ModelAndView mav = new ModelAndView();
 			service.itemDelete(item_no);
 			mav.setViewName("redirect:/item/store.shop");
 			return mav;

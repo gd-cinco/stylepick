@@ -77,7 +77,7 @@ function javascript1(){ //qna 작성
 <div class="etc">
 	<ul>
 		<dl>
-		<dt><h5></h5></dt>
+		<dt><h5>${item.userid }</h5></dt>
 		<dt><h2>${item.item_name }</h2></dt>
 		<dt><h3><fmt:formatNumber value="${item.price }" pattern="###,###,###"/>원</h3></dt>
 		<dt>${item.keyword }</dt>
@@ -212,10 +212,17 @@ function javascript1(){ //qna 작성
 					</span>
 				<br>
 					${qna.content }</td>
-					<td class="lineno">
+				<td class="lineno">
+				<c:if test="${qna.type==0 }">
+				<c:if test="${user1.com_name == sessionScope.loginUser.com_name}">
 				<a href="reply.shop?qna_no=${qna.qna_no}" onclick="window.open(this.href,'change1','width=800,height=500,top=200,left=400');return false;">[답글]</a>
+				</c:if>
+				</c:if>
+				<c:if test="${qna.userid == sessionScope.loginUser.userid}">
 			 	<a href="change1.shop?qna_no=${qna.qna_no}" onclick="window.open(this.href,'change1','width=500,height=400,top=200,left=400');return false;">[수정]</a>
+
 				<a href="remove1.shop?qna_no=${qna.qna_no }" onclick="window.open(this.href,'change1','width=400,height=200,top=200,left=400');return false;">[삭제]</a> 
+
 					 </td>
 		</c:forEach>
 <tr><td colspan="3">
@@ -241,7 +248,12 @@ function javascript1(){ //qna 작성
 </div>
 </div>
 <center>
-<a href="update.shop?item_no=${item.item_no}" class="genric-btn primary small">상품 수정</a>
+
+<c:if test="${user1.com_name == sessionScope.loginUser.com_name ||sessionScope.loginUser.com_name ==admin }">
+<a href="update.shop?item_no=${item.item_no}" class="genric-btn primary small">수정</a>
+<a href="delete.shop?item_no=${item.item_no }" class="genric-btn primary small" onclick="window.open(this.href,'change1','width=500,height=400,top=200,left=400');return false;">삭제</a> 
+</c:if>
+
 </center>
 </div>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

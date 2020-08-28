@@ -21,11 +21,11 @@ public interface ItemMapper {
 
 	@Select({"<script>",
 		"select * from item",
-		"<if test='item_no != null'> where item_no=#{item_no} </if>",
 		"<if test='category != null and keyword == null'> where category=#{category} limit #{startrow}, #{limit} </if>",
 		"<if test='keyword != null and category != null'> where category=#{category} and (subject like #{keyword} or item_name like #{keyword} or keyword like #{keyword})</if>",
 		"<if test='keyword != null and category == null'> where subject like '%${keyword}%' or item_name like '%${keyword}%' or keyword like '%${keyword}%' limit #{startrow}, #{limit}</if>",
 		"<if test='item_no == null and category == null and keyword == null'> limit #{startrow}, #{limit} </if>",
+		"<if test='item_no != null'> where item_no=#{item_no}  order by item_no desc </if>",
 		"</script>"})
 	List<Item> select(Map<String, Object> param);
 
@@ -46,7 +46,7 @@ public interface ItemMapper {
 	@Update("update item set subject=#{subject},item_name=#{item_name},price=#{price},keyword=#{keyword},pictureUrl=#{pictureUrl},content=#{content},item_option=#{item_option},size=#{size} where item_no=#{item_no}")
 	void update(Item item);
 
-	@Delete("delete from item where item_no=#{item_no}")
+	@Delete("delete * from item where item_no=#{item_no}")
 	void delete(int item_no);
 
 	@Select("select * from item order by readcnt desc limit 0,4")
