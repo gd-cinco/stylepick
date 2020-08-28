@@ -281,7 +281,8 @@ public class itemController {
 		public ModelAndView getItem(Integer item_no,HttpServletRequest request) {
 			ModelAndView mav =new ModelAndView();
 			boolean readcntable=false;
-			Item item=service.getItem(item_no,readcntable);
+			Item item=service.getItem2(item_no,readcntable);
+			System.out.println(item);
 			String[] option = item.getItem_option().split(",");
 			String[] size = item.getSize().split(",");
 			mav.addObject("option",option);

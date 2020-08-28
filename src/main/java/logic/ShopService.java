@@ -331,6 +331,13 @@ public class ShopService {
 		if(able) {
 			itemDao.readcntadd(item_no);
 		}
+		return itemDao.selectOne(item_no);
+	}
+	
+	public Item getItem2(Integer item_no, boolean able) {
+		if(able) {
+			itemDao.readcntadd(item_no);
+		}
 		return itemDao.selectOne2(item_no);
 	}
 	

@@ -39,7 +39,7 @@ public interface SnsMapper {
 		"</script>"})
 	List<Sns> select2(Map<String, Object> param);
 
-	@Select("select sns_no,type,userid,img1,description,regdate,height,weight from sns where sns_no=#{sns_no}")
+	@Select("select sns_no,type,userid,img1 img1url,description,regdate,height,weight from sns where sns_no=#{sns_no}")
 	Sns select(Map<String, Object> param);
 
 	@Insert("insert into sns_like (sns_no,userid,regdate) values (#{sns_no},#{userid},now())")

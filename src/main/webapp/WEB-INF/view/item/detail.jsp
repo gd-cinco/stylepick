@@ -81,7 +81,7 @@ function javascript1(){ //qna 작성
 	<input type="hidden" name="userid" value="${item.userid }">
 	<input type="hidden" name="item_name" value="${item.item_name }">
 	<input type="hidden" name="item_price" value="${item.price }">
-	<input type="hidden" name="pictureUrl" value="${item.pictureUrl}">
+	<input type="hidden" name="pictureUrl" value="${item.imgurl}">
 <div class="etc">
 	<ul>
 		<dl>
