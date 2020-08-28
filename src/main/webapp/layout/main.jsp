@@ -88,7 +88,6 @@
 												<li><a href="${path}/board/faq.shop">FAQ</a></li>
 											</ul>
 										</li>
-										<li><a href="../user/mypage.shop">mypage</a>
 										</c:if>
 										<c:if test="${fn:contains(path2,'sns')}" >
 											<li class="hot"><a href="../sns/main.shop?ksb=hot&type=1">인기</a></li>
@@ -222,9 +221,7 @@
 						<p>
 							Copyright &copy;
 							<script>document.write(new Date().getFullYear());</script>
-							All rights reserved | This template is made with
-							<i class="ti-heart" aria-hidden="true"></i>
-							by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+							All rights reserved
 						</p>
 					</div>
 				</div>
