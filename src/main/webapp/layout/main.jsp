@@ -68,7 +68,8 @@
 								<nav>                                                
 									<ul id="navigation">  
 										<c:if test="${!fn:contains(path2,'sns')}" >
-										<li><a href="../admin/dashboard.shop">admin</a></li>
+										<c:if test="${sessionScope.loginUser.userid.equals('admin') }">
+										<li><a href="../admin/dashboard.shop">admin</a></li></c:if>
 										<li><a href="../item/list.shop">스토어</a>
 											<ul class="submenu">
 												<li><a href="${path}/item/list.shop?category=1">모자</a></li>
@@ -88,7 +89,6 @@
 												<li><a href="${path}/board/faq.shop">FAQ</a></li>
 											</ul>
 										</li>
-										<li><a href="../user/mypage.shop">mypage</a>
 										</c:if>
 										<c:if test="${fn:contains(path2,'sns')}" >
 											<li class="hot"><a href="../sns/main.shop?ksb=hot&type=1">인기</a></li>
@@ -222,9 +222,7 @@
 						<p>
 							Copyright &copy;
 							<script>document.write(new Date().getFullYear());</script>
-							All rights reserved | This template is made with
-							<i class="ti-heart" aria-hidden="true"></i>
-							by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+							All rights reserved
 						</p>
 					</div>
 				</div>

@@ -230,7 +230,7 @@
 							"						<button type=\"button\" class=\"btn_3\" style=\"padding: 3px 10px; margin-left: 7px;\" onclick=\"javascript:search_item(parentNode.parentNode.rowIndex)\">상품 찾기</button>\r\n" + 
 							"						<script type=\"text/javascript\">\r\n" + 
 							"							function search_item(index) {\r\n" + 
-							"								var op = \"width=500,height=600,left=50,top=150\";\r\n" + 
+							"								var op = \"width=520,height=600,left=50,top=150\";\r\n" + 
 							"								open(\"searchForm.shop?index=\"+index,\"\",op);\r\n" + 
 							"							}\r\n" + 
 							"						<\/script>\r\n" + 

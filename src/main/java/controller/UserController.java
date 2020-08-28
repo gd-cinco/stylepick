@@ -362,7 +362,7 @@ public class UserController {
 		User loginUser = (User) session.getAttribute("loginUser");
 		try {
 			service.sellerUpdate(user, request);
-			mav.setViewName("redirect:../sns/mypage.shop"); // 판매자페이지
+			mav.setViewName("redirect:../user/sellList.shop?id="+loginUser.getUserid()); // 판매자페이지
 			if (loginUser.getUserid().equals(user.getUserid())) {
 				user = service.getUser(user.getUserid());
 				session.setAttribute("loginUser", user);
