@@ -38,7 +38,7 @@ public class UserLoginAspect {
 			throw new LoginException("로그인하세요.","login.shop");
 		}
 		if(!loginUser.getUserid().equals("admin") && !loginUser.getUserid().equals(id) ) {
-			throw new LoginException("잘못된 접근입니다.","main.shop");
+			throw new LoginException("잘못된 접근입니다.","main.shop?ksb=hot&type=1");
 		}
 		
 		return joinPoint.proceed();

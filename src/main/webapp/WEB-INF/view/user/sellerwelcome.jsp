@@ -16,7 +16,7 @@
 	<div style="margin-top: 40px;">
 			<ul class="welcome_ul">
 	    		<li class="welcome_li"><a class="welcome_a" href="../sns/main.shop?ksb=hot&type=1">메인페이지</a></li>
-		  		 <li class="welcome_li"><a class="welcome_a" href="sellList.shop">판매자페이지</a></li>
+		  		 <li class="welcome_li"><a class="welcome_a" href="sellList.shop?id=${sessionScope.loginUser.userid }">판매자페이지</a></li>
 	    	</ul>
 	</div>
 </div>
