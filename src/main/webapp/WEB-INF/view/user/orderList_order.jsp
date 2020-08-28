@@ -101,7 +101,7 @@
 							</div>
 							<c:if test="${buylist.reviewed==0}">
 							<div class="order_buyitem_buttondiv">
-								<button onclick="window.open('../item/line.shop?item_no=${buylist.item.item_no}&order_no=${buylist.order_no}&seq=${buylist.seq}','','width=800,height=600,top=200,left=400')"
+								<button onclick="window.open('../item/line.shop?item_no=${buylist.item.item_no}&order_no=${buylist.order_no}&seq=${buylist.seq}','','width=450,height=550,top=200,left=400')"
 										 class="order_buyitem_button2">한줄평 쓰기</button>
 							</div>
 							</c:if>
