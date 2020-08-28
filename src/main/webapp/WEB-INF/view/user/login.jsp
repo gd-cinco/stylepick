@@ -46,9 +46,8 @@
 
 			<br><input class="input_submit" type="submit" value="로그인">
 			<ul class="userul">
-		  		<li class="userli"><a class="usera" href="userEntry.shop">회원가입</a></li>
-		  		<li class="userli" style="width: 1px; height : 26px; background: #000; position: absolute;"/>
-		  		<li class="userli"><a class="usera" href="#">ID/PW 찾기</a></li> <%--TODO 아이디찾기 --%>
+		  		<li class="userli"  style="width: 100%"><a class="usera" href="userEntry.shop">회원가입</a></li>
+
 	  		</ul>
 		</form:form>
 		</div>

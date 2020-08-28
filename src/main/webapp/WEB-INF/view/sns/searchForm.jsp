@@ -36,7 +36,7 @@
 			<option value="7">Shoes</option>
 			<option value="8">Watch</option>
 		</select>
-		<input type="text" name="keyword" style="height: 34px;width: 300px;float: left;margin-right: 10px;">
+		<input type="text" name="keyword" autocomplete="off" style="height: 34px;width: 300px;float: left;margin-right: 10px;">
 		<input type="submit" value="검색" style="height: 40px;float: left;">
 	</form>
 </div>

@@ -84,7 +84,7 @@
 					<table>
 						<c:forEach var="si" items="${shopitems}">
 							<tr>
-								<td rowspan="2" class="categoryimg"><img src="item/img/${si.pictureUrl}" width="82px" height="80px"></td>
+								<td rowspan="2" class="categoryimg"><img src="../item/img/${si.pictureUrl}" width="82px" height="80px"></td>
 								<td class="category" style="padding:10px 0 1px 10px;"><a href="../item/detail.shop?item_no=${si.item_no}">${si.subject}</a></td>
 							</tr>
 							<tr>

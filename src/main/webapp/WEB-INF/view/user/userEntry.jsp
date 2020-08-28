@@ -112,7 +112,7 @@
 			<ul class="userul">
 		  		<li class="userli"><a class="usera" href="../sns/main.shop?ksb=hot&type=1">홈</a></li>
 		  		<li class="userli" style="width: 1px; height : 26px; background: #000; position: absolute;"/>
-		  		<li class="userli"><a class="usera" href="../board/">고객센터</a></li> <%--TODO 고객센터 --%>
+		  		<li class="userli"><a class="usera" href="../board/support.shop">고객센터</a></li> <%--TODO 고객센터 --%>
 	  		</ul>
 	  		</div>
 <div style="margin-top:25px; margin-bottom:50px; position: relative;">
