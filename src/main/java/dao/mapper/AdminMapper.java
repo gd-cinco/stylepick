@@ -88,18 +88,20 @@ public interface AdminMapper {
 	List<Buy> salesbycategories(Map<String, Object> param);
 	
 	//charts index 7-2 상위 10개 스토어 (월 매출 기준)
-	@Select("SELECT IFNULL(user.com_name,'기본샵') com_name, SUM(buy.amount) amount FROM buy JOIN user ON buy.userid=user.userid WHERE DATE_FORMAT(buy.orderdate,'%Y-%m')=DATE_FORMAT(CURDATE(),'%Y-%m') GROUP BY user.com_name HAVING user.com_name IS NOT NULL AND user.com_name !=\"\" ORDER BY amount DESC LIMIT 10")
+	//@Select("SELECT IFNULL(user.com_name,'기본샵') com_name, SUM(buy.amount) amount FROM buy JOIN user ON buy.userid=user.userid WHERE DATE_FORMAT(buy.orderdate,'%Y-%m')=DATE_FORMAT(CURDATE(),'%Y-%m') GROUP BY user.com_name HAVING user.com_name IS NOT NULL AND user.com_name !=\"\" ORDER BY amount DESC LIMIT 10")
+	@Select("SELECT i.com_name, SUM(b.amount) amount FROM buy_detail bd LEFT JOIN buy b ON bd.order_no = b.order_no LEFT JOIN (SELECT item.item_no, u.com_name FROM item LEFT JOIN user u ON item.userid = u.userid) i ON bd.item_no = i.item_no WHERE bd.seq = 1 AND DATE_FORMAT(b.orderdate,'%Y-%m')=DATE_FORMAT(CURDATE(),'%Y-%m') GROUP BY i.com_name HAVING i.com_name IS NOT NULL AND i.com_name !=\"\" ORDER BY b.amount DESC ")
 	List<Buy> toptenstores(Map<String, Object> param);
 	
-	// charts index 4-1 지역별 매출 평균 barplot
+	// charts index 4-1 지역별 매출 평균 boxplot
 	//@Select("SELECT SUBSTRING_INDEX(address, '구', 1) address, amount FROM buy ORDER BY address ASC")
 	@Select("SELECT SUBSTRING(address, 7, 6) address, amount FROM buy WHERE amount !=0 ORDER BY address ASC")
 	List<Buy> boxplot(Map<String, Object> param);
 	
 	//salesmgr 매출 관리 0822
 	@Select({"<script>",
-		"select * from buy",
-		"<if test='searchtype!=null and searchcontent!=null'> WHERE ${searchtype} LIKE #{searchcontent}</if>",
+		//"select * from buy",
+		"SELECT b.order_no, b.orderdate, i.com_name, b.amount, b.address FROM buy_detail bd LEFT JOIN buy b ON bd.order_no = b.order_no LEFT JOIN (SELECT item.item_no, u.com_name FROM item LEFT JOIN user u ON item.userid = u.userid) i ON bd.item_no = i.item_no WHERE bd.seq = 1 ",
+		"<if test='searchtype!=null and searchcontent!=null'> AND ${searchtype} LIKE #{searchcontent}</if>",
 		" order by order_no DESC limit ${startrow},${limit} ",
 		"</script>"})
 	List<Buy> saleslist(Map<String, Object> param);
@@ -130,13 +132,13 @@ public interface AdminMapper {
 	//salesmgr
 	@Select({"<script>",
 		"select count(*) from buy ",
-		//"SELECT b.order_no, b.address, b.orderdate, b.amount, i.com_name FROM buy_detail bd LEFT JOIN buy b ON bd.order_no = b.order_no LEFT JOIN (SELECT item.item_no, u.com_name FROM item LEFT JOIN user u ON item.userid = u.userid) i ON bd.item_no = i.item_no WHERE bd.seq = 1 ",
+		//"SELECT b.order_no, b.orderdate, i.com_name, b.amount, b.address FROM buy_detail bd LEFT JOIN buy b ON bd.order_no = b.order_no LEFT JOIN (SELECT item.item_no, u.com_name FROM item LEFT JOIN user u ON item.userid = u.userid) i ON bd.item_no = i.item_no WHERE bd.seq = 1 ",
 		"<if test='searchtype!=null and searchcontent!=null'> AND ${searchtype} LIKE #{searchcontent}</if>",
 		"</script>"})
 	int salecount(Map<String, Object> param);
 	
 	//charts index 7-1 스토어 매출 점유율
-	@Select("SELECT IFNULL(user.com_name,'기본샵') com_name, SUM(buy.amount) amount FROM buy JOIN user ON buy.userid=user.userid WHERE DATE_FORMAT(buy.orderdate,'%Y-%m')=DATE_FORMAT(CURDATE(),'%Y-%m') GROUP BY user.com_name HAVING user.com_name IS NOT NULL AND user.com_name !=\"\" ORDER BY amount DESC")
+	@Select("SELECT i.com_name, SUM(b.amount) amount FROM buy_detail bd LEFT JOIN buy b ON bd.order_no = b.order_no LEFT JOIN (SELECT item.item_no, u.com_name FROM item LEFT JOIN user u ON item.userid = u.userid) i ON bd.item_no = i.item_no WHERE bd.seq = 1 AND DATE_FORMAT(b.orderdate,'%Y-%m')=DATE_FORMAT(CURDATE(),'%Y-%m') GROUP BY i.com_name HAVING i.com_name IS NOT NULL AND i.com_name !=\"\" ORDER BY b.amount DESC ")
 	List<Buy> storeshare(Map<String, Object> param);
 	
 	

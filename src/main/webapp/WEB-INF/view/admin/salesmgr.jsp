@@ -88,7 +88,7 @@
 						<td class="user_list_table">${list.order_no}</td>
 						<td class="user_list_table"><fmt:formatDate value="${list.orderdate}" pattern="yyyy-MM-dd"/></td>
 						<td class="user_list_table">${list.com_name}</td>
-						<td class="user_list_table">${list.amount}</td>
+						<td class="user_list_table"><fmt:formatNumber value="${list.amount}" pattern="#,###" /></td>
 						<!-- <td class="user_list_table">${list.stat}</td> -->
 						<td class="user_list_table">${list.address}</td>
 						<!-- <td class="user_list_table"><a href="#">[이동]</a></td> -->
