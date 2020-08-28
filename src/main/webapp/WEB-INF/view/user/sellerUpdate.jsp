@@ -69,7 +69,7 @@
     		<div class="update_input">
     			<div class="input_box" id="com_registinputbox" >
 					<input type="text" id="com_regist" name="com_regist" 
-					value=${user.com_regist}
+					value="${user.com_regist}"
 					placeholder="사업자 등록번호" class="input_input" autocomplete="off"
 					 onfocus="document.getElementById('com_registinputbox').style.border='2px solid #FE6500'"
 					 onblur="document.getElementById('com_registinputbox').style.border='1px solid #dadada'">

@@ -68,7 +68,8 @@
 								<nav>                                                
 									<ul id="navigation">  
 										<c:if test="${!fn:contains(path2,'sns')}" >
-										<li><a href="../admin/dashboard.shop">admin</a></li>
+										<c:if test="${sessionScope.loginUser.userid.equals('admin') }">
+										<li><a href="../admin/dashboard.shop">admin</a></li></c:if>
 										<li><a href="../item/list.shop">스토어</a>
 											<ul class="submenu">
 												<li><a href="${path}/item/list.shop?category=1">모자</a></li>
