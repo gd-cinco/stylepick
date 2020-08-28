@@ -64,8 +64,8 @@ function reg() {
 				<input type="hidden" name="seq" value="${board.seq}">
 				<div class="mt-10">
 					<input type="text" name="content" id="content" placeholder="댓글 입력" onfocus="this.placeholder = ''"
-						onblur="this.placeholder = '댓글 입력'" required class="single-input">
-					<a href="#" onclick="reg()" class="genric-btn danger">등록</a>
+						onblur="this.placeholder = '댓글 입력'" required class="single-input" style="width: 90%; display: inline">&nbsp;&nbsp;
+					<a href="#" onclick="reg()" class="genric-btn danger radius">등록</a>
 				</div>
 			</form:form>
 		</div>

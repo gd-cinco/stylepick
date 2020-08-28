@@ -10,23 +10,39 @@
 	width: 100%;
 	margin: 0;
 }
+p.typing-txt{display: none;}
+  
+.typing {  
+     display: inline-block; 
+      animation-name: cursor; 
+      animation-duration: 0.3s; 
+      animation-iteration-count: infinite; 
+} 
+@keyframes cursor{ 
+      0%{border-right: 1px solid #fff} 
+      50%{border-right: 1px solid #000} 
+      100%{border-right: 1px solid #fff} 
+}
 </style>
 </head>
 <body>
 <div align="center" style="width:100%; height:400px; background-image: url('${path}/assets/img/hero/h1_hero.jpg');">
 	<br><br>
-	<h1>안녕하세요, 고객지원센터입니다</h1>
-	<br>
-	<div class="mt-10" style="width:50%">
-		<input type="text" name="first_name" placeholder="무엇을 도와드릴까요?" class="single-input">
-	</div>
-	<br><br><br>
-	<div class="button-group-area">
-		<a href="${path}/board/faq.shop?c=구매" class="genric-btn danger">구매</a>
-		<a href="${path}/board/faq.shop?c=판매" class="genric-btn danger">판매</a>
-		<a href="${path}/board/faq.shop?c=OOTD" class="genric-btn danger">OOTD</a>
-		<a href="${path}/board/faq.shop?c=기타" class="genric-btn danger">기타</a>
-	</div>
+	<table>
+	<tr><th><font size="14px" class="typing-txt" style="display: none;">안녕하세요, 고객지원센터입니다.</font><font size="14px" class="typing"></font></th></tr>
+	<tr><td>&nbsp;</td></tr>
+	<tr><td>&nbsp;</td></tr>
+	<tr><th><font size="6px"><a href="${path}/board/faq.shop" style="color: blue;">FAQ</a>에서 사용 방법을 찾고 문제를 해결하세요</font></th></tr>
+	<tr><td>&nbsp;</td></tr>
+	<tr><td><font size="5px">어떤 문제를 겪고 계신가요?</font></td></tr>
+	<tr><td>&nbsp;</td></tr>
+	<tr><td>
+		<a href="${path}/board/faq.shop?c=구매" class="genric-btn danger radius">구매</a>&nbsp;&nbsp;
+		<a href="${path}/board/faq.shop?c=판매" class="genric-btn danger radius">판매</a>&nbsp;&nbsp;
+		<a href="${path}/board/faq.shop?c=OOTD" class="genric-btn danger radius">OOTD</a>&nbsp;&nbsp;
+		<a href="${path}/board/faq.shop?c=기타" class="genric-btn danger radius">기타</a>
+	</td></tr>
+	</table>
 </div>
 <br><br><br>
 <div align="center" style="width:100%;">
@@ -65,5 +81,28 @@
 	</button>
 	</c:if>
 </div>
+<script src="${path}/assets/board/js/jquery-3.3.1.min.js"></script>
+<script>
+$(function() {
+	var typingBool = false; 
+    var typingIdx=0; 
+    var typingTxt = $(".typing-txt").text(); // 타이핑될 텍스트를 가져온다 
+    typingTxt=typingTxt.split(""); // 한글자씩 자른다. 
+    if(typingBool==false){ // 타이핑이 진행되지 않았다면 
+       typingBool=true; 
+       
+       var tyInt = setInterval(typing,100); // 반복동작 
+     } 
+     
+     function typing(){ 
+       if(typingIdx<typingTxt.length){ // 타이핑될 텍스트 길이만큼 반복 
+         $(".typing").append(typingTxt[typingIdx]); // 한글자씩 이어준다. 
+         typingIdx++; 
+       } else{ 
+         clearInterval(tyInt); //끝나면 반복종료 
+       } 
+     }  
+})
+</script>
 </body>
 </html>
