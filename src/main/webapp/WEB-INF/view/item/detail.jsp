@@ -197,7 +197,7 @@ function javascript1(){ //qna 작성
 	<br><br>
 	<div>
 	<div>
-		<c:if test="${listcount >0 }">
+		<c:if test="${listcount >0 }">	
 	<table>
 		<c:forEach items="${qnalist }" var="qna">
 		<tr><td style="font-size:25px;"><c:if test="${qna.type ==0 }"><p style="color:#4ebafc">Q</p></c:if><c:if test="${qna.type ==1 }"><p style="color:#e60000">A</p></c:if></td>
@@ -222,7 +222,7 @@ function javascript1(){ //qna 작성
 			 	<a href="change1.shop?qna_no=${qna.qna_no}" onclick="window.open(this.href,'change1','width=500,height=400,top=200,left=400');return false;">[수정]</a>
 
 				<a href="remove1.shop?qna_no=${qna.qna_no }" onclick="window.open(this.href,'change1','width=400,height=200,top=200,left=400');return false;">[삭제]</a> 
-
+</c:if>
 					 </td>
 		</c:forEach>
 <tr><td colspan="3">
@@ -239,7 +239,7 @@ function javascript1(){ //qna 작성
 				<c:if test="${pageNum >= maxpage }">다음&gt;</c:if></td></tr></center>
 	
 	</table>
-	</c:if>
+</c:if>
 	<c:if test="${listcount==0 }">
 	<h1 style="text-align:center">상품에 대해 궁금한 것을 질문해주세요</h1>
 	</c:if>
