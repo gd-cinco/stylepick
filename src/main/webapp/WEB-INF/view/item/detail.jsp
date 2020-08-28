@@ -153,7 +153,7 @@ function javascript1(){ //qna 작성
 
 	<table>
 		<c:forEach items="${linelist }" var="line">
-		<tr><td id="st"><i class="fa fa-star" aria-hidden="true" id="s5"><c:forEach var="star" begin="1" end="${line.evaluation }"><i class="fa fa-star" aria-hidden="true" id="s1"></i></c:forEach></td>
+		<tr><td id="st"><i class="fa fa-star" aria-hidden="true" id="s5"><c:forEach var="star" begin="2" end="${line.evaluation }"><i class="fa fa-star" aria-hidden="true" id="s1"></i></c:forEach></td>
 		<td>${line.content } &nbsp;&nbsp;&nbsp;</td>
 		<td>
 	<fmt:formatDate var="rdate" value="${line.regdate }" pattern="yyyyMMdd"/>
