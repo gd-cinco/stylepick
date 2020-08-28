@@ -23,7 +23,7 @@ function javascript(){  //한줄평
 
 function javascript1(){ //qna 작성
     window.open('qna.shop?item_no=${param.item_no}','popName',
-                'width=800,height=500,top=200,left=400,');
+                'width=500,height=500,top=200,left=400,');
 }
 
 

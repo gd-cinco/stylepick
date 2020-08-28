@@ -12,6 +12,33 @@ function refresh(){
 		self.close();
 	}
 </script>
+<script type="text/javascript">
+function inputcheck(){
+	f=document.f;
+	if(f.content.value==""){
+		alert("궁금한 내용을 작성해 주세요!!!");
+		f.evaluation.focus();
+		return;
+	}
+	
+	
+	f.submit()
+	
+}
+</script>
+<style type="text/css">
+.btn{
+      text-decoration: none;
+      font-size:1.5rem;
+      color:black;
+      margin:20px;
+      display:inline-block;
+      border:2px solid #333333;
+      border-radius: 10px;
+      transition:all 0.1s;
+      font-family: 'Lobster', cursive;
+    }
+</style>
 </head>
 <body onunload="refresh()">
 <form:form modelAttribute="qna" action="plus.shop"  name="f">
@@ -24,7 +51,8 @@ function refresh(){
 	<div>
 	<textarea name="content" cols="55" rows="12" ></textarea>
 	</div>
-<input type="submit" class="genric-btn success medium" value="작성">
+	<a href="javascript:inputcheck()" class="btn" id="con1">작성</a>
+
 </form:form>
 </body>
 </html>

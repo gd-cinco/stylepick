@@ -86,7 +86,24 @@ $(function(){
 	});
 });
 </script>
-
+<script type="text/javascript">
+function inputcheck(){
+	f=document.f;
+	if(f.evaluation.value==""){
+		alert("별점을 등록해주세요");
+		f.evaluation.focus();
+		return;
+	}
+	if(f.content.value==""){
+		alert("간단한 리뷰를 써주세요!");
+		f.content.focus();
+		return;
+	}
+	
+	f.submit()
+	
+}
+</script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
 </head>
 <body onunload="refresh()">
@@ -108,7 +125,8 @@ $(function(){
 	<div>
 <textarea id="con" class="review" name="content" cols="55" rows="12"  placeholder="내용을 입력해 주세요.(최대 50자)"></textarea>
 </div>
-<input id="con1"  type="submit" class="genric-btn success medium" value="작성" >
+
+<a href="javascript:inputcheck()" id="con1" class="genric-btn success medium">한줄평 작성</a>
 </form:form>
 </div>
 </body>
