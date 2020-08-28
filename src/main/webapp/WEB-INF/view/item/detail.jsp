@@ -203,7 +203,9 @@ function javascript1(){ //qna 작성
 <div id="target3">
 	 <div class="hr-sect"><h4>Q&A</h4></div>
 	  <div style="float:right;">
-	   <input type='button' class="genric-btn info-border circle arrow" style="width:101px;" onclick='javascript1()' value='작성하기'/></div>
+	 <c:if test="${!empty sessionScope.loginUser}">
+	   <input type='button' class="genric-btn info-border circle arrow" style="width:101px;" onclick='javascript1()' value='작성하기'/></c:if></div>
+	
 	<br><br>
 	<div>
 	<div>
