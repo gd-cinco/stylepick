@@ -46,7 +46,7 @@ public interface ItemMapper {
 	@Update("update item set subject=#{subject},item_name=#{item_name},price=#{price},keyword=#{keyword},pictureUrl=#{pictureUrl},content=#{content},item_option=#{item_option},size=#{size} where item_no=#{item_no}")
 	void update(Item item);
 
-	@Delete("delete * from item where item_no=#{item_no}")
+	@Delete("delete from item where item_no=#{item_no}")
 	void delete(int item_no);
 
 	@Select("select * from item order by readcnt desc limit 0,4")

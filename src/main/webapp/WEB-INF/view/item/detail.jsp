@@ -220,8 +220,7 @@ function javascript1(){ //qna 작성
 				</c:if>
 				<c:if test="${qna.userid == sessionScope.loginUser.userid}">
 			 	<a href="change1.shop?qna_no=${qna.qna_no}" onclick="window.open(this.href,'change1','width=500,height=400,top=200,left=400');return false;">[수정]</a>
-
-				<a href="remove1.shop?qna_no=${qna.qna_no }" onclick="window.open(this.href,'change1','width=400,height=200,top=200,left=400');return false;">[삭제]</a> 
+				<a href="remove1.shop?qna_no=${qna.qna_no }" onclick="window.open(this.href,'change1','width=500,height=300,top=200,left=400');return false;">[삭제]</a> 
 </c:if>
 					 </td>
 		</c:forEach>
@@ -248,10 +247,8 @@ function javascript1(){ //qna 작성
 </div>
 </div>
 <center>
-
-<c:if test="${user1.com_name == sessionScope.loginUser.com_name ||sessionScope.loginUser.com_name ==admin }">
-<a href="update.shop?item_no=${item.item_no}" class="genric-btn primary small">수정</a>
-<a href="delete.shop?item_no=${item.item_no }" class="genric-btn primary small" onclick="window.open(this.href,'change1','width=500,height=400,top=200,left=400');return false;">삭제</a> 
+<c:if test="${user1.com_name == sessionScope.loginUser.com_name  }">
+<a href="update.shop?item_no=${item.item_no}" class="genric-btn primary small">수정</a> 
 </c:if>
 
 </center>
@@ -317,5 +314,6 @@ function preReview(){
 	})
 }
 </script>
+
 </body>
 </html>
