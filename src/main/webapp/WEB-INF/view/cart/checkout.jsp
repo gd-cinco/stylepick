@@ -142,7 +142,7 @@ th, td {
 					<tr>
 						<th>이름</th>
 						<td>
-							${sessionScope.loginUser.name}
+							${sessionScope.loginUser.nickname}
 							<c:if test="${empty sessionScope.loginUser}">익명</c:if>
 							님 (${sessionScope.loginUser.userid})
 						</td>

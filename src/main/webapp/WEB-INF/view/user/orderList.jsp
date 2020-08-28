@@ -38,12 +38,10 @@
 				<tr>
 					<td>배송중</td>
 					<td>쓰지않은 한줄평</td>
-					<td style="color: red;">최근 본 상품</td>
 				</tr>
 				<tr>
 					<td>${shipping}건</td>
 					<td>${notmentioned}건</td>
-					<td style="color: red;">11</td>
 				</tr>
 			</table>
 		</div>

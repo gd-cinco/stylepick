@@ -41,7 +41,7 @@
 				<li  id="admin_menu"><a href="../admin/list.shop">유저</a></li><br>
 				<li  id="admin_menu"><a href="../admin/storelist.shop">스토어 관리</a></li><br>
 				<li  id="admin_menu"><a href="../admin/salesmgr.shop" style="color:skyblue;">매출 관리</a></li><br>
-				<li  id="admin_menu"><a href="../board/notice.shop">고객센터</a></li>
+				<li  id="admin_menu"><a href="../board/qna.shop">고객센터</a></li>
 			</ul>
 	</div>
 	<div class="right-div" style="width: 80%; margin-left: 3%;  padding: 1%; float:left;">
@@ -88,8 +88,8 @@
 						<td class="user_list_table">${list.order_no}</td>
 						<td class="user_list_table"><fmt:formatDate value="${list.orderdate}" pattern="yyyy-MM-dd"/></td>
 						<td class="user_list_table">${list.com_name}</td>
-						<td class="user_list_table">${list.amount}</td>
-						<td class="user_list_table">${list.stat}</td>
+						<td class="user_list_table"><fmt:formatNumber value="${list.amount}" pattern="#,###" /></td>
+						<!-- <td class="user_list_table">${list.stat}</td> -->
 						<td class="user_list_table">${list.address}</td>
 						<!-- <td class="user_list_table"><a href="#">[이동]</a></td> -->
 					</tr>

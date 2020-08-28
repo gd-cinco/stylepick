@@ -177,6 +177,7 @@ public class itemController {
 					if(request.getRequestURI().contains("detail.shop")) {
 						readcntable=true;
 					}
+				
 					item=service.getItem(item_no,readcntable);
 					user1=service.getUser(item.getUserid());
 					if(request.getRequestURI().contains("update.shop")) {

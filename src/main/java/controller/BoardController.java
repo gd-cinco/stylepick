@@ -183,7 +183,7 @@ public class BoardController {
 		MyAuthenticator auth = new MyAuthenticator(mail.getNaverid(), mail.getNaverpw());
 		Properties prop = new Properties();
 		try {
-			FileInputStream fis = new FileInputStream("C:\\Users\\LGH\\Desktop\\gtp\\github\\stylepick\\src\\main\\resources\\mail.properties");
+			FileInputStream fis = new FileInputStream("D:\\java_source\\stylepick\\src\\main\\resources\\mail.properties");
 			
 			prop.load(fis); // mail.properties의 내용을 Properties(Map)객체로 로드
 			prop.put("mail.smtp.user", mail.getNaverid());

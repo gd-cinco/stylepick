@@ -187,7 +187,7 @@
 </header>
 <main>
     <div class="best-collection-area align-center">
-        <div class="main-mapper">
+        <div class="main-mapper" style="margin-top: 20px;">
         	<c:if test="${fn:contains(path2,'item/list')}" >
         		<div class="item-category">
         			<ul>
@@ -203,11 +203,6 @@
         			</ul>
         		</div>
         	</c:if>
-        	<!--  
-        	<c:if test="${!fn:contains(path2,'support')}">
-        	<br><br>
-        	</c:if>
-        	-->
         	<decorator:body/>
         </div>
     </div>

@@ -212,7 +212,7 @@ function drawMultSeries() {
 				<li  id="admin_menu"><a href="../admin/list.shop">유저</a></li><br>
 				<li  id="admin_menu"><a href="#">스토어 관리</a></li><br>
 				<li  id="admin_menu"><a href="#">매출 관리</a></li><br>
-				<li  id="admin_menu"><a href="../board/notice.shop">고객센터</a></li>
+				<li  id="admin_menu"><a href="../board/qna.shop">고객센터</a></li>
 			</ul>
 	</div>
 	<!-- 우측 div : 메인 컨텐츠-->

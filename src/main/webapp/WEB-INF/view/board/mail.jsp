@@ -23,17 +23,21 @@
 </script>
 </head>
 <body>
-	<h2>메일보내기</h2>
+<br><br>
+<div align="center">
+	<h2>메일로 답변등록하기</h2><br>
 	<form name="mailform" method="post" action="email.shop" enctype="multipart/form-data" onsubmit="return idinputchk(this)">
-		본인네이버ID : <input type="text" name="naverid">
-		네이버비밀번호 : <input type="password" name="naverpw"> 
 		<table>
 			<tr>
-				<td>보내는 사람</td>
-				<td>${loginUser.email}</td>
+				<th>네이버 아이디&nbsp;&nbsp;</th>
+				<td><input type="text" name="naverid"></td>
 			</tr>
 			<tr>
-				<td>받는 사람</td>
+				<th>네이버 비밀번호&nbsp;&nbsp;</th>
+				<td><input type="password" name="naverpw"> </td>
+			</tr>
+			<tr> 
+				<td>받는 사람 </td>
 				<td>
 					<%-- 홍길동 <hong@aaa.bbb> --%>
 					<input type="text" name="recipient" size="100" value="${param.e}">
@@ -41,11 +45,11 @@
 				</td>
 			</tr>
 			<tr>
-				<td>제목</td>
+				<td>제목 </td>
 				<td><input type="text" name="title" size="100"></td>
 			</tr>
 			<tr>
-				<td>메세지형식</td>
+				<td>메세지형식 </td>
 				<td>
 					<select name="mtype">
 						<option value="text/html; charset=utf-8">HTML</option>
@@ -54,11 +58,11 @@
 				</td>
 			</tr>
 			<tr>
-				<td>첨부파일1</td>
+				<td>첨부파일1 </td>
 				<td><input type="file" name="file1"></td>
 			</tr>
 			<tr>
-				<td>첨부파일2</td>
+				<td>첨부파일2 </td>
 				<td><input type="file" name="file1"></td>
 			</tr>
 			<tr>
@@ -67,8 +71,10 @@
 					<script>CKEDITOR.replace("contents")</script>
 				</td>
 			</tr>
+			<tr><td>&nbsp;</td></tr>
 			<tr><td colspan="2"><input type="submit" value="메일보내기"></td></tr>
 		</table>
 	</form>
+</div>
 </body>
 </html>

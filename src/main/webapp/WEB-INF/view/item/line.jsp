@@ -107,7 +107,7 @@ function inputcheck(){
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
 </head>
 <body onunload="refresh()">
-<div style="width:500px;">
+<div style="width:auto;">
    <h1>한줄평</h1>
 <form:form action="write.shop"  name="f">
  <input type="hidden" name="item_no"  value="${param.item_no}">

@@ -68,7 +68,7 @@ public class AdminController {
 		 * boardno: 화면내 재할당 된 게시글 번호(listcount부터 시작)
 		 */
 		
-		int limit =10;// 한 페이지에 출력할 게시물 건수
+		int limit =30;// 한 페이지에 출력할 게시물 건수
 		//listcount : 등록된 전체 게시물의 건수, 검색된 게시물의 건수
 		int listcount = service.usercount(searchtype, searchcontent);
 		//list : 화면에 출력할 내용, 목록 저장
@@ -145,7 +145,7 @@ public class AdminController {
 			searchtype = null;
 			searchcontent = null;
 		}
-		int limit =10;
+		int limit =30;
 		int listcount = service.storecount(searchtype, searchcontent);
 		if (pageNum == null) {
 			pageNum = 1;
@@ -185,7 +185,7 @@ public class AdminController {
 				pageNum = 1;
 			}
 			List<Buy> list = service.saleslist(searchtype, searchcontent,pageNum, limit);
-			
+			System.out.println(list.toString());
 			
 			int maxpage=(int)((double)listcount/limit+0.95);
 			int startpage=((int)(pageNum/10.0+0.9)-1)*10+1; //시작페이지 번호

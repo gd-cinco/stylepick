@@ -74,7 +74,7 @@ public interface UserMapper {
 	List<Userorder> getuserorder(String userid);
 	
 	@Select("select i.item_name, l.evaluation,l.content from line l,item i where "
-			+ "i.item_no=l.item_no and i.userid=#{userid} order by l.line_no desc")
+			+ "i.item_no=l.item_no and l.userid=#{userid} order by l.line_no desc")
 	List<Userorder> getuserline(String userid);
 	
 	@Select("SELECT COUNT(*) FROM buy_detail, buy "
