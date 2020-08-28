@@ -104,7 +104,7 @@ th, td {
 				<table>
 					<tr>
 						<th>받는분</th>
-						<td><input type="text" name="name" placeholder="받으실분 이름"></td>
+						<td><input type="text" name="name" placeholder="받으실분 이름" autocomplete="off"></td>
 					</tr>
 					<tr class="form-group">
 						<th>우편번호</th>
@@ -127,7 +127,7 @@ th, td {
 					</tr>
 					<tr>
 						<th>휴대전화</th>
-						<td><input type="text" name="tel" placeholder="전화번호"></td>
+						<td><input type="text" name="tel" placeholder="전화번호" autocomplete="off"></td>
 					</tr>
 					<tr>
 						<th>배송 메모</th>

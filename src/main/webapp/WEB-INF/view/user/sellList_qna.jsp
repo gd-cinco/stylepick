@@ -37,13 +37,11 @@
 					<td>판매수익</td>
 					<td>판매 중</td>
 					<td>판매 완료</td>
-					<td>문의 관리</td>
 				</tr>
 				<tr>
 					<td>${balance}원</td>
 					<td>${sellcount}건</td>
 					<td>${sold}건</td>
-					<td>4</td>
 				</tr>
 			</table>
 		</div>
@@ -55,7 +53,7 @@
 			<li><a class="a_leftdivbtn" href="sellList.shop?id=${user.userid}">요약보기</a></li>
 			<li><a class="a_leftdivbtn" href="sellList_item.shop?id=${user.userid}">등록상품</a></li>
 			<li><a class="a_leftdivbtn" href="sellList_list.shop?id=${user.userid}">판매내역</a></li>
-			<li><a class="a_leftdivbtn leftdivbtn_selected2" href="sellList_qna.shop?id=${user.userid}">문의관리</a></li>
+			<li><a class="a_leftdivbtn leftdivbtn_selected2">문의관리</a></li>
 		</ul>
 		</div>
 		<div class="order_main">

@@ -138,7 +138,7 @@
 							
 							<fmt:formatDate value="${orderdate[stat.index]}" pattern="yyyy/MM/dd"/> 
 							</div>
-							<div class="order_buyitem_center_text" style="font-size:15px; font-weight: bold;">${sale.content}</div>
+							<div class="order_buyitem_center_text" style="font-size:15px; font-weight: bold;">${sale.evaluation}별 / ${sale.content}</div>
 						</div>
 						<div class="order_buyitem_right">
 							<div class="order_buyitem_buttondiv">
