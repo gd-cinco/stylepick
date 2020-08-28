@@ -488,7 +488,7 @@ public class AjaxController {
 	@RequestMapping(value="list", produces="text/plain; charset=UTF8")
 	public String list(Integer category,int listAmount,int status,String keyword) {
 		StringBuilder html = new StringBuilder();
-		System.out.println("keyword:"+keyword);
+		//System.out.println("keyword:"+keyword);
 		if(keyword == null || keyword.trim().equals("")) {
 			keyword =null;
 		}
@@ -498,7 +498,7 @@ public class AjaxController {
 		}
 		int limit = 12;
 		List<Item> itemss = service.getItemList(listAmount,limit,keyword,category);
-		System.out.println(itemss);
+		//System.out.println(itemss);
 		if(itemss.isEmpty()) {
 			return null;
 		} else {

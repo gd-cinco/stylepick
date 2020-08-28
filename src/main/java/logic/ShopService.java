@@ -331,7 +331,7 @@ public class ShopService {
 		if(able) {
 			itemDao.readcntadd(item_no);
 		}
-		return itemDao.selectOne(item_no);
+		return itemDao.selectOne2(item_no);
 	}
 	
 	public int getmaxnum() {

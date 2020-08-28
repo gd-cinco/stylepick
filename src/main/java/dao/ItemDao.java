@@ -50,6 +50,12 @@ public class ItemDao {
 		param.put("item_no", item_no);
 		return template.getMapper(ItemMapper.class).select(param).get(0);
 	}
+	
+	public Item selectOne2(Integer item_no) {
+		param.clear();
+		param.put("item_no", item_no);
+		return template.getMapper(ItemMapper.class).select3(param).get(0);
+	}
 
 	public int count(String searchtype, String searchcontent) {
 		return template.getMapper(ItemMapper.class).count(param);
